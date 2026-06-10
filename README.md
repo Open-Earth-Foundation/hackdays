@@ -1,81 +1,60 @@
 # OEF Hackdays
 
-Open Earth Foundation's hackday monorepo. Each event lives in `apps/` as a self-contained project. Teams build, demo, and document here — everything in one place, forever.
+The **single home** for every Open Earth Foundation hackday — past, present, and future. One repo, all events, all teams, all apps.
 
-## Current Event
-
-### Hackday Q2 2026 — "Unlock the Money"
-
-**Theme:** Build tools that make climate finance flow. If funders can't trust cities, money doesn't move. We build the trust layer.
-
-**When:** 11 June 2026 15:00 GMT (kickoff) → 12 June 2026 15:00 GMT (demos)
-
-**Format:** Teams of 2-4. One repo, many apps. Ship something demoable in 24h.
-
-**Revenue angle:** Every project should answer: *"How does this help OEF or our partners unlock funding, close deals, or generate revenue?"*
-
----
-
-## How to Start a New Hackday App
-
-```bash
-# 1. Copy the template
-cp -r apps/_template apps/your-team-name
-
-# 2. Update apps/your-team-name/README.md with your idea
-
-# 3. Install & run (template ships as a Next.js app by default)
-cd apps/your-team-name
-npm install
-npm run dev
-
-# 4. Commit early, commit often. Push to a branch: hackday/your-team-name
-git checkout -b hackday/your-team-name
-```
-
-You're free to use any stack (Python, Next.js, Streamlit, static HTML, whatever ships fastest). The template is just a starting point.
-
-## Tooling Rules
-
-| Rule | Why |
-|------|-----|
-| **Use Cursor as your IDE** | We're standardizing on AI-native development |
-| **Use Claude (Code, Design, Chat)** | Test our new tool stack under real pressure |
-| **Push to this repo** | One place for all hackday work, now and future |
-| **Document as you go** | Your app's `README.md` is your demo script |
-
-No other AI coding tools (Copilot, Windsurf, etc.) for this event — we want to stress-test one stack properly.
-
-## Repo Structure
+## How This Repo is Organized
 
 ```
 hackdays/
-├── apps/
-│   ├── _template/          # Copy this to start
-│   ├── trust-score/        # Example: Carole's political will indicator
-│   └── ...                 # Your team's app here
-├── docs/
-│   ├── THEME.md            # This hackday's theme & context
-│   └── IDEAS.md            # Idea bank (add yours!)
-├── .cursor/
-│   └── rules/              # Shared Cursor rules for the repo
-└── README.md               # You are here
+├── events/                          ← one folder per hackday event
+│   ├── 2026-06-11-unlock-the-money/ ← example: Q2 2026 hackday
+│   │   ├── README.md                ← theme, schedule, teams, results
+│   │   ├── IDEAS.md                 ← idea bank for this event
+│   │   └── apps/                    ← all team apps for this event
+│   │       ├── _template/           ← copy this to start
+│   │       ├── team-alpha/
+│   │       └── team-beta/
+│   └── 2026-09-xx-next-event/       ← next hackday goes here
+├── templates/                       ← reusable app starters (Next.js, Python, etc.)
+├── docs/                            ← evergreen guides (how to use Cursor, git basics, etc.)
+├── GETTING-STARTED.md               ← START HERE if you're new
+└── README.md                        ← you are here
 ```
 
-## Resources
+## Quick Links
 
-- [CityCatalyst POC Template](https://github.com/Open-Earth-Foundation/cc-poc-template) — if your app connects to CityCatalyst
-- [Geo Layer Viewer](https://oef-geospatial-data.replit.app/) — geospatial data explorer
-- [CityCatalyst Global API](https://github.com/Open-Earth-Foundation/CityCatalyst) — emissions data, city context
+| What | Where |
+|------|-------|
+| **I'm new, help!** | [GETTING-STARTED.md](./GETTING-STARTED.md) |
+| **Current event** | [events/2026-06-11-unlock-the-money/](./events/2026-06-11-unlock-the-money/) |
+| **How to use Cursor + Claude** | [docs/cursor-guide.md](./docs/cursor-guide.md) |
+| **App templates** | [templates/](./templates/) |
+
+## Starting a New Hackday Event
+
+If you're organizing the next hackday:
+
+1. Create a new folder: `events/YYYY-MM-DD-event-name/`
+2. Copy the structure from a previous event (README.md, IDEAS.md, apps/_template/)
+3. Update the "Current event" link in this README
+4. Announce in Slack with the link to the event README
+
+## Ground Rules (All Events)
+
+1. **One repo.** All hackday work lives here. No separate repos.
+2. **One branch per team.** Format: `hackday/YYYY-MM-DD/team-name` (e.g., `hackday/2026-06-11/trust-score`)
+3. **Cursor + Claude.** Our standard AI-assisted development stack.
+4. **Document as you build.** Your README is your demo.
+5. **Ship > polish.** Working > beautiful. Visible > invisible.
 
 ## Past Events
 
-| Date | Theme | Apps |
-|------|-------|------|
-| 2026-06-11 | Unlock the Money | *in progress* |
+| Date | Theme | Teams | Highlights |
+|------|-------|-------|------------|
+| 2026-06-11 | Unlock the Money | *in progress* | — |
 
 ---
 
 ## License
 
-AGPL-3.0 — consistent with all OEF open-source projects.
+AGPL-3.0
