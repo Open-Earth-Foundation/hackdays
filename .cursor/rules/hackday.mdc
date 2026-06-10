@@ -1,0 +1,30 @@
+---
+description: Rules for all hackday projects in this repo
+globs: "apps/**"
+---
+
+# Hackday Development Rules
+
+## Context
+This is the OEF Hackdays monorepo. Each team works in `apps/<team-name>/`. Projects are 24-hour builds focused on revenue-enabling tools for climate finance.
+
+## Principles
+- Ship over polish. Ugly but working beats beautiful but broken.
+- Every app must have a README.md that serves as both documentation and demo script.
+- Prefer simple stacks. Next.js, plain HTML, Streamlit, FastAPI — whatever gets you to a demo fastest.
+- Use Claude for code generation, design decisions, and debugging. Document what worked and what didn't.
+
+## Code Style
+- TypeScript for frontend apps (strict mode).
+- Python for backend/data apps (type hints, ruff formatting).
+- No complex build systems. Keep it deployable with `npm run dev` or `python app.py`.
+
+## Git Workflow
+- Each team works on branch `hackday/<team-name>`.
+- Commit early and often. Messy history is fine for a hackday.
+- Open a PR to `main` before demo time with a description of what you built.
+
+## Data & APIs
+- CityCatalyst Global API is available for city data and emissions.
+- Use public data sources. Don't commit API keys — use `.env.local`.
+- If you need OEF-internal data, ask Pablo or check the `cc-poc-template` repo for OAuth setup.
