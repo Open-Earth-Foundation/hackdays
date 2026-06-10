@@ -6,7 +6,7 @@ Add your idea below. Format: title, one-paragraph pitch, who it's for, revenue a
 
 ## 1. Political Will Score
 
-**Proposed by:** Carole (Head of Partnerships)
+**Proposed by:** Carole
 
 One of the blockers we hear from funders is TRUST. "Will this city still prioritize climate after the next election?" Nobody has a good answer, so finance doesn't flow.
 
