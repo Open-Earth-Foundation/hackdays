@@ -61,6 +61,9 @@
   "panel.projects": "Comparable funded projects",
   "panel.projects.caption": "Real Latin American projects matched on sector, climate risk, and CAPAG-fit financing.",
   "panel.projects.none": "No close match in the funded-projects database yet.",
+  "panel.projects.matchedOn": "Matched on",
+  "panel.projects.viaEmissions": "emissions",
+  "panel.projects.viaRisk": "risk",
   "panel.icf": "ICF (accounting quality): <b>{{icf}}</b> — Aicf entities get the “+” upgrade; Dicf/Eicf are ineligible for federal guarantees regardless of indicators.",
   "panel.disclaimer": "CAPAG is an indicative screening signal published by the Treasury; the binding rating is computed only when a credit operation is requested. This is prioritization support, not a credit decision.",
 

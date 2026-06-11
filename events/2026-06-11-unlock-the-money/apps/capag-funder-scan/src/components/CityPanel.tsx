@@ -57,10 +57,19 @@ export default function CityPanel({
   const matches = data
     ? matchProjects(projects, {
         capag: row.capag,
-        topSectors: data.sectors.slice(0, 2).map((s) => s.code),
-        highHazards: data.hazards.filter((h) => h.score >= HIGH_RISK).map((h) => h.hazard),
+        sectors: data.sectors.map((s) => ({ code: s.code, share: s.share })),
+        hazards: data.hazards.map((h) => ({ key: h.hazard, score: h.score })),
       })
     : [];
+
+  // turn a raw match reason ("V emissions" / "floods risk") into localized copy
+  const reasonLabel = (reason: string) => {
+    const em = reason.match(/^(\w+) emissions$/);
+    if (em) return `${t(`sector.${em[1]}`)} ${t("panel.projects.viaEmissions")}`;
+    const rk = reason.match(/^(.+) risk$/);
+    if (rk && HAZARD_BY_KEY[rk[1]]) return `${t(`hazard.${rk[1]}`)} ${t("panel.projects.viaRisk")}`;
+    return reason;
+  };
 
   const renderLine = (line: { key: string; vars?: Record<string, string> }) => {
     const vars: Record<string, string> = {};
@@ -268,12 +277,24 @@ export default function CityPanel({
                     {p.status}
                   </Badge>
                 </Flex>
-                <Text fontSize="xs" color="content.tertiary" mb="1">
+                <Text fontSize="xs" color="content.tertiary" mb="1.5">
                   {p.summary}
                 </Text>
+                {p.why.length > 0 && (
+                  <Flex gap="1" wrap="wrap" mb="1">
+                    <Text fontSize="2xs" color="content.tertiary" fontWeight="600">
+                      {t("panel.projects.matchedOn")}:
+                    </Text>
+                    <Text fontSize="2xs" color="content.link">
+                      {p.why
+                        .filter((r) => r.endsWith("emissions") || r.endsWith("risk"))
+                        .map(reasonLabel)
+                        .join(" · ")}
+                    </Text>
+                  </Flex>
+                )}
                 <Text fontSize="2xs" color="content.tertiary">
-                  {p.sectors.join(" · ")}
-                  {p.funders.length ? ` — ${p.funders.join(", ")}` : ""}
+                  {p.funders.length ? p.funders.join(", ") : ""}
                 </Text>
               </Box>
             ))}

@@ -61,6 +61,9 @@
   "panel.projects": "Projetos financiados comparáveis",
   "panel.projects.caption": "Projetos reais da América Latina, combinados por setor, risco climático e financiamento compatível com a CAPAG.",
   "panel.projects.none": "Ainda sem correspondência próxima na base de projetos financiados.",
+  "panel.projects.matchedOn": "Corresponde a",
+  "panel.projects.viaEmissions": "emissões",
+  "panel.projects.viaRisk": "risco",
   "panel.icf": "ICF (qualidade contábil): <b>{{icf}}</b> — entidades Aicf recebem o upgrade “+”; Dicf/Eicf são inelegíveis para garantias federais independentemente dos indicadores.",
   "panel.disclaimer": "A CAPAG é um sinal indicativo de triagem publicado pelo Tesouro; a nota vinculante só é calculada quando uma operação de crédito é solicitada. Trata-se de apoio à priorização, não de uma decisão de crédito.",
 
