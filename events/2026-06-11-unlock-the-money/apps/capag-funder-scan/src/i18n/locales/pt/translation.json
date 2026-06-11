@@ -1,0 +1,104 @@
+{
+  "app.title": "CAPAG Funder Scan",
+  "app.subtitle": "CAPAG do Tesouro Nacional (nov/2025) × dados climáticos do CityCatalyst",
+  "app.intro": "{{count, number}} municípios brasileiros. Sinal indicativo de triagem, não uma decisão de crédito.",
+
+  "filters.fiscal": "Capacidade fiscal (CAPAG)",
+  "filters.risk": "Alto risco climático (≥ 50, qualquer selecionado)",
+  "filters.clear": "Limpar ({{count}})",
+
+  "tier.A+.label": "financiável, contabilidade ótima",
+  "tier.A.label": "financiável",
+  "tier.B+.label": "elegível a crédito",
+  "tier.B.label": "elegível a crédito",
+  "tier.C.label": "sem crédito federal",
+  "tier.D.label": "nível mais baixo",
+  "tier.n.d..label": "sem nota → AT",
+  "tier.n.e..label": "não avaliado",
+
+  "hazard.heatwaves": "Ondas de calor",
+  "hazard.floods": "Inundações",
+  "hazard.droughts": "Secas",
+  "hazard.landslides": "Deslizamentos",
+  "hazard.diseases": "Doenças",
+  "hazard.sea-level-rise": "Elevação do nível do mar",
+
+  "sector.I": "Energia estacionária",
+  "sector.II": "Transporte",
+  "sector.III": "Resíduos",
+  "sector.IV": "IPPU",
+  "sector.V": "AFOLU",
+
+  "search.placeholder": "Buscar município…",
+  "search.allStates": "Todos os estados",
+  "search.matches_one": "{{count, number}} resultado",
+  "search.matches_other": "{{count, number}} resultados",
+  "search.sortedByRisk": " · ordenado por risco",
+  "search.export": "Exportar CSV",
+
+  "map.zoomToSelection": "Ampliar para seleção",
+  "map.dotSize": "tamanho do ponto = risco selecionado",
+  "table.showing": "Mostrando os primeiros {{shown, number}} de {{total, number}}",
+
+  "col.municipality": "Município",
+  "col.uf": "UF",
+  "col.capag": "CAPAG",
+  "col.debt": "Dívida",
+  "col.savings": "Poupança",
+  "col.liquidity": "Liquidez",
+  "col.icf": "ICF",
+  "col.top3": "3 maiores riscos",
+
+  "panel.fiscal": "Capacidade fiscal — CAPAG",
+  "panel.emissions": "Emissões por setor",
+  "panel.emissions.total": "total {{value}} CO₂e",
+  "panel.emissions.unavailable": "API do CityCatalyst indisponível no momento.",
+  "panel.emissions.noWaste": "Sem dados de resíduos para este município no SINIR/SNIS (2022).",
+  "panel.risks": "Riscos climáticos",
+  "panel.risks.caption": "CCRA, cenário atual, normalizado 0–100",
+  "panel.risks.none": "Sem dados de CCRA para este município.",
+  "panel.recommendation": "Instrumento sugerido",
+  "panel.icf": "ICF (qualidade contábil): <b>{{icf}}</b> — entidades Aicf recebem o upgrade “+”; Dicf/Eicf são inelegíveis para garantias federais independentemente dos indicadores.",
+  "panel.disclaimer": "A CAPAG é um sinal indicativo de triagem publicado pelo Tesouro; a nota vinculante só é calculada quando uma operação de crédito é solicitada. Trata-se de apoio à priorização, não de uma decisão de crédito.",
+
+  "indicator.debt.name": "Dívida (Endividamento)",
+  "indicator.debt.what": "Dívida consolidada bruta ÷ receita corrente líquida. O quão alavancado o município já está.",
+  "indicator.savings.name": "Poupança (Poupança Corrente)",
+  "indicator.savings.what": "Despesa corrente ÷ receita corrente, média ponderada de 3 anos. Se a operação do dia a dia deixa espaço para investir.",
+  "indicator.liquidity.name": "Liquidez (Liquidez Relativa)",
+  "indicator.liquidity.what": "(Caixa − obrigações de curto prazo) ÷ receita corrente líquida. Se o município consegue pagar o que vence agora.",
+
+  "rec.riskNote": "maior risco climático: {{hazard}} ({{score}}/100)",
+  "rec.noRisk": "sem dados de risco CCRA",
+
+  "rec.nd.instrument": "Assistência técnica primeiro",
+  "rec.nd.r1": "O Tesouro não atribui nota a este município — seus dados fiscais no Siconfi estão ausentes ou inconsistentes",
+  "rec.nd.r2": "Enquanto a prestação de contas não for corrigida, o município é invisível ao mercado de crédito e à maioria dos financiadores",
+  "rec.nd.r3": "AT na qualidade dos dados fiscais destrava todos os demais instrumentos",
+
+  "rec.d.instrument": "Apenas doação + programa de recuperação fiscal",
+  "rec.d.r1": "Nota mais baixa: nenhum canal de crédito é realista no curto prazo",
+  "rec.d.r2": "Combine financiamento climático não reembolsável com apoio à recuperação fiscal",
+
+  "rec.c_high.instrument": "Climate Bridge Grant / financiamento combinado",
+  "rec.c_high.r1": "A CAPAG C bloqueia o crédito com garantia federal",
+  "rec.c_high.r2": "Alta necessidade climática — esperar pela melhora fiscal não é opção",
+  "rec.c_high.r3": "Combine doações com capital concessional; vincule o desembolso à entrega verificada",
+
+  "rec.c_low.instrument": "Piloto de financiamento por resultados",
+  "rec.c_low.r1": "A CAPAG C bloqueia o crédito com garantia federal",
+  "rec.c_low.r2": "Risco climático moderado — momento de estruturar pagamento por desempenho",
+  "rec.c_low.r3": "Opcionalmente combine com AT de melhoria da CAPAG para o município evoluir ao crédito",
+
+  "rec.bank_high.instrument": "Linha de crédito garantida para adaptação",
+  "rec.bank_high.r1": "CAPAG {{capag}}: elegível a crédito com garantia federal",
+  "rec.bank_high.r2": "Alta necessidade climática — projetos de adaptação são urgentes e financiáveis",
+
+  "rec.bank_low.instrument": "Linha de crédito tradicional / preparação de projetos",
+  "rec.bank_low.r1": "CAPAG {{capag}}: elegível a crédito com garantia federal",
+  "rec.bank_low.r2": "Menor urgência climática — foco no pipeline de mitigação e preparação de projetos",
+
+  "rec.icf.top": "Qualidade contábil Aicf: menor custo de transação, estruturação mais rápida",
+  "rec.icf.bond": "Qualidade contábil Aicf: forte candidato a green bond",
+  "rec.icf.standard": "Aplica-se a due diligence padrão"
+}

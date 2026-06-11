@@ -58,6 +58,7 @@ npm run dev
 - Next.js / React
 - Tesouro Transparente CKAN (CAPAG, ODbL) · CityCatalyst Global API (SEEG + SINIR + SNIS + EPE merged inventory, CCRA risk)
 - Chakra UI v3 with CityCatalyst design tokens (see `.cursor/rules/citycatalyst-style.mdc`)
+- i18next (EN / PT-BR), CityCatalyst's i18n stack — toggle in the nav, full Portuguese for the Brazilian funder audience
 
 ## What We Learned
 

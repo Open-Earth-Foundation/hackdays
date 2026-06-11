@@ -1,0 +1,104 @@
+{
+  "app.title": "CAPAG Funder Scan",
+  "app.subtitle": "Tesouro Nacional CAPAG (Nov 2025) × CityCatalyst climate data",
+  "app.intro": "{{count, number}} Brazilian municipalities. Indicative screening signal, not a credit decision.",
+
+  "filters.fiscal": "Fiscal capacity (CAPAG)",
+  "filters.risk": "High climate risk (≥ 50, any selected)",
+  "filters.clear": "Clear ({{count}})",
+
+  "tier.A+.label": "bankable, top accounting",
+  "tier.A.label": "bankable",
+  "tier.B+.label": "credit-eligible",
+  "tier.B.label": "credit-eligible",
+  "tier.C.label": "no federal credit",
+  "tier.D.label": "bottom tier",
+  "tier.n.d..label": "not rated → TA",
+  "tier.n.e..label": "not evaluated",
+
+  "hazard.heatwaves": "Heatwaves",
+  "hazard.floods": "Floods",
+  "hazard.droughts": "Droughts",
+  "hazard.landslides": "Landslides",
+  "hazard.diseases": "Diseases",
+  "hazard.sea-level-rise": "Sea level rise",
+
+  "sector.I": "Stationary Energy",
+  "sector.II": "Transportation",
+  "sector.III": "Waste",
+  "sector.IV": "IPPU",
+  "sector.V": "AFOLU",
+
+  "search.placeholder": "Search municipality…",
+  "search.allStates": "All states",
+  "search.matches_one": "{{count, number}} match",
+  "search.matches_other": "{{count, number}} matches",
+  "search.sortedByRisk": " · sorted by risk",
+  "search.export": "Export CSV",
+
+  "map.zoomToSelection": "Zoom to selection",
+  "map.dotSize": "dot size = selected risk score",
+  "table.showing": "Showing first {{shown, number}} of {{total, number}}",
+
+  "col.municipality": "Municipality",
+  "col.uf": "UF",
+  "col.capag": "CAPAG",
+  "col.debt": "Debt",
+  "col.savings": "Savings",
+  "col.liquidity": "Liquidity",
+  "col.icf": "ICF",
+  "col.top3": "Top 3 risks",
+
+  "panel.fiscal": "Fiscal capacity — CAPAG",
+  "panel.emissions": "Emissions by sector",
+  "panel.emissions.total": "total {{value}} CO₂e",
+  "panel.emissions.unavailable": "CityCatalyst API unavailable right now.",
+  "panel.emissions.noWaste": "No waste data for this city in SINIR/SNIS (2022).",
+  "panel.risks": "Climate risks",
+  "panel.risks.caption": "CCRA, current scenario, normalized 0–100",
+  "panel.risks.none": "No CCRA data for this city.",
+  "panel.recommendation": "Suggested instrument",
+  "panel.icf": "ICF (accounting quality): <b>{{icf}}</b> — Aicf entities get the “+” upgrade; Dicf/Eicf are ineligible for federal guarantees regardless of indicators.",
+  "panel.disclaimer": "CAPAG is an indicative screening signal published by the Treasury; the binding rating is computed only when a credit operation is requested. This is prioritization support, not a credit decision.",
+
+  "indicator.debt.name": "Debt (Endividamento)",
+  "indicator.debt.what": "Gross consolidated debt ÷ net current revenue. How leveraged the city already is.",
+  "indicator.savings.name": "Savings (Poupança Corrente)",
+  "indicator.savings.what": "Current expenses ÷ current revenues, 3-year weighted average. Whether day-to-day operations leave room to invest.",
+  "indicator.liquidity.name": "Liquidity (Liquidez Relativa)",
+  "indicator.liquidity.what": "(Cash − short-term obligations) ÷ net current revenue. Whether the city can pay what's due now.",
+
+  "rec.riskNote": "top climate risk: {{hazard}} ({{score}}/100)",
+  "rec.noRisk": "no CCRA risk data",
+
+  "rec.nd.instrument": "Technical assistance first",
+  "rec.nd.r1": "Treasury does not rate this municipality — its Siconfi fiscal reporting is missing or inconsistent",
+  "rec.nd.r2": "Until reporting is fixed, the city is invisible to credit markets and most funders",
+  "rec.nd.r3": "TA on fiscal data quality unlocks every other instrument",
+
+  "rec.d.instrument": "Grant-only + fiscal recovery program",
+  "rec.d.r1": "Bottom rating: no credit channel is realistic in the near term",
+  "rec.d.r2": "Pair non-repayable climate funding with fiscal recovery support",
+
+  "rec.c_high.instrument": "Climate Bridge Grant / blended finance",
+  "rec.c_high.r1": "CAPAG C blocks federally guaranteed credit",
+  "rec.c_high.r2": "High climate need — waiting for fiscal improvement is not an option",
+  "rec.c_high.r3": "Blend grants with concessional capital; tie disbursement to verified delivery",
+
+  "rec.c_low.instrument": "Results-based finance pilot",
+  "rec.c_low.r1": "CAPAG C blocks federally guaranteed credit",
+  "rec.c_low.r2": "Moderate climate risk — time to structure pay-for-performance",
+  "rec.c_low.r3": "Optionally pair with CAPAG-improvement TA so the city graduates to credit",
+
+  "rec.bank_high.instrument": "Guaranteed credit line for adaptation",
+  "rec.bank_high.r1": "CAPAG {{capag}}: eligible for credit with federal guarantee",
+  "rec.bank_high.r2": "High climate need — adaptation projects are urgent and financeable",
+
+  "rec.bank_low.instrument": "Traditional credit line / project preparation",
+  "rec.bank_low.r1": "CAPAG {{capag}}: eligible for credit with federal guarantee",
+  "rec.bank_low.r2": "Lower climate urgency — focus on mitigation pipeline and project prep",
+
+  "rec.icf.top": "Aicf accounting quality: lowest transaction cost, fastest structuring",
+  "rec.icf.bond": "Aicf accounting quality: strong green-bond candidate",
+  "rec.icf.standard": "Standard due diligence applies"
+}

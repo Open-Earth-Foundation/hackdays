@@ -18,7 +18,9 @@ import {
 import dynamic from "next/dynamic";
 import { MdOutlineFileDownload, MdOutlineFilterAltOff, MdOutlineZoomInMap } from "react-icons/md";
 import CityPanel from "./CityPanel";
+import LanguageToggle from "./LanguageToggle";
 import { HAZARDS, HAZARD_BY_KEY, TIER_HEX } from "../lib/display";
+import { useTranslation } from "../i18n/client";
 
 const CityMap = dynamic(() => import("./CityMap"), {
   ssr: false,
@@ -51,17 +53,6 @@ const TIER_TOKEN: Record<string, string> = {
   D: "rating.d",
   "n.d.": "rating.nd",
   "n.e.": "rating.ne",
-};
-
-const TIER_LABELS: Record<string, string> = {
-  "A+": "bankable, top accounting",
-  A: "bankable",
-  "B+": "credit-eligible",
-  B: "credit-eligible",
-  C: "no federal credit",
-  D: "bottom tier",
-  "n.d.": "not rated → TA",
-  "n.e.": "not evaluated",
 };
 
 const HIGH_RISK = 0.5;
@@ -122,6 +113,7 @@ function exportCsv(rows: Row[]) {
 }
 
 export default function Explorer({ rows }: { rows: Row[] }) {
+  const { t } = useTranslation();
   const [tiers, setTiers] = useState<Set<string>>(new Set());
   const [hazards, setHazards] = useState<Set<string>>(new Set());
   const [uf, setUf] = useState("");
@@ -198,21 +190,22 @@ export default function Explorer({ rows }: { rows: Row[] }) {
       {/* CC-style top bar */}
       <Box bg="content.alternative" py="3">
         <Container maxW="7xl">
-          <Flex align="baseline" gap="3">
+          <Flex align="center" gap="3">
             <Heading size="md" fontFamily="heading" color="base.light">
-              CAPAG Funder Scan
+              {t("app.title")}
             </Heading>
-            <Text fontSize="xs" color="background.overlay">
-              Tesouro Nacional CAPAG (Nov 2025) × CityCatalyst climate data
+            <Text fontSize="xs" color="background.overlay" display={{ base: "none", md: "block" }}>
+              {t("app.subtitle")}
             </Text>
+            <Box flex="1" />
+            <LanguageToggle />
           </Flex>
         </Container>
       </Box>
 
       <Container maxW="7xl" py="6">
         <Text color="content.tertiary" fontSize="sm" mb="5">
-          {rows.length.toLocaleString()} Brazilian municipalities. Indicative screening signal,
-          not a credit decision.
+          {t("app.intro", { count: rows.length })}
         </Text>
 
         {/* map left · filters right */}
@@ -250,16 +243,16 @@ export default function Explorer({ rows }: { rows: Row[] }) {
               boxShadow="0 1px 6px rgba(0,0,31,0.12)"
             >
               <Flex gap="2.5" wrap="wrap">
-                {TIERS.map((t) => (
-                  <Flex key={t} align="center" gap="1" fontSize="2xs" color="content.secondary">
-                    <Box w="2.5" h="2.5" borderRadius="full" bg={TIER_HEX[t]} />
-                    {t}
+                {TIERS.map((tier) => (
+                  <Flex key={tier} align="center" gap="1" fontSize="2xs" color="content.secondary">
+                    <Box w="2.5" h="2.5" borderRadius="full" bg={TIER_HEX[tier]} />
+                    {tier}
                   </Flex>
                 ))}
               </Flex>
               {hazards.size > 0 && (
                 <Text fontSize="2xs" color="content.tertiary" mt="1">
-                  dot size = selected risk score
+                  {t("map.dotSize")}
                 </Text>
               )}
             </Box>
@@ -277,7 +270,7 @@ export default function Explorer({ rows }: { rows: Row[] }) {
               onClick={() => setFitSignal((s) => s + 1)}
             >
               <Icon as={MdOutlineZoomInMap} boxSize="3.5" />
-              Zoom to selection
+              {t("map.zoomToSelection")}
             </Button>
           </Box>
 
@@ -285,22 +278,22 @@ export default function Explorer({ rows }: { rows: Row[] }) {
           <Box w={{ base: "100%", lg: "400px" }} flexShrink={0}>
             <Flex justify="space-between" align="center" mb="2">
               <Text fontSize="xs" fontWeight="700" color="content.secondary" textTransform="uppercase" letterSpacing="wide">
-                Fiscal capacity (CAPAG)
+                {t("filters.fiscal")}
               </Text>
               {activeFilters > 0 && (
                 <Button size="xs" variant="ghost" color="content.link" onClick={clearAll}>
                   <Icon as={MdOutlineFilterAltOff} boxSize="3.5" />
-                  Clear ({activeFilters})
+                  {t("filters.clear", { count: activeFilters })}
                 </Button>
               )}
             </Flex>
             <SimpleGrid columns={2} gap="2" mb="4">
-              {TIERS.map((t) => {
-                const active = tiers.has(t);
+              {TIERS.map((tier) => {
+                const active = tiers.has(tier);
                 return (
                   <Button
-                    key={t}
-                    onClick={() => setTiers(toggle(tiers, t))}
+                    key={tier}
+                    onClick={() => setTiers(toggle(tiers, tier))}
                     variant="outline"
                     h="auto"
                     py="2"
@@ -312,13 +305,13 @@ export default function Explorer({ rows }: { rows: Row[] }) {
                     textAlign="left"
                   >
                     <Flex align="center" gap="2">
-                      <TierBadge tier={t} />
+                      <TierBadge tier={tier} />
                       <Text fontWeight="700" fontFamily="heading" fontSize="sm" color={active ? "base.light" : "content.primary"}>
-                        {(counts[t] ?? 0).toLocaleString()}
+                        {(counts[tier] ?? 0).toLocaleString()}
                       </Text>
                     </Flex>
                     <Text fontSize="2xs" color={active ? "background.overlay" : "content.tertiary"} mt="0.5" fontWeight="400">
-                      {TIER_LABELS[t]}
+                      {t(`tier.${tier}.label`)}
                     </Text>
                   </Button>
                 );
@@ -328,7 +321,7 @@ export default function Explorer({ rows }: { rows: Row[] }) {
             {hasRisks && (
               <>
                 <Text fontSize="xs" fontWeight="700" color="content.secondary" textTransform="uppercase" letterSpacing="wide" mb="2">
-                  High climate risk (≥ 50, any selected)
+                  {t("filters.risk")}
                 </Text>
                 <Flex gap="1.5" wrap="wrap" mb="4">
                   {HAZARDS.map((h) => {
@@ -346,7 +339,7 @@ export default function Explorer({ rows }: { rows: Row[] }) {
                         borderColor={active ? "content.alternative" : "border.neutral"}
                       >
                         <Icon as={h.icon} boxSize="3.5" />
-                        {h.label}
+                        {t(`hazard.${h.key}`)}
                       </Button>
                     );
                   })}
@@ -370,7 +363,7 @@ export default function Explorer({ rows }: { rows: Row[] }) {
           p="3"
         >
           <Input
-            placeholder="Search municipality…"
+            placeholder={t("search.placeholder")}
             value={q}
             onChange={(e) => setQ(e.target.value)}
             bg="background.default"
@@ -379,7 +372,7 @@ export default function Explorer({ rows }: { rows: Row[] }) {
           />
           <NativeSelect.Root bg="background.default" w="180px" flexShrink={0}>
             <NativeSelect.Field value={uf} onChange={(e) => setUf(e.target.value)}>
-              <option value="">All states</option>
+              <option value="">{t("search.allStates")}</option>
               {ufs.map((u) => (
                 <option key={u} value={u}>
                   {u}
@@ -389,12 +382,9 @@ export default function Explorer({ rows }: { rows: Row[] }) {
             <NativeSelect.Indicator />
           </NativeSelect.Root>
           <Flex align="center" gap="1" flexShrink={0}>
-            <Text fontSize="sm" color="content.primary" fontWeight="700">
-              {filtered.length.toLocaleString()}
-            </Text>
             <Text fontSize="sm" color="content.tertiary">
-              match{filtered.length === 1 ? "" : "es"}
-              {hazards.size > 0 ? " · sorted by risk" : ""}
+              {t("search.matches", { count: filtered.length })}
+              {hazards.size > 0 ? t("search.sortedByRisk") : ""}
             </Text>
           </Flex>
           <Button
@@ -406,36 +396,28 @@ export default function Explorer({ rows }: { rows: Row[] }) {
             onClick={() => exportCsv(filtered)}
           >
             <Icon as={MdOutlineFileDownload} boxSize="4" />
-            Export CSV
+            {t("search.export")}
           </Button>
         </Flex>
 
         <Text fontSize="sm" color="content.tertiary" mb="2">
-          {filtered.length > shown.length ? `Showing first ${shown.length} of ${filtered.length.toLocaleString()}` : ""}
+          {filtered.length > shown.length
+            ? t("table.showing", { shown: shown.length, total: filtered.length })
+            : ""}
         </Text>
 
         <Box bg="background.default" borderRadius="lg" borderWidth="1px" borderColor="border.neutral" overflow="hidden">
           <Table.Root size="sm" striped>
             <Table.Header>
               <Table.Row>
-                <Table.ColumnHeader>Municipality</Table.ColumnHeader>
-                <Table.ColumnHeader>UF</Table.ColumnHeader>
-                <Table.ColumnHeader>CAPAG</Table.ColumnHeader>
-                <Table.ColumnHeader title="Indicator 1 — consolidated debt / net current revenue">
-                  Debt
-                </Table.ColumnHeader>
-                <Table.ColumnHeader title="Indicator 2 — current expenses vs revenues (3yr)">
-                  Savings
-                </Table.ColumnHeader>
-                <Table.ColumnHeader title="Indicator 3 — cash vs short-term obligations">
-                  Liquidity
-                </Table.ColumnHeader>
-                <Table.ColumnHeader title="Siconfi accounting-quality ranking">ICF</Table.ColumnHeader>
-                {hasRisks && (
-                  <Table.ColumnHeader title="Three highest CCRA hazard scores (normalized 0-100); selected risks first, bold">
-                    Top 3 risks
-                  </Table.ColumnHeader>
-                )}
+                <Table.ColumnHeader>{t("col.municipality")}</Table.ColumnHeader>
+                <Table.ColumnHeader>{t("col.uf")}</Table.ColumnHeader>
+                <Table.ColumnHeader>{t("col.capag")}</Table.ColumnHeader>
+                <Table.ColumnHeader title={t("indicator.debt.what")}>{t("col.debt")}</Table.ColumnHeader>
+                <Table.ColumnHeader title={t("indicator.savings.what")}>{t("col.savings")}</Table.ColumnHeader>
+                <Table.ColumnHeader title={t("indicator.liquidity.what")}>{t("col.liquidity")}</Table.ColumnHeader>
+                <Table.ColumnHeader>{t("col.icf")}</Table.ColumnHeader>
+                {hasRisks && <Table.ColumnHeader>{t("col.top3")}</Table.ColumnHeader>}
               </Table.Row>
             </Table.Header>
             <Table.Body>
@@ -463,21 +445,21 @@ export default function Explorer({ rows }: { rows: Row[] }) {
                       <Table.Cell>
                         {top3.length > 0 ? (
                           <Flex gap="2.5" wrap="nowrap">
-                            {top3.map((t) => {
-                              const meta = HAZARD_BY_KEY[t.hazard];
+                            {top3.map((hz) => {
+                              const meta = HAZARD_BY_KEY[hz.hazard];
                               if (!meta) return null;
                               return (
                                 <Flex
-                                  key={t.hazard}
+                                  key={hz.hazard}
                                   align="center"
                                   gap="0.5"
                                   fontSize="xs"
-                                  title={`${meta.label} ${(t.score * 100).toFixed(0)}`}
-                                  color={t.score >= HIGH_RISK ? "rating.d" : "content.tertiary"}
-                                  fontWeight={t.preferred ? "700" : "400"}
+                                  title={`${t(`hazard.${hz.hazard}`)} ${(hz.score * 100).toFixed(0)}`}
+                                  color={hz.score >= HIGH_RISK ? "rating.d" : "content.tertiary"}
+                                  fontWeight={hz.preferred ? "700" : "400"}
                                 >
                                   <Icon as={meta.icon} boxSize="3.5" />
-                                  {(t.score * 100).toFixed(0)}
+                                  {(hz.score * 100).toFixed(0)}
                                 </Flex>
                               );
                             })}

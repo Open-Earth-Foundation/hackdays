@@ -5,6 +5,7 @@ import { CircleMarker, MapContainer, TileLayer, Tooltip, useMap } from "react-le
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { TIER_HEX } from "../lib/display";
+import { useTranslation } from "../i18n/client";
 import type { Row } from "./Explorer";
 
 type Props = {
@@ -34,6 +35,7 @@ function FitOnSignal({ signal, points }: { signal: number; points: [number, numb
 }
 
 export default function CityMap({ rows, matchIbge, hazards, fitSignal, onSelect }: Props) {
+  const { t } = useTranslation();
   const placed = useMemo(() => rows.filter((r) => r.lat != null && r.lng != null), [rows]);
   const matchPoints = useMemo(
     () =>
@@ -84,7 +86,7 @@ export default function CityMap({ rows, matchIbge, hazards, fitSignal, onSelect 
           >
             <Tooltip>
               {r.name} ({r.uf}) — CAPAG {r.capag}
-              {hazards.size > 0 ? ` · risk ${(score * 100).toFixed(0)}` : ""}
+              {hazards.size > 0 ? ` · ${t("panel.risks")} ${(score * 100).toFixed(0)}` : ""}
             </Tooltip>
           </CircleMarker>
         );

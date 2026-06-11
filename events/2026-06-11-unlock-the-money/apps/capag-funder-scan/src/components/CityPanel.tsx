@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Badge, Box, Flex, Heading, Icon, Spinner, Text } from "@chakra-ui/react";
 import { recommend } from "../lib/recommend";
 import { HAZARD_BY_KEY, SECTORS } from "../lib/display";
+import { useTranslation } from "../i18n/client";
 import type { Row } from "./Explorer";
 
 type CityData = {
@@ -12,23 +13,7 @@ type CityData = {
   hazards: { hazard: string; score: number }[];
 };
 
-const INDICATOR_HELP: { key: "debt" | "savings" | "liquidity"; name: string; what: string }[] = [
-  {
-    key: "debt",
-    name: "Debt (Endividamento)",
-    what: "Gross consolidated debt ÷ net current revenue. How leveraged the city already is.",
-  },
-  {
-    key: "savings",
-    name: "Savings (Poupança Corrente)",
-    what: "Current expenses ÷ current revenues, 3-year weighted average. Whether day-to-day operations leave room to invest.",
-  },
-  {
-    key: "liquidity",
-    name: "Liquidity (Liquidez Relativa)",
-    what: "(Cash − short-term obligations) ÷ net current revenue. Whether the city can pay what's due now.",
-  },
-];
+const INDICATORS = ["debt", "savings", "liquidity"] as const;
 
 function GradePill({ grade }: { grade: string }) {
   const color = grade === "A" ? "rating.a" : grade === "B" ? "rating.b" : grade === "C" ? "rating.c" : "rating.nd";
@@ -48,6 +33,7 @@ function fmtMt(co2eqKg: number) {
 }
 
 export default function CityPanel({ row, onClose }: { row: Row; onClose: () => void }) {
+  const { t } = useTranslation();
   const [data, setData] = useState<CityData | null>(null);
   const [failed, setFailed] = useState(false);
 
@@ -62,6 +48,17 @@ export default function CityPanel({ row, onClose }: { row: Row; onClose: () => v
 
   const topHazard = data?.hazards?.[0] ?? null;
   const rec = recommend(row.capag, row.icf, topHazard);
+
+  // resolve a recommendation line: hazard-key vars are translated before interpolation
+  const renderLine = (line: { key: string; vars?: Record<string, string> }) => {
+    const vars: Record<string, string> = {};
+    if (line.vars) {
+      for (const [k, v] of Object.entries(line.vars)) {
+        vars[k] = v.startsWith("hazard.") ? t(v) : v;
+      }
+    }
+    return t(line.key, vars);
+  };
 
   return (
     <>
@@ -92,40 +89,42 @@ export default function CityPanel({ row, onClose }: { row: Row; onClose: () => v
 
         {/* Fiscal */}
         <Heading size="sm" color="content.secondary" mb="2">
-          Fiscal capacity — CAPAG <Badge bg="content.link" color="base.light">{row.capag}</Badge>
+          {t("panel.fiscal")} <Badge bg="content.link" color="base.light">{row.capag}</Badge>
         </Heading>
         <Box borderWidth="1px" borderColor="border.neutral" borderRadius="md" p="3" mb="1">
-          {INDICATOR_HELP.map((ind) => (
-            <Flex key={ind.key} gap="2" align="start" mb="2.5" _last={{ mb: 0 }}>
-              <GradePill grade={row[ind.key]} />
+          {INDICATORS.map((key) => (
+            <Flex key={key} gap="2" align="start" mb="2.5" _last={{ mb: 0 }}>
+              <GradePill grade={row[key]} />
               <Box>
                 <Text fontSize="sm" fontWeight="600" color="content.primary">
-                  {ind.name}
+                  {t(`indicator.${key}.name`)}
                 </Text>
                 <Text fontSize="xs" color="content.tertiary">
-                  {ind.what}
+                  {t(`indicator.${key}.what`)}
                 </Text>
               </Box>
             </Flex>
           ))}
         </Box>
-        <Text fontSize="xs" color="content.tertiary" mb="4">
-          ICF (accounting quality): <b>{row.icf}</b> — Aicf entities get the “+” upgrade; Dicf/Eicf are
-          ineligible for federal guarantees regardless of indicators.
-        </Text>
+        <Text
+          fontSize="xs"
+          color="content.tertiary"
+          mb="4"
+          dangerouslySetInnerHTML={{ __html: t("panel.icf", { icf: row.icf }) }}
+        />
 
         {/* Emissions */}
         <Heading size="sm" color="content.secondary" mb="2">
-          Emissions by sector{" "}
+          {t("panel.emissions")}{" "}
           {data && (
             <Text as="span" fontWeight="400" color="content.tertiary" fontSize="xs">
-              total {fmtMt(data.total)} CO₂e
+              {t("panel.emissions.total", { value: fmtMt(data.total) })}
             </Text>
           )}
         </Heading>
         {failed && (
           <Text fontSize="sm" color="content.tertiary" mb="4">
-            CityCatalyst API unavailable right now.
+            {t("panel.emissions.unavailable")}
           </Text>
         )}
         {!data && !failed && <Spinner size="sm" color="content.link" mb="4" />}
@@ -139,7 +138,7 @@ export default function CityPanel({ row, onClose }: { row: Row; onClose: () => v
                     <Flex align="center" gap="1.5">
                       {meta && <Icon as={meta.icon} boxSize="4" color={meta.color} />}
                       <Text color="content.primary" fontWeight="500">
-                        {s.name}
+                        {t(`sector.${s.code}`)}
                       </Text>
                       <Text color="content.tertiary" fontSize="2xs">
                         {s.sources.join(" + ")}
@@ -164,16 +163,16 @@ export default function CityPanel({ row, onClose }: { row: Row; onClose: () => v
         )}
         {data && !data.sectors.some((s) => s.code === "III") && (
           <Text fontSize="xs" color="content.tertiary" mb="4">
-            No waste data for this city in SINIR/SNIS (2022).
+            {t("panel.emissions.noWaste")}
           </Text>
         )}
         {data && <Box mb="4" />}
 
         {/* Risks */}
         <Heading size="sm" color="content.secondary" mb="2">
-          Climate risks{" "}
+          {t("panel.risks")}{" "}
           <Text as="span" fontWeight="400" color="content.tertiary" fontSize="xs">
-            CCRA, current scenario, normalized 0–100
+            {t("panel.risks.caption")}
           </Text>
         </Heading>
         {data && data.hazards.length > 0 ? (
@@ -186,7 +185,7 @@ export default function CityPanel({ row, onClose }: { row: Row; onClose: () => v
                       <Icon as={HAZARD_BY_KEY[h.hazard].icon} boxSize="4" color="content.secondary" />
                     )}
                     <Text color="content.primary" fontWeight="500">
-                      {HAZARD_BY_KEY[h.hazard]?.label ?? h.hazard}
+                      {HAZARD_BY_KEY[h.hazard] ? t(`hazard.${h.hazard}`) : h.hazard}
                     </Text>
                   </Flex>
                   <Text color="content.tertiary">{(h.score * 100).toFixed(0)}</Text>
@@ -205,29 +204,27 @@ export default function CityPanel({ row, onClose }: { row: Row; onClose: () => v
         ) : (
           data && (
             <Text fontSize="sm" color="content.tertiary" mb="4">
-              No CCRA data for this city.
+              {t("panel.risks.none")}
             </Text>
           )
         )}
 
         {/* Recommendation */}
         <Heading size="sm" color="content.secondary" mb="2">
-          Suggested instrument
+          {t("panel.recommendation")}
         </Heading>
         <Box bg="background.neutral" borderRadius="md" p="3" mb="3">
           <Text fontWeight="700" color="content.alternative" mb="1">
-            {rec.instrument}
+            {t(rec.instrumentKey)}
           </Text>
-          {rec.reasoning.map((r, i) => (
+          {rec.reasoning.map((line, i) => (
             <Text key={i} fontSize="xs" color="content.secondary" mb="0.5">
-              • {r}
+              • {renderLine(line)}
             </Text>
           ))}
         </Box>
         <Text fontSize="xs" color="content.tertiary">
-          CAPAG is an indicative screening signal published by the Treasury; the binding rating is
-          computed only when a credit operation is requested. This is prioritization support, not a
-          credit decision.
+          {t("panel.disclaimer")}
         </Text>
       </Box>
     </>

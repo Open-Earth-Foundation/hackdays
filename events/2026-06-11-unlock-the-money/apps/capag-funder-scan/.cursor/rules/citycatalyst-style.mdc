@@ -29,6 +29,23 @@ Always reference tokens (`color="content.tertiary"`), never raw hex in component
 - CityCatalyst Global API patterns: see `research/data-access.md` — locodes are URL-encoded with
   the space (`BR%20POA`); CCRA needs the scenario segment (`/current`)
 
+## i18n (EN / PT-BR)
+Mirrors CityCatalyst's i18next + react-i18next setup (`src/i18n/settings.ts`, `client.ts`,
+`locales/{en,pt}/translation.json`). Two deliberate deviations for this single-route app:
+static `resources` instead of `resourcesToBackend` lazy import, and no `LanguageDetector` at
+init — server + first paint render `en`, then `LanguageToggle` applies the stored language in a
+mount effect (avoids hydration mismatch; same idea as next-themes).
+
+Rules:
+- All user-facing strings go through `t("key")`; never hardcode copy in components.
+- Keys are flat dotted strings, so init sets `keySeparator: false` / `nsSeparator: false`.
+- Numbers: use `{{count, number}}` (i18next built-in Intl formatter, locale-aware: pt-BR `5.566`).
+- The recommendation engine (`lib/recommend.ts`) returns i18n keys + vars, not prose, so EN/PT
+  both render from the same logic. Hazard-name vars are themselves `hazard.*` keys, resolved in
+  `CityPanel.renderLine` before interpolation.
+- Audience is Brazilian funders — keep PT-BR fiscal terminology exact (Endividamento, Poupança
+  Corrente, Liquidez Relativa, garantia federal).
+
 ## If you add components
 Check CityCatalyst `app/src/components/` first and copy/adapt rather than inventing new patterns
 (e.g. tables, cards, tags). Local checkout lives at `work/oef/citycatalyst/repo` on Joaquin's machine;

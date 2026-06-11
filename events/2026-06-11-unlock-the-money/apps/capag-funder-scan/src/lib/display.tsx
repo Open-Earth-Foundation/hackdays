@@ -15,13 +15,14 @@ import {
   MdOutlineWaterDrop,
 } from "react-icons/md";
 
-export const HAZARDS: { key: string; label: string; icon: IconType }[] = [
-  { key: "heatwaves", label: "Heatwaves", icon: MdOutlineThermostat },
-  { key: "floods", label: "Floods", icon: MdOutlineWaterDrop },
-  { key: "droughts", label: "Droughts", icon: MdOutlineWbSunny },
-  { key: "landslides", label: "Landslides", icon: MdOutlineLandslide },
-  { key: "diseases", label: "Diseases", icon: MdOutlineCoronavirus },
-  { key: "sea-level-rise", label: "Sea level rise", icon: MdOutlineWaves },
+// label is an i18n key (hazard.<key>); components resolve it via t(). icon/color stay here.
+export const HAZARDS: { key: string; icon: IconType }[] = [
+  { key: "heatwaves", icon: MdOutlineThermostat },
+  { key: "floods", icon: MdOutlineWaterDrop },
+  { key: "droughts", icon: MdOutlineWbSunny },
+  { key: "landslides", icon: MdOutlineLandslide },
+  { key: "diseases", icon: MdOutlineCoronavirus },
+  { key: "sea-level-rise", icon: MdOutlineWaves },
 ];
 
 export const HAZARD_BY_KEY = Object.fromEntries(HAZARDS.map((h) => [h.key, h]));
@@ -38,10 +39,11 @@ export const TIER_HEX: Record<string, string> = {
   "n.e.": "#C5CBF5",
 };
 
-export const SECTORS: Record<string, { name: string; icon: IconType; color: string }> = {
-  I: { name: "Stationary Energy", icon: MdOutlineApartment, color: "sector.I" },
-  II: { name: "Transportation", icon: MdOutlineDirectionsBus, color: "sector.II" },
-  III: { name: "Waste", icon: MdOutlineDelete, color: "sector.III" },
-  IV: { name: "IPPU", icon: MdOutlineFactory, color: "sector.IV" },
-  V: { name: "AFOLU", icon: MdOutlineForest, color: "sector.V" },
+// name resolved via t(`sector.<code>`); icon/color stay here.
+export const SECTORS: Record<string, { icon: IconType; color: string }> = {
+  I: { icon: MdOutlineApartment, color: "sector.I" },
+  II: { icon: MdOutlineDirectionsBus, color: "sector.II" },
+  III: { icon: MdOutlineDelete, color: "sector.III" },
+  IV: { icon: MdOutlineFactory, color: "sector.IV" },
+  V: { icon: MdOutlineForest, color: "sector.V" },
 };
