@@ -226,7 +226,7 @@ export default function Explorer({ rows }: { rows: Row[] }) {
             borderWidth="1px"
             borderColor="border.neutral"
             overflow="hidden"
-            minH="520px"
+            minH={{ base: "320px", lg: "400px" }}
           >
             <CityMap
               rows={rows}
@@ -354,41 +354,60 @@ export default function Explorer({ rows }: { rows: Row[] }) {
               </>
             )}
 
-            <Text fontSize="xs" fontWeight="700" color="content.secondary" textTransform="uppercase" letterSpacing="wide" mb="2">
-              Search
-            </Text>
-            <Input
-              placeholder="Search municipality…"
-              value={q}
-              onChange={(e) => setQ(e.target.value)}
-              bg="background.default"
-              mb="2"
-            />
-            <NativeSelect.Root bg="background.default" mb="4">
-              <NativeSelect.Field value={uf} onChange={(e) => setUf(e.target.value)}>
-                <option value="">All states</option>
-                {ufs.map((u) => (
-                  <option key={u} value={u}>
-                    {u}
-                  </option>
-                ))}
-              </NativeSelect.Field>
-              <NativeSelect.Indicator />
-            </NativeSelect.Root>
-
-            <Box bg="background.default" borderRadius="md" borderWidth="1px" borderColor="border.neutral" p="3">
-              <Text fontSize="sm" color="content.primary" fontWeight="600">
-                {filtered.length.toLocaleString()} match{filtered.length === 1 ? "" : "es"}
-              </Text>
-              <Text fontSize="xs" color="content.tertiary" mb="2">
-                {hazards.size > 0 ? "sorted by selected risk · " : ""}filters sync with the map and URL
-              </Text>
-              <Button size="xs" variant="outline" color="content.link" borderColor="border.neutral" onClick={() => exportCsv(filtered)}>
-                <Icon as={MdOutlineFileDownload} boxSize="3.5" />
-                Export CSV ({filtered.length.toLocaleString()})
-              </Button>
-            </Box>
           </Box>
+        </Flex>
+
+        {/* full-width search / state / matches row below the map+filters */}
+        <Flex
+          gap="3"
+          mb="5"
+          align="center"
+          wrap="wrap"
+          bg="background.default"
+          borderRadius="lg"
+          borderWidth="1px"
+          borderColor="border.neutral"
+          p="3"
+        >
+          <Input
+            placeholder="Search municipality…"
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
+            bg="background.default"
+            flex="1"
+            minW="220px"
+          />
+          <NativeSelect.Root bg="background.default" w="180px" flexShrink={0}>
+            <NativeSelect.Field value={uf} onChange={(e) => setUf(e.target.value)}>
+              <option value="">All states</option>
+              {ufs.map((u) => (
+                <option key={u} value={u}>
+                  {u}
+                </option>
+              ))}
+            </NativeSelect.Field>
+            <NativeSelect.Indicator />
+          </NativeSelect.Root>
+          <Flex align="center" gap="1" flexShrink={0}>
+            <Text fontSize="sm" color="content.primary" fontWeight="700">
+              {filtered.length.toLocaleString()}
+            </Text>
+            <Text fontSize="sm" color="content.tertiary">
+              match{filtered.length === 1 ? "" : "es"}
+              {hazards.size > 0 ? " · sorted by risk" : ""}
+            </Text>
+          </Flex>
+          <Button
+            size="sm"
+            variant="outline"
+            color="content.link"
+            borderColor="border.neutral"
+            flexShrink={0}
+            onClick={() => exportCsv(filtered)}
+          >
+            <Icon as={MdOutlineFileDownload} boxSize="4" />
+            Export CSV
+          </Button>
         </Flex>
 
         <Text fontSize="sm" color="content.tertiary" mb="2">
