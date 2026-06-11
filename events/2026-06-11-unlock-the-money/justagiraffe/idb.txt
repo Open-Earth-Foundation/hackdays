@@ -1,0 +1,3761 @@
+PUBLIC
+
+IDB FOR CITIES & REGIONS
+PROPOSAL FOR A SUB-SOVEREIGN FINANCE PROGRAM AT
+THE INTER-AMERICAN DEVELOPMENT BANK
+
+June 2025
+
+This document was prepared under the supervision of Juan Pablo Bonilla (CSD) and
+Emilio Pineda (IFD) by a Working Group comprising Tatiana Gallego Lizon and Maria
+Camila Uribe (CSD); Axel Radics and Andrés Munoz (IFD); Juan Manuel Puerta and
+Gabriel Filc (SPD); Guillermo Eschoyez and Esteban de Dobrzynski (LEG); Gustavo de
+Rosa, Ramón Ruiz, Ian MacDonald, Alexandre Borges, Yasser Rezvi, Catalina Ventrell
+and Maximo Silberberg (FIN); Søren Elbech, Ximena Giraud, Alfredo Rodriguez,
+Emmanuel Baez, Adriana Avalos and Daniela Serrano (RMG); Maria Julia Bocco and
+Mauro Alem (INE); Juanita Riaño and Raquel Mayer (OII); Santiago Schneider and
+Karina Diaz Briones (FMP); Chiaki Yamamoto (EVP); Serge Troch (ESG); Santiago
+Monroy (GPO); Manuel Pacheco (VPC); Claudia Suaznabar, Mauricio Lopez Prada and
+Wilkferg Vanegas (VPS); Elizabeth Robberechts (INO).
+Under the Access to Information Policy, this document is subject to Public Disclosure.
+*
+
+This document contains confidential information in Section 5.B, Annex 6, and Annex 1, which is subject to non-disclosure according to the
+IDB's Access to Information Policy. Section 5.B and Annex 6 will not be disclosed under exception 4.1 h, "Certain Financial Information."
+Additionally, Annex 1 will not be disclosed under exception 4.1 e, "Information Provided in Confidence." Once authorization is obtained from
+the other multilateral development agencies, Annex 1 will be disclosed.
+
+CONTENTS
+
+I.
+
+EXECUTIVE SUMMARY .................................................................................................... 1
+
+II.
+
+BACKGROUND ................................................................................................................. 1
+
+III.
+
+IV.
+
+V.
+
+VI.
+
+A.
+
+Towards Efficient Territorial Development ........................................................... 1
+
+B.
+
+A Differentiated Approach to SNG Development ........................................... 2
+
+C.
+
+MDB Experience Lending to SNGs without a
+Sovereign Guarantee .......................................................................................................... 6
+
+JUSTIFICATION............................................................................................................... 10
+A.
+
+Investment Needs ................................................................................................................ 11
+
+B.
+
+Fiscal Advances ..................................................................................................................... 13
+
+C.
+
+Improving Access to Private Sector Financing ............................................... 14
+
+D.
+
+Changing Financial Architecture .............................................................................. 15
+
+PROPOSAL ..................................................................................................................... 15
+A.
+
+Objective of the SFP........................................................................................................... 15
+
+B.
+
+The SFP as a Pilot ................................................................................................................. 19
+
+C.
+
+Operational Considerations .......................................................................................... 21
+
+D.
+
+Pricing Principles and Financial Conditions .................................................... 25
+
+E.
+
+Monitoring, Reporting and Evaluation................................................................. 26
+
+F.
+
+Supporting Impact + under a Synergistic Approach ................................. 28
+
+G.
+
+Organizational Arrangements ................................................................................... 29
+
+RISK MANAGEMENT ..................................................................................................... 30
+A.
+
+Moral Hazard .......................................................................................................................... 30
+
+B.
+
+*........................................................................................................................................................ 30
+
+C.
+
+Integrity and Fiduciary Risk .......................................................................................... 31
+
+RECOMMENDATION ...................................................................................................... 31
+
+- ii -
+
+ANNEXES
+Annex I
+
+*
+
+Annex II
+
+Fiscal and Financial Condition of lac SNGs – A Preliminary
+Creditworthiness Analysis
+
+Annex III
+
+Requirements for the Contracting of External Loans by Subnational
+Governments in LAC – A Preliminary Analysis
+
+Annex IV
+
+Evaluation Framework
+
+Annex V
+
+Preliminary Budgetary Requirements for the Pilot Period
+
+Annex VI
+
+*
+
+APPENDICES
+Appendix I
+
+Proposed Resolution
+
+- iii -
+
+ABBREVIATIONS
+AFD
+
+French Cooperation Agency
+
+CAF
+
+The Development Bank of Latin America and The Caribbean
+
+CAP
+
+Capital Adequacy Policy
+
+CCR
+
+Capital Coverage Ratio
+
+ESG
+
+Environmental, Social, and Governance Safeguards
+
+EBRD
+
+European Bank for Reconstruction and Development
+
+EIB
+
+European Investment Bank
+
+FFF
+
+Flexible Financing Facility
+
+GDP
+
+Gross Domestic Product
+
+IDB
+
+Inter-American Development Bank
+
+IFC
+
+International Finance Corporation
+
+IFI
+
+International Financial Institution
+
+LAC
+
+Latin America and The Caribbean
+
+NSG
+
+Non-Sovereign Guaranteed
+
+OVE
+
+Office of Evaluation and Oversight
+
+OII
+
+Office of Institutional Integrity
+
+OECD
+
+Organization for Economic Co-operation and Development
+
+PPP
+
+Public-Private Partnership
+
+RMG
+
+Risk Management Group
+
+SG
+
+Sovereign Guaranteed
+
+SOE
+
+State -Owned Enterprise
+
+SNG
+
+Subnational Government
+
+SFP
+
+Sub-Sovereign Finance Program
+
+SDG
+
+Sustainable Development Goals
+
+TC
+
+Technical Cooperation
+
+Executive Summary
+Page 1 of 3
+
+I.
+
+EXECUTIVE SUMMARY
+
+1.1
+
+The purpose of this document is to submit to the Board of Executive
+Directors (‘the Board’) for its consideration and approval the
+establishment of a “Sub-Sovereign Finance Program (SFP)”, on a 5-year
+pilot basis, to finance investment loans and guarantees to sub-sovereign
+eligible entities 1 in borrowing member countries of the Inter-American
+Development Bank (the “IDB”), without the guarantee and/or counterguarantee of the sovereign. The general objective of the SFP is to assist
+eligible subnational governments (SNGs) promote sustainable regions 2
+and local development by improving access to market financing. The
+specific objectives of the SFP are (i) to strengthen SNGs’ fiscal and
+financial management, (ii) to strengthen SNGs’ capacities to structure
+and implement project pipelines, and (iii) to improve service delivery and
+infrastructure at the subnational level.
+
+1.2
+
+The SFP responds to a differentiated approach to SNG development
+needs that seeks to promote gradual technical and financial readiness,
+and which recognizes that there is a segment of cities and regions
+requiring separate strategic financing modalities allowing them to
+transition to market borrowing. SNG eligibility, to be subject to financing
+under the SFP, will be determined, among other requirements 3 by:
+(i) their ability to contract and obtain external financing from the IDB
+without the guarantee of the sovereign; and (ii) their credit strength,
+financial viability, legal capacity, and good governance. Project eligibility
+under the SFP will respond to 3 mutually reinforcing elements: (i) high
+developmental impact; (ii) preventing private sector financing crowding
+out, and (iii) improved SNG efficiency and effectiveness.
+
+1.3
+
+SFP in its 5-year pilot will consist of the following two subprograms: (i) a
+sub-sovereign investment finance subprogram for up to US$1 billion to
+be funded by the Bank’s Ordinary Capital resources (Subprogram 1); and
+(ii) a technical cooperation (TC) sub-sovereign readiness subprogram
+(Subprogram 2) to be financed with the Bank’s Ordinary Capital
+resources annually allocated under the Strategic Development Program,
+
+1
+
+For purposes of this proposal the terms Sub-National Entities (SNEs), Sub-Sovereign Entities
+(SSEs), and Sub-National Governments (SNGs) shall be used interchangeably and understood
+as referring to sub-sovereign governments, including states, provinces, departments, and
+municipalities, depending on a country's political subdivision.
+
+2
+
+Regions in this paper refers to second-tier government jurisdictions in different countries, and
+may include departments, provinces, regions, states and/or any other intermediate levels of
+government.
+
+3
+
+Legal, operational, financial, and institutional requirements as set forth in the Bank’s policies
+shall also apply for determining the SNGs eligibility.
+
+Executive Summary
+Page 2 of 3
+
+and/or donor or partner funds under Bank administration. Resources
+under Subprogram 2 will be used to provide: (i) non-reimbursable
+Technical Cooperation (TC) resources for reforms, capacity building and
+project prefeasibility; and (ii) contingent recovery TC for project design.
+1.4
+
+Consistent with the IDB Group Institutional Strategy: Transforming for
+Scale and Impact (CA-631), “Impact+”, the SFP will support its 3 core
+objectives of bolstering sustainable growth, addressing climate change,
+and reducing poverty and inequality. SFP will support improved access
+to services and infrastructure provided by SNGs to their population, and
+institutional strengthening. The IDB – through its deep understanding of
+SNGs and its broad expertise in fiscal and financial management, urban
+planning and development, services and infrastructure, public
+management and non-sovereign finance areas, among others – is
+uniquely positioned to help SNGs transition from sovereign guaranteed
+borrowing to market borrowing and to improve their access to finance.
+It will do so by guiding SNGs throughout (i) the development and
+implementation of operations, (ii) building capacities, and (iii) the
+implementation of local and regional government reforms that will
+ensure outcome delivery and debt repayment. SFP is consistent with
+IDB’s Subnational Governments’ Sector Framework.
+
+1.5
+
+Experience from several Multilateral Development Banks (MDBs) and
+International Financial Institutions (IFIs) implementing sub-sovereign
+lending has been positive, with most operations being on track. This type
+of financing has promoted ownership among SNGs, placing
+responsibility on cities and regions to strategically align investments
+with long term plans, focusing on achieving results, improving
+creditworthiness and public management systems, and undertaking
+critical sectoral and commercial reforms. In all cases, and at different
+scales, this has also developed an important niche of work for several IFIs.
+The SFP also provides an opportunity for testing risk sharing structures
+with IFI and commercial partners.
+
+1.6
+
+The design, preparation, processing, and implementation of individual
+operations will be, among other aspects, guided by the terms and
+conditions set forth in Chapter IV of this document as well as in the
+operating guidelines to be developed and approved by Management, as
+may be amended from time to time. Once approved, Management will
+submit the operating guidelines for information to the Board. The Office
+of Evaluation (OVE) will conduct an evaluation of the SFP as a lending
+instrument after the fifth year of implementation and present it to the
+Board. The evaluation will inform subsequent actions associated with the
+SFP.
+
+Executive Summary
+Page 3 of 3
+
+1.7
+
+Mitigation measures for risks that may arise from the use of this
+instrument are also addressed in Chapter V. The risk of moral hazard will
+be mitigated through deliberate selection of creditworthy borrowers,
+strict adherence to fiscal responsibility frameworks, fiscal strengthening
+of pilot SNGs, and IDB’s regular monitoring of financial indicators. Credit
+risk to IDB will be managed through a new credit risk management
+framework, that includes credit risk assessment of individual operations,
+exposure limits and pricing provisions. Similarly, any potential integrity
+or fiduciary risks will be managed through SNG strengthening of
+governance systems and IDB’s quality assurance and review processes.
+
+1.8
+
+In addition to this Executive Summary, the document includes a
+background section (Chapter II); a justification section (Chapter III); the
+proposal (Chapter IV); risk management considerations (Chapter V), and
+a final Chapter containing the corresponding recommendations for
+approval by the Board (Chapter VI).
+
+II.
+
+BACKGROUND
+
+A.
+
+Towards Efficient Territorial Development
+
+2.1
+
+Latin America and the Caribbean (LAC) SNGs’ landscape is complex
+and diverse. LAC is home to over 17,000 SNGs, 98 percent of these are
+municipalities. They comprise regions with both large and sparse
+populations; urban and rural typologies; and vastly different
+contributions to the national Gross Domestic Product (GDP),
+employment growth and productivity. For example, in Brazil, the
+population densities of states like Rio de Janeiro and Sao Paulo – which
+are largely urban, industrial and service-based economic power houses
+jointly contributing over 42 percent of the country’s GDP – are 367 and
+166 people per sq. km respectively, while those in the states of Amazonas
+and Roraima – mostly rural and agricultural – are just above 2.5 people
+per sq. km.
+
+2.2
+
+The case of cities is also compelling. LAC urbanized more rapidly than
+any other region in the world. The share of urban population nearly
+doubled from 49 percent in 1960 to 80 percent in 2015, but these overall
+figures mask notable differences in the process and degree of
+urbanization. While LAC has a high level of urban primacy – with the
+world’s largest percentage of its population living in megacities and
+nearly 15 percent of the total population in its 6 largest cities (UN DESA
+2015) 4 – 90 percent of the municipalities have less than 50,000
+inhabitants and more than 30 percent have less than 5,000 inhabitants.
+There are also vast differences when it comes to economic and social
+indicators. Overall, cities drive LAC’s economic growth but this, in turn, is
+highly concentrated, with 60% of the GDP generated by the 200 largest
+cities and 30 percent by 10 megacities alone (McKinsey, 2011). 5 While
+income inequality in the region, as measured by the Gini coefficient,
+remains generally high at 0.499 (World Bank, 2024), 6 it is also higher in
+cities, with an average 0.29 percent increase in income inequality
+associated with a 10 percent increase in city population (World Bank,
+2018) 7. As in other parts of the emerging world, LAC’s skilled force 8 and
+technology are disproportionally concentrated in large cities.
+
+4
+
+United Nations, Department of Economic and Social Affairs, Population Division (UN DESA).
+2015. Database on Household Size and Composition. New York.
+
+5
+
+MGI. 2011. Building globally competitive cities: The key to Latin American growth.
+
+6
+
+World Bank. 2024. Regional Poverty. Washington DC.
+
+7
+
+World Bank. 2018. Raising the Bar for Productive Cities in Latin America and the Caribbean.
+Washington DC
+
+8
+
+A recent study associated a 10% increase in city’s population with a 2.9% increase in the share of
+the city’s population that is skilled (World Bank, 2018).
+
+-22.3
+
+The performance of SNGs varies across geographies. The performance
+of SNGs is a function of the responsibilities vested in them (e.g. service
+delivery, amenities and public space, social welfare, public order, etc.),
+the quality of civil service systems, 9 and administrative capabilities.
+While, on average, low institutional capacity, limited transparency, and
+weak management characterize many SNGs across the region, several
+regional and local governments in LAC perform at par with global
+referents, applying sound key governance principles, public financial
+management (including planning, budget management, public
+investment, and debt management capacities), public procurement and
+recruitment practices (OECD/IDB. 2024). 10,11
+
+B.
+
+A Differentiated Approach to SNG Development
+
+2.4
+
+The IDB has been supporting the development of municipal and
+regional governments through financing of sovereign-guaranteed
+operations. Around 28 percent of IDB’s active portfolio currently
+supports SNGs. This is achieved primarily through sovereign guaranteed
+investment loans and grants to: (i) national programs or projects that
+support cities, with proceeds mostly transferred as a grant; (ii) financial
+intermediaries, such as (a) national or state/provincial-level development
+institutions, established to simultaneously lend and strengthen
+capacities; and (b) national/regional development banks, which on-lend
+to SNGs at affordable rates; and (iii) subnational entities (cities, regions). 12
+Despite the prevalence of regular investment loans, there are also
+instances of policy-based lending, results-based lending, conditional
+credit lines for investment projects and other programmatic
+instruments that can help build subnational capacities over the medium
+term, with complementary technical cooperation for institutional and
+financial strengthening. In addition, IDB Invest finances public-private
+partnerships (PPPs), primarily concessions associated with urban
+services, and municipal companies.
+
+9
+
+M. Grindle. 2010. Constructing, Deconstructing, and Reconstructing Career Civil Service Systems
+in Latin America. Harvard.
+
+10
+
+OECD. 2024. Government at a Glance: Latin America and the Caribbean 2024. Paris.
+
+11
+
+IDB. 2019. The Model Government Ecosystem in the City of Buenos Aires. Washington DC.
+
+12
+
+Direct lending to cities and SNGs is over 20% of IDB’s active portfolio (mainly in Brazil and
+Argentina, with fewer operations in Colombia, Ecuador, and Uruguay), while a further 8%
+supports SNGs through national programs.
+
+-3Figure 1: Total sovereign lending approvals to SNGs
+
+Source: Project Team Analysis of IDB’s Portfolio
+
+2.5
+
+In the current public sector portfolio, infrastructure sectors (water and
+transport), modernization of the state and urban development are
+responsible for the largest share of lending, jointly amounting to
+approximately 66% of the total value.
+Figure 2: Percentage direct lending to SNGs
+(with Sovereign Guarantee) by sector
+
+Source: Project Team Analysis of IDB’s Portfolio
+
+-42.6
+
+Lessons from two major IDB urban initiatives, the Emerging and
+Sustainable Cities Initiative (ESCI) 13 and PROCIDADES, 14 can provide
+useful insights. OVE’s mid-term thematic evaluation 15 of ESCI concluded
+that (i) such programs provided cities with increased access to
+knowledge and best practices, and (ii) the initiative was found most
+successful in the presence of strong political decentralization,
+subnational fiscal capacity, planning capabilities, support from
+development partners, and demand from intermediate cities. A study
+conducted by OVE 16 on PROCIDADES concluded that municipalities that
+benefitted most from the program were those that had an initial
+minimum level of institutional capacity, which allowed them to handle
+the project and further strengthen their ability to work on urban
+development. The evaluation suggested (i) forming long-term
+partnerships with them and linking loan amounts to their levels of
+capacity; (ii) when pursuing innovative approaches with subnational
+governments, start small and put strong emphasis on properly assessing
+costs, benefits, and potential risks; (iii) allocating resources for
+institutional strengthening for municipalities with lower institutional
+capacity; and (iv) creating mechanisms for project sustainability. 17
+
+2.7
+
+Different conditions require different solutions to promote gradual
+technical and financial readiness. The diverse nature of SNGs in LAC –
+size, vulnerability, technical and financial capabilities, capacity to take
+and manage debt, etc. – calls for the development of a differentiated
+operational approach that responds to country- and local-context and
+specific SNG needs and capacities. Figure 3 recognizes the potential for
+gradual growth and suggests appropriate financing modalities which
+progressively encourage the transfer from grants to borrowing, from
+concessional to commercial terms and, ultimately, from public to private
+sector financing. To achieve this, IDB needs to expand its instrument
+offering to include sub-sovereign finance (a form of finance to
+subnational entities without the guarantee of the sovereign), as an
+instrument for SNGs capable to take and manage debt seeking to
+finance projects whose repayment can be funded from the revenue that
+
+13
+
+ESCI was a non-reimbursable technical assistance program for midsize cities launched in 2012
+which relied on a three-pronged multidisciplinary methodology that combined indicators and
+diagnostics of urban expansion, climate and municipal fiscal management, leading to the
+prioritization of investments which were consolidated into an action plan.
+
+14
+
+PROCIDADES was a facility for financing integrated urban interventions by lending directly to
+Brazilian municipalities. It was adopted in 2006 to promote integrated urban development
+while reaching a large pool of medium-sized cities.
+
+15
+
+IDB. 2016. Evaluation of the IDB’ s Emerging and Sustainable Cities Initiative. Office of Evaluation
+and Oversight. Washington DC.
+
+16
+
+IDB. 2015. Evaluation of PROCIDADES. Office of Evaluation and Oversight. Washington DC.
+
+17
+
+IDB's Cities Network and IDB's Fiscal Decentralization Network have played a critical role in
+building capacities, providing opportunities for exchange, and generating knowledge.
+
+-5will be generated from the project, from the revenue account of the SNG,
+or a mix of these.
+Figure 3: Operational Framework for SNGs with
+Different Levels of Technical and Financial Readiness
+
+Source: Project Team Analysis
+
+2.8
+
+Sub-sovereign lending is complementary to sovereign and private
+sector lending. It acknowledges the need for central governments to
+divest greater responsibilities for public services on SNGs, while
+accepting that these entities may not yet be sufficiently appealing to
+private sector investors. This approach aims to strengthen frameworks
+and systems in SNGs, make them increasingly creditworthy and
+enhance their capacity to attract financing from private sources. IDB’s
+long-standing relation with SNGs and its mandate to build capacities is
+instrumental in this transition.
+
+2.9
+
+Beyond the sovereign guarantee: sub-sovereign finance can bring
+benefits to both SNGs and national governments. Sub-sovereign
+finance seeks to improve fiscal autonomy of SNGs, ensuring they have
+the resources and mechanisms to repay their debts without relying on
+bailouts from the national government. This enhanced fiscal autonomy
+is an important component of a subnational development strategy,
+since it entails improving SNG capacity to mobilize own resources for
+development projects; reduces negative incentives in SNG management
+related to bailouts; and mitigates a fiscal risk for the central government.
+In addition, sub-sovereign finance can also help enhance SNGs’
+capacities to prepare projects through improved structuring, including
+risk analysis and risk sharing, identify additional revenue flows, and
+adopt commercial lending terms and conditions.
+
+-62.10
+
+Sub-sovereign finance is also consistent with the recently approved
+Subnational Governments Sector Framework. 18 Sub-sovereign finance
+supports, among others, efforts to: (i) improve intergovernmental
+arrangements, including subnational fiscal responsibility frameworks
+and fiscal monitoring mechanisms, oriented to enhance the
+creditworthiness and autonomy of SNGs; (ii) encourage greater
+efficiency and quality in expenditure and service delivery by SNGs;
+(iii) increase the mobilization of own-source revenue and responsible
+access to finance on the part of SNGs, (iv) enhance fiscal transparency of
+SNGs; and (v) improve the contribution of SNGs to managing climate
+change.
+
+2.11
+
+IDB, through Impact+, is uniquely positioned to help SNGs transition
+to/improve sub-sovereign borrowing. As highlighted in the IDB Group
+Institutional Strategy, financial instruments are critical to enhance the
+scale and impact of the IDB Group interventions, including through
+mechanisms to support subnational governments and State-Owned
+Enterprises (SOEs), always with the principle of avoiding the crowding
+out of private sector investments. 19 IDB’s well-established relationship
+with subnational clients and the Group’s broad expertise (in sectors such
+as urban planning and development, fiscal and public management,
+capital market development, infrastructure and PPPs) will be pivotal not
+only to engage in necessary pre-transaction reforms and capacity
+building programs, 20 but also to support project implementation and
+project post-completion phases.
+
+C.
+
+MDB Experience Lending to SNGs without a Sovereign Guarantee
+
+2.12
+
+Several multilateral and bilateral agencies support sub-national
+development finance offering loans and credit enhancements
+directly to sub-national entities. This includes IFIs such as the European
+Bank for Reconstruction and Development (EBRD), the European
+Investment Bank (EIB), the Multilateral Investment Guarantee Agency
+(MIGA), and the International Finance Corporation (IFC), through its
+Subnational Finance Program; as well as bilateral agencies like the
+French Cooperation Agency (AFD), through direct subnational lending,
+or the Swedish International Development Cooperation Agency or the
+US Trade and Development Agency, through the issuance of guarantees.
+Other IFIs, like the Asian Development Bank, have a non-sovereign
+public sector instrument, and are considering expanding operations
+with SNGs. EBRD, AFD and IFC have successfully mainstreamed this type
+
+18
+
+Decentralization and Subnational Governments Sector Framework (GN-2813-13).
+
+19
+
+IDB Group Institutional Strategy: Transforming for Scale and Impact (document CA-631).
+
+20
+
+This may include, for example, local sectoral reforms, municipal governance, enhanced
+regulatory frameworks, improved tariff/tax regimes, public management, improved service
+standards, or financial and debt management.
+
+-7of lending into their operations, offering loans on commercial terms,
+with very low rates of non-performing assets, and a growing portfolio. A
+more detailed assessment is in Annex I.
+2.13
+
+Several IFIs already extend sub-sovereign finance to SNGs in LAC.
+Since 2017, the IFC, and more recently, AFD and the Development Bank
+of Latin America and The Caribbean (CAF) have approved 10 nonsovereign guaranteed (NSG) loans to SNGs in 4 countries in LAC (see
+Table 1) for a total value of around US$890 million, in a mixture of US$,
+Euros and local currency.
+Table 1: Non-sovereign Guaranteed Operations in LAC
+Year
+
+Borrower
+
+Lender
+
+Value
+
+Currency
+
+Sector
+
+2017
+
+Ciudad Autónoma
+de Buenos Aires
+(AR)
+
+IFC
+
+100.0 +
+50.0M
+
+US$
+
+Mobility
+improvement
+(metro, BRT, bus)
+
+A+B
+loans
+
+2017
+
+Provincia de
+Córdoba (AR)
+
+IFC
+
+100.0 +
+50.0M
+
+US$
+
+Road
+infrastructure
+improvements
+
+A+B
+loans
+
+2019
+
+Bogotá Distrito
+Capital (CO)
+
+IFC
+
+120.0M
+
+US$
+
+BRT network
+expansion
+
+Loan
+
+2019
+
+Bogotá Distrito
+Capital (CO)
+
+IFC
+
+30.0M
+
+US$
+
+Cablecar
+network
+expansion
+
+Loan
+
+2020
+
+Municipalidad de
+San Jose (CR)
+
+IFC
+
+eq. US$
+12.0M
+
+LC
+
+Road & drainage
+improvement
+
+Loan
+
+2021
+
+Municipalidad de
+Barranquilla (CO)
+
+AFD
+
+eq. €120M
+
+LC
+
+Urban
+environmental
+restoration &
+flood control
+
+Loan
+
+2022
+
+Fideicomiso
+Administración de
+Canelones 2022
+(UR)
+
+CAF
+
+12.0M
+
+US$
+
+Urban public
+spaces, buildings
+& mobility
+improvement
+
+Loan
+
+2023
+
+Municipalidad de
+Barranquilla (CO)
+
+AFD
+
+eq. €50.0M
+
+LC
+
+Urban
+environmental
+restoration &
+flood control
+
+Loan
+
+2023
+
+Municipalidad de
+Bogotá (CO)
+
+AFD
+
+eq.
+€150.0M
+
+LC
+
+Infrastructure
+(greening,
+mobility, & waste
+recovery)
+
+Loan
+
+2024
+
+Provincia de Santa
+Fe (AR)
+
+AFD
+
+€65M
+
+Euro
+
+Biodiversity
+
+Loan
+
+Source: Project team analysis from publicly available data and interviews.
+
+Product
+
+-8-
+
+2.14
+
+Outside the region, the EBRD has valuable long-standing experience.
+With over two decades of experience lending to local and regional
+authorities (around 250 clients), and a sub-sovereign portfolio of
+approximately €2 billion, EBRD’s Municipal and Environmental
+Infrastructure sector lends annually around €350-450 million directly to
+SNGs in support of decentralization, commercialization and green
+economy transition objectives in Eastern Europe, Central Asia, and North
+Africa. EBRD’s projects typically range €5-100 million in size; with typical
+tenors of 10–12 years and grace periods adjusted accordingly (typically 3
+years). Lending is based on cost-recovery principles and commercial
+pricing is applied, based on risk. EBRD approaches its clients with long
+term engagement considerations, thus project design (complemented
+with technical cooperation resources) incorporates capacity building
+and targeted institutional development.
+
+2.15
+
+IFC’s experience is also relevant. Established in November 2006, the IFC
+Subnational Finance program provides senior, subordinated, and
+convertible loans, partial credit guarantees, risk sharing facilities, equity,
+and hybrid instruments to creditworthy SNGs and local SOEs. IFC’s SNG
+portfolio is considerably smaller than EBRD’s, 21 focusing on SNGs with
+strong financial standing, rather than utilities. This has enabled financing
+of projects without direct revenue potential, but where credit risk was
+mitigated by the client’s overall credit strength. It has allowed in some
+cases the structuring of A-B loans, bringing in commercial banks as
+cofinanciers. In addition to non- recourse finance, IFC’s subnational
+finance program provides advisory services, support for PPP structuring
+and to private sector investment in client cities. In terms of sub-sector
+exposure, as per recent reports, water/waste-water accounts for 18% of
+the portfolio, solid waste management for 18%, district cooling for 1%,
+while the remainder of 63% is categorized as “municipal”.
+
+2.16
+
+A few important lessons can be derived from other IFI’s experience
+lending to SNGs without a sovereign guarantee:
+a.
+
+21
+
+Enabling environment. Working with SNGs and their companies
+might involve working with evolving and untested legal and
+regulatory frameworks. In some instances, institutions can borrow
+through asset-holding companies or special purpose vehicles.
+Conducting legal due diligence in any given country to confirm
+the adequacy of legal and regulatory systems will be an additional
+requirement but once completed, it will be applicable to most
+transactions within the same country.
+
+As of June 2021, IFC’s municipal infrastructure portfolio stood at a total of US$1.25 billion: 27% of
+the portfolio was in Latin America and the Caribbean, 35% in Emerging Europe and Central Asia,
+20% in the rest of Asia, 27% in the Middle East and North Africa, and 8% in the rest of Africa.
+
+-9-
+
+22
+
+b.
+
+Business development. Although sub-sovereign transactions
+target a well-established group of clients, the instrument requires
+new and/or additional compliance prerequisites and calls for best
+practice in public management, which can be resource intensive.
+To manage risks, loans should be sized conservatively and
+combined with deep client relations. Sub-sovereign operations
+are subject to sound banking principles. Although a selected
+group presents a solid financial standing and sound operating
+efficiencies, for most SNGs, reforms might be a precondition,
+requiring continued and long-term engagement with the client.
+
+c.
+
+Planning and project structuring. While several large and
+emerging cities and SNGs in the region have global frontier
+planning and project design processes, many medium and small
+cities face heightened barriers due to insufficient or outdated
+planning instruments, lacking capacity to prepare and structure a
+pipeline of projects that may attract investment, limited ability to
+manage procurement and contract execution, as well as ESG and
+integrity risks. A new program should attend to these.
+
+d.
+
+Moral Hazard. Although the rate of default in sub-sovereign
+lending remains low 22 among IFIs, largely thanks to close portfolio
+monitoring and debt management capacity development
+among SNGs, default spells may occur occasionally (e.g. in
+conflict-affected areas). MDB’s SNG fiscal and financial
+management oversight and guidance have been critical, and in
+rare severe cases, debt restructuring was necessary. IFIs’
+sub-sovereign lending also accounts for probability of default in
+their pricing and provisions.
+
+e.
+
+Transaction Costs. While sub-sovereign financing project
+preparation costs might be higher than for sovereign
+transactions, many IFIs share costs with clients. Mandate letters
+outline the scope of the project but also include information about
+the terms of the loan and operational expenses and
+responsibilities, including TC components and costs to be borne
+by the client during the project preparation phase.
+
+A recent report from the Global Emerging Markets Risk Database (Default Statistics: Private And
+Sub-sovereign Lending 1994-2022 - Volume 1) highlights that for a global dataset consisting of
+1,115 sub-sovereign counterparts (of a total of 10,608), the average default rate for sub-sovereigns
+over the 1994-2022 period was 2.4% versus a 3.5% default rate for private counterparts. The subsovereign exposure for Latin America and the Caribbean in this global study represents 12% of
+the total.
+
+- 10 f.
+
+Staff Skills. A limited skills base can be a key factor inhibiting the
+growth of a sub-sovereign lending portfolio. Project development,
+financing and structuring, and portfolio management of subsovereign operations requires additional complementary skills to
+those applied in sovereign operations. Retraining, hiring of limited
+additional staff, and synergies between public and private sector
+functions can help circumvent some of these challenges.
+
+g.
+
+Integrated Approaches. Most successful cases have been
+grounded on principles of (i) increasing readiness to subnational
+development, that understands sub-sovereign finance as a
+complementary instrument to sovereign and non-sovereign
+private sector finance; (ii) anchoring individual transactions in a
+more holistic vision of city/regional development and the
+application of a programmatic approach, which might include
+other forms of investment; and (iii) adoption of an integrated
+methodology to support fiscal, planning, technical and execution
+capabilities at subnational levels and transition to commercial
+borrowing from private entities.
+
+III.
+
+JUSTIFICATION
+
+3.1
+
+In 2004, IDB’s Management developed and proposed the establishment
+of a pilot program to enable sub-sovereign lending (GN-2125-5). The pilot
+program, which supported principles of graduation of IDB’s assistance
+to subnational entities and was to be funded within the 10% limit set
+aside for Private Sector Operations, was deferred while IDB evaluated
+new eligible sectors and borrowers for non-sovereign lending 23.
+
+3.2
+
+Since then, three structural long-term trends have contributed to the
+rising demand for sub-sovereign finance: (i) firstly, continuing
+decentralization processes in many countries of the region have
+perfected the development of subnational fiscal responsibility
+frameworks; (ii) secondly, incomplete and continuously transforming
+urbanization requires of large-scale infrastructure investments to bring
+cities and SNGs in the region at par with those most productive globally;
+and (iii) thirdly, capital markets in several countries in LAC have
+undergone important growth and development, and are not fully
+utilized by SNGs (as suggested by their low indebtedness levels).
+
+23
+
+Pursuant to document GN-2125-7, it was considered that the revised proposal regarding
+subnationals should not be re-submitted to the Policy and Evaluation Committee until the
+Board had reached some conclusion regarding the overall restructuring of the Bank’s support
+to the private sector.
+
+- 11 3.3
+
+In addition, the impending effects of recent global crises and increasing
+frequency and size of natural disasters, have highlighted (i) firstly, the
+need for effective participation of multiple actors and, with most of the
+population living in cities in LAC, local governments have a key role to
+play in advancing adaptation and mitigation agendas, building resiliency
+and reducing disaster risk in physical spaces and communities, and
+(ii) secondly, in a post-pandemic recovery phase, leveraging regional and
+local competitiveness and social agendas, can contribute to reducing
+territorial disparities.
+
+3.4
+
+The proposed SFP highlights complementarities between IDB and IDB
+Invest in light of the fact that, IDB Invest oversees financing to corporate
+entities in the region, while IDB is responsible for providing financial and
+technical support to national and sub-national governments in LAC. 24
+Sub-sovereign financing can provide a coordinated approach,
+encompassing sector reforms, alternative structuring, market-based
+financial products, and de-risking mechanisms, that intentionally
+prepares SNGs for engaging with private sector actors (investors or
+lenders) in the medium term.
+
+A.
+
+Investment Needs
+
+3.5
+
+Advancing
+commitments
+towards
+meeting
+Sustainable
+Development Goals (SGDs) in LAC will require over US$2,220 billion in
+water and sanitation, energy, transport, and telecommunication
+infrastructure by 2030 (IDB, 2021) 25, all of which will be essential to
+raise the region’s productivity levels. Fifty-nine percent of this value
+will be needed for new infrastructure investment. This would represent
+an annual investment of 3.12 percent of the GDP, up from the current 1.8
+percent. Although these figures include investment needs at all levels,
+several countries in LAC have entrusted service provision responsibility
+to subnational governments. For example, in Brazil, Colombia, Ecuador,
+Guatemala, Mexico and Peru, municipalities oversee water and
+sanitation, including at times the establishment of dedicated utilities
+under public or private concession operation. Venezuela has created
+regional water companies, while state-level water companies also coexist in all 26 states of Brazil and the Federal District, where they provide
+services on behalf of some (but not all) municipalities in their respective
+jurisdiction. Similarly, municipal, and metropolitan transport network
+companies and municipal departments are primarily responsible for
+developing and maintaining local metro (19 cities) and light rail, bus, and
+
+24
+
+Pursuant to Resolution AG-9/15 and CCI/AG-2/15 (Busan Resolution), lending to state-owned
+enterprises (SOEs) without sovereign guarantee shall be carried out by IIC. This would include
+SOEs fully or partially owned by an SNG. In addition, said Resolution also explicitly precludes the
+IIC from financing operations with sub-sovereign governments.
+
+25
+
+IDB. 2021. The infrastructure gap in Latin America and the Caribbean: investment needed
+through 2030 to meet the sustainable development goals. Washington DC.
+
+- 12 BRT (54 cities), and cable car systems, which two-thirds of Latin
+Americans use for daily transit. Public transit operators are progressively
+taking an increasing share of the operating and, at times, capital
+investment burden. Nonetheless, SNGs often face significant financial
+constraints and limited technical capacity, which can hinder their ability
+to meet the required infrastructure commitments. This creates
+disparities in service provision across regions and municipalities, more so
+in the face of increased adaptation needs. To better understand the
+significance of these issues, IDB is developing an infrastructure gap
+analysis that builds on previous estimates by incorporating newly
+measured local gaps using micro-data available from cities across the
+region. The goal of such estimation is to increase the granularity of the
+results and incorporate differences in the cost of building and operating
+infrastructure under different geographical and socio-economic
+contexts. This work will also look at the main institutional constraints that
+hinder the capabilities of subnational governments to close the
+identified gaps.
+3.6
+
+Meeting the SDGs also requires investments in social infrastructure
+and services, particularly in the context of care services,
+encompassing long-term care, childcare, and healthcare, among
+others. Caregiving tasks are frequently non-remunerated and fall
+disproportionally on women. The demand for long-term care services is
+expected to more than triple in the next 30 years due to population
+aging. Care dependence affects 12 percent of people over 60 and almost
+27 percent of people over 80 in the region. Some countries in LAC are
+establishing long-term care systems, including Costa Rica, Chile, and
+Argentina. 26 While there are vast differences across countries, healthcare
+systems are generally under-resourced. On average, in 14 LAC countries
+during 2020, 16 percent of urban households and 21 percent of rural
+households could not access any type of healthcare services when
+needed. In Ecuador, Peru, and Bolivia, these percentages were above 27
+percent for urban households and reached 40 percent for rural
+households in Peru. Long-term improvement in life expectancy in LAC
+remains unequally distributed, and maternal and child health is much
+worse than the OECD average. 27 Several countries in LAC have entrusted
+healthcare and other social welfare services to SNGs.
+
+3.7
+
+Green, resilient, low-carbon development requires additional
+investment at local level. A high concentration of people and assets
+makes cities in LAC particularly vulnerable. In this region, which includes
+13 of the 50 countries most susceptible to disaster-related shocks, and
+where as much as 80 percent of the total losses caused by disasters in
+LAC are produced in urban areas, building adaptation measures is
+
+26
+
+IDB. 2019. Age with Care: Long-term Care in Latin America and the Caribbean. Washington DC.
+
+27
+
+OECD. 2023. Health at a Glance: Latin America and the Caribbean 2023. Paris
+
+- 13 important. 28 Additionally, due to factors such as city geometry, design,
+choice of materials, and anthropogenic activities, urban centers
+experience substantially higher temperatures compared to their
+surrounding peri-urban and rural areas, in what is commonly known as
+urban heat island effect. Responsible for an estimated one‑third of total
+regional emissions, LAC cities can also play a critical part in achieving
+mitigation objectives, enabling solutions linked to mobility, energy use
+and efficiency, waste management, and construction choices. Globally,
+it is estimated that more than 70 percent of the total value needed for
+low-emission climate-resilient infrastructure will be in built urban
+areas, 29 yet a recent study 30 found that only 21 percent of tracked climaterelated MDB finance was assigned to urban projects between 2015 and
+2022. 31 Meeting country commitment targets made under international
+agreements, requires localizing action and engaging with multiple
+actors, particularly SNGs, strengthening urban planning, urban
+development and incorporating resiliency measures in the public space
+and built environment.
+B.
+
+Fiscal Advances
+
+3.8
+
+In the past 40 years, the participation of SNGs in spending public
+aggregate has increased in LAC. Following rapid growth – from 13
+percent to 25 percent between 1985 and 2010 – aggregate spending has
+stabilized (IDB, 2022). 32 However, the size of the subnational public sector
+in LAC varies greatly from one country to another, owing to historical
+backgrounds and geographical size and population. While SNGs execute
+approximately 40 percent of consolidated expenditures in federal
+countries like Mexico, Argentina, Brazil (representing between 12 and 18
+percent of their respective national GDPs), and some unitary countries
+like Peru and Colombia (equivalent to 14 percent and 7 percent of their
+GDP, respectively), in other countries like Costa Rica, Panama or Jamaica
+it is closer to 5 percent.
+
+28
+
+World Bank. 2021. A Roadmap for Climate Action in Latin America and the Caribbean 2021-2025.
+Washington DC.
+
+29
+
+CCFLA. 2015. The State of Climate Finance, 2015. London.
+
+30
+
+CCFLA. 2023. Accelerating Urban Climate Finance to Cities in Low- and Middle-Income
+Countries. London.
+
+31
+
+Cognizant of constraints associated with size, revenues and access to public debt and credit,
+national governments in the region are exploring alternative finance mechanisms in the form
+of subnational consortia to finance climate resilient municipal infrastructure, which by its public
+good nature or the positive/negative externalities generated, could benefit multiple
+municipalities. [IDB. 2021. Pooled Finance: Brazil’s Opportunity to Finance Subnational
+Sustainable Infrastructure. Washington DC.]
+
+32
+
+IDB. 2022. Panorama de las relaciones fiscales entre niveles de gobierno de países de América
+Latina y el Caribe
+
+- 14 3.9
+
+Average subnational government borrowing in LAC countries is
+around 3 percent of GDP (compared to 12 percent in OECD countries),
+which dropped from around 7 percent in 2002, owing in part to the
+effective implementation of subnational fiscal responsibility frameworks.
+Subnational debt is primarily taken at provincial and state/provincial
+levels (e.g., Brazil’s states overall debt amounts to 11.1 percent of its GDP
+while Argentina’s provinces’ debt represents 6.3 percent and Colombia’s
+departments 3.9 percent). Loans are the primary source of external
+funding for SNGs in LAC (65 percent of the total outstanding debt),
+followed by bonds and debt securities and insurance pension and
+standardized guarantees, at about 12 percent each. Responsible
+long-term borrowing can help SNGs adequately implement investment
+plans and local priorities, financing ‘lumpy’ infrastructure and services
+effectively, rather than on an annual budget ‘pay-as-you-go’ basis, and
+leverage intergenerational equity. Borrowing may also assist the
+smoothing of asynchronous tax revenues and expenditures and foster
+accountability.
+
+C.
+
+Improving Access to Private Sector Financing
+
+3.10
+
+Capital markets in LAC have grown substantially and are making it
+possible to progressively channel domestic savings toward longterm infrastructure financing in local currency through local
+institutional investors. 33 However, tapping domestic private savings
+markets for long-term financing at subnational level requires the
+increasing adoption of adequate practices, many of which are new for
+SNGs. These might include improved credit histories and engaging in
+formal credit ratings, defining appropriate debt instruments (e.g., bonds,
+commercial banks) or developing mechanisms that reduce credit and
+liquidity risks (e.g., guarantees, reserve accounts, secondary markets,
+credit enhancement schemes). Strengthening SNGs, and assisting them
+as they increase their market borrowing, will not only allow them to
+diversify financing options, but will also generate confidence and assist
+in the development of growing subnational debt markets.
+
+3.11
+
+Accountable, transparent, and efficient frameworks are a
+precondition for attracting private investment. The capacity of SNGs
+to finance investments such as infrastructure through own-source
+revenues and inter-governmental transfers is limited, creating funding
+gaps for meeting current and future needs. The ability of SNGs to attract
+private finance is, however, a function of the quality of prevailing
+frameworks and systems (e.g. land and property) that can help project
+financial flows. To make sensible credit and investment decisions,
+investors require: (i) quality financial data, accounts, and adequate
+management systems; (ii) increasingly robust structures to manage
+
+33
+
+Brazil, Colombia, Chile, Mexico, Peru, and Uruguay have infrastructure equity and/or debt funds
+and/or securitize infrastructure assets (GN-2768-12).
+
+- 15 project risks, including integrity and ESG; and (iii) a robust regulatory
+framework for investing. 34 Strengthening SNGs competences, enabling
+legal and institutional grounds for new funding and financing
+mechanisms; accompanying the development and uptake of new
+financing instruments to expand their revenue base (e.g. land value
+capture, land pooling or land banks); and helping build-in mechanisms
+to address possible negative impacts on vulnerable and marginalized
+groups, are essential.
+D.
+
+Changing Financial Architecture
+
+3.12
+
+As part of the discussions on changes to the international financial
+architecture, there are increasing calls to include urban climate
+action, finance, and technical assistance to cities. At COP28 in Dubai,
+think tanks like CCFLA and CPI, in collaboration with city networks C40
+and GCoM, launched a report 35 presenting an assessment of ten MDBs’
+contributions to urban finance in low-and-middle income countries and
+recommendations to position urban climate finance as an important
+element in the MDB reform agenda. In March 2024, in advance of the
+World Bank Group Spring Meetings, the Mayors of the C40 Cities
+network signed an open letter to the Presidents of the MDBs aligned to
+the report’s recommendations. In 2024 also, U20 (a diplomacy initiative
+providing a lasting platform for cities to engage with the G20), co-chaired
+by Sao Paulo and Rio de Janeiro, prioritized topics of global governance
+reform and unlocking finance for urban sustainable development, with
+a focus on resilience. 36
+IV.
+
+PROPOSAL
+
+A.
+
+Objective of the SFP
+
+4.1
+
+The general objective of the SFP is to assist eligible SNGs to promote
+sustainable regions and local development by improving access to
+market financing. The specific objectives of the SFP are (i) to strengthen
+SNGs’ fiscal and financial management, (ii) to strengthen SNGs’
+capacities to structure and implement project pipelines, and (iii) to
+improve service delivery and infrastructure at the subnational level. To
+achieve this objective, the SFP will finance, during a five-year pilot basis,
+
+34
+
+R. White & S. Wahba. Addressing constraints to private financing of urban (climate)
+infrastructure in developing countries. International Journal of Urban Sustainable Development,
+Vol. 11, 2019 – Issue 3: Planning and Financing climate-safe cities.
+
+35
+
+CCFLA. 2023. Accelerating Urban Climate Finance in Low- and Middle- Income Countries: An
+Important Strategic Dimension of MDB Reform.
+
+36
+
+U20 Co-Chairs Statement 2024.
+
+- 16 investment loans and guarantees without a sovereign guarantee or
+sovereign counter-guarantee, as the case may be, to eligible SNGs. 37
+4.2
+
+The SFP will be open to SNGs from all IDB borrowing member
+countries. SNG eligibility to be subject to financing under the SFP will be
+determined, among other requirements 38, by: (i) their ability to contract
+and obtain external financing from the IDB without the guarantee of the
+sovereign; and (ii) their credit strength, financial viability, legal capacity
+and good governance practices (including managerial capacity, fiscal
+track record, planning, and fiscal controls, which should be indicative of
+their ability to promptly pay their debts), and will be underpinned by an
+early creditworthiness assessment, among others. Furthermore, SNGs
+will only be eligible provided that the SNGs and the central/federal
+governments are not in non-accrual.
+
+4.3
+
+To be eligible, projects under the SFP will need to respond to 3
+simultaneous criteria: (i) high developmental impact, (ii) preventing
+private sector financing crowding out, and (iii) improved SNG
+efficiency and effectiveness. These are described in further detail in the
+next paragraphs.
+
+4.4
+
+Projects under the SFP will seek to have a high developmental
+impact, including through elements such as reform and/or private
+sector synergies, 39 and demonstration effects, where relevant.
+Consistent with Impact+, the SFP will focus on financing projects whose
+purpose is to transform for impact 40 and scale, reinforcing institutional
+core objectives of addressing climate change, reducing poverty and
+inequality, and bolstering sustainable growth through infrastructure and
+productivity. SFP will also align itself to IDB’s 7 operational focus areas,
+including target themes and cross-cutting areas for mainstreaming. In
+
+37
+
+Policy-based lending or short-term borrowing for cash flow or liquidity issues, balance budgets,
+fiscal deficits, recurrent expenditures, or refinancing debt will not be eligible for financing under
+the SFP.
+
+38
+
+Legal, operational, financial, and institutional requirements as set forth in the Bank’s policies
+shall also apply for determining the SNGs eligibility.
+
+39
+
+In implementing the SFP, efforts will be made from the onset to (i) cofinance with private sector
+(including local capital market entities) and/or (ii) cost-share, where appropriate, with client
+SNGs.
+
+40
+
+To evaluate developmental impact, projects will be aligned to IDB’s Impact + core objectives and
+have a measurable effect (scale, demonstration, replicability etc.) in key developmental areas,
+such as poverty or vulnerability reduction, support to the implementation of the SDGs,
+improvement of livability and/or socio-economic conditions, green development, key policy
+and/or institutional changes, among others. Considering the general objective of the SFP, high
+developmental impact projects may also include for example projects aimed at scaling
+sustainable SNG investment, improving private sector participation in subnational
+infrastructure and services, improving SNG borrowing capacity and fiscal responsibility, or
+increased participation of local capital markets in SNG financing, among others.
+
+- 17 all cases, long-term sustainability elements (institutional, fiscal and
+financial, technical, social and environmental) will be analyzed.
+4.5
+
+In evaluating proposals, sub-sovereign projects will be carefully
+screened to prevent crowding out and to potentially attract
+(crowding in) private sector financing. To do so, the pilot will finance
+projects that meet one or more of the following eligibility criteria: (i)
+projects whose nature cannot attract private sector financing and IDB’s
+involvement can catalyze private sector interest, 41 (ii) projects that will
+strengthen SNGs’ technical, administrative, fiscal, structuring and/or
+execution capacities aiming to improve their readiness to engage in
+private sector financing, (iii) projects that complement private sector
+financing (e.g. PPPs) and/or intentionally attract commercial
+cofinancing and other relevant nontraditional lenders, and/or (iv) the
+SNG has insufficient access to capital markets. 42
+
+4.6
+
+IDB’s value addition will stem from its ability to support subsovereign investments and reforms 43 that would help SNGs improve
+efficiency, quality of service provision, own-revenue generation,
+financial management, and/or debt management. 44 During project
+preparation, the Bank will not only ensure that SNGs’ repayment
+revenue streams are stable, predictable, and adequate, but will also seek
+to improve SNG’s income - either through (i) new revenues or reduced
+expenses (e.g. resulting from efficiencies) linked to the project, or
+(ii) associated reforms and investments 45 - that improve repayment
+
+41
+
+Projects with high risk or low return profiles might not be attractive to private sector (e.g.
+complex projects with important non-financial factors influencing benefits/costs calculations,
+projects with substantial externalities, some public goods, etc.). However, IDB can raise private
+sector interest by addressing the market’s concerns through applicable actions or mechanisms
+such as institutional strengthening, project monitoring, application of or changing the loan
+structures. to make it more bankable.
+
+42
+
+This might include reasons such as underdeveloped capital markets, insufficient/imperfect
+credit products/lines for SNGs, or the prevalence of risk rating tools unable to adequately
+evaluate credit conditions of SNGs, among others.
+
+43
+
+This might include, for example, improved asset management, accounting systems,
+expenditure efficiency, service regulation, tax collection, new/revised tariff regimes,
+development or improvement of land capture instruments, etc.
+
+44
+
+Wherever possible, to promote scale-up, teams will, in parallel, engage with the central
+government to support improved intergovernmental arrangements for more and better
+subnational services. At the central level of government, this includes clarification of expenditure
+responsibilities among levels of government; improvements to own-revenue sources of SNG;
+reforms to intergovernmental transfers; enhancement of subnational fiscal responsibility
+frameworks and surveillance; strengthening of governing bodies related to subnational
+governments; and development of technical assistance programs to improve fiscal institutional
+capacities of SNG.
+
+45
+
+These are reforms and investments that might have been undertaken in the frame of (i) early
+IDB engagement (e.g. through TC resources) with the SNG and/or (ii) at the time of confirming
+project eligibility, and that will lead to additional income for the SNG.
+
+- 18 capacity and can help to partly service the debt. 46 Moreover, when
+assessing SNG revenue streams/funding sources, the Bank will consider
+the following aspects and assist strengthening, where relevant:
+(i) stability and predictability, (ii) diversity of revenue sources, (iii) equity
+and fairness, (iv) economic impact, (v) administrative efficiency, (vi) legal
+and regulatory constraints and (vii) public acceptance. 47
+4.7
+
+IDB’s value addition will also derive from knowledge harnessed and
+shared regionally. To help foster development impact and achieve scale,
+the following channels will be leveraged: (i) data platforms like IDB's
+Subnational Fiscal Database Platform, which disseminates and helps
+improve available SNG fiscal and financial information in LAC, and
+(ii) regional networks like IDB’s Cities’ Financial Secretaries’ Network and
+IDB’s Decentralization and Subnational Fiscal Management Network,
+which promote peer-to-peer learning and capacity development. The
+Bank will also seek to strengthen its knowledge exchange network with
+other IFIs through periodic encounters.
+
+4.8
+
+To operationalize the SFP, technical assistance will be necessary to:
+(i) early in the process, assess and/or enable SNG reforms, and enhance
+capacities in fiscal and financial management, regulatory regimes, tariff
+setting, planning, asset management, service delivery, operational
+performance, and private sector participation, among others; and
+(ii) subject to SNG eligibility, operationalize the SFP, including activities
+such as project preparation, structuring, procurement and execution,
+contract management, and compliance with IDB’s policies. This is
+essential to assist the modernization of governments, strengthen
+institutions and create capacities within SNGs, and enable essential
+gradual change. Technical assistance (in the form of regular and
+contingent TC) and IDB specialized technical personnel will support exante readiness to engage in sub-sovereign financing, the preparation of
+operational documentation for Bank’s due diligence and approval, and
+post-approval implementation and repayment.
+
+46
+
+The repayment capacity is a key consideration when assessing credit risk and is part of the SNG
+credit risk framework. Adequate consideration will be given in financial analyses conducted as
+part of IDB’s due diligence.
+
+47
+
+Revenue sources should be stable and predictable to allow for effective budgeting and longterm planning. Relying on a mix of revenue streams, such as property taxes, sales taxes, income
+taxes, and service fees, can help mitigate risks associated with economic fluctuations. The tax
+burden should be distributed fairly among actors (e.g. residents, businesses etc.), including
+considerations regarding the ability to pay, and ensuring that no group is disproportionately
+affected. The cost and complexity of administering different revenue sources should also be
+taken into account.
+
+- 19 B.
+
+The SFP as a Pilot
+
+4.9
+
+The SFP will be established as a pilot program with the objective of
+demonstrating the feasibility of IDB’s sub-sovereign financing to
+selected SNGs and providing grounds for learning and scale up. The
+pilot will have an initial duration of 5 years and, consistent with the SFP,
+will be available to eligible SNGs from all IDB borrowing member
+countries. The pilot will generate evidence needed to: (i) ascertain the
+potential market for SFP and demand for this product, mapping
+prospective SNGs and initiating key reforms for eligibility under a fasttracked figure; (ii) test new and/or revised guidelines/procedures
+appropriate for processing and supervision of sub-sovereign operations;
+(iii) evaluate new systems (e.g. credit risk, resource mobilization, integrity
+risk) and institutional arrangements required under the SFP; (iv) develop
+IDB’s personnel strength and determine the extent of retraining and
+new skills that might be required and (v) assess IDB’s efficiency and
+effectiveness implementing such instrument. The pilot will also generate
+information on cofinancing and cost-sharing, and early outcomes from
+the use of the instrument, outlining its potential for growth and/or
+challenges encountered. The pilot nature of the SFP proposes a gradual,
+results-focused approach to extract lessons and manage risks. It will help
+IDB determine whether mainstreaming of the program is desirable, its
+scope and scale.
+
+4.10
+
+The SFP pilot will be structured as follows: (i) a sub-sovereign
+investment financing subprogram (Subprogram 1); and (ii) a technical
+cooperation sub-sovereign readiness subprogram (Subprogram 2).
+Under Subprogram 1, sub-sovereign financing will be provided to eligible
+SNGs through investment loans and investment guarantees without a
+sovereign guarantee or counter-guarantee, as the case may be, in US
+dollars or local currency. 48 Financing will be based on credit risk and
+commercial principles, and pricing will be market-based. It is projected
+that under the pilot, approximately 8 to 10 individual operations will be
+financed under the SFP, 49 promoting geographic diversity and
+borrowers of different types and sizes, including intermediate cities. 50,51
+
+48
+
+Financing in local currency dollar will be subject to, among others, market availability,
+operational, legal and risk management considerations.
+
+49
+
+The number of operations is tentative and has been extrapolated from average loan sizes for
+SNGs that have recently borrowed directly with a sovereign guarantee or from other IFIs (Table
+1).
+
+50
+
+Management will establish indicative per country, per borrower and per project lending limits
+to seek effective portfolio diversification and maximizing use of economic capital.
+
+51
+
+The pilot aims to maximize learning and outcomes. In case of high demand, the SFP Operating
+Guidelines will attempt to balance the following parameters at portfolio level: (i) geographic
+diversity (region, country, context); (ii) different SNG typologies (levels of government, size); and
+(iii) varying degrees of SNG capacity (debt capacity, fiscal and financial management, project
+preparation, etc.) .
+
+- 20 For purposes of Subprogram 1, a total amount of US$1 billion from the
+Bank’s Ordinary Capital resources will be allocated for the financing of
+investment loans and investment guarantees. 52 Loans and guarantees to
+be financed with Banks’ resources might also be supported with
+financial resources to be provided by external partners, either resources
+administered by the Bank, or by partner institutions, as the case may be.
+Under Subprogram 2, resources will be used for the financing of
+technical assistance to provide: (i) non-reimbursable technical
+cooperation (TC) resources to support reforms, capacity building and
+project prefeasibility to SNGs deemed to be prospective borrowers
+(including good governance and ESG standards); and (ii) contingent
+recovery TC resources for project design (including e.g. detailed design,
+procurement, and other project structuring needs). 53
+4.11
+
+Consistent with SFP criteria outlined in paragraph 4.3, projects under
+the pilot will prioritize SNG mandates of inclusive and efficient
+services, sustainable and resilient infrastructure and urban
+development. 54 The SFP pilot will also finance, investments necessary to
+improve SNG’s public finances and management (e.g. revenue collection
+systems, administrative efficiencies, public financial management,
+digitalization, etc.). This reflects current portfolio demand patterns
+outlined in paragraph 2.5 and Table 1.
+
+4.12
+
+Technical assistance resources for the 5-year pilot period, are
+estimated at approximately US$13 million. This would be required to
+support (i) SNGs’ efforts (including an expected US$4 million for regular
+TCs and US$6 million for contingent recovery TCs) and (ii) US$3 million in
+TC resources for pilot implementation and monitoring and evaluation
+(M&E) needs. To execute the outlined activities and timely prepare and
+approve sub-sovereign operations, TC funds should be made available in
+the first 4 years of pilot implementation. TC resources might come from
+two sources: (i) the Bank’s Ordinary Capital resources annually allocated
+under the Special Development Program; and/or (ii) Donor or Partner
+funds under Bank administration. 55, 56
+
+52
+
+This represents, in average, less than 1% of average IDB’s loans outstanding.
+
+53
+
+TCs under this subprogram will be consistent with the Proposal for a new Bank policy on
+technical cooperation (GN-2470-2) and the Operational Guidelines for Technical Cooperation
+Products (GN-2629-1), as amended from time to time.
+
+54
+
+Overall infrastructure loan performance generally has a lower risk profile than corporate loans.
+
+55
+
+Such grant mobilization strategy would consider existing donor funds and programs, and
+potential new contributions through different modalities, providing a flexible framework to
+identify best funding mechanisms, avoid duplication and ensure efficiency on the use of
+resources.
+
+56
+
+Cost-sharing of preparatory activities/studies will be discussed and agreed with prospective
+SNGs.
+
+- 21 4.13
+
+As part of the pilot, a new SNG readiness approach to fast-track
+access to sub-sovereign finance will be developed and evaluated. For
+this purpose, SNGs across LAC will be assessed for readiness. This will be
+based on an evaluation of: (i) their legal capacity to borrow without a
+sovereign guarantee; (ii) creditworthiness, including intergovernmental
+arrangements and fiscal conditions, considering aspects of compliance
+with national fiscal rules (to ensure fiscal responsibility), an assessment
+of fiscal health and autonomy indicators (e.g. percentage of own-source
+and non-earmarked revenues; ratio of debt to operating income; etc.),
+and a review of available credit ratings to evaluate market assessments
+of fiscal stability; and (iii) governance, institutional, transparency and
+integrity elements, amongst others. A customized fiscal sustainability
+analysis will be conducted case by case to evaluate the specific needs
+and contexts of potentially eligible entities, providing tailored insights
+and recommendations for enhancing fiscal management and
+sustainability. 57
+
+C.
+
+Operational Considerations
+
+4.14
+
+The following operational considerations will apply to the financing of
+loans and guarantees under the SFP. 58 This section covers an overview
+of applicable SFP processes, legal due diligence, credit risk assessment
+and integrity, fiduciary and safeguards due diligence, programming, and
+mobilization aspects.
+
+4.15
+
+Outline SFP Processes. Operating Guidelines for preparing and
+processing SFP operations will be defined and approved by
+Management and will consider expanded due diligence to assess credit
+risk, legal and integrity risks. 59 These will be circulated to the Board for
+information. Due diligence on fiduciary and safeguards’ policies relevant
+to sovereign processes will continue to apply. Project teams will, at an
+
+57
+
+The fiscal sustainability analysis will include a quantitative and qualitative assessment that
+considers, among other: (i) fiscal trends and projections, with stress scenarios; (ii) contingent
+liabilities, including from state-owned subnational enterprises; public partnerships; pensions;
+and natural disasters; (iii) fiscal transparency and sound financial management practices; and
+(iv) benchmarking with other similar subnational governments. This analysis will be an input in
+the identification of areas of fiscal management strengthening for enhanced creditworthiness.
+
+58
+
+Individual investment loan and investment guarantee operations financed under the SFP will
+be subject to the terms of this proposal and the current policies applicable to sovereign
+guaranteed operations, as amended from time to time.
+
+59
+
+It is envisaged that the procedures for processing of projects under the SFP, to be defined by
+Management, may include review instances to, for example, (1) early assess whether an SNG is
+eligible or not considering aspects such as (i) the SNG’s legal capacity to borrow, (ii) SNGs’ credit
+risk assessment, (iii) integrity risks and institutional capacity, and (iv) expected project impact;
+and subsequently, (2) conduct a quality and risk review of the proposal including (i) credit
+analysis and rating, (ii) development impact and technical elements, (iii) financial and nonfinancial risks, (iv) financial and non-financial additionality, (v) fiduciary and safeguards, and (vi)
+integrity and legal aspects.
+
+- 22 early stage, discuss with client SNGs due diligence costs, client
+responsibilities in preparatory phases and TC resources.
+4.16
+
+Strategic core departments are expected to perform the second line role
+of the Bank’s risk management governance, and will have the capacity,
+in processing stages, to independently review and evaluate the
+proposed operations.
+
+4.17
+
+Approval of SFP operations by the Board. Loan and investment
+guarantee operations financed under the SFP will follow the approval
+procedures applicable to sovereign guaranteed (SG) operations
+(document GN-1838-3, 60 as may be amended from time to time).
+
+4.18
+
+Legal Frameworks. Consistent with the Bank’s operational regulations
+on eligible borrowers (OP-301), SNGs shall demonstrate that they are
+legally empowered and authorized to enter into loan agreements with
+the Bank, or counter-guarantee agreements in the case of investment
+guarantee operations, and must also fulfill all other legal, institutional,
+operational, and financial requirements set forth in the operational
+regulations. Determination on the ability of SNGs to access direct
+financing without a sovereign guarantee will be carried out on a projectby-project basis.
+
+4.19
+
+In addition to the requirements set forth in the proposal, each individual
+operation will be subject to a sound due diligence to determine, among
+others, the following: (i) types of collateral, if any, that could be
+required/acceptable to the Bank (e.g. liens, guarantee trusts, escrow
+accounts, etc.); (ii) the capability of the SNG to grant pledges against its
+assets (including fiscal and other sources of revenue).
+
+4.20
+
+Credit Risk Framework. SFP, as an NSG program, will require the
+introduction of a new credit risk framework to underpin the IDB’s credit
+risk decision making. The Bank will adopt a credit risk framework to
+(i) enable processing of SNG operations, including screening of
+financially viable operations from non-viable operations; (ii) define an
+appropriate credit risk methodology to apply to sub-sovereign
+transactions; (iii) conduct credit risk assessment during the project cycle;
+(iv) assign credit ratings at entry, and during quality review and closing
+stages of processing, as well as during the implementation and
+repayment life of the project; and (v) set the program’s risk limits.
+
+4.21
+
+Fiduciary Considerations. The SFP does not require any deviation from
+the Bank’s policies and regulations on procurement and financial
+management. The procurement of Works, Goods, and Services will be
+
+60
+
+Report of the Working Group of the Board of Executive Directors of the Inter-American
+Development Bank on Streamlining Approval Procedures for Sovereign-Guaranteed
+Operations. Revised Version (document GN-1838-3).
+
+- 23 executed in accordance with the Procurement Policies (document GN2349-15 and GN-2350-15, as amended). The Bank will conduct
+assessments of the borrower's and/or executing agency’s fiduciary
+systems, a risk analysis, and a capacity assessment. Pursuant to GN-253831, the Bank may assess the borrower's and/or executing agency’s
+fiduciary systems to determine their compliance with the requirements
+set forth for their validation and authorization for use in Bank-financed
+operations. Key fiduciary arrangements will be established for the
+execution phase and opportunities for institutional strengthening
+identified, followed by regular monitoring during implementation.
+During project preparation, the estimated expenditures needed for the
+investment will be analyzed to determine the necessary amount of
+financing.
+4.22
+
+Integrity. From early on in the process and throughout the project cycle,
+the Bank will: (i) identify and assess integrity risks (including institutional
+and context-related vulnerabilities) and the potential negative impacts
+that such risks could have on the Bank’s development objectives and
+reputation; (ii) evaluate the capacity and mechanisms of the
+borrower/executing agency to manage integrity risks; 61 and
+(iii) recommend specific actions (including training and technical
+assistance to strengthen capacity) to mitigate integrity risks and the risk
+of negative impacts on the Bank’s reputation or development objectives.
+The specific risk mitigation actions will be incorporated into the design,
+institutional arrangements and/or execution mechanisms of the project
+and its implementation monitored during execution and adjusted if
+needed.
+
+4.23
+
+To assess integrity risks, IDB will: (i) apply an institutional capacity
+assessment module tailored to SNGs’ characteristics; (ii) identify relevant
+parties with significant roles in the SFP; and (iii) perform due diligence
+on those relevant parties and the SNG. IDB will monitor changes to the
+integrity profile of the SFP during the life cycle of the operation. Finally –
+as in all IDB Group financed operations – the loan contract will include
+integrity provisions to ensure that IDB retains its ability to investigate
+and sanction the commission of Prohibited Practices in the activities it
+finances.
+
+4.24
+
+Environmental and Social Safeguards. The Environmental and Social
+Policy Framework 62 and its guidelines 63 will apply to sub-sovereign loans
+
+61
+
+Including aspects such as: its internal controls, its processes for managing potential conflicts of
+interest, its due diligence of third parties such as contractors, and its mechanisms to report
+irregularities and take operational corrective actions when integrity risks materialize.
+
+62
+
+Environmental and Social Policy Framework (Document GN-2965-23).
+
+63
+
+Guidelines for the Environmental and Social Performance Standards (Document OP-1852-7).
+
+- 24 and guarantees under the pilot 64. The Environmental and Social Review
+Procedure, 65 already in place at IDB, will guide safeguard actions
+associated with preparation, due diligence, and supervision of all
+operations.
+4.25
+
+Programming. Operational activities with SNGs under the SFP are
+expected to follow the principles of the regular country programming
+process. The approval of SFP operations will require prior non-objection
+by the government of the member country by way of a specific written
+consent, which will be sought early in project preparation, 66 or as part of
+the regular country programming process. Sub-sovereign operations
+should, over time, be part of country strategic dialogue and be framed in
+the thematic priorities outlined in the Country Strategy, complementing,
+and building synergies with other sovereign and non-sovereign
+guaranteed interventions.
+
+4.26
+
+Credit Risk Management. Working with SNGs entails accepting sociopolitical uncertainties, particularly without a sovereign guarantee.
+Complementary to institutional measures highlighted in section V,
+credit risk mitigation and management strategies to be pursued under
+SFP will comprise (i) conducting periodic credit assessments throughout
+the life of the loan, and implementing a system for regular monitoring of
+the borrower's financial health and compliance with the loan terms;
+(ii) adequate risk identification, allocation and sharing exercises; 67
+(iii) development of appropriate financial structures, with adequate debt
+repayment sources; and/or (iv) inclusion of financial covenants,
+promissory notes, collateral and/or remedial clauses in loan agreements,
+as might be deemed appropriate.
+
+4.27
+
+Partnerships and Mobilization. Consistent with IDB’s mandate to enter
+into financing partnerships as a way to leverage its resources and
+mobilize public and private capital investment, IDB will seek to cofinance
+and mobilize resources with public and/or private sector partners. Where
+appropriate, to mitigate risks, the Bank will evaluate the use of
+
+64
+
+Excluding operations under the Contingent Credit Facility for Natural Disaster and Public Health
+Emergencies and the Immediate Response Facility for Emergencies Caused by Natural and
+Unexpected Disasters, which are not part of the scope considered for the SFP.
+
+65
+
+2021. IADB. Environmental and Social Review Procedures. Washington DC.
+
+66
+
+When an operation needs to be processed outside country programming steps, a non-objection
+will be sought from central/federal government prior to granting project eligibility. Nonobjection will be requested in writing, and it will comprise both a request for non-objection to
+the project and to associated TC. Early engagement with national authorities might include
+discussions on an SNG’s compliance with fiscal rules and fiscal responsibility frameworks, debt
+sustainability analysis, fiscal transparency, scope of the project and how it integrates with
+national government-led initiatives, and proposed capacity strengthening measures, among
+others.
+
+67
+
+This could take the form, for example, of risk mitigating instruments like guarantees,
+cofinancing or cost-sharing with the client.
+
+- 25 guarantees (political risk and credit enhancement) from partner
+financial institutions (see paragraph 2.12). Special efforts will be made to
+coordinate with other multilateral and bilateral institutions, both in
+terms of mobilizing resources for financing operations, as well as grant
+resources.
+D.
+
+Pricing Principles and Financial Conditions
+
+4.28
+
+Market-Based Pricing. Grounded on principles of NSG-financed
+operations, SFP pricing will be market-based, following a price-discovery
+process, with financial terms and conditions defined on a project-byproject basis (please see Table 2 below for generic terms, as a reference).
+Therefore, terms and conditions under SFP will differ from those
+applicable to sovereign-guaranteed operations.
+Table 2: Typical/Indicative Parameters
+Parameter
+
+Expected Average Value
+
+Eligible products
+
+Loans, guarantees
+
+Tenor
+
+10-15 years (weighted average life)
+
+Interest rate
+
+To be determined by the market (if available, otherwise
+based on risk-adjusted return on capital)
+
+Grace period
+
+3-4 years, but ultimately based on project specifics
+
+Currencies
+
+US$, Local currencies
+
+Typical Value
+
+US$ 20-100 million
+
+Expected SNG Size
+
+Regions, large and intermediate cities
+
+Note: Parameters will vary for each transaction, determined by the market and client preferences. The
+parameters shown here are indicative and similar to those of other IFIs’.
+
+4.29
+
+In those cases where market-based pricing for a specific SFP transaction
+cannot be directly obtained, IDB will (i) perform price discovery by
+comparing with similar sub-sovereign transactions with the same credit
+rating, either in that SNG or in similar SNGs in the region, or (ii) apply the
+theoretical pricing model (described in paragraph 4.30).
+
+4.30
+
+Theoretical Pricing Model. A theoretical pricing model developed for
+the SFP will be applied to each operation with a double purpose:
+(i) establishing a price in those cases where there is no market reference;
+and (ii) having a reference in those cases where market pricing is
+available, to ensure that the pilot deployed by the Bank generates a
+reasonable risk-adjusted return on capital. The theoretical pricing for
+SFP operations would support the general principles of financial
+sustainability embedded in the Bank’s Capital Adequacy Policy (CAP)
+
+- 26 Mandate and Regulations 68 and the Income Management Model 69. SFP
+theoretical pricing will be based on a risk-adjusted return on capital
+framework that includes: (i) the IDB's base rate; (ii) the Bank’s funding
+costs (a function of the loan tenor); (iii) administrative expenses;
+(iv) expected losses (a function of the credit rating-based probability of
+default and the assumed loss given default of that particular
+transaction); (v) cost of required capital (determined on a case by case
+basis); and (vi) an estimated spread to allow for capital accumulation to
+sustain the growth in the portfolio. The corresponding financial terms
+and conditions for investment loans and guarantees (including but not
+limited to lending rate, inspection and supervision fees, and grace and
+amortization periods, and other relevant financial charges) will be
+determined by Management and approved by the Board in the context
+of the corresponding individual loan/guarantee proposal. 70 Loans to
+eligible SNGs shall benefit from options, as provided by the Flexible
+Financing Facility (FFF), to manage interest rate risk and foreign
+exchange risk. Specific contractual provisions following those included
+in loans under the FFF will be developed and included in corresponding
+loan contracts, as the case may be.
+E.
+
+Monitoring, Reporting and Evaluation
+
+4.31
+
+SFP M&E Framework. To assist the evaluation of the SFP, a draft M&E
+framework has been developed and included in Annex IV. The SFP pilot
+will be evaluated against early results associated with the SFP’s vertical
+logic – improved SNG’s technical and financial capacities and early
+outcomes from investment components – as well as IDB’s ability to
+implement the SFP as a lending instrument (as described in paragraph
+4.9), its effectiveness and efficacy, to assist eligible SNGs promote
+sustainable local and regional development, as they transition to market
+financing. 71 Figure 1 in Annex IV presents a sketch of the SFPs vertical
+logic, serving as a reference for designing results matrices for individual
+projects and providing model indicators. This sketch is illustrative of the
+vertical logic of the program as a whole, and the specific wording of
+general and specific objectives of individual operations may need to be
+adjusted to fit their characteristics. Specific projects should develop an
+individual vertical logic and define general and specific objectives that,
+
+68
+
+Documents AB-2994 and AB-2996.
+
+69
+
+Document AB-3044.
+
+70
+
+Consistent with the Risk Taxonomy of the Inter-American Development Bank. (GN-2547) and
+operationalized through the SNG Credit Risk Management Framework.
+
+71
+
+The pilot nature of the SFP also limits the scope of evaluation that might be conducted after
+5 years given its modest size and period of implementation. As such, areas that are not expected
+will be subject to evaluation include (i) portfolio development effectiveness, (ii) handling of
+special assets/delinquent portfolio, (iii) impact on economic capital, (iv) income, and (v) overall
+impact attainment.
+
+- 27 while consistent with the objectives of the SFP, should be appropriate to
+the individual intervention and context. Thus, individual operations will
+draw and adapt relevant specific objectives under the SFP, responding
+to the particular problems and solutions proposed for the project, while
+collectively contributing to the overall results of the program. 72
+4.32
+
+SFP Pilot Evaluation. After the fifth year of implementation of the pilot,
+OVE will conduct and present to the Board an evaluation of the SFP pilot
+as a lending instrument. The evaluation of the SFP program will be
+informed by the evaluation of each individual project or, when projects
+have not yet been completed, by their intermediate/early outcomes. The
+results of OVE’s evaluation will inform ensuing actions associated to the
+continuity of the program (e.g. pilot extension or mainstreaming) and/or
+adjustments to the SFP. Any new proposal to adjust, continue or
+mainstream the SFP would be presented to the Board for consideration.
+73
+
+4.33
+
+M&E and Reporting of Individual Operations. SFP individual operations
+will follow SG procedures regarding performance monitoring and
+evaluation and will comply with IDB’s Development Effectiveness Policy
+Framework, including appropriate regulations, guidance documents
+and tools issued by Management. SFP individual operations’
+performance will be tracked against the achievement of project
+objectives, delivery of results, indicators associated with developmental
+impact, project performance indicators, compliance with various policies
+and mainstreaming of cross-cutting themes. 74 Project completion
+reports (PCRs), consistent with the IDB Group’s Evaluation Policy
+Framework, will be prepared at project closing applying an objectivesbased approach. To the extent possible PMRs will apply, as in the case of
+SG operations. Consistent with Bank policy, a PCR is required for each
+completed lending operation that is approved with a Development
+Effectiveness Matrix. 75 In addition, for sub sovereign operations, IDB will
+establish new arrangements to monitor the use of proceeds, debt
+payment and credit risk, updating ratings, and establishing an
+
+72
+
+Although incorporating all 3 specific objectives might not always be required, it is anticipated
+that 2 or more might frequently be used/adapted for a project.
+
+73
+
+The pilot will generate knowledge and allow IDB to evaluate demand, impact, and performance
+of the SFP based on the parameters outlined in paragraph 4.9 and further developed in Annex
+IV. In addition, in considering any possible extension of the pilot, mainstreaming or scale up, an
+analysis of complementary elements – such as capital consumption, risk appetite, and broad
+and equitable access – and their impact on IDB should be taken into account.
+
+74
+
+At the time of presenting this paper, performance monitoring systems included Progress
+Monitoring Reports (PMR) and safeguards monitoring reports.
+
+75
+
+Subnational operations should be evaluated considering the scope with which they are
+approved. PCR guidelines (OP-1696-6, as amended) apply noting that the scope of subnational
+operations refers to local development problems and objectives, as opposed to a country wide
+approach.
+
+- 28 associated portfolio early warning system. To effectively measure the
+success of the pilot, SFP operations will also incorporate in their
+respective results matrixes, indicators captured in the SFP Pilot M&E
+Framework.
+4.34
+
+Other Monitoring and Reporting. During the implementation of the
+pilot and the program, IDB will continuously monitor and report on loan
+portfolio performance, fiduciary, environmental and social risk
+management performance, thereby ensuring the identification of
+technical assistance needs or the need to implement correction or risk
+mitigation actions. In addition, a mid-term report with a summary of the
+progress, products, results achieved, and lessons derived from
+operations under the SFP will be prepared in the third year of
+implementation and shared with the Board for information. As
+appropriate, some of these findings and lessons learned could also be
+included in other IDB Group reports such as the Development
+Effectiveness Overview, the quarterly risk report and/or biannual
+portfolio review. Moreover, as part of the financial planning exercise,
+allocations for individual sub-sovereign operations will be captured in
+IDB’s annual Long-Term Financial Projections document presented to
+the Board.
+
+F.
+
+Supporting Impact + under a Synergistic Approach
+
+4.35
+
+IDB and IDB-Invest synergies will focus on product, process, and
+client opportunities. To expedite the development of new subsovereign products (loans, guarantees) and associated processes to
+structure, approve, monitor, and manage a new portfolio of subsovereign operations, IDB will require new and complementary skills in
+several areas (e.g., banking, risk, resource mobilization, legal etc.). IDBInvest’s robust experience with NSG finance provides space for IDB’s
+cross-learning, skills development and, where appropriate, service
+sharing. In order to accelerate the learning process, as part of the SFP
+pilot (and building on emerging successful experiences with the
+sovereign portfolio) the SFP will seek to: (i) integrate the support of IDBInvest in IDB’s project teams 76 and advisory role in some committees,
+(ii) request IDB-Invest to appoint consultative focal points, 77 and
+(iii) implement early service level agreements with IDB-Invest for specific
+
+76
+
+As part of the pilot, sub-sovereign operations could include the support of a team member from
+IDB Invest who, from early on in the process, would advise on (i) potential private sector
+displacement resulting from a sub-sovereign transaction (para 4.4 above), (ii) opportunities for
+complementary private sector financing, and (iii) latent financial and risk tolerance and possible
+mitigation structures, among others. Upon approval, a team member from IDB Invest’s portfolio
+maintenance unit could support IDB teams in the supervision of the operation, highlighting any
+perceived warning signs.
+
+77
+
+Consultative focal points in IDB-Invest may serve as the main contact for coordination and
+exchange of information with the IDB (e.g. on operational aspects, finance, credit risk, portfolio
+management, etc.), channeling information and facilitating involvement.
+
+- 29 functions (e.g. in areas such as special assets recovery) 78 where costeffectiveness and/or expertise justifies it.
+4.36
+
+IDB-Group upstream assessments can generate synergies at client
+level. Firstly, IDB’s knowledge and established relationship with public
+sector entities can prove strategic not only in developing demand and
+conditions for sub-sovereign lending to SNGs but also, as part of an
+increased value proposition of the IDB Group, support subnational SOE’s
+transition to market borrowing through IDB-Invest. 79 For this purpose,
+upstream programmatic multisectoral urban/territorial diagnostic
+studies, jointly prepared by IDB and IDB-Invest staff, will provide
+quantitative and qualitative assessments highlighting the strengths and
+weaknesses of SNGs and subnational SOEs charged with the delivery of
+services at city/reginal level, identify opportunities for investment at nonsovereign level, and define local and corporate reforms for
+implementation. Secondly, with a view to gradually transition SNGs from
+public to private sector borrowing (particularly from domestic capital
+markets), an early assessment of subnational debt markets will be
+conducted in selected countries highlighting commercial banks’
+barriers to SNG lending, possible reforms (e.g., regulatory, corporate
+governance, credit risk etc.) and opportunities for gradual commercial
+cofinancing.
+
+G.
+
+Organizational Arrangements
+
+4.37
+
+To operationalize the SFP, new skills or increased capacity might be
+required over time in areas such as credit risk assessment, loan
+structuring and loan monitoring, risk management, legal, integrity,
+and/or resource mobilization and pricing, among others. This will be
+secured through a mix of new recruitment, training of existing staff,
+consultancies, and/or service level agreements between IDB and IDB
+Invest and will be calibrated based on evolving needs and increasing
+lending volumes. 80 Existing organizational divisions/units will be
+
+78
+
+Specific areas where service level agreements will be defined as part of the pilot implementation
+and are likely to evolve as skills develop and/or/if volumes increase.
+
+79
+
+Please refer to footnote 23 for details on NSG division of responsibilities under the Busan
+Resolution.
+
+80
+
+A more detailed strategy forecasts that for the first 18 months of implementation of the pilot,
+additional skills will be secured primarily through consultancies (resources are already captured
+under M&E resources in paragraph 4.12) and service level agreements with IDB Invest (e.g.
+recovery functions). In parallel, transfer of skills on NSG products will also occur through
+collaboration with IDB Invest and the use of consultative focal points (see paragraph 4.35).
+Thereafter, as lending volume and structuring complexity increases and execution
+responsibilities are underway, complementary staff will be necessary (a very preliminary
+assessment suggests the need for 7-8 new staff). Aside from skill transfer strategies with IDB
+Invest already outlined, an interdepartmental community of practice for Sub-sovereign Finance
+will be established (evolving from the existing working group of the same name) to accelerate
+learning and collaboration and exchange experiences.
+
+- 30 expected to deliver results under the pilot, supported by a SFP
+coordination and monitoring team. Preliminary budget details are in
+Annex V.
+
+V.
+
+RISK MANAGEMENT
+
+A.
+
+Moral Hazard
+
+5.1
+
+Uncontrolled access to credit by SNGs and expectations of financial
+support may result in unsustainable subnational debt, which in turn
+puts pressure for bailouts from the central government – the moral
+hazard concern. The problem of moral hazard and the expectation of a
+bailout from the central government in an event of subnational fiscal
+insolvency, can be partly mitigated through the implementation of
+subnational fiscal responsibility frameworks and fiscal rules, the
+development of ex ante alerts providing timely early warnings of
+emergent fiscal risks, improved transparency and accountability
+mechanisms at subnational level, and the development of management
+capacities commensurate with SNG responsibilities.
+
+5.2
+
+In this regard, the SFP seeks to improve subnational fiscal autonomy,
+including the crucial dimension of avoiding bailouts. For this, a key
+component will entail fiscal strengthening of the pilot SNGs to improve
+their creditworthiness. Separately, technical assistance might also be
+offered to the central government to improve subnational fiscal
+monitoring and to strengthen intergovernmental relations, in
+dimensions such as improvement of subnational own resources,
+transparency and predictability of transfers, and subnational debt
+regulation (including bankruptcy procedures for subnational insolvency
+cases).
+
+5.3
+
+Also, consistent with recommendations of earlier external advisory
+group’s recommendations (paragraph 3.1, document GN-2125-5), to
+prevent moral hazard, the following will be observed (i) strict adherence
+to central government policies and fiscal discipline; (ii) compliance with
+objective indicators of financial condition; and (iii) strengthened SNG’s
+risk management frameworks.
+
+B.
+
+* ***
+
+5.4
+
+* 81.
+
+5.5
+
+*
+
+81
+
+*
+
+- 31 5.6
+
+*
+
+5.7
+
+*
+
+5.8
+
+* 82, 83.
+
+5.9
+
+*
+
+5.10
+
+*
+
+C.
+
+Integrity and Fiduciary Risk
+
+5.11
+
+Integrity risk and its associated reputational impact. Past occurrences
+of prohibited practices, unethical or financial misconduct or institutional
+weaknesses could adversely affect the projects’ ability to achieve
+objectives to the Bank’s reputation. To mitigate these potential effects,
+as described in paragraph 4.22 above, the Bank will review subnational
+entities and their capacity to manage integrity risks, and formulate a
+plan to strengthen their systems, put in place controls or take corrective
+measures.
+
+5.12
+
+Portfolio, fiduciary, and environmental and social risk management.
+Concerns over ESG risks could arise as IDB engages at subnational level.
+To prevent such risks, SFP operations will be subject to quality assurance
+and risk review throughout the project preparation phase and portfolio
+monitoring and reporting during the execution phase. Quality assurance
+and risk review will ensure adequate risk identification, assessment, and
+mitigation in line with socioenvironmental standards and fiduciary
+principles. Portfolio monitoring and reporting will support the
+identification of technical assistance needs to strengthen SNGs capacity,
+ensure timely response to potential negative socioenvironmental
+impacts, and provide portfolio alerts and exposure to high risks.
+
+VI.
+6.1
+
+RECOMMENDATION
+
+Based on the analysis and information provided in this document,
+Management recommends that the Board of Executive Directors of the
+IDB approves the proposed resolution attached to this document as
+Appendix I. The approval of the proposed resolution would represent the
+adoption of the following recommendations:
+a.
+
+82
+
+*
+
+83
+
+*
+
+Recommendation 1: To establish the “Sub-Sovereign Finance
+Program (SFP)” as a pilot program of the IDB in accordance with
+
+- 32 the terms and conditions set forth in Sections IV and V of this
+document.
+b.
+
+Recommendation 2: That up to the amount of US$1,000,000,000
+from the Bank’s Ordinary Capital resources will be allocated under
+Subprogram 1 of the SFP for the financing of individual loan and
+guarantee operations.
+
+IDB for Cities & Regions – Annex I
+
+ANNEX I. * ***
+
+IDB for Cities & Regions – Annex II
+Page 1 of 4
+
+ANNEX II. FISCAL AND FINANCIAL CONDITION OF LAC SNGS
+A PRELIMINARY CREDITWORTHINESS ANALYSIS 1
+1.1
+
+The IDB Group Institutional Strategy, “Transforming for Scale and Impact,” focuses
+on subnational entities as a key area for growth, shifting from Sovereign Guarantee
+to Non-Sovereign Guarantee financing to encourage better creditworthiness and
+fiscal autonomy.
+
+1.2
+
+To support this goal, we developed a preliminary selection guideline aimed at
+identifying SNG with the highest potential to receive IDB’s non-sovereign financing,
+based on criteria that considers legal capacity; size; and intergovernmental
+arrangements and fiscal conditions (see below). It is important to note that this list
+is not exhaustive: Other SNG could also be considered. Moreover, this assessment is
+only preliminary and an in-depth fiscal sustainability analysis of each SNG should be
+conducted before committing to further credit consideration. Parameters used for
+this preliminary analysis include:
+a.
+
+Legal capacity: Can SNG borrow with international organizations without
+sovereign guarantee? With support from IDB’s Legal Department, an analysis
+of legal frameworks was conducted (Annex III), resulting in 19 countries in
+which SNG can borrow with international organizations without sovereign
+guarantee.
+
+b.
+
+Size: A sample of the largest intermediate subnational governments (states,
+provinces, departments, among others) and cities, with an indicative
+population size above 500,000 inhabitants (with exceptions, based on
+characteristics of subnational governments such as fiscal autonomy and
+GDP/capita) has been identified. Population size tends to be correlated with
+institutional capacity and ability to acquire sizable loans.
+
+c.
+
+Intergovernmental arrangements and fiscal conditions: The analysis covered
+key aspects of SNG finances including: (i) previous experience in credit
+markets and ratings provided by at least one of the main credit rating
+agencies (Moody’s, Standard & Poors, Fitch); (ii) compliance with subnational
+fiscal rules (in the cases of Brazil and Colombia); (iii) estimation, where
+available, of metrics typically used in creditworthiness analysis, over the
+previous five years, including: (a) own revenue over total revenue; (b) financial
+debt over total revenues; (c) non-financial liabilities over total revenues;
+(d) interest payment over total revenues; (e) fiscal balance over total income;
+and (f) operating balance over operating revenues.
+
+1.3
+
+Following this analysis, 63 SNG in eight countries with most potential to become
+beneficiaries of the initiative were preliminary identified.
+
+1.4
+
+Argentina (10 Provincial governments / 5 Municipalities)Provincial governments,
+along with a select group of municipalities, are considered viable candidates. Most
+subnational tax bases (including consumption, property, and vehicle taxes) belong
+
+1
+
+This analysis is based on available public information, IDB’s Outlook of fiscal relations among levels of
+governments in LAC; and IDB’s subnational fiscal platform.
+
+IDB for Cities & Regions – Annex II
+Page 2 of 4
+
+to the provincial level, making this level of government the most suitable to access
+financing in Argentina.
+1.5
+
+Brazil (5 States / 22 Municipalities)Brazilian’s states and municipalities have strong
+potential for credit operations due to their size, along with significant and diverse
+revenue sources. Many states and large municipalities exhibit solid fiscal
+management, despite challenges related to expenditure rigidity (especially for the
+state level). Brazil also has a strong subnational fiscal responsibility framework
+(CAPAG system), along with an objective, formula-based system of subnational
+project prioritization (COFIEX), based on the quality of project formulation and
+alignment with national priorities.
+
+1.6
+
+Colombia (3 Departments / 6 Municipalities)Departments and municipalities are
+well-positioned for financing due to a solid legal framework, relatively large
+population (in the case of municipalities), and robust fiscal oversight, based on the
+subnational fiscal responsibility framework known as the “traffic light system”
+administered by the Fiscal Affairs Directorate of the Ministry of Finance.
+Departments mainly rely on indirect taxes, while municipalities generate significant
+revenue from property and business taxes.
+
+1.7
+
+Costa Rica(1 Municipality)Costa Rican municipalities have considerable fiscal
+autonomy, with most revenues derived from local taxes such as property and
+consumption taxes. They generally manage their finances prudently, with a focus on
+maintaining fiscal discipline. San Jose, as the capital whose larger metropolitan area
+concentrates more than half of the country’s population, has shown low financial
+debt in recent years.
+
+1.8
+
+Ecuador (5 Municipalities)Ecuador has some large municipal governments with
+creditworthiness potential, although in general SNG face fiscal transparency
+challenges, as key cities like Quito, Guayaquil, Cuenca, Santo Domingo, and Manta
+do not publish comprehensive financial data, including series with their fiscal result
+and debt; this information is also not published by the central government.
+
+1.9
+
+Guatemala (1 Municipality)Guatemalan municipalities have high dependence on
+intergovernmental transfers, which make up a large portion of their revenues.
+Guatemala City, the country’s largest municipality, has creditworthiness potential.
+The country’s Ministry of Finance regularly publishes information on SNG public
+finances, including a municipal financial index.
+
+1.10
+
+Panamá (1 Municipality)Panama’s municipalities have limited fiscal autonomy, with
+most local revenue coming from transfers from the central government (including
+from the property tax, which is centrally collected and redistributed among
+municipalities). They generate own income through taxes on commercial activities,
+fees, and contributions for services provided. Panama City’s metropolitan area
+comprises around half of the country’s population, with the municipality of Panama
+City having creditworthiness potential. There is no publicly available information on
+SNG executed budget and/or debt.
+
+IDB for Cities & Regions – Annex II
+Page 3 of 4
+
+1.11
+
+Uruguay (4 Departments)Uruguay’s departments have relatively high fiscal
+autonomy, with most of their revenues coming from own-source taxes like property
+and vehicle taxes. Due to their size and autonomy, the largest departments have
+creditworthiness potential. Departments regularly publish their budgetary
+execution, although data on their debt is limited.
+TABLE II-1. List of 63 SNGS candidates under analysis
+
+COUNTRY
+
+ARGENTINA
+
+BRAZIL
+
+SNG
+
+LEVEL
+
+SIZE
+
+Buenos Aires
+
+Intermediate
+
+17,523,996
+
+Córdoba
+
+Intermediate
+
+3,840,905
+
+Santa Fe
+
+Intermediate
+
+3,544,908
+
+Mendoza
+
+Intermediate
+
+2,043,540
+
+Salta
+
+Intermediate
+
+1,441,351
+
+Entre Ríos
+
+Intermediate
+
+1,425,578
+
+Misiones
+
+Intermediate
+
+1,278,873
+
+Corrientes
+
+Intermediate
+
+1,212,696
+
+Chaco
+
+Intermediate
+
+1,129,606
+
+Neuquén
+
+Intermediate
+
+726,590
+
+Ciudad Autónoma de Buenos Aires
+
+Large city
+
+3,121,707
+
+Córdoba
+
+Large city
+
+1,505,250
+
+Rosario
+
+Large city
+
+1,348,725
+
+Neuquén
+
+Large city
+
+231,198
+
+Mendoza
+
+Large city
+
+127,160
+
+Bahia
+
+Intermediate
+
+14,141,626
+
+Paraíba
+
+Intermediate
+
+3,974,687
+
+Espírito Santo
+
+Intermediate
+
+3,833,712
+
+Mato Grosso
+
+Intermediate
+
+3,658,649
+
+Rondônia
+
+Intermediate
+
+1,581,196
+
+São Paulo
+
+Large city
+
+11,451,999
+
+Salvador
+
+Large city
+
+2,417,678
+
+Belo Horizonte
+
+Large city
+
+2,315,560
+
+Curitiba
+
+Large city
+
+1,773,718
+
+Goiânia
+
+Large city
+
+1,437,366
+
+Porto Alegre
+
+Large city
+
+1,332,845
+
+Belém
+
+Large city
+
+1,303,403
+
+São Luís
+
+Large city
+
+1,037,775
+
+Maceió
+
+Large city
+
+957,916
+
+IDB for Cities & Regions – Annex II
+Page 4 of 4
+
+TABLE II-1. List of 63 SNGS candidates under analysis
+COUNTRY
+
+SNG
+
+LEVEL
+
+João Pessoa
+
+Large city
+
+833,932
+
+Ribeirão Preto
+
+Large city
+
+720,116
+
+Jaboatão dos Guararapes
+
+Large city
+
+711,330
+
+Contagem
+
+Large city
+
+673,849
+
+Aracaju
+
+Large city
+
+602,757
+
+Juiz de For a
+
+Large city
+
+577,532
+
+Ananindeua
+
+Large city
+
+540,410
+
+Serra
+
+Large city
+
+536,765
+
+Caxias do Sul
+
+Large city
+
+523,716
+
+Niterói
+
+Large city
+
+516,981
+
+Campos dos Goytacazes
+
+Large city
+
+514,643
+
+Vila Velha
+
+Large city
+
+508,655
+
+Porto Velho
+
+Large city
+
+460,434
+
+Antioquia
+
+Intermediate
+
+6,995,000
+
+Valle del Cauca
+
+Intermediate
+
+3,789,874
+
+Cundinamarca
+
+Intermediate
+
+2,792,877
+
+Bogota, D.C.
+
+Large city
+
+7,181,469
+
+Medellín
+
+Large city
+
+2,700,702
+
+Cali
+
+Large city
+
+1,822,871
+
+Cartagena
+
+Large city
+
+973,045
+
+Bucaramanga
+
+Large city
+
+581,130
+
+Pereira
+
+Large city
+
+481,768
+
+San Jose
+
+Large city
+
+356,056
+
+Guayaquil
+
+Large city
+
+2,650,288
+
+Quito
+
+Large city
+
+1,763,275
+
+Cuenca
+
+Large city
+
+596,101
+
+Santo Domingo
+
+Large city
+
+334,826
+
+Manta
+
+Large city
+
+258,697
+
+GUATEMALA
+
+Guatemala City
+
+Large city
+
+923,392
+
+PANAMA
+
+Panama City
+
+Large city
+
+880,691
+
+Montevideo
+
+Intermediate
+
+1,319,108
+
+Canelones
+
+Intermediate
+
+520,187
+
+Maldonado
+
+Intermediate
+
+164,300
+
+Colonia
+
+Intermediate
+
+123,203
+
+BRAZIL
+
+COLOMBIA
+
+COSTA RICA
+
+ECUADOR
+
+URUGUAY
+
+Source: Project Team Analysis. For further information, see preliminary analysis for each SNG
+
+SIZE
+
+IDB for Cities & Regions – Annex III
+Page 1 of 5
+
+ANNEX III. REQUIREMENTS FOR THE CONTRACTING OF
+EXTERNAL LOANS BY SUBNATIONAL GOVERNMENTS IN LAC – A PRELIMINARY ANALYSIS 1
+1.1
+
+The requirements for contracting and obtaining external financing vary
+depending on the legislation of the countries in the region. Some legal
+frameworks allow SNGs to borrow with local authorization, while others require
+authorization from the national government and/or legislative authorization at
+the national level. In some cases, legislations preclude SNGs from borrowing
+from external sources of financing. Table III-1 below provides an indicative and
+preliminary information about the requirements concerning SNGs borrowing
+without sovereign guarantee.
+Table III-1: Requirements for the contracting of
+external loans by SNGs
+Able to Borrow without
+National Approvals
+Costa Rica
+Nicaragua
+Paraguay
+Uruguay
+
+Notes:
+
+1
+
+Able to Borrow with
+National Approval
+Argentinab
+Boliviaa, b
+Belize b
+Brazila
+Chilea, b
+Colombiab
+Dominican Republicb
+Ecuadorb
+El Salvadora
+Guatemalab
+Guyanab
+Hondurasa, b
+Jamaicab
+Panamab
+Trinidad and Tobagob
+
+Not allowed to Borrow
+from External Sources
+Bahamas
+Barbados
+Haiti
+México
+Peruc
+Suriname
+Venezuela
+
+a. Requires prior legislative approval at national level
+b. Requires prior approval by the national executive power
+c. Requires the sovereign guarantee
+
+This summary is based on information available online, however, it does not constitute a definitive,
+comprehensive, or all-encompassing analysis of the legislation or its practical application.
+Information pertaining to Barbados is not included as the country does not have subnational
+governments. The term “subnational governments” refers to local or regional governments, such as
+provinces, departments, states, and municipalities, depending on a country's political subdivision.
+Proposals for individual operations will require a case-by-case legal due diligence. State owned
+enterprises and decentralized institutions are not comprised in this summary.
+
+IDB for Cities & Regions – Annex III
+Page 2 of 5
+
+1.2
+
+Argentina. According to the Argentine legislation “In order to access borrowing
+operations and grant guarantees and endorsements, the governments of the
+provinces, the Autonomous City of Buenos Aires, and of the municipalities shall
+submit the background information and the corresponding documentation to
+the Ministry of the Interior, which, together with the Ministry of Economy, shall
+carry out an analysis in order to authorize such operations….”. In the case of
+municipal borrowing, “…the provinces shall coordinate with the national
+government and with their respective municipalities the actions aimed to
+promote such authorizations.”
+
+1.3
+
+Bahamas. According to its legislation, subnational governments in Bahamas
+do not have the power to borrow, and they are provided funding by the central
+Government.
+
+1.4
+
+Belize. In accordance with the legislation on towns councils, “Whenever the
+general interest and welfare or development of any town will, in the opinion of
+two-thirds of the members of the Council, be advanced by an expenditure
+greater than can be met out of the annual revenue of the Town Fund, the
+Council of that town may, by resolution carried by its majority, recommend to
+the Minister for the time being responsible for Finance, on the guarantee of an
+annual allocation of such amount of the Town Fund as may be equivalent to
+the annual interest and sinking fund necessary for its redemption, the raising
+of a loan, the proceeds of which shall be devoted to such development.”
+
+1.5
+
+Bolivia. Pursuant to the Bolivian legislation “The resources of the municipal
+autonomous territorial entities are: […] 5. Internal and external credits and loans
+contracted in accordance with the legislation of the central level of the State”
+and “The contracting of external public debt must be authorized by law of the
+Plurinational Legislative Assembly.”
+
+1.6
+
+Brazil. In accordance with Brazilian legislation the states, the Federal District, and the
+municipalities may contract external credit operations, and the “…Ministry of Finance
+will verify compliance with the limits and conditions relating to the carrying out of
+credit operations by each entity of the Federation….”, including the “existence of prior
+and express authorization for contracting, in the text of the budget law, in additional
+credits or specific law”, and the “…specific authorization from the Federal Senate.”
+
+1.7
+
+Chile. According to the Constitution, "Only the following are matters of law:
+[...] 7) Those that authorize the State, its agencies and municipalities to contract
+loans, which must be intended to finance specific projects. [...]"; and "8) Those
+that authorize the celebration of any kind of operations that may directly or
+indirectly compromise the credit or financial responsibility of the State, its
+agencies and municipalities."
+
+1.8
+
+Colombia. As stated in its Constitution, Colombian “Territorial entities may
+issue public debt securities and bonds, subject to the conditions of the financial
+market, and also contract external credit, all in accordance with the law that
+regulates the matter.” In addition, under Colombia legislation “…the execution of
+
+IDB for Cities & Regions – Annex III
+Page 3 of 5
+
+external public credit operations [...] by: i) territorial entities [...], will require
+authorization issued by resolution by the Ministry of Finance and Public Credit.”
+1.9
+
+Costa Rica. According to the national Constitution: “The law shall indicate in
+which cases municipalities will need legislative authorization to contract loans,
+pledge their assets or income, or sell properties or real estate property.”
+Likewise, according to the law the “Municipalities and any forms of association
+between them may enter into all kinds of loans. Loans will require the approval
+of at least two-thirds of all members of the respective Municipal Council.”
+
+1.10
+
+Ecuador. Pursuant to the Ecuadorian Constitution “The contracting of public
+debt at all levels of the State will be governed by the guidelines of the respective
+planning and budget and will be authorized by a debt and financing
+committee …”. Likewise, in accordance with the legislation, “Each entity of the
+public sector that has the status of a legal entity under public law, with the prior
+authorization of the Debt and Financing Committee, may make a definitive
+decision on the corresponding indebtedness, and shall assume responsibility
+for ensuring that the respective indebtedness and the stipulations of inherent
+contracts or agreements do not affect the sovereignty of the Republic of
+Ecuador.”
+
+1.11
+
+El Salvador. According to the laws of El Salvador "…the contracting of loans with
+national or foreign institutions that do not require state guarantee, will require
+the approval of the council with the vote of three-quarters of its members. The
+contracting of loans with foreign institutions with state guarantee, will in
+addition require the authorization and approval of the legislative assembly".
+
+1.12
+
+Guatemala. Under the legislation of Guatemala “In order to achieve their
+purposes, municipalities may contract loans in compliance with the legal
+requirements established for such purpose. They must carefully observe the
+principle of payment capacity so as not to affect municipal finances and ensure
+that the debt they incur does not affect or compromise national public finances.
+Municipalities may contract credit obligations whose repayment period
+exceeds the term of government of the Municipal Council that contracts them,
+provided that they are based on the conclusions and recommendations of the
+technical feasibility studies prepared for such purpose.” Likewise, “External
+loans […] must be channeled by the Ministry of Public Finance and be subject
+to the debt policy established by the State for the public sector.”
+
+1.13
+
+Guyana. Pursuant to the legislation on local government, “The local authority
+of a village or country district may, with the sanction of the Minister, borrow any
+sum of money required for the purpose of the district and may pledge the
+security of the rates and of the property generally of the local authority for the
+repayment of the loan together with interest.”
+
+1.14
+
+Haiti. Pursuant to the constitution, the President of the Republic “…negotiates
+and signs all international treaties, conventions and agreements and submits
+them to the ratification of the National Assembly.”
+
+IDB for Cities & Regions – Annex III
+Page 4 of 5
+
+1.15
+
+Honduras: According to the Honduran law, “Municipalities may contract loans
+and carry out other financial operations with any national institution, preferably
+a state institution. When loans are made with foreign entities, the procedures
+established in the Public Credit Law will be followed.” Likewise, the legislation
+establishes: “No public sector entity may initiate procedures to carry out
+external public credit operations without the written authorization of the
+Secretary of State in the Finance Office. The provisions of this article shall also
+apply to municipalities...…”and “…[external debt] contracts shall be subject to
+approval by the President of the Republic and their signing must be authorized
+by the National Congress.”
+
+1.16
+
+Jamaica. Pursuant to Jamaican law “…a Local Authority [Municipalities] may,
+with the approval of the Ministry responsible for finance, borrow any sums
+required by it for meeting its obligations or discharging any of its functions.”
+
+1.17
+
+México. According to the Constitution, the States may not in any case "…directly
+or indirectly contract obligations or loans with governments of other nations,
+with foreign companies or individuals, or when they must be paid in foreign
+currency or outside the national territory." Similarly, the law on Financial
+Discipline of Federal Entities and Municipalities establishes that “Public Entities
+may not contract, directly or indirectly, Financing or Obligations with
+governments of other nations, with foreign companies or individuals, nor when
+they must be paid in foreign currency or outside the national territory.”
+
+1.18
+
+Nicaragua. In accordance with the laws of Nicaragua “Public sector institutions
+may contract public credit operations with guarantee or collateral on national
+or municipal assets or revenue in accordance with current legal norms and
+regulations.” Likewise, according to the legislation “Municipal governments
+may request and obtain short- and medium-term loans from public or private
+banks for the execution of works and for the provision and improvement of
+public services derived from their powers, duly approved by the respective
+Municipal Councils, in accordance with their Development Plans. The
+Municipality may guarantee these loans with up to 50% of its budgeted
+investment expenses, and with its personal movable and immovable property.”
+
+1.19
+
+Panamá. Pursuant to the Constitution of Panama, “The Municipalities may
+contract loans with prior authorization from the Executive Branch.”
+
+1.20
+
+Paraguay. According to the legislation of Paraguay, “The indebtedness resulting
+from the public credit operations of the municipalities shall be called “municipal
+public debt” and may arise from: […] contracting of loans with financial
+institutions.” In addition, pursuant to the law “Loan contracts shall be valid and
+enforceable only if approved by the respective municipal legislature.”
+
+1.21
+
+Perú. According to the Peruvian legislation, “The external debt operations
+entered into by regional government or local governments may only be
+entered into with the guarantee from the national government….”
+
+IDB for Cities & Regions – Annex III
+Page 5 of 5
+
+1.22
+
+República Dominicana. Pursuant to the law of the Dominican Republic “…the
+municipalities may, in accordance with the provisions of the current Public
+Credit Law, enter into credit operations in all their modalities, both short,
+medium and long term, for the financing of their investments, as well as for the
+total or partial replacement of pre-existing operations.” In addition, the law
+states that “Before starting any process aimed at entering into public credit
+operations [….], the public bodies […] must request, through the General
+Directorate of Public Credit, the prior approval of the Secretary of State for
+Finance, who will decide on its suitability within the framework of the national
+policy and strategy on debt matters defined by the Public Debt Council.”
+
+1.23
+
+Suriname. According to the constitution the “Conditions for the manner in
+which the State obtains loans shall be regulated by law.”
+
+1.24
+
+Trinidad y Tobago. In accordance with the Municipal Corporations Act “A
+Corporation may apply to the Minister for approval to borrow such sums of
+money as it considers necessary for the execution of any permanent works or
+of any works which it is authorized to execute under this Act or any other
+written law or for the repayment of any loan or part thereof or for any purpose…”.
+
+1.25
+
+Uruguay. As stated in its Constitution, “Departmental Governments may not
+issue departmental public debt securities, nor arrange loans or borrowings with
+international organizations or foreign institutions or governments, except at
+the proposal of the Mayor, approved by the Departmental Board, following a
+report from the audit tribunal and with the consent of the Legislative Branch,
+granted by an absolute majority of the total members of the General Assembly,
+in a meeting of both Chambers.”
+
+1.26
+
+Venezuela. Pursuant to the laws of Venezuela “… states, districts and municipalities,
+and the entities created by them, may not carry out external public credit operations,
+neither in foreign currency, nor guarantee third party obligations.”
+
+Source: Project Team Analysis.
+
+IDB for Cities & Regions – Annex IV
+Page 1 of 5
+
+ANNEX IV. EVALUATION FRAMEWORK
+1.1
+
+This annex outlines the theory of change of the Sub-sovereign Finance Program (SFP) and
+discusses the main elements of the proposed evaluation, including the main evaluation
+questions and proposed methodology.
+A.
+
+Theory of Change
+
+1.2
+
+The general objective of the SFP is to assist eligible SNGs promote sustainable regions and
+local development by improving access to market financing. The specific objectives of the
+SFP are (i) to strengthen SNGs fiscal and financial management, (ii) to strengthen SNG’s
+capacities to structure and implement project pipelines, and (iii) to improve service delivery
+and infrastructure at the subnational level.
+
+1.3
+
+The three specific objectives are connected. Improving access to market financing requires
+SNGs to develop institutional capabilities to plan, structure and implement new investment
+projects (through improved sectoral governance, procurement practices, project planning
+and management, regulatory and risk management, among others). This will be attended
+to through Specific Objective 2. In turn, better fiscal and financial management capacity is
+essential to increase own revenue, enhance credit ratings to access debt, and manage debt
+repayment of large-scale investments. This will be addressed through Specific Objective 1.
+These 2 objectives will be complemented through the hands-on experience gained
+executing investment projects, which will involve learning by doing, will have
+demonstrational and multiplier effects, and in addition to increasing capacity, will achieve
+service delivery. Achieving the third specific objective is also expected to (i) help establish
+the minimum infrastructure/service delivery levels needed to address private sector
+concerns (e.g. economic viability, minimum regulatory standards, etc.) – particularly in those
+cases where service gaps are significant, or project profiles show a high risk or a low return–
+making SNGs more attractive to subsequent private sector investment and/or (ii) enable
+private sector financing (either in the case of a PPP or through attracting commercial
+cofinancing). Figure 1 below presents the vertical logic leading to the program objective as
+well as indicative outcome and intermediate outcome indicators. These indicators are
+illustrative. Individual operations approved under the SFP will contribute to the overall
+achievement of the program’s objectives.
+
+1.4
+
+Figure 1 in Annex IV presents a general sketch of the Program's vertical logic, serving as a
+reference for designing results matrices for individual projects. This sketch is illustrative;
+therefore, the vertical logic, including the wording of the General and Specific Objectives,
+may not be directly relevant to/appropriately reflect the characteristics of a given project.
+Consequently, individual projects should develop individual vertical logic frameworks and
+define general and specific objectives that, while consistent with the General Objective of
+the SFP, are appropriate to the intervention and context.
+
+IDB for Cities & Regions – Annex IV
+Page 2 of 5
+
+1.5
+
+Figure 1 contains a summary of potential outcome indicators for the SFP, identifying some
+early outcome indicators which will serve to evaluate the pilot. 1 These outcome- and early
+outcome- indicators are divided by specific objective. In support of SFP Specific Objectives
+1 and 2, a set of indicative outcome indicators are presented to enhance financial and
+technical institutional capacity of the SNGs, which will need to be tailored to each SNG
+specific challenges and proposed solutions. Similarly, a set of service delivery and access to
+infrastructure indicators will measure the outcomes obtained through the outputs related
+to closing the investment gap. Depending on the nature of the ensuing individual projects,
+indicators can be selected from the menu of SFP indicators (as well as other project-specific
+sector indicators) and adapted, as appropriate. 2 The type of the indicator will depend on the
+sector and specific nature of the Bank intervention and will need to be adapted from
+program to project (as a sole SNG will be targeted). Given the limited number of operations
+that will be implemented under the pilot, the aggregate value of each outcome indicator
+might be modest, thus the focus should lay on their transformational contribution to
+specific objectives.
+
+1
+
+These indicators are illustrative (given the broad variety of projects that might be implemented) and have been
+selected to guide project teams.
+
+2
+
+The illustrative Outcome Indicators that are measured in terms of the number of SNGs, should be adopted for
+evaluation at the Program level. SMART outcome indicators should be specified for individual projects according to
+their Objectives and interventions. When defining these outcome indicators at the individual project level,
+consideration should be given to reflecting the effective use of the products delivered by each project. Whenever
+possible, indicators from the Indicators Catalog should be used.
+
+IDB for Cities & Regions – Annex IV
+Page 3 of 5
+
+Figure 1
+Determinants
+
+Weak ﬁscal and ﬁnancial capacities and
+creditworthiness
+
+Weak capacity to structure and execute projects
+attracting private sector ﬁnance
+
+Insufﬁcient SNG investments to implement
+existing mandates
+
+General Problem
+
+Insufﬁcient access to private sector ﬁnance to develop subnational territories
+
+General
+Objective
+
+Assist eligible SNGs promote sustainable territorial regions and local development by improving access to market ﬁnancing
+
+Speciﬁc
+Objectives
+
+Illustrative
+Outcome
+Indicators*
+
+Strengthen SNGs capacities to take and
+manage debt
+
+Own revenue growth: # SNGs with
+updated revenue systems and/or
+implementing land-based
+instruments/tariffs linked to project
+development.
+Public ﬁnancial management: # SNGs
+with updated PFM systems.
+Debt management: # SNGs with
+updated debt management strategies.
+
+Strengthen SNGs capacities to develop and
+implement project pipelines
+
+Planning: # SNGs with updated land use plans.
+
+Quality: # SNGs with improved services.
+
+Sector Governance: # SNGs with sectoral plans (+
+investment).
+
+Access: # SNGs with increased service coverage
+
+Capital Budget: # SNGs with annual budgeted
+capital for infrastructure and services.
+Cost performance: # SNGs with improved
+monitoring & evaluation systems to ensure
+projects are on-track with the allocated budget
+Fiduciary: # SNGs with improved
+procurement/ﬁduciary systems.
+
+Local autonomy: # SNGs with improved
+revenue autonomy (Own revenue/Total
+revenue).
+Early Outcome
+Indicators**
+
+Fiscal transparency: # SNGs with timely
+and complete reporting of budget
+execution and debt strategy.
+Financing conditions: # SNGs with
+enhanced credit ratings.
+
+*
+**
+
+Indicators should be selected as applicable to each project
+These indicators will support the evaluation of the SFP pilot
+
+Improve service delivery and infrastructure at
+subnational level
+
+Resilience: # SNGs with reduced incidence of
+disaster damage (e.g ﬂooding).
+Pollution and emissions: # SNGs with reduced
+emissions.
+Private Sector Participation: # SNGs
+incorporating private sector participation in
+capital investment plans.
+
+Investment project management: # SNGs with
+project pipelines evaluated ex-ante for potential
+capital investment (technical and ﬁnancial
+feasibility, market demand, etc.) / # SNGs with
+improved capital expenditure.
+
+Investment: # SNGs investing in service delivery
+or infrastructure through sub-sovereign ﬁnance.
+
+Regulatory compliance: # SNGs with pipelines
+screened for compliance with regulations and
+standards.
+
+Private Sector Participation: # SNGs
+conducting surveys/interviews with private
+sector to gauge interest/barriers to
+participation/# SNGs engaging in PPPs or
+commercial coﬁnancing.
+
+Risk management: # SNGs with effective
+strategies to mitigate risks (e.g. political,
+economic, and operational).
+
+Quality of Work: # SNGs that assess adherence
+to quality standards and speciﬁcations.
+
+IDB for Cities & Regions – Annex IV
+Page 4 of 5
+
+B.
+
+Evaluation Strategy
+
+1.6
+
+The SFP pilot will be evaluated after the conclusion of its 5th year of
+implementation, when 8-10 projects are expected will have been approved,
+and their implementation will be underway.
+
+1.7
+
+Evaluation Questions. The evaluation will be organized around the standard
+OECD DAC evaluation criteria of relevance, effectiveness, efficiency and
+sustainability. The questions will cover both (i) early outcomes of the individual
+operations approved under the SFP and (ii) the SFP as a mechanism, and the
+extent to which it proves a feasible and scalable mechanism for the IDB. 3
+a.
+
+Relevance
+i.
+
+Mechanism. To which extent was the SFP Pilot designed to
+demonstrate the feasibility of intervening at the subnational level
+without SG?
+
+ii. Individual Operations. To which extent each individual operation
+approved under the SFP was relevant to address the financial and
+technical capacity challenges faced by the SNGs? To which extent
+each individual operation approved under the SFP was relevant to
+improving service delivery?
+b.
+
+Effectiveness
+Effectiveness will be measured through the early outcomes 4 contained
+in Figure 1 which are the ones expected to be achieved by the time of the
+evaluation.
+i.
+
+Mechanism. To which extent has the SFP Pilot established the
+feasibility of intervening at the subnational level without SG?
+Specifically, to which extent has the program generated a portfolio
+of NSG operations with an acceptable level of operational and credit
+risk? To which extent is the SFP financially feasible as a long-term
+intervention strategy for the IDB? To which extent has the SFP
+succeeded in promoting the transition of SNGs to market financing?
+
+3
+
+As highlighted in the main text of the document, the pilot should generate evidence needed to
+evaluate (i) the SFP as an instrument – e.g. the potential market for SFP and demand for this product,
+new procedures for processing and supervision, new systems and institutional arrangements,
+personnel strength and (ii) early outcomes from the use of the instrument, outlining its potential for
+growth and/or challenges encountered. 1.1 The outline vertical logic (figure 1) will guide the
+evaluation of outcomes and can serve as a general guide in the design of individual operations, with
+objectives defined responding to project context. Selected sample indicators might also be adopted,
+as appropriate.
+
+4
+
+Considering that these early outcomes are not SMART outcome indicators to assess the effectiveness
+of the individual project at closure, they will not be considered in the Results’ Matrix but will be
+included in specific Table in the individual operation´s Monitoring, Evaluation and Learning (MEL)
+Annex.
+
+IDB for Cities & Regions – Annex IV
+Page 5 of 5
+
+ii. Individual Operations. To which extent did each individual
+operation approved under the SFP achieve its objectives in terms of
+increasing financial and technical capabilities of SNGs? To which
+extent each individual operation approved under the SFP was
+relevant to improving service delivery?
+c.
+
+Efficiency
+i.
+
+Mechanism. To which extent has the pilot been efficient at
+achieving its intended outcomes? To which extent were the costs of
+NSG loan preparation and implementation in line with comparators
+and compatible with the income generated from the operations?
+
+ii. Individual Operations. To which extent have the individual
+operations been implemented in a cost-efficient manner?
+d.
+
+Sustainability
+i.
+
+Mechanism. To which extent do the operational efficiency and
+process indicators of the pilot make SFP a scalable long-term option
+for IDB intervention? What lessons can be compiled across pilot
+projects to benefit expansion of the pilot?
+
+ii. Individual operations. To which extent are the outcomes achieved
+by SFP operations (early outcomes) likely to be maintained in the
+future?
+1.8
+
+Methodology. The evaluation will use a combination of data collection and
+analysis methods to deliver its findings. The data will include portfolio
+information, internal Bank systems (cost, income, procedures), IDBG strategy
+and operational documents. Interviews and surveys with the stakeholders will
+be used to complement and triangulate information. The evaluation will also
+benchmark the SFP against comparable programs and individual operations
+in other MDBs and bilateral cooperation agencies.
+
+1.9
+
+Ex-post Project Evaluation. In addition to the SFP evaluation, individual
+operations approved within the SFP will be evaluated according to the Bank’s
+regulations for ex-post evaluation for SG operations.
+
+IDB for Cities & Regions – Annex V
+Page 1 of 1
+
+ANNEX V. PRELIMINARY BUDGETARY REQUIREMENTS FOR THE PILOT PERIOD(1)
+
+Labor inputs
+Function
+
+Cost (US$’000)
+Admin Budget
+
+Staff
+(HC)(2)
+
+Consultant
+(FTE)
+
+TC
+2025-2030
+
+Operational (structuring,
+execution)
+
+3 new , 2
+reassigned
+
+3 new
+
+Credit Risk
+
+1 part-time
+
+Legal Support
+
+(2025-2030)
+
+Transact. Budget
+(2026-2030)
+
+2025-2027 BP
+
+2028-2030
+Estimate(3)
+
+1,500
+
+1,450
+
+150/Y
+200
+
+200/Y
+
+1 new
+
+160
+
+130
+
+300
+
+20
+
+1 new
+
+1 new
+
+325
+
+-
+
+150/Y
+
+40
+
+Pricing/Finance
+
+1 new
+
+1 new
+
+200
+
+-
+
+150/Y
+
+-
+
+ESG
+
+1 new
+
+-
+
+600
+
+-
+
+150/Y
+
+200
+
+Integrity & Governance
+
+-
+
+1 new
+
+200
+
+-
+
+120
+
+-
+
+Fiduciary
+
+-
+
+-
+
+-
+
+-
+
+-
+
+-
+
+Source: Project Team estimates.
+Notes:
+(1) All amounts are indicative and subject to subsequent financial and budgetary discussions with the Board
+(2) All reassigned staff are part-time, and inputs will vary over time, not allowing for a clear computation forecast at this stage
+(3) Some of the costs are one-time expenditure, primarily non-labor expenses. Conversely, most of the labor costs will be recurrent, thus staff costs indicated are annual
+
+IDB for Cities & Regions – Annex VI
+
+ANNEX VI. * ***
+
+Appendix 1
+
+DOCUMENT OF THE INTER-AMERICAN DEVELOPMENT BANK
+
+PROPOSED RESOLUTION DE-__ /25
+
+Sub-Sovereign Finance Program (SFP)
+
+The Board of Executive Directors
+RESOLVE:
+1.
+To approve the “Sub-Sovereign Finance Program (SFP)” on a pilot basis for a
+period of five (5) years from the date of this Resolution, in accordance with the terms and
+conditions set forth in sections IV and V of document ______.
+
+2.
+That up to the amount of US$1,000,000,000 from the Bank’s Ordinary Capital
+resources will be allocated to the SFP for the purpose of financing investment loan and guarantee
+operations under Subprogram 1 of the SFP.
+
+(Adopted on ________ 2025)
+
+
