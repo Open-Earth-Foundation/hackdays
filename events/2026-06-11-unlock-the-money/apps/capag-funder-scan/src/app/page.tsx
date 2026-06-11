@@ -8,7 +8,13 @@ export default function Home() {
   const raw = JSON.parse(
     fs.readFileSync(path.join(process.cwd(), "data", "crosswalk.json"), "utf-8")
   );
+  let risks: Record<string, Record<string, number>> = {};
+  const risksPath = path.join(process.cwd(), "data", "risks.json");
+  if (fs.existsSync(risksPath)) {
+    risks = JSON.parse(fs.readFileSync(risksPath, "utf-8")).cities;
+  }
   const rows: Row[] = raw.records.map((r: Record<string, unknown>) => ({
+    risks: risks[String(r.locode)] ?? null,
     ibge: String(r.cod_ibge),
     name: String(r.municipio),
     uf: String(r.uf),

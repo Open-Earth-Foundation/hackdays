@@ -13,6 +13,7 @@ import {
   Table,
   Text,
 } from "@chakra-ui/react";
+import CityPanel from "./CityPanel";
 
 export type Row = {
   ibge: string;
@@ -24,7 +25,28 @@ export type Row = {
   liquidity: string;
   icf: string;
   locode: string;
+  risks: Record<string, number> | null;
 };
+
+const HAZARDS = [
+  ["heatwaves", "Heatwaves"],
+  ["floods", "Floods"],
+  ["droughts", "Droughts"],
+  ["landslides", "Landslides"],
+  ["diseases", "Diseases"],
+  ["sea-level-rise", "Sea level rise"],
+] as const;
+
+const HAZARD_LABEL = Object.fromEntries(HAZARDS);
+
+function topHazard(risks: Record<string, number> | null) {
+  if (!risks) return null;
+  let best: { hazard: string; score: number } | null = null;
+  for (const [hazard, score] of Object.entries(risks)) {
+    if (!best || score > best.score) best = { hazard, score };
+  }
+  return best;
+}
 
 const TIERS = ["A+", "A", "B+", "B", "C", "D", "n.d.", "n.e."] as const;
 
@@ -68,6 +90,10 @@ export default function Explorer({ rows }: { rows: Row[] }) {
   const [tierFilter, setTierFilter] = useState<string | null>(null);
   const [uf, setUf] = useState("");
   const [q, setQ] = useState("");
+  const [hazard, setHazard] = useState("");
+  const [selected, setSelected] = useState<Row | null>(null);
+
+  const hasRisks = useMemo(() => rows.some((r) => r.risks), [rows]);
 
   const ufs = useMemo(() => Array.from(new Set(rows.map((r) => r.uf))).sort(), [rows]);
 
@@ -79,13 +105,18 @@ export default function Explorer({ rows }: { rows: Row[] }) {
 
   const filtered = useMemo(() => {
     const needle = q.trim().toLowerCase();
-    return rows.filter(
+    const out = rows.filter(
       (r) =>
         (!tierFilter || r.capag === tierFilter) &&
         (!uf || r.uf === uf) &&
-        (!needle || r.name.toLowerCase().includes(needle))
+        (!needle || r.name.toLowerCase().includes(needle)) &&
+        (!hazard || (r.risks?.[hazard] ?? 0) >= 0.5)
     );
-  }, [rows, tierFilter, uf, q]);
+    if (hazard) {
+      out.sort((a, b) => (b.risks?.[hazard] ?? 0) - (a.risks?.[hazard] ?? 0));
+    }
+    return out;
+  }, [rows, tierFilter, uf, q, hazard]);
 
   const shown = filtered.slice(0, 300);
 
@@ -148,6 +179,19 @@ export default function Explorer({ rows }: { rows: Row[] }) {
           </NativeSelect.Field>
           <NativeSelect.Indicator />
         </NativeSelect.Root>
+        {hasRisks && (
+          <NativeSelect.Root w="230px" bg="background.default">
+            <NativeSelect.Field value={hazard} onChange={(e) => setHazard(e.target.value)}>
+              <option value="">Any climate risk</option>
+              {HAZARDS.map(([key, label]) => (
+                <option key={key} value={key}>
+                  High {label.toLowerCase()} risk (≥50)
+                </option>
+              ))}
+            </NativeSelect.Field>
+            <NativeSelect.Indicator />
+          </NativeSelect.Root>
+        )}
       </Flex>
 
       <Text fontSize="sm" color="content.tertiary" mb="2">
@@ -172,29 +216,46 @@ export default function Explorer({ rows }: { rows: Row[] }) {
                 Liquidity
               </Table.ColumnHeader>
               <Table.ColumnHeader title="Siconfi accounting-quality ranking">ICF</Table.ColumnHeader>
-              <Table.ColumnHeader>LOCODE</Table.ColumnHeader>
+              {hasRisks && (
+                <Table.ColumnHeader title="Highest CCRA hazard score (normalized 0-100)">
+                  Top climate risk
+                </Table.ColumnHeader>
+              )}
             </Table.Row>
           </Table.Header>
           <Table.Body>
-            {shown.map((r) => (
-              <Table.Row key={r.ibge}>
-                <Table.Cell fontWeight="500">{r.name}</Table.Cell>
-                <Table.Cell color="content.tertiary">{r.uf}</Table.Cell>
-                <Table.Cell>
-                  <TierBadge tier={r.capag} />
-                </Table.Cell>
-                <Table.Cell>{r.debt}</Table.Cell>
-                <Table.Cell>{r.savings}</Table.Cell>
-                <Table.Cell>{r.liquidity}</Table.Cell>
-                <Table.Cell color="content.tertiary">{r.icf}</Table.Cell>
-                <Table.Cell color="content.tertiary" fontFamily="mono" fontSize="xs">
-                  {r.locode}
-                </Table.Cell>
-              </Table.Row>
-            ))}
+            {shown.map((r) => {
+              const top = hazard && r.risks ? { hazard, score: r.risks[hazard] ?? 0 } : topHazard(r.risks);
+              return (
+                <Table.Row
+                  key={r.ibge}
+                  onClick={() => setSelected(r)}
+                  cursor="pointer"
+                  _hover={{ bg: "background.neutral" }}
+                >
+                  <Table.Cell fontWeight="500" color="content.link">
+                    {r.name}
+                  </Table.Cell>
+                  <Table.Cell color="content.tertiary">{r.uf}</Table.Cell>
+                  <Table.Cell>
+                    <TierBadge tier={r.capag} />
+                  </Table.Cell>
+                  <Table.Cell>{r.debt}</Table.Cell>
+                  <Table.Cell>{r.savings}</Table.Cell>
+                  <Table.Cell>{r.liquidity}</Table.Cell>
+                  <Table.Cell color="content.tertiary">{r.icf}</Table.Cell>
+                  {hasRisks && (
+                    <Table.Cell fontSize="xs" color={top && top.score >= 0.5 ? "rating.d" : "content.tertiary"}>
+                      {top ? `${HAZARD_LABEL[top.hazard] ?? top.hazard} ${(top.score * 100).toFixed(0)}` : "—"}
+                    </Table.Cell>
+                  )}
+                </Table.Row>
+              );
+            })}
           </Table.Body>
         </Table.Root>
       </Box>
+      {selected && <CityPanel row={selected} onClose={() => setSelected(null)} />}
     </Container>
   );
 }
