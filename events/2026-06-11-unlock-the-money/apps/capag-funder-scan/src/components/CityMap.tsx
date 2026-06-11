@@ -1,7 +1,8 @@
 "use client";
 
-import { useMemo } from "react";
-import { CircleMarker, MapContainer, TileLayer, Tooltip } from "react-leaflet";
+import { useEffect, useMemo } from "react";
+import { CircleMarker, MapContainer, TileLayer, Tooltip, useMap } from "react-leaflet";
+import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { TIER_HEX } from "../lib/display";
 import type { Row } from "./Explorer";
@@ -10,6 +11,7 @@ type Props = {
   rows: Row[];               // all cities (dimmed background)
   matchIbge: Set<string>;    // current filter matches (full color)
   hazards: Set<string>;      // selected risk chips — scale dot size by score
+  fitSignal: number;         // increment to fit bounds to current matches
   onSelect: (row: Row) => void;
 };
 
@@ -20,19 +22,37 @@ function riskScore(row: Row, hazards: Set<string>) {
   return max;
 }
 
-export default function CityMap({ rows, matchIbge, hazards, onSelect }: Props) {
+function FitOnSignal({ signal, points }: { signal: number; points: [number, number][] }) {
+  const map = useMap();
+  useEffect(() => {
+    if (signal > 0 && points.length > 0) {
+      map.fitBounds(L.latLngBounds(points), { padding: [30, 30], maxZoom: 9 });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [signal]);
+  return null;
+}
+
+export default function CityMap({ rows, matchIbge, hazards, fitSignal, onSelect }: Props) {
   const placed = useMemo(() => rows.filter((r) => r.lat != null && r.lng != null), [rows]);
+  const matchPoints = useMemo(
+    () =>
+      placed
+        .filter((r) => matchIbge.has(r.ibge))
+        .map((r) => [r.lat as number, r.lng as number] as [number, number]),
+    [placed, matchIbge]
+  );
 
   return (
     <MapContainer
       center={[-14.5, -53]}
       zoom={4}
-      style={{ height: 420, width: "100%", background: "#E8EAFB" }}
+      style={{ height: "100%", width: "100%", background: "#E8EAFB" }}
       preferCanvas
       attributionControl={false}
     >
       <TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" />
-      {/* dimmed non-matches first so matches draw on top */}
+      <FitOnSignal signal={fitSignal} points={matchPoints} />
       {placed.map((r) => {
         const match = matchIbge.has(r.ibge);
         if (match) return null;

@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   Badge,
   Box,
@@ -11,16 +11,18 @@ import {
   Icon,
   Input,
   NativeSelect,
+  SimpleGrid,
   Table,
   Text,
 } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
+import { MdOutlineFileDownload, MdOutlineFilterAltOff, MdOutlineZoomInMap } from "react-icons/md";
 import CityPanel from "./CityPanel";
-import { HAZARDS, HAZARD_BY_KEY } from "../lib/display";
+import { HAZARDS, HAZARD_BY_KEY, TIER_HEX } from "../lib/display";
 
 const CityMap = dynamic(() => import("./CityMap"), {
   ssr: false,
-  loading: () => <Box h="420px" bg="background.neutral" borderRadius="lg" />,
+  loading: () => <Box h="100%" bg="background.neutral" />,
 });
 
 export type Row = {
@@ -56,9 +58,9 @@ const TIER_LABELS: Record<string, string> = {
   A: "bankable",
   "B+": "credit-eligible",
   B: "credit-eligible",
-  C: "no federal credit → blended finance",
+  C: "no federal credit",
   D: "bottom tier",
-  "n.d.": "not rated (bad data) → TA market",
+  "n.d.": "not rated → TA",
   "n.e.": "not evaluated",
 };
 
@@ -95,12 +97,63 @@ function toggle(set: Set<string>, value: string): Set<string> {
   return next;
 }
 
+function exportCsv(rows: Row[]) {
+  const hazardCols = HAZARDS.map((h) => h.key);
+  const header = [
+    "ibge", "municipality", "uf", "capag", "debt", "savings", "liquidity", "icf", "locode",
+    ...hazardCols.map((h) => `risk_${h}`),
+  ];
+  const esc = (v: string) => (/[",\n]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v);
+  const lines = [header.join(",")];
+  for (const r of rows) {
+    lines.push(
+      [
+        r.ibge, esc(r.name), r.uf, r.capag, r.debt, r.savings, r.liquidity, r.icf, r.locode,
+        ...hazardCols.map((h) => (r.risks?.[h] != null ? (r.risks[h] * 100).toFixed(0) : "")),
+      ].join(",")
+    );
+  }
+  const blob = new Blob([lines.join("\n")], { type: "text/csv;charset=utf-8" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "capag-funder-scan.csv";
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
 export default function Explorer({ rows }: { rows: Row[] }) {
   const [tiers, setTiers] = useState<Set<string>>(new Set());
   const [hazards, setHazards] = useState<Set<string>>(new Set());
   const [uf, setUf] = useState("");
   const [q, setQ] = useState("");
   const [selected, setSelected] = useState<Row | null>(null);
+  const [fitSignal, setFitSignal] = useState(0);
+  const restored = useRef(false);
+
+  // one-shot URL → state restoration (ref latch: never re-runs, so no swap loop)
+  useEffect(() => {
+    const p = new URLSearchParams(window.location.search);
+    const t = p.get("tiers");
+    const h = p.get("risks");
+    if (t) setTiers(new Set(t.split(",").filter((x) => (TIERS as readonly string[]).includes(x))));
+    if (h) setHazards(new Set(h.split(",").filter((x) => HAZARD_BY_KEY[x])));
+    setUf(p.get("uf") ?? "");
+    setQ(p.get("q") ?? "");
+    restored.current = true;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // state → URL (write-only; guarded until restoration ran)
+  useEffect(() => {
+    if (!restored.current) return;
+    const p = new URLSearchParams();
+    if (tiers.size) p.set("tiers", Array.from(tiers).join(","));
+    if (hazards.size) p.set("risks", Array.from(hazards).join(","));
+    if (uf) p.set("uf", uf);
+    if (q) p.set("q", q);
+    const qs = p.toString();
+    window.history.replaceState(null, "", qs ? `?${qs}` : window.location.pathname);
+  }, [tiers, hazards, uf, q]);
 
   const hasRisks = useMemo(() => rows.some((r) => r.risks), [rows]);
   const ufs = useMemo(() => Array.from(new Set(rows.map((r) => r.uf))).sort(), [rows]);
@@ -131,12 +184,20 @@ export default function Explorer({ rows }: { rows: Row[] }) {
 
   const shown = filtered.slice(0, 300);
   const matchIbge = useMemo(() => new Set(filtered.map((r) => r.ibge)), [filtered]);
+  const activeFilters = tiers.size + hazards.size + (uf ? 1 : 0) + (q.trim() ? 1 : 0);
+
+  const clearAll = () => {
+    setTiers(new Set());
+    setHazards(new Set());
+    setUf("");
+    setQ("");
+  };
 
   return (
     <>
       {/* CC-style top bar */}
-      <Box bg="content.alternative" color="base.light" py="3">
-        <Container maxW="6xl">
+      <Box bg="content.alternative" py="3">
+        <Container maxW="7xl">
           <Flex align="baseline" gap="3">
             <Heading size="md" fontFamily="heading" color="base.light">
               CAPAG Funder Scan
@@ -148,121 +209,190 @@ export default function Explorer({ rows }: { rows: Row[] }) {
         </Container>
       </Box>
 
-      <Container maxW="6xl" py="8">
-        <Text color="content.tertiary" fontSize="sm" mb="6">
+      <Container maxW="7xl" py="6">
+        <Text color="content.tertiary" fontSize="sm" mb="5">
           {rows.length.toLocaleString()} Brazilian municipalities. Indicative screening signal,
-          not a credit decision. Select multiple ratings and climate risks to segment the market.
+          not a credit decision.
         </Text>
 
-        {/* tier multiselect */}
-        <Text fontSize="xs" fontWeight="700" color="content.secondary" textTransform="uppercase" letterSpacing="wide" mb="2">
-          Fiscal capacity (CAPAG)
-        </Text>
-        <Flex gap="2" wrap="wrap" mb="5">
-          {TIERS.map((t) => {
-            const active = tiers.has(t);
-            return (
-              <Button
-                key={t}
-                onClick={() => setTiers(toggle(tiers, t))}
-                variant="outline"
-                h="auto"
-                py="2.5"
-                px="3.5"
-                bg={active ? "content.alternative" : "background.default"}
-                borderColor={active ? "content.alternative" : "border.neutral"}
-                borderWidth="2px"
-                display="block"
-                textAlign="left"
-                minW="130px"
-              >
-                <Flex align="center" gap="2">
-                  <TierBadge tier={t} />
-                  <Text fontWeight="700" fontFamily="heading" color={active ? "base.light" : "content.primary"}>
-                    {(counts[t] ?? 0).toLocaleString()}
-                  </Text>
-                </Flex>
-                <Text fontSize="xs" color={active ? "background.overlay" : "content.tertiary"} mt="1" fontWeight="400">
-                  {TIER_LABELS[t]}
+        {/* map left · filters right */}
+        <Flex gap="5" mb="6" direction={{ base: "column", lg: "row" }} align="stretch">
+          <Box
+            flex="1"
+            minW="0"
+            position="relative"
+            bg="background.default"
+            borderRadius="lg"
+            borderWidth="1px"
+            borderColor="border.neutral"
+            overflow="hidden"
+            minH="520px"
+          >
+            <CityMap
+              rows={rows}
+              matchIbge={matchIbge}
+              hazards={hazards}
+              fitSignal={fitSignal}
+              onSelect={setSelected}
+            />
+            {/* legend */}
+            <Box
+              position="absolute"
+              bottom="3"
+              left="3"
+              bg="background.default"
+              borderRadius="md"
+              borderWidth="1px"
+              borderColor="border.neutral"
+              px="2.5"
+              py="2"
+              zIndex={1000}
+              boxShadow="0 1px 6px rgba(0,0,31,0.12)"
+            >
+              <Flex gap="2.5" wrap="wrap">
+                {TIERS.map((t) => (
+                  <Flex key={t} align="center" gap="1" fontSize="2xs" color="content.secondary">
+                    <Box w="2.5" h="2.5" borderRadius="full" bg={TIER_HEX[t]} />
+                    {t}
+                  </Flex>
+                ))}
+              </Flex>
+              {hazards.size > 0 && (
+                <Text fontSize="2xs" color="content.tertiary" mt="1">
+                  dot size = selected risk score
                 </Text>
-              </Button>
-            );
-          })}
-        </Flex>
+              )}
+            </Box>
+            {/* zoom to selection */}
+            <Button
+              position="absolute"
+              top="3"
+              right="3"
+              zIndex={1000}
+              size="xs"
+              bg="background.default"
+              color="content.secondary"
+              borderWidth="1px"
+              borderColor="border.neutral"
+              onClick={() => setFitSignal((s) => s + 1)}
+            >
+              <Icon as={MdOutlineZoomInMap} boxSize="3.5" />
+              Zoom to selection
+            </Button>
+          </Box>
 
-        {/* risk multiselect */}
-        {hasRisks && (
-          <>
-            <Text fontSize="xs" fontWeight="700" color="content.secondary" textTransform="uppercase" letterSpacing="wide" mb="2">
-              High climate risk (CCRA ≥ 50, any selected)
-            </Text>
-            <Flex gap="2" wrap="wrap" mb="6">
-              {HAZARDS.map((h) => {
-                const active = hazards.has(h.key);
+          {/* filter rail */}
+          <Box w={{ base: "100%", lg: "400px" }} flexShrink={0}>
+            <Flex justify="space-between" align="center" mb="2">
+              <Text fontSize="xs" fontWeight="700" color="content.secondary" textTransform="uppercase" letterSpacing="wide">
+                Fiscal capacity (CAPAG)
+              </Text>
+              {activeFilters > 0 && (
+                <Button size="xs" variant="ghost" color="content.link" onClick={clearAll}>
+                  <Icon as={MdOutlineFilterAltOff} boxSize="3.5" />
+                  Clear ({activeFilters})
+                </Button>
+              )}
+            </Flex>
+            <SimpleGrid columns={2} gap="2" mb="4">
+              {TIERS.map((t) => {
+                const active = tiers.has(t);
                 return (
                   <Button
-                    key={h.key}
-                    onClick={() => setHazards(toggle(hazards, h.key))}
+                    key={t}
+                    onClick={() => setTiers(toggle(tiers, t))}
                     variant="outline"
-                    size="sm"
-                    borderRadius="full"
-                    fontWeight={active ? "700" : "400"}
+                    h="auto"
+                    py="2"
+                    px="2.5"
                     bg={active ? "content.alternative" : "background.default"}
-                    color={active ? "base.light" : "content.secondary"}
                     borderColor={active ? "content.alternative" : "border.neutral"}
+                    borderWidth="2px"
+                    display="block"
+                    textAlign="left"
                   >
-                    <Icon as={h.icon} boxSize="4" />
-                    {h.label}
+                    <Flex align="center" gap="2">
+                      <TierBadge tier={t} />
+                      <Text fontWeight="700" fontFamily="heading" fontSize="sm" color={active ? "base.light" : "content.primary"}>
+                        {(counts[t] ?? 0).toLocaleString()}
+                      </Text>
+                    </Flex>
+                    <Text fontSize="2xs" color={active ? "background.overlay" : "content.tertiary"} mt="0.5" fontWeight="400">
+                      {TIER_LABELS[t]}
+                    </Text>
                   </Button>
                 );
               })}
-            </Flex>
-          </>
-        )}
+            </SimpleGrid>
 
-        {/* map — synced to the same filters as the table */}
-        <Box
-          bg="background.default"
-          borderRadius="lg"
-          borderWidth="1px"
-          borderColor="border.neutral"
-          overflow="hidden"
-          mb="6"
-        >
-          <CityMap rows={rows} matchIbge={matchIbge} hazards={hazards} onSelect={setSelected} />
-          <Flex px="3" py="2" gap="3" fontSize="xs" color="content.tertiary" align="center">
-            <Text>
-              Dots = filtered cities, colored by CAPAG{hazards.size > 0 ? "; size = selected risk score" : ""}.
-              Gray = filtered out. Click a dot for details.
+            {hasRisks && (
+              <>
+                <Text fontSize="xs" fontWeight="700" color="content.secondary" textTransform="uppercase" letterSpacing="wide" mb="2">
+                  High climate risk (≥ 50, any selected)
+                </Text>
+                <Flex gap="1.5" wrap="wrap" mb="4">
+                  {HAZARDS.map((h) => {
+                    const active = hazards.has(h.key);
+                    return (
+                      <Button
+                        key={h.key}
+                        onClick={() => setHazards(toggle(hazards, h.key))}
+                        variant="outline"
+                        size="xs"
+                        borderRadius="full"
+                        fontWeight={active ? "700" : "400"}
+                        bg={active ? "content.alternative" : "background.default"}
+                        color={active ? "base.light" : "content.secondary"}
+                        borderColor={active ? "content.alternative" : "border.neutral"}
+                      >
+                        <Icon as={h.icon} boxSize="3.5" />
+                        {h.label}
+                      </Button>
+                    );
+                  })}
+                </Flex>
+              </>
+            )}
+
+            <Text fontSize="xs" fontWeight="700" color="content.secondary" textTransform="uppercase" letterSpacing="wide" mb="2">
+              Search
             </Text>
-          </Flex>
-        </Box>
+            <Input
+              placeholder="Search municipality…"
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+              bg="background.default"
+              mb="2"
+            />
+            <NativeSelect.Root bg="background.default" mb="4">
+              <NativeSelect.Field value={uf} onChange={(e) => setUf(e.target.value)}>
+                <option value="">All states</option>
+                {ufs.map((u) => (
+                  <option key={u} value={u}>
+                    {u}
+                  </option>
+                ))}
+              </NativeSelect.Field>
+              <NativeSelect.Indicator />
+            </NativeSelect.Root>
 
-        <Flex gap="3" mb="3">
-          <Input
-            placeholder="Search municipality…"
-            value={q}
-            onChange={(e) => setQ(e.target.value)}
-            bg="background.default"
-            flex="1"
-          />
-          <NativeSelect.Root w="180px" bg="background.default">
-            <NativeSelect.Field value={uf} onChange={(e) => setUf(e.target.value)}>
-              <option value="">All states</option>
-              {ufs.map((u) => (
-                <option key={u} value={u}>
-                  {u}
-                </option>
-              ))}
-            </NativeSelect.Field>
-            <NativeSelect.Indicator />
-          </NativeSelect.Root>
+            <Box bg="background.default" borderRadius="md" borderWidth="1px" borderColor="border.neutral" p="3">
+              <Text fontSize="sm" color="content.primary" fontWeight="600">
+                {filtered.length.toLocaleString()} match{filtered.length === 1 ? "" : "es"}
+              </Text>
+              <Text fontSize="xs" color="content.tertiary" mb="2">
+                {hazards.size > 0 ? "sorted by selected risk · " : ""}filters sync with the map and URL
+              </Text>
+              <Button size="xs" variant="outline" color="content.link" borderColor="border.neutral" onClick={() => exportCsv(filtered)}>
+                <Icon as={MdOutlineFileDownload} boxSize="3.5" />
+                Export CSV ({filtered.length.toLocaleString()})
+              </Button>
+            </Box>
+          </Box>
         </Flex>
 
         <Text fontSize="sm" color="content.tertiary" mb="2">
-          {filtered.length.toLocaleString()} match{filtered.length === 1 ? "" : "es"}
-          {filtered.length > shown.length ? ` — showing first ${shown.length}` : ""}
-          {hazards.size > 0 ? " · sorted by selected risk" : ""}
+          {filtered.length > shown.length ? `Showing first ${shown.length} of ${filtered.length.toLocaleString()}` : ""}
         </Text>
 
         <Box bg="background.default" borderRadius="lg" borderWidth="1px" borderColor="border.neutral" overflow="hidden">
