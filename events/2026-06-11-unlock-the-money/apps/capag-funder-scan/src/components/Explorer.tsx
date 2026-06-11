@@ -1,6 +1,18 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import {
+  Badge,
+  Box,
+  Button,
+  Container,
+  Flex,
+  Heading,
+  Input,
+  NativeSelect,
+  Table,
+  Text,
+} from "@chakra-ui/react";
 
 export type Row = {
   ibge: string;
@@ -16,15 +28,15 @@ export type Row = {
 
 const TIERS = ["A+", "A", "B+", "B", "C", "D", "n.d.", "n.e."] as const;
 
-const TIER_COLORS: Record<string, string> = {
-  "A+": "#15803d",
-  A: "#22c55e",
-  "B+": "#a3b818",
-  B: "#eab308",
-  C: "#f97316",
-  D: "#dc2626",
-  "n.d.": "#9ca3af",
-  "n.e.": "#d1d5db",
+const TIER_TOKEN: Record<string, string> = {
+  "A+": "rating.aplus",
+  A: "rating.a",
+  "B+": "rating.bplus",
+  B: "rating.b",
+  C: "rating.c",
+  D: "rating.d",
+  "n.d.": "rating.nd",
+  "n.e.": "rating.ne",
 };
 
 const TIER_LABELS: Record<string, string> = {
@@ -38,23 +50,17 @@ const TIER_LABELS: Record<string, string> = {
   "n.e.": "not evaluated",
 };
 
-function Badge({ tier }: { tier: string }) {
+function TierBadge({ tier }: { tier: string }) {
   return (
-    <span
-      style={{
-        background: TIER_COLORS[tier] ?? "#e5e7eb",
-        color: tier === "n.e." ? "#374151" : "#fff",
-        borderRadius: 4,
-        padding: "1px 7px",
-        fontSize: 12,
-        fontWeight: 700,
-        display: "inline-block",
-        minWidth: 26,
-        textAlign: "center",
-      }}
+    <Badge
+      bg={TIER_TOKEN[tier] ?? "border.neutral"}
+      color={tier === "n.e." ? "content.secondary" : "base.light"}
+      fontWeight="700"
+      minW="26px"
+      justifyContent="center"
     >
       {tier}
-    </span>
+    </Badge>
   );
 }
 
@@ -63,10 +69,7 @@ export default function Explorer({ rows }: { rows: Row[] }) {
   const [uf, setUf] = useState("");
   const [q, setQ] = useState("");
 
-  const ufs = useMemo(
-    () => Array.from(new Set(rows.map((r) => r.uf))).sort(),
-    [rows]
-  );
+  const ufs = useMemo(() => Array.from(new Set(rows.map((r) => r.uf))).sort(), [rows]);
 
   const counts = useMemo(() => {
     const c: Record<string, number> = {};
@@ -87,90 +90,111 @@ export default function Explorer({ rows }: { rows: Row[] }) {
   const shown = filtered.slice(0, 300);
 
   return (
-    <main style={{ maxWidth: 1100, margin: "0 auto", padding: "2.5rem 1.5rem" }}>
-      <h1 style={{ fontSize: "1.7rem", marginBottom: 4 }}>CAPAG Funder Scan</h1>
-      <p style={{ color: "#666", marginTop: 0 }}>
+    <Container maxW="6xl" py="10">
+      <Heading size="2xl" color="content.alternative" mb="1">
+        CAPAG Funder Scan
+      </Heading>
+      <Text color="content.tertiary" mb="6">
         {rows.length.toLocaleString()} Brazilian municipalities — Treasury fiscal capacity
         (CAPAG, Nov 2025) joined to CityCatalyst climate data. Indicative screening signal,
         not a credit decision.
-      </p>
+      </Text>
 
-      <div style={{ display: "flex", gap: 8, flexWrap: "wrap", margin: "1.2rem 0" }}>
+      <Flex gap="2" wrap="wrap" mb="6">
         {TIERS.map((t) => (
-          <button
+          <Button
             key={t}
             onClick={() => setTierFilter(tierFilter === t ? null : t)}
-            style={{
-              border: tierFilter === t ? `2px solid ${TIER_COLORS[t]}` : "1px solid #e5e7eb",
-              background: tierFilter === t ? "#fafafa" : "#fff",
-              borderRadius: 8,
-              padding: "10px 14px",
-              cursor: "pointer",
-              textAlign: "left",
-              minWidth: 118,
-            }}
+            variant="outline"
+            h="auto"
+            py="2.5"
+            px="3.5"
+            bg="background.default"
+            borderColor={tierFilter === t ? "interactive.secondary" : "border.neutral"}
+            borderWidth={tierFilter === t ? "2px" : "1px"}
+            display="block"
+            textAlign="left"
+            minW="130px"
           >
-            <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-              <Badge tier={t} />
-              <strong style={{ fontSize: 16 }}>{(counts[t] ?? 0).toLocaleString()}</strong>
-            </div>
-            <div style={{ fontSize: 11, color: "#6b7280", marginTop: 4 }}>{TIER_LABELS[t]}</div>
-          </button>
+            <Flex align="center" gap="2">
+              <TierBadge tier={t} />
+              <Text fontWeight="700" fontFamily="heading">
+                {(counts[t] ?? 0).toLocaleString()}
+              </Text>
+            </Flex>
+            <Text fontSize="xs" color="content.tertiary" mt="1" fontWeight="400">
+              {TIER_LABELS[t]}
+            </Text>
+          </Button>
         ))}
-      </div>
+      </Flex>
 
-      <div style={{ display: "flex", gap: 10, marginBottom: 12 }}>
-        <input
+      <Flex gap="3" mb="3">
+        <Input
           placeholder="Search municipality…"
           value={q}
           onChange={(e) => setQ(e.target.value)}
-          style={{ flex: 1, padding: "8px 12px", border: "1px solid #d1d5db", borderRadius: 6, fontSize: 14 }}
+          bg="background.default"
+          flex="1"
         />
-        <select
-          value={uf}
-          onChange={(e) => setUf(e.target.value)}
-          style={{ padding: "8px 12px", border: "1px solid #d1d5db", borderRadius: 6, fontSize: 14 }}
-        >
-          <option value="">All states</option>
-          {ufs.map((u) => (
-            <option key={u} value={u}>{u}</option>
-          ))}
-        </select>
-      </div>
+        <NativeSelect.Root w="180px" bg="background.default">
+          <NativeSelect.Field value={uf} onChange={(e) => setUf(e.target.value)}>
+            <option value="">All states</option>
+            {ufs.map((u) => (
+              <option key={u} value={u}>
+                {u}
+              </option>
+            ))}
+          </NativeSelect.Field>
+          <NativeSelect.Indicator />
+        </NativeSelect.Root>
+      </Flex>
 
-      <p style={{ fontSize: 13, color: "#6b7280" }}>
+      <Text fontSize="sm" color="content.tertiary" mb="2">
         {filtered.length.toLocaleString()} match{filtered.length === 1 ? "" : "es"}
         {filtered.length > shown.length ? ` — showing first ${shown.length}` : ""}
-      </p>
+      </Text>
 
-      <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
-        <thead>
-          <tr style={{ textAlign: "left", borderBottom: "2px solid #e5e7eb", color: "#374151" }}>
-            <th style={{ padding: "6px 8px" }}>Municipality</th>
-            <th style={{ padding: "6px 8px" }}>UF</th>
-            <th style={{ padding: "6px 8px" }}>CAPAG</th>
-            <th style={{ padding: "6px 8px" }} title="Indicator 1 — consolidated debt / net current revenue">Debt</th>
-            <th style={{ padding: "6px 8px" }} title="Indicator 2 — current expenses vs revenues (3yr)">Savings</th>
-            <th style={{ padding: "6px 8px" }} title="Indicator 3 — cash vs short-term obligations">Liquidity</th>
-            <th style={{ padding: "6px 8px" }} title="Siconfi accounting-quality ranking">ICF</th>
-            <th style={{ padding: "6px 8px" }}>LOCODE</th>
-          </tr>
-        </thead>
-        <tbody>
-          {shown.map((r) => (
-            <tr key={r.ibge} style={{ borderBottom: "1px solid #f3f4f6" }}>
-              <td style={{ padding: "6px 8px" }}>{r.name}</td>
-              <td style={{ padding: "6px 8px", color: "#6b7280" }}>{r.uf}</td>
-              <td style={{ padding: "6px 8px" }}><Badge tier={r.capag} /></td>
-              <td style={{ padding: "6px 8px" }}>{r.debt}</td>
-              <td style={{ padding: "6px 8px" }}>{r.savings}</td>
-              <td style={{ padding: "6px 8px" }}>{r.liquidity}</td>
-              <td style={{ padding: "6px 8px", color: "#6b7280" }}>{r.icf}</td>
-              <td style={{ padding: "6px 8px", color: "#9ca3af", fontFamily: "monospace", fontSize: 12 }}>{r.locode}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </main>
+      <Box bg="background.default" borderRadius="lg" borderWidth="1px" borderColor="border.neutral" overflow="hidden">
+        <Table.Root size="sm" striped>
+          <Table.Header>
+            <Table.Row>
+              <Table.ColumnHeader>Municipality</Table.ColumnHeader>
+              <Table.ColumnHeader>UF</Table.ColumnHeader>
+              <Table.ColumnHeader>CAPAG</Table.ColumnHeader>
+              <Table.ColumnHeader title="Indicator 1 — consolidated debt / net current revenue">
+                Debt
+              </Table.ColumnHeader>
+              <Table.ColumnHeader title="Indicator 2 — current expenses vs revenues (3yr)">
+                Savings
+              </Table.ColumnHeader>
+              <Table.ColumnHeader title="Indicator 3 — cash vs short-term obligations">
+                Liquidity
+              </Table.ColumnHeader>
+              <Table.ColumnHeader title="Siconfi accounting-quality ranking">ICF</Table.ColumnHeader>
+              <Table.ColumnHeader>LOCODE</Table.ColumnHeader>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
+            {shown.map((r) => (
+              <Table.Row key={r.ibge}>
+                <Table.Cell fontWeight="500">{r.name}</Table.Cell>
+                <Table.Cell color="content.tertiary">{r.uf}</Table.Cell>
+                <Table.Cell>
+                  <TierBadge tier={r.capag} />
+                </Table.Cell>
+                <Table.Cell>{r.debt}</Table.Cell>
+                <Table.Cell>{r.savings}</Table.Cell>
+                <Table.Cell>{r.liquidity}</Table.Cell>
+                <Table.Cell color="content.tertiary">{r.icf}</Table.Cell>
+                <Table.Cell color="content.tertiary" fontFamily="mono" fontSize="xs">
+                  {r.locode}
+                </Table.Cell>
+              </Table.Row>
+            ))}
+          </Table.Body>
+        </Table.Root>
+      </Box>
+    </Container>
   );
 }

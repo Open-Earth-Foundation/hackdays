@@ -1,0 +1,35 @@
+---
+description: Match the CityCatalyst design system and stack in this app
+globs: "**"
+---
+
+# CityCatalyst conventions for capag-funder-scan
+
+This app mirrors the CityCatalyst frontend stack so it can graduate into a CC feature.
+
+## Stack (same as CityCatalyst `app/`)
+- **Chakra UI v3** (`@chakra-ui/react` + `@emotion/react`) — no Tailwind, no other UI libs
+- Chakra v3 composite API: `Table.Root/Header/Row/Cell`, `NativeSelect.Root/Field`, `ChakraProvider value={system}`
+- Fonts: **Poppins** (headings) + **Open Sans** (body), wired as CSS vars `--font-poppins` / `--font-opensans` via `next/font`
+
+## Theme
+`src/lib/theme.ts` is a trimmed copy of CityCatalyst's blue_theme tokens
+(source of truth: `CityCatalyst/app/src/lib/theme/recipes/app-theme.ts`):
+
+- `content.alternative` #001EA7 (headings), `content.link` #2351DC, `content.primary` #00001F,
+  `content.secondary` #232640, `content.tertiary` #7A7B9A
+- `background.default` #FFFFFF, `background.neutral` #E8EAFB (page bg), `background.overlay` #C5CBF5
+- `border.neutral` #D7D8FA
+- `rating.*` — CAPAG tier colors, derived from CC sector palette
+
+Always reference tokens (`color="content.tertiary"`), never raw hex in components.
+
+## Data
+- CAPAG: `data/capag.json` + `data/crosswalk.json` (regenerate with `scripts/*.py`, see README)
+- CityCatalyst Global API patterns: see `research/data-access.md` — locodes are URL-encoded with
+  the space (`BR%20POA`); CCRA needs the scenario segment (`/current`)
+
+## If you add components
+Check CityCatalyst `app/src/components/` first and copy/adapt rather than inventing new patterns
+(e.g. tables, cards, tags). Local checkout lives at `work/oef/citycatalyst/repo` on Joaquin's machine;
+otherwise https://github.com/Open-Earth-Foundation/CityCatalyst/tree/develop/app
