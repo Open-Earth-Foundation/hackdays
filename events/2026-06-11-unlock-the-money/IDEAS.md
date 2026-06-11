@@ -16,7 +16,7 @@ Think credit rating, but for political will.
 
 **For:** Development banks (BNDES), climate finance alliances (CCFLA Brazil)
 **Revenue angle:** If BNDES uses this to allocate capital, OEF becomes essential infrastructure in the deal flow.
-**Starter data:** Brazilian city budgets (portal da transparencia), election calendars, climate plan publications from CityCatalyst.
+**Starter data:** Brazilian city budgets (portal da transparencia), election calendars, planned/current/started contract registers, procurement records, implementation updates, and public leadership signals.
 
 ---
 
