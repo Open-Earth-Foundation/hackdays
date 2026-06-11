@@ -56,7 +56,8 @@ npm run dev
 
 - Cursor + Claude
 - Next.js / React
-- Tesouro Transparente CKAN (CAPAG, ODbL) · CityCatalyst Global API (SEEG emissions, CCRA risk)
+- Tesouro Transparente CKAN (CAPAG, ODbL) · CityCatalyst Global API (SEEG + SINIR + SNIS + EPE merged inventory, CCRA risk)
+- Chakra UI v3 with CityCatalyst design tokens (see `.cursor/rules/citycatalyst-style.mdc`)
 
 ## What We Learned
 

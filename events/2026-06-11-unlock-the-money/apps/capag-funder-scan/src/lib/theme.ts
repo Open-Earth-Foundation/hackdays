@@ -31,6 +31,14 @@ export const appTheme = createSystem(defaultConfig, {
           neutral: { value: "#D7D8FA" },
           overlay: { value: "#E6E7FF" },
         },
+        // GPC sector colors (CC custom-colors.ts SectorColors)
+        sector: {
+          I: { value: "#5785F4" },
+          II: { value: "#DF2222" },
+          III: { value: "#F28C37" },
+          IV: { value: "#2DD05B" },
+          V: { value: "#C6C61D" },
+        },
         // sentiment colors for CAPAG tiers (CC sector-style palette)
         rating: {
           aplus: { value: "#0E5221" },

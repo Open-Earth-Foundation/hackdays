@@ -1,14 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Badge, Box, Flex, Heading, Spinner, Text } from "@chakra-ui/react";
+import { Badge, Box, Flex, Heading, Icon, Spinner, Text } from "@chakra-ui/react";
 import { recommend } from "../lib/recommend";
+import { HAZARD_BY_KEY, SECTORS } from "../lib/display";
 import type { Row } from "./Explorer";
 
 type CityData = {
-  year: number;
   total: number;
-  sectors: { code: string; name: string; co2eq: number; share: number }[];
+  sectors: { code: string; name: string; co2eq: number; share: number; sources: string[] }[];
   hazards: { hazard: string; score: number }[];
 };
 
@@ -29,15 +29,6 @@ const INDICATOR_HELP: { key: "debt" | "savings" | "liquidity"; name: string; wha
     what: "(Cash − short-term obligations) ÷ net current revenue. Whether the city can pay what's due now.",
   },
 ];
-
-const HAZARD_LABELS: Record<string, string> = {
-  heatwaves: "Heatwaves",
-  floods: "Floods",
-  droughts: "Droughts",
-  landslides: "Landslides",
-  diseases: "Diseases",
-  "sea-level-rise": "Sea level rise",
-};
 
 function GradePill({ grade }: { grade: string }) {
   const color = grade === "A" ? "rating.a" : grade === "B" ? "rating.b" : grade === "C" ? "rating.c" : "rating.nd";
@@ -128,7 +119,7 @@ export default function CityPanel({ row, onClose }: { row: Row; onClose: () => v
           Emissions by sector{" "}
           {data && (
             <Text as="span" fontWeight="400" color="content.tertiary" fontSize="xs">
-              SEEG {data.year} · total {fmtMt(data.total)} CO₂e
+              total {fmtMt(data.total)} CO₂e
             </Text>
           )}
         </Heading>
@@ -140,28 +131,43 @@ export default function CityPanel({ row, onClose }: { row: Row; onClose: () => v
         {!data && !failed && <Spinner size="sm" color="content.link" mb="4" />}
         {data && (
           <Box mb="1">
-            {data.sectors.map((s) => (
-              <Box key={s.code} mb="2">
-                <Flex justify="space-between" fontSize="xs" mb="0.5">
-                  <Text color="content.primary" fontWeight="500">
-                    {s.name}
-                  </Text>
-                  <Text color="content.tertiary">
-                    {fmtMt(s.co2eq)} · {(s.share * 100).toFixed(0)}%
-                  </Text>
-                </Flex>
-                <Box bg="background.neutral" borderRadius="full" h="6px">
-                  <Box bg="content.link" borderRadius="full" h="6px" w={`${Math.max(s.share * 100, 2)}%`} />
+            {data.sectors.map((s) => {
+              const meta = SECTORS[s.code];
+              return (
+                <Box key={s.code} mb="2.5">
+                  <Flex justify="space-between" fontSize="xs" mb="0.5" align="center">
+                    <Flex align="center" gap="1.5">
+                      {meta && <Icon as={meta.icon} boxSize="4" color={meta.color} />}
+                      <Text color="content.primary" fontWeight="500">
+                        {s.name}
+                      </Text>
+                      <Text color="content.tertiary" fontSize="2xs">
+                        {s.sources.join(" + ")}
+                      </Text>
+                    </Flex>
+                    <Text color="content.tertiary">
+                      {fmtMt(s.co2eq)} · {(s.share * 100).toFixed(0)}%
+                    </Text>
+                  </Flex>
+                  <Box bg="background.neutral" borderRadius="full" h="6px">
+                    <Box
+                      bg={meta?.color ?? "content.link"}
+                      borderRadius="full"
+                      h="6px"
+                      w={`${Math.max(s.share * 100, 2)}%`}
+                    />
+                  </Box>
                 </Box>
-              </Box>
-            ))}
+              );
+            })}
           </Box>
         )}
-        {data && (
+        {data && !data.sectors.some((s) => s.code === "III") && (
           <Text fontSize="xs" color="content.tertiary" mb="4">
-            Waste (GPC III) not covered by SEEG.
+            No waste data for this city in SINIR/SNIS (2022).
           </Text>
         )}
+        {data && <Box mb="4" />}
 
         {/* Risks */}
         <Heading size="sm" color="content.secondary" mb="2">
@@ -175,9 +181,14 @@ export default function CityPanel({ row, onClose }: { row: Row; onClose: () => v
             {data.hazards.map((h) => (
               <Box key={h.hazard} mb="2">
                 <Flex justify="space-between" fontSize="xs" mb="0.5">
-                  <Text color="content.primary" fontWeight="500">
-                    {HAZARD_LABELS[h.hazard] ?? h.hazard}
-                  </Text>
+                  <Flex align="center" gap="1.5">
+                    {HAZARD_BY_KEY[h.hazard] && (
+                      <Icon as={HAZARD_BY_KEY[h.hazard].icon} boxSize="4" color="content.secondary" />
+                    )}
+                    <Text color="content.primary" fontWeight="500">
+                      {HAZARD_BY_KEY[h.hazard]?.label ?? h.hazard}
+                    </Text>
+                  </Flex>
                   <Text color="content.tertiary">{(h.score * 100).toFixed(0)}</Text>
                 </Flex>
                 <Box bg="background.neutral" borderRadius="full" h="6px">

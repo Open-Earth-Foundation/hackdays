@@ -74,6 +74,22 @@ GET https://ccglobal.openearth.dev/api/v0/ccra/risk_assessment/city/{locode}   #
 
 Needs verification against the global-api source: https://github.com/Open-Earth-Foundation/CityCatalyst/tree/develop/global-api. Note CCRA is integrating APTA (AdaptaBrasil) projections for Brazil as of Apr 2026 — strong thematic fit if reachable.
 
+### Other emissions sources for Brazil (✅ tested 2026-06-11)
+
+| Source | URL name | Covers | Years | Notes |
+|---|---|---|---|---|
+| SEEG | `SEEGv2023` (or `SEEG`) | I, II, IV, V (14 refs) | 2015–2023 | Backbone, all municipalities |
+| SINIR | `SINIR` | III.1.x–III.3.x solid waste | 2022 only | Coverage varies by city (SPO ✅, POA ❌) |
+| SNIS | `SNIS` | III.4.x wastewater | 2022 only | Coverage varies by city |
+| EPE | `EPE` | I.x.2 / I.x.3 (scope 2/3 energy) | 2014–2024 | Additive to SEEG scope-1 under GPC BASIC |
+
+Together: all 5 GPC sectors. Per the catalogue, **units are kg CO₂e** for all sources
+(`"units": "kg"`; CC app converts via `convertKgToTonnes`).
+
+**Not available:** SIRENE (MCTI) is not in the catalogue — it's national-level, not municipal.
+`ClimateTRACE version 2025` and `Google EIE` appear in the catalogue but 404 on the
+`/api/v1/source/...` route (Google EIE is `access_type: private`).
+
 ### Climate actions
 
 ```
