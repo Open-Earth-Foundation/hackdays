@@ -72,7 +72,8 @@ export default function CityPanel({
 
   return (
     <>
-      <Box position="fixed" inset="0" bg="blackAlpha.400" zIndex="10" onClick={onClose} />
+      {/* z-index above Leaflet's internal panes/controls (which go up to ~1000) */}
+      <Box position="fixed" inset="0" bg="blackAlpha.400" zIndex="1500" onClick={onClose} />
       <Box
         position="fixed"
         top="0"
@@ -81,7 +82,7 @@ export default function CityPanel({
         w={{ base: "100%", md: "66vw" }}
         maxW="980px"
         bg="background.default"
-        zIndex="11"
+        zIndex="1600"
         overflowY="auto"
         p="6"
         boxShadow="-4px 0 24px rgba(0,0,31,0.15)"
