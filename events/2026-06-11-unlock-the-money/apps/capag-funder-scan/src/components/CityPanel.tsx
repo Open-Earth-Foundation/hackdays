@@ -1,6 +1,7 @@
 "use client";
 
 import { Badge, Box, Flex, Heading, Icon, Link, SimpleGrid, Spinner, Text } from "@chakra-ui/react";
+import dynamic from "next/dynamic";
 import { MdOpenInNew } from "react-icons/md";
 import { recommend } from "../lib/recommend";
 import { matchProjects, type Project } from "../lib/matchProjects";
@@ -8,6 +9,11 @@ import { HAZARD_BY_KEY, SECTORS } from "../lib/display";
 import { useTranslation } from "../i18n/client";
 import type { CityData } from "../lib/cityData";
 import type { Row } from "./Explorer";
+
+const CityBoundaryMap = dynamic(() => import("./CityBoundaryMap"), {
+  ssr: false,
+  loading: () => <Box w="100%" h="100%" bg="background.neutral" />,
+});
 
 const INDICATORS = ["debt", "savings", "liquidity"] as const;
 const HIGH_RISK = 0.5;
@@ -93,17 +99,17 @@ export default function CityPanel({
         bg="background.default"
         zIndex="1600"
         overflowY="auto"
-        p="6"
+        p={{ base: "6", md: "8" }}
         boxShadow="-4px 0 24px rgba(0,0,31,0.15)"
       >
-        <Flex justify="space-between" align="start" mb="1">
-          <Heading size="lg" color="content.alternative">
+        <Flex justify="space-between" align="start" mb="2">
+          <Heading size="xl" color="content.alternative">
             {row.name}{" "}
-            <Text as="span" color="content.tertiary" fontSize="md">
+            <Text as="span" color="content.tertiary" fontSize="lg" fontWeight="400">
               ({row.uf})
             </Text>
           </Heading>
-          <Box as="button" onClick={onClose} color="content.tertiary" fontSize="xl" px="2" cursor="pointer">
+          <Box as="button" onClick={onClose} color="content.tertiary" fontSize="2xl" px="2" cursor="pointer" lineHeight="1">
             ✕
           </Box>
         </Flex>
@@ -115,22 +121,37 @@ export default function CityPanel({
           {data?.context?.biome && <Text>{data.context.biome}</Text>}
         </Flex>
 
-        <SimpleGrid columns={{ base: 1, lg: 2 }} gap="6">
+        {/* selected-city locator map */}
+        <Box
+          h="220px"
+          borderRadius="lg"
+          borderWidth="1px"
+          borderColor="border.neutral"
+          overflow="hidden"
+          mb="8"
+        >
+          <CityBoundaryMap
+            boundary={data?.boundary ?? null}
+            center={row.lat != null && row.lng != null ? [row.lat, row.lng] : null}
+          />
+        </Box>
+
+        <SimpleGrid columns={{ base: 1, lg: 2 }} gap="10" gapY="8">
           {/* left column: fiscal + emissions + risks */}
           <Box>
             {/* Fiscal */}
             <Heading size="sm" color="content.secondary" mb="2">
               {t("panel.fiscal")} <Badge bg="content.link" color="base.light">{row.capag}</Badge>
             </Heading>
-            <Box borderWidth="1px" borderColor="border.neutral" borderRadius="md" p="3" mb="1">
+            <Box borderWidth="1px" borderColor="border.neutral" borderRadius="md" p="4" mb="2">
               {INDICATORS.map((key) => (
-                <Flex key={key} gap="2" align="start" mb="2.5" _last={{ mb: 0 }}>
+                <Flex key={key} gap="3" align="start" mb="4" _last={{ mb: 0 }}>
                   <GradePill grade={row[key]} />
                   <Box>
-                    <Text fontSize="sm" fontWeight="600" color="content.primary">
+                    <Text fontSize="sm" fontWeight="600" color="content.primary" mb="0.5">
                       {t(`indicator.${key}.name`)}
                     </Text>
-                    <Text fontSize="xs" color="content.tertiary">
+                    <Text fontSize="xs" color="content.tertiary" lineHeight="1.5">
                       {t(`indicator.${key}.what`)}
                     </Text>
                   </Box>
@@ -140,12 +161,13 @@ export default function CityPanel({
             <Text
               fontSize="xs"
               color="content.tertiary"
-              mb="5"
+              lineHeight="1.5"
+              mb="8"
               dangerouslySetInnerHTML={{ __html: t("panel.icf", { icf: row.icf }) }}
             />
 
             {/* Emissions */}
-            <Heading size="sm" color="content.secondary" mb="2">
+            <Heading size="sm" color="content.secondary" mb="3">
               {t("panel.emissions")}{" "}
               {data && (
                 <Text as="span" fontWeight="400" color="content.tertiary" fontSize="xs">
@@ -163,7 +185,7 @@ export default function CityPanel({
               data.sectors.map((s) => {
                 const meta = SECTORS[s.code];
                 return (
-                  <Box key={s.code} mb="2.5">
+                  <Box key={s.code} mb="3.5">
                     <Flex justify="space-between" fontSize="xs" mb="0.5" align="center">
                       <Flex align="center" gap="1.5">
                         {meta && <Icon as={meta.icon} boxSize="4" color={meta.color} />}
@@ -178,8 +200,8 @@ export default function CityPanel({
                         {fmtMt(s.co2eq)} · {(s.share * 100).toFixed(0)}%
                       </Text>
                     </Flex>
-                    <Box bg="background.neutral" borderRadius="full" h="6px">
-                      <Box bg={meta?.color ?? "content.link"} borderRadius="full" h="6px" w={`${Math.max(s.share * 100, 2)}%`} />
+                    <Box bg="background.neutral" borderRadius="full" h="8px">
+                      <Box bg={meta?.color ?? "content.link"} borderRadius="full" h="8px" w={`${Math.max(s.share * 100, 2)}%`} />
                     </Box>
                   </Box>
                 );
@@ -191,7 +213,7 @@ export default function CityPanel({
             )}
 
             {/* Risks */}
-            <Heading size="sm" color="content.secondary" mb="2" mt="5">
+            <Heading size="sm" color="content.secondary" mb="3" mt="8">
               {t("panel.risks")}{" "}
               <Text as="span" fontWeight="400" color="content.tertiary" fontSize="xs">
                 {t("panel.risks.caption")}
@@ -199,7 +221,7 @@ export default function CityPanel({
             </Heading>
             {data && data.hazards.length > 0
               ? data.hazards.map((h) => (
-                  <Box key={h.hazard} mb="2">
+                  <Box key={h.hazard} mb="3.5">
                     <Flex justify="space-between" fontSize="xs" mb="0.5">
                       <Flex align="center" gap="1.5">
                         {HAZARD_BY_KEY[h.hazard] && <Icon as={HAZARD_BY_KEY[h.hazard].icon} boxSize="4" color="content.secondary" />}
@@ -209,8 +231,8 @@ export default function CityPanel({
                       </Flex>
                       <Text color="content.tertiary">{(h.score * 100).toFixed(0)}</Text>
                     </Flex>
-                    <Box bg="background.neutral" borderRadius="full" h="6px">
-                      <Box bg={h.score >= HIGH_RISK ? "rating.c" : "rating.bplus"} borderRadius="full" h="6px" w={`${Math.max(h.score * 100, 2)}%`} />
+                    <Box bg="background.neutral" borderRadius="full" h="8px">
+                      <Box bg={h.score >= HIGH_RISK ? "rating.c" : "rating.bplus"} borderRadius="full" h="8px" w={`${Math.max(h.score * 100, 2)}%`} />
                     </Box>
                   </Box>
                 ))
@@ -223,15 +245,15 @@ export default function CityPanel({
 
           {/* right column: recommendation + comparable funded projects */}
           <Box>
-            <Heading size="sm" color="content.secondary" mb="2">
+            <Heading size="sm" color="content.secondary" mb="3">
               {t("panel.recommendation")}
             </Heading>
-            <Box bg="background.neutral" borderRadius="md" p="3" mb="5">
-              <Text fontWeight="700" color="content.alternative" mb="1">
+            <Box bg="background.neutral" borderRadius="md" p="4" mb="8">
+              <Text fontWeight="700" fontSize="md" color="content.alternative" mb="2">
                 {t(rec.instrumentKey)}
               </Text>
               {rec.reasoning.map((line, i) => (
-                <Text key={i} fontSize="xs" color="content.secondary" mb="0.5">
+                <Text key={i} fontSize="xs" color="content.secondary" mb="1.5" lineHeight="1.5" _last={{ mb: 0 }}>
                   • {renderLine(line)}
                 </Text>
               ))}
@@ -240,7 +262,7 @@ export default function CityPanel({
             <Heading size="sm" color="content.secondary" mb="1">
               {t("panel.projects")}
             </Heading>
-            <Text fontSize="xs" color="content.tertiary" mb="3">
+            <Text fontSize="xs" color="content.tertiary" mb="4" lineHeight="1.5">
               {t("panel.projects.caption")}
             </Text>
             {!data && !failed && <Spinner size="sm" color="content.link" />}
@@ -250,8 +272,8 @@ export default function CityPanel({
               </Text>
             )}
             {matches.map((p) => (
-              <Box key={p.id} borderWidth="1px" borderColor="border.neutral" borderRadius="md" p="3" mb="2">
-                <Flex justify="space-between" gap="2" align="start" mb="1">
+              <Box key={p.id} borderWidth="1px" borderColor="border.neutral" borderRadius="md" p="4" mb="3">
+                <Flex justify="space-between" gap="2" align="start" mb="2">
                   <Text fontSize="sm" fontWeight="600" color="content.primary">
                     {p.title}
                   </Text>

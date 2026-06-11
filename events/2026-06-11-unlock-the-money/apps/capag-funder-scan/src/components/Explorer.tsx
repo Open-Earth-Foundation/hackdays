@@ -249,8 +249,6 @@ export default function Explorer({ rows, projects }: { rows: Row[]; projects: Pr
               matchIbge={matchIbge}
               hazards={hazards}
               fitSignal={fitSignal}
-              boundary={cityData?.boundary ?? null}
-              selectedIbge={selected?.ibge ?? null}
               onSelect={setSelected}
             />
             {/* legend */}
