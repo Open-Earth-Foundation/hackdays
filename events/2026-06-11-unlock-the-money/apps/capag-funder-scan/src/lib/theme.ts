@@ -12,6 +12,10 @@ export const appTheme = createSystem(defaultConfig, {
   theme: {
     tokens: {
       colors: {
+        base: {
+          light: { value: "#FFFFFF" },
+          dark: { value: "#00001F" },
+        },
         content: {
           alternative: { value: "#001EA7" },
           link: { value: "#2351DC" },

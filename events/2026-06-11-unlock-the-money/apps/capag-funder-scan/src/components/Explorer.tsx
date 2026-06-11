@@ -14,8 +14,14 @@ import {
   Table,
   Text,
 } from "@chakra-ui/react";
+import dynamic from "next/dynamic";
 import CityPanel from "./CityPanel";
 import { HAZARDS, HAZARD_BY_KEY } from "../lib/display";
+
+const CityMap = dynamic(() => import("./CityMap"), {
+  ssr: false,
+  loading: () => <Box h="420px" bg="background.neutral" borderRadius="lg" />,
+});
 
 export type Row = {
   ibge: string;
@@ -28,6 +34,8 @@ export type Row = {
   icf: string;
   locode: string;
   risks: Record<string, number> | null;
+  lat: number | null;
+  lng: number | null;
 };
 
 const TIERS = ["A+", "A", "B+", "B", "C", "D", "n.d.", "n.e."] as const;
@@ -70,14 +78,14 @@ function TierBadge({ tier }: { tier: string }) {
   );
 }
 
-function topHazard(risks: Record<string, number> | null, within?: Set<string>) {
-  if (!risks) return null;
-  let best: { hazard: string; score: number } | null = null;
-  for (const [hazard, score] of Object.entries(risks)) {
-    if (within && within.size > 0 && !within.has(hazard)) continue;
-    if (!best || score > best.score) best = { hazard, score };
-  }
-  return best;
+function topHazards(risks: Record<string, number> | null, n: number, prefer?: Set<string>) {
+  if (!risks) return [];
+  return Object.entries(risks)
+    .map(([hazard, score]) => ({ hazard, score, preferred: !!prefer?.has(hazard) }))
+    .sort((a, b) =>
+      a.preferred !== b.preferred ? (a.preferred ? -1 : 1) : b.score - a.score
+    )
+    .slice(0, n);
 }
 
 function toggle(set: Set<string>, value: string): Set<string> {
@@ -114,16 +122,15 @@ export default function Explorer({ rows }: { rows: Row[] }) {
           Array.from(hazards).some((h) => (r.risks?.[h] ?? 0) >= HIGH_RISK))
     );
     if (hazards.size > 0) {
-      out.sort(
-        (a, b) =>
-          (topHazard(b.risks, hazards)?.score ?? 0) -
-          (topHazard(a.risks, hazards)?.score ?? 0)
-      );
+      const sel = (r: Row) =>
+        Math.max(...Array.from(hazards).map((h) => r.risks?.[h] ?? 0));
+      out.sort((a, b) => sel(b) - sel(a));
     }
     return out;
   }, [rows, tiers, uf, q, hazards]);
 
   const shown = filtered.slice(0, 300);
+  const matchIbge = useMemo(() => new Set(filtered.map((r) => r.ibge)), [filtered]);
 
   return (
     <>
@@ -162,20 +169,20 @@ export default function Explorer({ rows }: { rows: Row[] }) {
                 h="auto"
                 py="2.5"
                 px="3.5"
-                bg={active ? "background.overlay" : "background.default"}
-                borderColor={active ? "interactive.secondary" : "border.neutral"}
-                borderWidth={active ? "2px" : "1px"}
+                bg={active ? "content.alternative" : "background.default"}
+                borderColor={active ? "content.alternative" : "border.neutral"}
+                borderWidth="2px"
                 display="block"
                 textAlign="left"
                 minW="130px"
               >
                 <Flex align="center" gap="2">
                   <TierBadge tier={t} />
-                  <Text fontWeight="700" fontFamily="heading">
+                  <Text fontWeight="700" fontFamily="heading" color={active ? "base.light" : "content.primary"}>
                     {(counts[t] ?? 0).toLocaleString()}
                   </Text>
                 </Flex>
-                <Text fontSize="xs" color="content.tertiary" mt="1" fontWeight="400">
+                <Text fontSize="xs" color={active ? "background.overlay" : "content.tertiary"} mt="1" fontWeight="400">
                   {TIER_LABELS[t]}
                 </Text>
               </Button>
@@ -199,9 +206,10 @@ export default function Explorer({ rows }: { rows: Row[] }) {
                     variant="outline"
                     size="sm"
                     borderRadius="full"
-                    bg={active ? "content.link" : "background.default"}
+                    fontWeight={active ? "700" : "400"}
+                    bg={active ? "content.alternative" : "background.default"}
                     color={active ? "base.light" : "content.secondary"}
-                    borderColor={active ? "content.link" : "border.neutral"}
+                    borderColor={active ? "content.alternative" : "border.neutral"}
                   >
                     <Icon as={h.icon} boxSize="4" />
                     {h.label}
@@ -211,6 +219,24 @@ export default function Explorer({ rows }: { rows: Row[] }) {
             </Flex>
           </>
         )}
+
+        {/* map — synced to the same filters as the table */}
+        <Box
+          bg="background.default"
+          borderRadius="lg"
+          borderWidth="1px"
+          borderColor="border.neutral"
+          overflow="hidden"
+          mb="6"
+        >
+          <CityMap rows={rows} matchIbge={matchIbge} hazards={hazards} onSelect={setSelected} />
+          <Flex px="3" py="2" gap="3" fontSize="xs" color="content.tertiary" align="center">
+            <Text>
+              Dots = filtered cities, colored by CAPAG{hazards.size > 0 ? "; size = selected risk score" : ""}.
+              Gray = filtered out. Click a dot for details.
+            </Text>
+          </Flex>
+        </Box>
 
         <Flex gap="3" mb="3">
           <Input
@@ -257,16 +283,15 @@ export default function Explorer({ rows }: { rows: Row[] }) {
                 </Table.ColumnHeader>
                 <Table.ColumnHeader title="Siconfi accounting-quality ranking">ICF</Table.ColumnHeader>
                 {hasRisks && (
-                  <Table.ColumnHeader title="Highest CCRA hazard score (normalized 0-100)">
-                    Top climate risk
+                  <Table.ColumnHeader title="Three highest CCRA hazard scores (normalized 0-100); selected risks first, bold">
+                    Top 3 risks
                   </Table.ColumnHeader>
                 )}
               </Table.Row>
             </Table.Header>
             <Table.Body>
               {shown.map((r) => {
-                const top = topHazard(r.risks, hazards);
-                const meta = top ? HAZARD_BY_KEY[top.hazard] : null;
+                const top3 = topHazards(r.risks, 3, hazards);
                 return (
                   <Table.Row
                     key={r.ibge}
@@ -287,15 +312,26 @@ export default function Explorer({ rows }: { rows: Row[] }) {
                     <Table.Cell color="content.tertiary">{r.icf}</Table.Cell>
                     {hasRisks && (
                       <Table.Cell>
-                        {top && meta ? (
-                          <Flex
-                            align="center"
-                            gap="1"
-                            fontSize="xs"
-                            color={top.score >= HIGH_RISK ? "rating.d" : "content.tertiary"}
-                          >
-                            <Icon as={meta.icon} boxSize="3.5" />
-                            {meta.label} {(top.score * 100).toFixed(0)}
+                        {top3.length > 0 ? (
+                          <Flex gap="2.5" wrap="nowrap">
+                            {top3.map((t) => {
+                              const meta = HAZARD_BY_KEY[t.hazard];
+                              if (!meta) return null;
+                              return (
+                                <Flex
+                                  key={t.hazard}
+                                  align="center"
+                                  gap="0.5"
+                                  fontSize="xs"
+                                  title={`${meta.label} ${(t.score * 100).toFixed(0)}`}
+                                  color={t.score >= HIGH_RISK ? "rating.d" : "content.tertiary"}
+                                  fontWeight={t.preferred ? "700" : "400"}
+                                >
+                                  <Icon as={meta.icon} boxSize="3.5" />
+                                  {(t.score * 100).toFixed(0)}
+                                </Flex>
+                              );
+                            })}
                           </Flex>
                         ) : (
                           <Text fontSize="xs" color="content.tertiary">

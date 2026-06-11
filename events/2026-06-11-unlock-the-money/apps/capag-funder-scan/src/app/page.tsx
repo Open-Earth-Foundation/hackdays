@@ -13,8 +13,13 @@ export default function Home() {
   if (fs.existsSync(risksPath)) {
     risks = JSON.parse(fs.readFileSync(risksPath, "utf-8")).cities;
   }
+  const centroids: Record<string, [number, number]> = JSON.parse(
+    fs.readFileSync(path.join(process.cwd(), "data", "centroids.json"), "utf-8")
+  );
   const rows: Row[] = raw.records.map((r: Record<string, unknown>) => ({
     risks: risks[String(r.locode)] ?? null,
+    lat: centroids[String(r.cod_ibge)]?.[0] ?? null,
+    lng: centroids[String(r.cod_ibge)]?.[1] ?? null,
     ibge: String(r.cod_ibge),
     name: String(r.municipio),
     uf: String(r.uf),
