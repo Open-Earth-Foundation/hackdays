@@ -37,6 +37,9 @@ cd events/2026-06-11-unlock-the-money/apps/capag-funder-scan
 # data pipeline
 python3 scripts/fetch_capag.py          # Treasury XLSX → data/capag.json
 python3 scripts/probe_citycatalyst.py   # crosswalk + coverage report
+python3 scripts/fetch_risks.py          # national CCRA snapshot → data/risks.json
+python3 scripts/fetch_centroids.py      # IBGE centroids → data/centroids.json
+python3 scripts/fetch_projects.py       # funded LatAm projects → data/projects.json
 
 # app
 npm install

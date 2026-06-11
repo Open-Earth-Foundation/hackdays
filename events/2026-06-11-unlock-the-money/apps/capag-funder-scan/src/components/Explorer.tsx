@@ -21,6 +21,8 @@ import CityPanel from "./CityPanel";
 import LanguageToggle from "./LanguageToggle";
 import { HAZARDS, HAZARD_BY_KEY, TIER_HEX } from "../lib/display";
 import { useTranslation } from "../i18n/client";
+import type { CityData } from "../lib/cityData";
+import type { Project } from "../lib/matchProjects";
 
 const CityMap = dynamic(() => import("./CityMap"), {
   ssr: false,
@@ -112,15 +114,36 @@ function exportCsv(rows: Row[]) {
   URL.revokeObjectURL(a.href);
 }
 
-export default function Explorer({ rows }: { rows: Row[] }) {
+export default function Explorer({ rows, projects }: { rows: Row[]; projects: Project[] }) {
   const { t } = useTranslation();
   const [tiers, setTiers] = useState<Set<string>>(new Set());
   const [hazards, setHazards] = useState<Set<string>>(new Set());
   const [uf, setUf] = useState("");
   const [q, setQ] = useState("");
   const [selected, setSelected] = useState<Row | null>(null);
+  const [cityData, setCityData] = useState<CityData | null>(null);
+  const [cityFailed, setCityFailed] = useState(false);
   const [fitSignal, setFitSignal] = useState(0);
   const restored = useRef(false);
+
+  // single city-detail fetch shared by the panel (all sections) and the map (boundary polygon)
+  useEffect(() => {
+    if (!selected) {
+      setCityData(null);
+      setCityFailed(false);
+      return;
+    }
+    let cancelled = false;
+    setCityData(null);
+    setCityFailed(false);
+    fetch(`/api/city/${encodeURIComponent(selected.locode)}`)
+      .then((r) => (r.ok ? r.json() : Promise.reject()))
+      .then((d) => !cancelled && setCityData(d))
+      .catch(() => !cancelled && setCityFailed(true));
+    return () => {
+      cancelled = true;
+    };
+  }, [selected]);
 
   // one-shot URL → state restoration (ref latch: never re-runs, so no swap loop)
   useEffect(() => {
@@ -226,6 +249,8 @@ export default function Explorer({ rows }: { rows: Row[] }) {
               matchIbge={matchIbge}
               hazards={hazards}
               fitSignal={fitSignal}
+              boundary={cityData?.boundary ?? null}
+              selectedIbge={selected?.ibge ?? null}
               onSelect={setSelected}
             />
             {/* legend */}
@@ -477,7 +502,15 @@ export default function Explorer({ rows }: { rows: Row[] }) {
             </Table.Body>
           </Table.Root>
         </Box>
-        {selected && <CityPanel row={selected} onClose={() => setSelected(null)} />}
+        {selected && (
+          <CityPanel
+            row={selected}
+            data={cityData}
+            failed={cityFailed}
+            projects={projects}
+            onClose={() => setSelected(null)}
+          />
+        )}
       </Container>
     </>
   );

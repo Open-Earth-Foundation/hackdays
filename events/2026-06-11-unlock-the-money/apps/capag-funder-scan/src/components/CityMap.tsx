@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useMemo } from "react";
-import { CircleMarker, MapContainer, TileLayer, Tooltip, useMap } from "react-leaflet";
+import { CircleMarker, GeoJSON, MapContainer, TileLayer, Tooltip, useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import type { Geometry } from "geojson";
 import { TIER_HEX } from "../lib/display";
 import { useTranslation } from "../i18n/client";
 import type { Row } from "./Explorer";
@@ -13,8 +14,21 @@ type Props = {
   matchIbge: Set<string>;    // current filter matches (full color)
   hazards: Set<string>;      // selected risk chips — scale dot size by score
   fitSignal: number;         // increment to fit bounds to current matches
+  boundary: Geometry | null; // selected city boundary polygon
+  selectedIbge: string | null;
   onSelect: (row: Row) => void;
 };
+
+function FitToBoundary({ boundary }: { boundary: Geometry | null }) {
+  const map = useMap();
+  useEffect(() => {
+    if (!boundary) return;
+    const layer = L.geoJSON(boundary);
+    const b = layer.getBounds();
+    if (b.isValid()) map.fitBounds(b, { padding: [40, 40], maxZoom: 11 });
+  }, [boundary, map]);
+  return null;
+}
 
 function riskScore(row: Row, hazards: Set<string>) {
   if (!row.risks || hazards.size === 0) return 0;
@@ -34,7 +48,7 @@ function FitOnSignal({ signal, points }: { signal: number; points: [number, numb
   return null;
 }
 
-export default function CityMap({ rows, matchIbge, hazards, fitSignal, onSelect }: Props) {
+export default function CityMap({ rows, matchIbge, hazards, fitSignal, boundary, selectedIbge, onSelect }: Props) {
   const { t } = useTranslation();
   const placed = useMemo(() => rows.filter((r) => r.lat != null && r.lng != null), [rows]);
   const matchPoints = useMemo(
@@ -55,6 +69,16 @@ export default function CityMap({ rows, matchIbge, hazards, fitSignal, onSelect 
     >
       <TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" />
       <FitOnSignal signal={fitSignal} points={matchPoints} />
+      {boundary && (
+        <>
+          <GeoJSON
+            key={selectedIbge ?? "boundary"}
+            data={boundary}
+            style={{ color: "#2351DC", weight: 2, fillColor: "#2351DC", fillOpacity: 0.12 }}
+          />
+          <FitToBoundary boundary={boundary} />
+        </>
+      )}
       {placed.map((r) => {
         const match = matchIbge.has(r.ibge);
         if (match) return null;

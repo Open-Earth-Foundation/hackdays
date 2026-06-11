@@ -90,6 +90,24 @@ Together: all 5 GPC sectors. Per the catalogue, **units are kg CO₂e** for all 
 `ClimateTRACE version 2025` and `Google EIE` appear in the catalogue but 404 on the
 `/api/v1/source/...` route (Google EIE is `access_type: private`).
 
+### City boundary polygon (✅ tested)
+
+```
+GET /api/v0/cityboundary/city/{locode}   → { "city_geometry": "MULTIPOLYGON(((...)))" , ... }
+```
+
+WKT MULTIPOLYGON; parse to GeoJSON (we use the `wellknown` npm package) for Leaflet. Can be large
+(~100 KB for a big city) — fetch on demand per city, not in bulk.
+
+### City context (✅ tested, sparse for BR)
+
+```
+GET /api/v0/city_context/city/{locode}   → { name, region, area, biome, populationSize, ... }
+```
+
+`area` (km²) and `region` are populated; `populationSize`, `biome`, socio-economic fields are
+mostly null for Brazilian municipalities as of 2026-06.
+
 ### Climate actions
 
 ```

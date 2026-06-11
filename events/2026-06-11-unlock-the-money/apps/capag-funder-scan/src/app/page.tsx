@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import Explorer, { type Row } from "../components/Explorer";
+import type { Project } from "../lib/matchProjects";
 
 export const dynamic = "force-static";
 
@@ -30,5 +31,8 @@ export default function Home() {
     icf: r.icf == null ? "—" : String(r.icf),
     locode: String(r.locode),
   }));
-  return <Explorer rows={rows} />;
+  const projects: Project[] = JSON.parse(
+    fs.readFileSync(path.join(process.cwd(), "data", "projects.json"), "utf-8")
+  ).projects;
+  return <Explorer rows={rows} projects={projects} />;
 }

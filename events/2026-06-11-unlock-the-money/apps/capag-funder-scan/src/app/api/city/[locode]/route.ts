@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { parse as wktParse } from "wellknown";
 
 const API = "https://api.citycatalyst.io";
 
@@ -122,5 +123,34 @@ export async function GET(
     // panel renders without risks
   }
 
-  return NextResponse.json({ locode: decoded, total, sectors, hazards });
+  // city boundary polygon (WKT MULTIPOLYGON -> GeoJSON) + contextual stats
+  let boundary: unknown = null;
+  let context: Record<string, unknown> | null = null;
+  await Promise.all([
+    (async () => {
+      try {
+        const r = await fetch(`${API}/api/v0/cityboundary/city/${encodeURIComponent(decoded)}`, {
+          next: { revalidate: 86400 },
+        });
+        if (r.ok) {
+          const j = await r.json();
+          if (j?.city_geometry) boundary = wktParse(j.city_geometry);
+        }
+      } catch {
+        // map renders without polygon
+      }
+    })(),
+    (async () => {
+      try {
+        const r = await fetch(`${API}/api/v0/city_context/city/${encodeURIComponent(decoded)}`, {
+          next: { revalidate: 86400 },
+        });
+        if (r.ok) context = await r.json();
+      } catch {
+        // panel renders without context
+      }
+    })(),
+  ]);
+
+  return NextResponse.json({ locode: decoded, total, sectors, hazards, boundary, context });
 }
