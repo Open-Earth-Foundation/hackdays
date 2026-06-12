@@ -1,4 +1,0 @@
-Amanda
-Ayinawu
-Brian
-Cephas

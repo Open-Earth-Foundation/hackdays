@@ -1,0 +1,315 @@
+city_name,locode,region_name,population,employment_agriculture_forestry,employment_mining,employment_manufacturing,public_transport_share,sal_StationaryEnergy,sal_Transportation,sal_Waste,sal_AFOLU,sal_IPPU
+Isla de Pascua,CL IPC,Valparaíso,4773.0,5.39,0.36,4.5,,1,0,0,0,0
+Camiña,CL CMA,Tarapacá,1335.0,38.72,2.13,2.34,0.0,1,0,0,1,0
+Timaukel,CL TIM,Magallanes y de la Antártica Chilena,147.0,31.68,0.0,0.0,0.0,1,0,0,1,0
+O'Higgins,CL OHI,Aysén del General Carlos Ibáñez del Campo,647.0,11.2,0.27,3.47,,1,0,0,0,0
+General Lagos,CL GLG,Arica y Parinacota,504.0,50.0,0.93,6.02,0.0,1,0,0,1,0
+San Rosendo,CL SRO,Biobío,3574.0,6.35,5.12,11.12,6.11,1,0,0,0,1
+Contulmo,CL CTM,Biobío,5898.0,14.96,1.27,6.03,4.0,1,0,0,0,0
+Melipeuco,CL MLP,La Araucanía,6759.0,14.83,0.82,6.33,4.78,1,0,0,0,0
+Saavedra,CL SAA,La Araucanía,12863.0,23.13,0.44,5.77,25.2,1,1,0,1,0
+San Juan de la Costa,CL SJC,Los Lagos,7766.0,31.07,0.38,6.59,12.71,1,0,0,1,0
+Tirúa,CL TIR,Biobío,10188.0,28.29,0.47,4.9,15.27,1,0,0,1,0
+Portezuelo,CL POR,Ñuble,5188.0,30.59,0.92,6.73,12.22,1,0,0,1,0
+Navidad,CL NAV,Libertador General Bernardo O'Higgins,8881.0,8.47,0.62,5.7,10.74,1,0,0,0,0
+Ninhue,CL NIN,Ñuble,5762.0,21.43,0.76,5.81,20.4,1,1,0,1,0
+Toltén,CL TOL,La Araucanía,10032.0,27.02,0.97,4.71,14.54,1,0,0,1,0
+Carahue,CL CAR,La Araucanía,24941.0,18.35,0.87,6.02,30.19,1,1,1,1,0
+Teodoro Schmidt,CL TEO,La Araucanía,15633.0,31.4,0.45,5.03,14.71,1,0,0,1,0
+Palena,CL PAL,Los Lagos,1896.0,11.94,0.23,4.57,,1,0,0,0,0
+Curaco de Vélez,CL CDV,Los Lagos,3662.0,24.48,0.14,14.0,21.52,1,1,0,1,1
+Lonquimay,CL LQY,La Araucanía,10147.0,16.26,1.31,4.37,2.56,1,0,0,1,0
+Curarrehue,CL CRE,La Araucanía,7729.0,13.54,0.7,7.49,25.65,1,1,0,0,0
+Lumaco,CL LUM,La Araucanía,9248.0,35.78,0.61,4.25,6.32,1,0,0,1,0
+Futaleufú,CL FFU,Los Lagos,3050.0,10.11,0.33,5.29,,1,0,0,0,0
+Empedrado,CL EMP,Maule,3986.0,22.6,1.87,17.55,12.3,1,0,0,1,1
+Putre,CL PUT,Arica y Parinacota,1368.0,21.69,1.54,4.92,0.0,1,0,0,1,0
+Pelluhue,CL PLH,Maule,8562.0,21.9,0.57,7.15,17.32,1,0,0,1,0
+Corral,CL CRR,Los Ríos,5493.0,21.74,0.57,9.03,33.92,1,1,0,1,1
+Purén,CL PUR,La Araucanía,12161.0,19.22,1.12,6.14,13.74,1,0,0,1,0
+Cholchol,CL CHL,La Araucanía,13138.0,19.3,0.69,6.19,15.35,1,0,0,1,0
+Treguaco,CL TRE,Ñuble,6124.0,26.68,0.81,13.59,8.96,1,0,0,1,1
+Paredones,CL PAR,Libertador General Bernardo O'Higgins,7228.0,30.96,1.65,5.16,7.82,1,0,0,1,0
+El Tabo,CL ELT,Valparaíso,16222.0,1.1,0.99,6.59,17.75,1,0,0,0,0
+Cartagena,CL CGN,Valparaíso,24544.0,3.99,1.27,7.13,38.53,1,1,1,0,0
+Galvarino,CL GAL,La Araucanía,12709.0,29.87,0.5,5.12,17.91,1,0,0,1,0
+Quillón,CL QIN,Ñuble,19116.0,15.97,2.08,10.39,15.29,1,0,0,1,1
+Cochrane,CL COC,Aysén del General Carlos Ibáñez del Campo,3378.0,10.5,0.18,3.81,0.0,1,0,0,0,0
+Chanco,CL CHA,Maule,9436.0,32.27,2.49,5.39,7.5,1,0,0,1,0
+Combarbalá,CL CBB,Coquimbo,12931.0,13.84,15.08,4.33,15.26,1,0,0,0,1
+Cañete,CL CTE,Biobío,34566.0,13.1,1.27,6.14,15.75,1,1,1,0,0
+Florida,CL FLO,Biobío,12924.0,16.65,1.47,7.31,31.52,1,1,0,1,0
+Primavera,CL PRI,Magallanes y de la Antártica Chilena,431.0,24.31,3.53,5.88,0.0,1,0,0,1,1
+Lebu,CL LEB,Biobío,25057.0,26.35,1.14,5.03,20.1,1,1,1,1,0
+Ercilla,CL ERC,La Araucanía,7722.0,26.06,1.11,3.97,10.14,1,0,0,1,0
+San Ignacio,CL SIN,Ñuble,17403.0,31.98,1.19,5.34,24.56,1,1,0,1,0
+Antuco,CL ANT,Biobío,4362.0,8.48,10.38,6.72,8.63,1,0,0,0,1
+Cobquecura,CL CBQ,Ñuble,5477.0,21.59,0.53,6.65,2.25,1,0,0,1,0
+Quirihue,CL QRH,Ñuble,11634.0,22.14,0.89,6.38,18.62,1,1,0,1,0
+Río Ibáñez,CL RIB,Aysén del General Carlos Ibáñez del Campo,2691.0,19.75,0.42,6.84,3.64,1,0,0,1,0
+Queilén,CL QLN,Los Lagos,5675.0,32.63,0.13,10.18,4.19,1,0,0,1,1
+Chile Chico,CL CCH,Aysén del General Carlos Ibáñez del Campo,4864.0,12.81,2.71,5.33,1.39,1,0,0,0,1
+Nueva Imperial,CL NIM,La Araucanía,33729.0,13.16,0.79,7.15,28.07,1,1,1,0,0
+Los Alamos,CL LAL,Biobío,21765.0,17.19,1.9,8.46,26.75,1,1,1,1,0
+Lota,CL LTA,Biobío,39930.0,6.33,3.19,12.51,40.81,1,1,1,0,1
+Coihueco,CL COI,Ñuble,29760.0,36.12,1.35,5.02,21.13,1,1,1,1,0
+El Quisco,CL ELQ,Valparaíso,18896.0,1.36,0.77,6.74,20.8,1,1,0,0,0
+Los Sauces,CL LSA,La Araucanía,7334.0,29.26,1.24,4.29,12.38,1,0,0,1,0
+Monte Patria,CL MTP,Coquimbo,29956.0,33.7,13.21,3.56,19.42,1,1,1,1,1
+Puqueldón,CL PQD,Los Lagos,4034.0,34.06,0.31,9.4,26.04,1,1,0,1,1
+Curepto,CL CRT,Maule,9498.0,29.29,1.23,5.42,8.31,1,0,0,1,0
+Curacautín,CL CCN,La Araucanía,18415.0,10.85,2.35,8.05,10.38,1,0,0,0,0
+Hualqui,CL HQI,Biobío,25662.0,9.16,2.66,8.98,40.7,1,1,1,0,1
+Perquenco,CL PQC,La Araucanía,7438.0,22.56,1.05,11.24,4.55,1,0,0,1,1
+Río Hurtado,CL RHU,Coquimbo,4322.0,21.06,11.74,4.15,13.08,1,0,0,1,1
+Longaví,CL LON,Maule,33288.0,45.2,1.44,4.58,14.79,1,1,1,1,0
+Coltauco,CL CTC,Libertador General Bernardo O'Higgins,21348.0,30.85,3.01,13.15,17.86,1,1,1,1,1
+Gorbea,CL GOR,La Araucanía,14058.0,17.01,0.82,8.78,24.63,1,1,0,1,0
+Lo Prado,CL LPR,Metropolitana de Santiago,91118.0,0.29,0.95,8.95,64.51,1,1,1,0,0
+Yumbel,CL YUM,Biobío,23027.0,14.29,1.97,10.07,21.22,1,1,1,0,1
+Licantén,CL LIC,Maule,6865.0,19.18,0.92,7.74,16.98,1,0,0,1,0
+Quilleco,CL QLO,Biobío,9693.0,23.29,1.87,7.01,15.42,1,0,0,1,0
+Traiguén,CL TRA,La Araucanía,18531.0,20.64,0.52,5.32,9.38,1,0,0,1,0
+Lo Espejo,CL LEJ,Metropolitana de Santiago,87079.0,0.38,0.86,11.08,62.57,1,1,1,0,1
+Villa Alegre,CL VAG,Maule,17919.0,26.06,1.28,9.95,9.95,1,0,0,1,1
+Coelemu,CL COE,Ñuble,15859.0,20.21,0.96,10.34,8.25,1,0,0,1,1
+Pitrufquén,CL PIT,La Araucanía,26811.0,13.04,0.82,8.24,28.28,1,1,1,0,0
+Lago Verde,CL LVD,Aysén del General Carlos Ibáñez del Campo,762.0,28.4,0.3,4.14,0.0,1,0,0,1,0
+Lanco,CL LAN,Los Ríos,16861.0,14.67,1.54,14.42,14.97,1,0,0,0,1
+Máfil,CL MAF,Los Ríos,8036.0,24.26,1.03,9.94,26.61,1,1,0,1,1
+Ñiquén,CL NQN,Ñuble,12783.0,35.67,4.23,5.11,4.02,1,0,0,1,1
+Tomé,CL TOM,Biobío,56766.0,7.85,1.62,9.74,41.15,1,1,1,0,1
+Yungay,CL YUN,Ñuble,18500.0,10.58,1.58,17.58,15.66,1,0,0,0,1
+Torres del Paine,CL TDP,Magallanes y de la Antártica Chilena,197.0,34.25,0.0,0.68,10.09,1,0,0,1,0
+Quemchi,CL QMC,Los Lagos,8401.0,30.71,0.11,17.05,6.71,1,0,0,1,1
+Pumanque,CL PUM,Libertador General Bernardo O'Higgins,4559.0,32.53,1.01,8.44,7.77,1,0,0,1,0
+Quinchao,CL QCO,Los Lagos,7663.0,24.38,0.07,6.59,22.49,1,1,0,1,0
+Freire,CL FRE,La Araucanía,26153.0,24.2,0.87,8.43,37.68,1,1,1,1,0
+Curanilahue,CL CRN,Biobío,31041.0,10.77,3.48,11.38,13.86,1,1,1,0,1
+El Carmen,CL ELC,Ñuble,13122.0,27.24,1.65,5.17,14.2,1,0,0,1,0
+Coinco,CL COO,Libertador General Bernardo O'Higgins,7914.0,22.6,3.58,12.49,15.42,1,0,0,1,1
+Putaendo,CL PTO,Valparaíso,17057.0,19.14,5.4,6.61,15.3,1,0,0,1,1
+Colchane,CL CNE,Tarapacá,684.0,23.59,1.03,2.05,0.0,1,0,0,1,0
+Maule,CL MAU,Maule,61008.0,9.15,1.76,8.86,30.72,1,1,1,0,0
+Negrete,CL NEG,Biobío,10723.0,17.8,3.29,12.45,15.74,1,0,0,1,1
+Cabrero,CL CAB,Biobío,31242.0,9.04,1.73,17.39,16.94,1,1,1,0,1
+San Gregorio,CL SGR,Magallanes y de la Antártica Chilena,224.0,42.47,2.05,0.68,12.82,1,0,0,1,0
+Vilcún,CL VCN,La Araucanía,31515.0,16.37,0.76,8.67,23.06,1,1,1,1,0
+Punitaqui,CL PUN,Coquimbo,12063.0,18.72,21.49,4.66,20.21,1,1,0,1,1
+Fresia,CL FRS,Los Lagos,12297.0,30.94,0.24,6.87,24.06,1,1,0,1,0
+San Fabián,CL SFN,Ñuble,5241.0,18.61,1.38,6.87,4.22,1,0,0,1,0
+Los Vilos,CL LOS,Coquimbo,22835.0,10.04,5.96,5.37,12.35,1,1,1,0,1
+Cauquenes,CL CAU,Maule,42064.0,18.81,1.01,6.06,26.81,1,1,1,1,0
+Angol,CL ANG,La Araucanía,52446.0,12.28,1.33,7.72,18.79,1,1,1,0,0
+Dalcahue,CL DCH,Los Lagos,14889.0,21.39,0.35,16.28,18.57,1,1,0,1,1
+Retiro,CL RET,Maule,22308.0,44.33,0.81,7.06,8.2,1,1,1,1,0
+Maullín,CL MLL,Los Lagos,15054.0,35.18,0.21,8.03,24.32,1,1,0,1,0
+Santa Juana,CL SJU,Biobío,14934.0,16.49,1.7,7.3,32.72,1,1,0,1,0
+Loncoche,CL LNC,La Araucanía,25096.0,14.7,0.9,11.69,14.46,1,1,1,0,1
+San Carlos,CL SCR,Ñuble,55629.0,17.05,2.89,8.26,21.52,1,1,1,1,1
+Pichilemu,CL PLM,Libertador General Bernardo O'Higgins,19794.0,6.7,0.84,6.55,11.3,1,0,0,0,0
+Puente Alto,CL PTA,Metropolitana de Santiago,564435.0,0.36,1.35,8.69,57.51,1,1,1,0,0
+Padre Las Casas,CL PLC,La Araucanía,80567.0,7.26,0.7,8.62,45.8,1,1,1,0,0
+Illapel,CL ILL,Coquimbo,31732.0,5.34,19.66,4.52,21.14,1,1,1,0,1
+Los Muermos,CL LMU,Los Lagos,17138.0,36.54,0.18,7.17,15.63,1,0,0,1,0
+Vicuña,CL VIC,Coquimbo,27996.0,21.76,11.54,6.15,12.68,1,1,1,1,1
+Chépica,CL CHE,Libertador General Bernardo O'Higgins,15560.0,43.06,1.09,4.29,13.72,1,0,0,1,0
+Placilla,CL PLA,Libertador General Bernardo O'Higgins,9437.0,39.76,1.36,7.47,18.37,1,1,0,1,0
+Santa Bárbara,CL SBA,Biobío,14027.0,16.86,2.9,5.9,8.15,1,0,0,1,1
+San Javier,CL SJV,Maule,49452.0,18.75,2.0,9.21,8.08,1,1,1,1,1
+Victoria,CL ZIC,La Araucanía,34089.0,11.85,0.77,7.27,16.64,1,1,1,0,0
+Bulnes,CL BUL,Ñuble,23785.0,18.75,3.23,10.98,28.62,1,1,1,1,1
+Caldera,CL CLD,Atacama,18717.0,12.23,8.44,7.23,17.75,1,0,0,0,1
+Ancud,CL ZUD,Los Lagos,40570.0,18.23,0.23,10.38,23.98,1,1,1,1,1
+Quinta de Tilcoco,CL QDT,Libertador General Bernardo O'Higgins,13558.0,35.02,1.66,10.4,10.25,1,0,0,1,1
+Peumo,CL PEU,Libertador General Bernardo O'Higgins,14076.0,29.43,1.02,11.75,11.35,1,0,0,1,1
+Renaico,CL RNO,La Araucanía,10681.0,24.11,2.91,10.34,8.43,1,0,0,1,1
+Alto Hospicio,CL AHP,Tarapacá,139445.0,0.85,10.47,5.87,37.87,1,1,1,0,1
+Chimbarongo,CL CBG,Libertador General Bernardo O'Higgins,37249.0,37.31,1.19,8.83,12.61,1,1,1,1,0
+Lolol,CL LOL,Libertador General Bernardo O'Higgins,7790.0,38.59,0.83,4.16,8.28,1,0,0,1,0
+Río Negro,CL RNE,Los Lagos,13847.0,27.34,0.57,7.85,22.34,1,1,0,1,0
+Parral,CL PRL,Maule,45014.0,19.41,1.25,7.94,17.04,1,1,1,1,0
+San Clemente,CL SCT,Maule,47061.0,29.23,3.55,5.64,21.06,1,1,1,1,1
+Tucapel,CL TUC,Biobío,15692.0,14.81,2.54,12.79,6.74,1,0,0,0,1
+Canela,CL CAN,Coquimbo,9638.0,8.06,14.83,5.57,24.43,1,1,0,0,1
+Laja,CL LAJ,Biobío,23691.0,5.55,3.93,18.61,23.89,1,1,1,0,1
+San Pedro,CL SPE,Metropolitana de Santiago,11092.0,40.85,1.22,9.74,14.68,1,0,0,1,1
+Molina,CL MOL,Maule,48477.0,29.76,0.72,10.8,24.28,1,1,1,1,1
+Graneros,CL GRA,Libertador General Bernardo O'Higgins,35754.0,21.78,3.94,10.9,23.96,1,1,1,1,1
+Constitución,CL CST,Maule,46888.0,15.47,1.18,14.88,24.34,1,1,1,1,1
+Rauco,CL RAU,Maule,11265.0,37.05,0.82,6.53,15.99,1,0,0,1,0
+Castro,CL WCA,Los Lagos,46664.0,10.76,0.26,9.85,27.42,1,1,1,0,1
+Camarones,CL CAM,Arica y Parinacota,861.0,40.0,2.59,5.65,3.46,1,0,0,1,1
+Mulchén,CL MUL,Biobío,28857.0,26.0,1.37,8.49,20.58,1,1,1,1,0
+Pichidegua,CL PDH,Libertador General Bernardo O'Higgins,20320.0,37.8,0.74,11.52,10.96,1,1,1,1,1
+Malloa,CL MAL,Libertador General Bernardo O'Higgins,13877.0,31.4,1.98,14.91,9.55,1,0,0,1,1
+San Rafael,CL SRA,Maule,11225.0,21.9,2.93,8.14,13.06,1,0,0,1,1
+Llaillay,CL LLA,Valparaíso,25442.0,21.13,6.56,9.64,31.59,1,1,1,1,1
+Cunco,CL CUN,La Araucanía,19070.0,18.84,1.02,6.73,21.14,1,1,0,1,0
+Freirina,CL FRN,Atacama,7558.0,12.16,15.18,6.87,21.93,1,1,0,0,1
+Catemu,CL CAT,Valparaíso,13755.0,24.42,13.69,6.08,13.65,1,0,0,1,1
+Yerbas Buenas,CL YBU,Maule,20010.0,38.28,1.87,6.79,18.3,1,1,1,1,0
+Hualañé,CL HLE,Maule,10771.0,26.91,0.71,6.33,11.53,1,0,0,1,0
+Huara,CL HUA,Tarapacá,2850.0,34.94,9.25,2.7,1.84,1,0,0,1,1
+Villa Alemana,CL VIA,Valparaíso,139075.0,0.85,3.17,7.14,50.8,1,1,1,0,1
+Arauco,CL ARA,Biobío,37049.0,18.97,1.52,13.27,12.41,1,1,1,1,1
+Ollagüe,CL OLL,Antofagasta,256.0,2.16,4.32,2.88,,1,0,0,0,1
+Andacollo,CL AND,Coquimbo,11562.0,2.31,38.85,4.65,39.17,1,1,0,0,1
+Melipilla,CL MEL,Metropolitana de Santiago,135801.0,19.61,1.14,9.3,30.49,1,1,1,1,1
+Linares,CL LIN,Maule,95795.0,10.98,1.91,6.02,19.57,1,1,1,0,0
+Ranquil,CL RAN,Ñuble,6478.0,16.93,1.57,14.48,9.9,1,0,0,1,1
+San Pedro de Atacama,CL SPA,Antofagasta,9782.0,3.18,7.52,5.05,6.55,1,0,0,0,1
+Doñihue,CL DOH,Libertador General Bernardo O'Higgins,21888.0,10.53,5.25,20.66,7.81,1,1,1,0,1
+Alto del Carmen,CL ADC,Atacama,4781.0,26.34,9.55,5.9,7.07,1,0,0,1,1
+San Esteban,CL SES,Valparaíso,20103.0,14.15,13.19,5.55,31.14,1,1,1,0,1
+Los Lagos,CL LLG,Los Ríos,21421.0,19.16,0.99,12.07,15.46,1,1,1,1,1
+Codegua,CL COD,Libertador General Bernardo O'Higgins,13924.0,27.88,4.8,8.56,15.72,1,0,0,1,1
+San Pablo,CL SPB,Los Lagos,10872.0,26.94,0.32,6.78,18.09,1,0,0,1,0
+Paillaco,CL PAO,Los Ríos,19719.0,22.17,0.87,7.6,16.53,1,0,0,1,0
+Panguipulli,CL PAN,Los Ríos,35049.0,11.89,0.77,7.82,11.47,1,1,1,0,0
+Chaitén,CL WCH,Los Lagos,4007.0,19.36,0.23,5.2,,1,0,0,1,0
+San Vicente,CL SVT,Libertador General Bernardo O'Higgins,49488.0,24.31,1.13,11.67,13.96,1,1,1,1,1
+Pencahue,CL PEN,Maule,9159.0,37.5,1.71,8.97,6.85,1,0,0,1,0
+Pinto,CL PIN,Ñuble,12434.0,17.24,1.22,5.81,18.17,1,0,0,1,0
+Nacimiento,CL NAC,Biobío,26124.0,9.77,3.62,20.32,17.83,1,1,1,0,1
+Penco,CL PEO,Biobío,48866.0,3.02,1.56,9.03,56.5,1,1,1,0,1
+Santa María,CL SMA,Valparaíso,15120.0,30.42,4.78,4.47,9.38,1,0,0,1,1
+Pemuco,CL PEM,Ñuble,8913.0,24.76,2.13,9.99,3.08,1,0,0,1,1
+La Ligua,CL LIG,Valparaíso,39203.0,8.46,5.03,7.45,21.12,1,1,1,0,1
+Ovalle,CL OVL,Coquimbo,117799.0,14.76,10.36,4.38,30.69,1,1,1,0,1
+Calera,CL LCL,Valparaíso,50451.0,6.75,8.52,10.08,28.44,1,1,1,0,1
+Quellón,CL PTE,Los Lagos,28386.0,27.03,0.21,16.07,15.71,1,1,1,1,1
+Chillán Viejo,CL CHV,Ñuble,32611.0,6.24,1.36,9.25,41.72,1,1,1,0,1
+Limache,CL LIM,Valparaíso,55481.0,9.07,3.0,6.77,42.64,1,1,1,0,1
+Tocopilla,CL TOQ,Antofagasta,24583.0,5.55,14.72,6.28,32.74,1,1,1,0,1
+Maipú,CL MAI,Metropolitana de Santiago,501786.0,0.52,1.51,9.3,53.0,1,1,1,0,1
+Futrono,CL FUT,Los Ríos,15633.0,14.98,0.74,7.78,10.67,1,0,0,0,0
+Río Verde,CL RVE,Magallanes y de la Antártica Chilena,102.0,75.31,0.0,1.23,0.0,1,0,0,1,0
+Chiguayante,CL CHI,Biobío,85577.0,1.43,2.07,8.45,48.34,1,1,1,0,0
+La Unión,CL LUN,Los Ríos,38724.0,17.85,0.73,12.24,27.22,1,1,1,1,1
+Nogales,CL NOG,Valparaíso,22095.0,14.4,16.24,8.54,33.02,1,1,1,0,1
+Calbuco,CL CBC,Los Lagos,36437.0,27.96,0.37,15.85,16.14,1,1,1,1,1
+Collipulli,CL CPI,La Araucanía,24162.0,21.69,1.8,8.7,15.12,1,1,1,1,0
+Petorca,CL PET,Valparaíso,10127.0,10.9,18.39,4.58,14.96,1,0,0,0,1
+Aysén,CL PSN,Aysén del General Carlos Ibáñez del Campo,22825.0,16.08,1.15,8.49,7.19,1,1,1,1,0
+Purranque,CL PRQ,Los Lagos,19526.0,24.8,0.28,10.71,17.51,1,0,0,1,1
+Nancagua,CL NCG,Libertador General Bernardo O'Higgins,18684.0,33.16,0.81,9.51,11.02,1,0,0,1,1
+Chonchi,CL CHO,Los Lagos,16072.0,20.27,0.41,17.97,11.59,1,0,0,1,1
+San Felipe,CL SFP,Valparaíso,79677.0,17.0,5.08,6.32,26.35,1,1,1,1,1
+Quilpué,CL QIL,Valparaíso,161636.0,0.95,2.89,6.98,46.36,1,1,1,0,1
+Rengo,CL RGO,Libertador General Bernardo O'Higgins,63204.0,21.46,2.55,12.21,18.19,1,1,1,1,1
+Peñaflor,CL PFL,Metropolitana de Santiago,93931.0,2.03,1.57,14.83,39.66,1,1,1,0,1
+Vallenar,CL VLR,Atacama,53705.0,3.24,16.67,5.82,33.46,1,1,1,0,1
+San Nicolás,CL SNI,Ñuble,15082.0,20.41,2.1,8.27,18.83,1,1,0,1,0
+La Cruz,CL LCZ,Valparaíso,24915.0,12.45,9.9,6.4,22.7,1,1,1,0,1
+Hijuelas,CL HIJ,Valparaíso,19279.0,31.5,5.45,5.93,12.99,1,0,0,1,1
+Coyhaique,CL CXQ,Aysén del General Carlos Ibáñez del Campo,57136.0,6.4,0.68,4.9,14.72,1,1,1,0,0
+Porvenir,CL PVR,Magallanes y de la Antártica Chilena,6673.0,15.83,0.93,22.58,4.76,1,0,0,1,1
+Los Andes,CL LIB,Valparaíso,62524.0,3.93,14.22,5.59,23.43,1,1,1,0,1
+Quillota,CL QTA,Valparaíso,95383.0,10.45,5.39,6.61,36.37,1,1,1,0,1
+Valdivia,CL ZAL,Los Ríos,166958.0,3.43,0.4,8.64,33.1,1,1,1,0,0
+Palmilla,CL PMA,Libertador General Bernardo O'Higgins,13056.0,39.78,0.86,7.51,19.26,1,1,0,1,0
+Olivar,CL OLI,Libertador General Bernardo O'Higgins,13880.0,20.24,8.16,9.0,12.88,1,0,0,1,1
+Talagante,CL TLG,Metropolitana de Santiago,75800.0,4.35,1.24,14.73,33.36,1,1,1,0,1
+Peralillo,CL PER,Libertador General Bernardo O'Higgins,12492.0,27.84,0.7,13.34,12.82,1,0,0,1,1
+Puerto Octay,CL POC,Los Lagos,8856.0,39.98,0.36,5.73,24.35,1,1,0,1,0
+Puyehue,CL CSA,Los Lagos,11702.0,29.49,0.71,5.45,13.83,1,0,0,1,0
+Arica,CL ARI,Arica y Parinacota,236109.0,7.49,6.34,5.33,25.94,1,1,1,0,1
+El Monte,CL ELM,Metropolitana de Santiago,37292.0,12.11,1.2,15.68,23.68,1,1,1,0,1
+Llanquihue,CL LIA,Los Lagos,18070.0,11.08,0.43,15.97,37.17,1,1,0,0,1
+Teno,CL TEN,Maule,30087.0,35.69,1.18,8.67,2.28,1,1,1,1,0
+Panquehue,CL PQH,Valparaíso,7266.0,35.85,4.51,5.17,22.62,1,1,0,1,1
+Olmué,CL OLM,Valparaíso,19775.0,8.06,2.57,5.91,26.05,1,1,0,0,1
+Los Angeles,CL LSQ,Biobío,218386.0,8.35,1.65,10.54,29.82,1,1,1,0,1
+Coronel,CL CNL,Biobío,123412.0,7.39,2.76,12.92,42.06,1,1,1,0,1
+Lautaro,CL LAU,La Araucanía,41695.0,9.73,1.17,13.89,27.15,1,1,1,0,1
+Chañaral,CL CNR,Atacama,12168.0,4.54,23.38,4.92,15.33,1,0,0,0,1
+San Antonio,CL SAI,Valparaíso,95520.0,4.66,0.97,6.5,39.84,1,1,1,0,0
+Valparaíso,CL VAP,Valparaíso,280357.0,0.84,1.69,6.53,54.4,1,1,1,0,0
+Natales,CL CVJ,Magallanes y de la Antártica Chilena,23878.0,12.4,0.52,7.16,16.4,1,1,1,0,0
+La Estrella,CL LES,Libertador General Bernardo O'Higgins,4587.0,15.95,1.18,12.14,2.26,1,0,0,1,1
+Isla de Maipo,CL IDM,Metropolitana de Santiago,39062.0,13.38,1.3,14.05,19.54,1,1,1,0,1
+Salamanca,CL SAL,Coquimbo,27789.0,8.3,20.46,4.74,14.13,1,1,1,0,1
+Santa Cruz,CL SCZ,Libertador General Bernardo O'Higgins,40754.0,19.06,0.87,7.38,20.43,1,1,1,1,0
+Chillán,CL YAI,Ñuble,188835.0,4.8,1.22,7.55,32.28,1,1,1,0,0
+Hualpén,CL HPN,Biobío,87346.0,2.28,2.41,11.11,49.99,1,1,1,0,1
+Curicó,CL CUR,Maule,158659.0,16.9,0.94,8.41,20.85,1,1,1,1,0
+Romeral,CL ROM,Maule,17216.0,37.04,0.74,7.8,8.1,1,0,0,1,0
+Talca,CL TLX,Maule,230184.0,3.9,1.29,8.36,30.08,1,1,1,0,0
+San Fernando,CL SFD,Libertador General Bernardo O'Higgins,75449.0,14.51,1.44,9.79,24.0,1,1,1,0,1
+Padre Hurtado,CL PHU,Metropolitana de Santiago,81112.0,1.49,1.61,14.04,27.3,1,1,1,0,1
+Lago Ranco,CL RNC,Los Ríos,10527.0,18.04,0.46,5.91,11.33,1,0,0,1,0
+La Florida,CL LFL,Metropolitana de Santiago,373466.0,0.27,1.43,6.87,52.72,1,1,1,0,0
+Rancagua,CL QRC,Libertador General Bernardo O'Higgins,254165.0,4.17,9.87,7.96,31.98,1,1,1,0,1
+Temuco,CL ZCO,La Araucanía,290433.0,2.0,0.53,6.62,39.59,1,1,1,0,0
+Sagrada Familia,CL SAF,Maule,19416.0,46.13,0.72,8.95,12.46,1,0,0,1,0
+Tiltil,CL TIL,Metropolitana de Santiago,19534.0,6.4,5.85,13.19,21.87,1,1,0,0,1
+Independencia,CL IND,Metropolitana de Santiago,116089.0,0.26,0.92,8.91,66.89,1,1,1,0,0
+Río Claro,CL RCL,Maule,14270.0,50.61,0.91,4.39,16.31,1,0,0,1,0
+Vichuquén,CL VCQ,Maule,4710.0,12.54,0.67,5.62,2.49,1,0,0,0,0
+Taltal,CL TTC,Antofagasta,11913.0,10.18,22.62,4.01,8.16,1,0,0,0,1
+Colbún,CL COB,Maule,22568.0,22.65,5.19,6.02,15.4,1,1,1,1,1
+María Pinto,CL MPI,Metropolitana de Santiago,15350.0,25.79,1.03,6.27,24.37,1,1,0,1,0
+Curacaví,CL CRV,Metropolitana de Santiago,35064.0,9.64,1.47,8.32,14.75,1,1,1,0,0
+Copiapó,CL CPO,Atacama,167281.0,2.33,20.17,4.98,27.53,1,1,1,0,1
+Frutillar,CL FRT,Los Lagos,22527.0,13.95,0.7,7.55,23.46,1,1,1,0,0
+San Bernardo,CL SBD,Metropolitana de Santiago,304977.0,1.16,1.71,11.08,51.53,1,1,1,0,1
+Coquimbo,CL CQQ,Coquimbo,262907.0,4.87,10.75,6.2,29.92,1,1,1,0,1
+Requínoa,CL REQ,Libertador General Bernardo O'Higgins,29482.0,27.92,4.51,9.47,13.46,1,1,1,1,1
+Puerto Montt,CL PMC,Los Lagos,274146.0,9.99,0.35,10.15,33.08,1,1,1,0,1
+Villarrica,CL VIL,La Araucanía,67335.0,5.62,0.8,8.2,26.89,1,1,1,0,0
+Osorno,CL ZOS,Los Lagos,165121.0,6.78,0.35,8.86,38.2,1,1,1,0,0
+San Pedro de la Paz,CL SPP,Biobío,150671.0,2.29,2.01,9.49,34.38,1,1,1,0,1
+San José de Maipo,CL SJM,Metropolitana de Santiago,17289.0,2.35,5.75,5.52,29.4,1,1,0,0,1
+Calle Larga,CL CLL,Valparaíso,16594.0,11.12,14.97,5.22,17.95,1,0,0,0,1
+Peñalolén,CL PLN,Metropolitana de Santiago,235724.0,0.31,1.42,5.83,47.43,1,1,1,0,0
+La Cisterna,CL LCI,Metropolitana de Santiago,102478.0,0.26,1.15,9.45,54.27,1,1,1,0,1
+Papudo,CL PAP,Valparaíso,7553.0,5.21,1.88,4.72,25.18,1,1,0,0,0
+Diego de Almagro,CL DDA,Atacama,11339.0,0.17,28.88,4.48,14.32,1,0,0,0,1
+Las Cabras,CL LCB,Libertador General Bernardo O'Higgins,27510.0,32.71,1.16,7.16,7.38,1,1,1,1,0
+Paine,CL PNE,Metropolitana de Santiago,78495.0,18.83,1.2,11.06,16.52,1,1,1,1,1
+Pelarco,CL PEL,Maule,9229.0,32.97,1.4,7.54,17.6,1,0,0,1,0
+La Serena,CL LSC,Coquimbo,246835.0,2.54,12.64,4.84,34.86,1,1,1,0,1
+Punta Arenas,CL PUQ,Magallanes y de la Antártica Chilena,130452.0,3.73,2.21,7.2,23.79,1,1,1,0,0
+Rinconada,CL RIN,Valparaíso,11837.0,16.88,11.69,4.67,5.62,1,0,0,1,1
+Buin,CL BUI,Metropolitana de Santiago,116687.0,8.92,1.84,10.5,31.25,1,1,1,0,1
+Talcahuano,CL TAL,Biobío,145925.0,5.33,2.16,11.35,45.05,1,1,1,0,1
+Renca,CL REN,Metropolitana de Santiago,143321.0,0.36,1.43,12.2,53.56,1,1,1,0,1
+María Elena,CL MAE,Antofagasta,4815.0,0.14,26.66,5.19,9.88,1,0,0,0,1
+Pudahuel,CL PUD,Metropolitana de Santiago,227540.0,0.62,1.31,8.43,54.48,1,1,1,0,0
+Calama,CL CJC,Antofagasta,164641.0,0.39,26.74,5.01,25.5,1,1,1,0,1
+Calera de Tango,CL CDT,Metropolitana de Santiago,25390.0,7.02,1.51,9.57,29.88,1,1,1,0,1
+Pica,CL PIC,Tarapacá,6263.0,11.97,10.22,4.64,18.79,1,1,0,0,1
+Machalí,CL MCI,Libertador General Bernardo O'Higgins,60791.0,3.12,18.3,5.66,18.91,1,1,1,0,1
+Puchuncaví,CL PCI,Valparaíso,22443.0,2.93,3.67,6.41,27.24,1,1,1,0,1
+Tierra Amarilla,CL TAM,Atacama,11769.0,15.39,30.05,3.61,13.07,1,0,0,0,1
+San Joaquín,CL SJQ,Metropolitana de Santiago,94590.0,0.21,1.04,10.53,50.58,1,1,1,0,1
+Pirque,CL PIR,Metropolitana de Santiago,28949.0,5.79,1.67,9.57,27.16,1,1,1,0,1
+Mejillones,CL MJS,Antofagasta,14014.0,4.43,5.97,9.52,12.91,1,0,0,0,1
+Macul,CL MAC,Metropolitana de Santiago,123241.0,0.24,1.45,6.68,51.58,1,1,1,0,0
+Recoleta,CL REC,Metropolitana de Santiago,153131.0,0.28,1.0,9.77,60.0,1,1,1,0,1
+Casablanca,CL CAS,Valparaíso,29658.0,9.63,1.21,14.28,16.22,1,1,1,0,1
+Cerrillos,CL CER,Metropolitana de Santiago,83544.0,0.41,1.21,11.09,55.43,1,1,1,0,1
+Sierra Gorda,CL SIG,Antofagasta,1458.0,0.44,17.4,3.98,5.51,1,0,0,0,1
+Alhué,CL ALH,Metropolitana de Santiago,7696.0,21.79,22.0,3.42,1.95,1,0,0,1,1
+Quilicura,CL QUI,Metropolitana de Santiago,205375.0,0.42,2.06,13.89,55.04,1,1,1,0,1
+Antofagasta,CL ANF,Antofagasta,397136.0,0.47,16.45,6.42,42.72,1,1,1,0,1
+Mostazal,CL MOS,Libertador General Bernardo O'Higgins,27331.0,16.49,2.59,10.45,15.97,1,1,1,1,1
+Lampa,CL LAM,Metropolitana de Santiago,144684.0,3.55,2.64,13.32,24.83,1,1,1,0,1
+Concepción,CL CCP,Biobío,225985.0,1.43,1.73,7.89,41.89,1,1,1,0,0
+Puerto Varas,CL PVS,Los Lagos,52613.0,8.42,0.41,7.05,25.72,1,1,1,0,0
+Pucón,CL PUC,La Araucanía,32211.0,3.59,0.63,6.8,16.69,1,1,1,0,0
+Algarrobo,CL ALG,Valparaíso,16032.0,1.63,1.28,5.76,26.01,1,1,0,0,0
+San Miguel,CL SMG,Metropolitana de Santiago,149102.0,0.24,1.61,7.72,58.47,1,1,1,0,0
+Concón,CL CON,Valparaíso,48112.0,1.37,4.58,6.18,26.33,1,1,1,0,1
+Colina,CL CLN,Metropolitana de Santiago,168128.0,2.77,3.55,7.27,28.78,1,1,1,0,1
+Iquique,CL IQQ,Tarapacá,196709.0,1.19,9.54,4.46,31.5,1,1,1,0,1
+Santo Domingo,CL RSD,Valparaíso,13149.0,10.51,1.09,5.25,12.34,1,0,0,0,0
+Viña del Mar,CL KNA,Valparaíso,331684.0,0.51,2.21,5.9,51.42,1,1,1,0,0
+Ñuñoa,CL NUN,Metropolitana de Santiago,239365.0,0.28,2.4,4.88,46.61,1,1,1,0,0
+Huechuraba,CL HUE,Metropolitana de Santiago,101608.0,0.34,2.2,7.52,49.61,1,1,1,0,0
+Santiago,CL SCL,Metropolitana de Santiago,425426.0,0.22,1.19,6.08,61.62,1,1,1,0,0
+La Reina,CL REI,Metropolitana de Santiago,89091.0,0.46,2.24,4.89,33.92,1,1,1,0,0
+Providencia,CL PRO,Metropolitana de Santiago,141714.0,0.35,2.57,3.83,39.94,1,1,1,0,1
+Vitacura,CL VIT,Metropolitana de Santiago,85876.0,1.44,2.25,4.56,12.71,1,1,1,0,0
+Lo Barnechea,CL LBA,Metropolitana de Santiago,112112.0,1.19,1.93,3.79,27.75,1,1,1,0,0

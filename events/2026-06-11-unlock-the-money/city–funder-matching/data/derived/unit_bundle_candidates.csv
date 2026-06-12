@@ -1,0 +1,635 @@
+unit_id,unit_anchor,region,unit_size,sector,coordination_tier,n_comunas_sharing,n_action_archetypes,instrument_class,viable_anchor,actor_route,bundle_feasible
+32,Pelluhue,Región del Maule,13,Stationary Energy,highly_coordinated,13,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+32,Pelluhue,Región del Maule,13,Stationary Energy,semi_coordinated,13,9,programmatic / blended,True,municipal applicant,True
+28,Padre Las Casas,Región de La Araucanía,12,Stationary Energy,highly_coordinated,12,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+28,Padre Las Casas,Región de La Araucanía,12,Stationary Energy,semi_coordinated,12,9,programmatic / blended,True,municipal applicant,True
+19,Santa Cruz,Región del Libertador Bernardo O'Higgins,9,Stationary Energy,highly_coordinated,9,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+19,Santa Cruz,Región del Libertador Bernardo O'Higgins,9,Stationary Energy,semi_coordinated,9,9,programmatic / blended,True,municipal applicant,True
+21,Puchuncaví,Región de Valparaíso,11,Stationary Energy,highly_coordinated,9,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+21,Puchuncaví,Región de Valparaíso,11,Stationary Energy,semi_coordinated,9,9,programmatic / blended,True,municipal applicant,True
+24,Puerto Montt,Región de Los Lagos,11,Stationary Energy,highly_coordinated,9,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+24,Puerto Montt,Región de Los Lagos,11,Stationary Energy,semi_coordinated,9,9,programmatic / blended,True,municipal applicant,True
+28,Padre Las Casas,Región de La Araucanía,12,Transportation,highly_coordinated,9,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+28,Padre Las Casas,Región de La Araucanía,12,Transportation,semi_coordinated,9,5,programmatic / blended,True,municipal applicant,True
+12,Rancagua,Región del Libertador Bernardo O'Higgins,8,Stationary Energy,highly_coordinated,8,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+12,Rancagua,Región del Libertador Bernardo O'Higgins,8,Stationary Energy,semi_coordinated,8,9,programmatic / blended,True,municipal applicant,True
+22,San Pedro de Atacama,Región de Antofagasta,8,Stationary Energy,highly_coordinated,8,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+22,San Pedro de Atacama,Región de Antofagasta,8,Stationary Energy,semi_coordinated,8,9,programmatic / blended,True,municipal applicant,True
+7,Concepción,Región del Bío-Bío,7,Stationary Energy,highly_coordinated,7,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+7,Concepción,Región del Bío-Bío,7,Stationary Energy,semi_coordinated,7,9,programmatic / blended,True,municipal applicant,True
+9,Coyhaique,Región de Aysén del Gral. Ibañez del Campo,9,Stationary Energy,highly_coordinated,7,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+9,Coyhaique,Región de Aysén del Gral. Ibañez del Campo,9,Stationary Energy,semi_coordinated,7,9,programmatic / blended,True,municipal applicant,True
+21,Puchuncaví,Región de Valparaíso,11,Transportation,highly_coordinated,7,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+21,Puchuncaví,Región de Valparaíso,11,Transportation,semi_coordinated,7,5,programmatic / blended,True,municipal applicant,True
+24,Puerto Montt,Región de Los Lagos,11,Transportation,highly_coordinated,7,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+24,Puerto Montt,Región de Los Lagos,11,Transportation,semi_coordinated,7,5,programmatic / blended,True,municipal applicant,True
+25,San Carlos,Región de Ñuble,7,Stationary Energy,highly_coordinated,7,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+25,San Carlos,Región de Ñuble,7,Stationary Energy,semi_coordinated,7,9,programmatic / blended,True,municipal applicant,True
+36,Molina,Región del Maule,7,Stationary Energy,highly_coordinated,7,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+36,Molina,Región del Maule,7,Stationary Energy,semi_coordinated,7,9,programmatic / blended,True,municipal applicant,True
+39,Cabrero,Región del Bío-Bío,9,Stationary Energy,highly_coordinated,7,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+39,Cabrero,Región del Bío-Bío,9,Stationary Energy,semi_coordinated,7,9,programmatic / blended,True,municipal applicant,True
+7,Concepción,Región del Bío-Bío,7,Transportation,highly_coordinated,6,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+7,Concepción,Región del Bío-Bío,7,Transportation,semi_coordinated,6,5,programmatic / blended,True,municipal applicant,True
+7,Concepción,Región del Bío-Bío,7,Waste,highly_coordinated,6,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+7,Concepción,Región del Bío-Bío,7,Waste,semi_coordinated,6,7,programmatic / blended,True,municipal applicant,True
+10,Peñaflor,Región Metropolitana de Santiago,6,Stationary Energy,highly_coordinated,6,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+10,Peñaflor,Región Metropolitana de Santiago,6,Stationary Energy,semi_coordinated,6,9,programmatic / blended,True,municipal applicant,True
+10,Peñaflor,Región Metropolitana de Santiago,6,Transportation,highly_coordinated,6,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+10,Peñaflor,Región Metropolitana de Santiago,6,Transportation,semi_coordinated,6,5,programmatic / blended,True,municipal applicant,True
+10,Peñaflor,Región Metropolitana de Santiago,6,Waste,highly_coordinated,6,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+10,Peñaflor,Región Metropolitana de Santiago,6,Waste,semi_coordinated,6,7,programmatic / blended,True,municipal applicant,True
+12,Rancagua,Región del Libertador Bernardo O'Higgins,8,Transportation,highly_coordinated,6,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+12,Rancagua,Región del Libertador Bernardo O'Higgins,8,Transportation,semi_coordinated,6,5,programmatic / blended,True,municipal applicant,True
+12,Rancagua,Región del Libertador Bernardo O'Higgins,8,Waste,highly_coordinated,6,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+12,Rancagua,Región del Libertador Bernardo O'Higgins,8,Waste,semi_coordinated,6,7,programmatic / blended,True,municipal applicant,True
+18,Iquique,Región de Tarapacá,7,Stationary Energy,highly_coordinated,6,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+18,Iquique,Región de Tarapacá,7,Stationary Energy,semi_coordinated,6,9,programmatic / blended,True,municipal applicant,True
+21,Puchuncaví,Región de Valparaíso,11,Waste,highly_coordinated,6,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+21,Puchuncaví,Región de Valparaíso,11,Waste,semi_coordinated,6,7,programmatic / blended,True,municipal applicant,True
+27,Osorno,Región de Los Lagos,6,Stationary Energy,highly_coordinated,6,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+27,Osorno,Región de Los Lagos,6,Stationary Energy,semi_coordinated,6,9,programmatic / blended,True,municipal applicant,True
+28,Padre Las Casas,Región de La Araucanía,12,Waste,highly_coordinated,6,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+28,Padre Las Casas,Región de La Araucanía,12,Waste,semi_coordinated,6,7,programmatic / blended,True,municipal applicant,True
+38,Traiguén,Región de La Araucanía,6,Stationary Energy,highly_coordinated,6,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+38,Traiguén,Región de La Araucanía,6,Stationary Energy,semi_coordinated,6,9,programmatic / blended,True,municipal applicant,True
+50,Linares,Región del Maule,6,Stationary Energy,highly_coordinated,6,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+50,Linares,Región del Maule,6,Stationary Energy,semi_coordinated,6,9,programmatic / blended,True,municipal applicant,True
+58,Los Andes,Región de Valparaíso,6,Stationary Energy,highly_coordinated,6,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+58,Los Andes,Región de Valparaíso,6,Stationary Energy,semi_coordinated,6,9,programmatic / blended,True,municipal applicant,True
+67,Lebu,Región del Bío-Bío,6,Stationary Energy,highly_coordinated,6,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+67,Lebu,Región del Bío-Bío,6,Stationary Energy,semi_coordinated,6,9,programmatic / blended,True,municipal applicant,True
+1,Lo Barnechea,Región Metropolitana de Santiago,6,Stationary Energy,highly_coordinated,5,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+1,Lo Barnechea,Región Metropolitana de Santiago,6,Stationary Energy,semi_coordinated,5,9,programmatic / blended,True,municipal applicant,True
+1,Lo Barnechea,Región Metropolitana de Santiago,6,Transportation,highly_coordinated,5,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+1,Lo Barnechea,Región Metropolitana de Santiago,6,Transportation,semi_coordinated,5,5,programmatic / blended,True,municipal applicant,True
+2,Valparaíso,Región de Valparaíso,5,Stationary Energy,highly_coordinated,5,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+2,Valparaíso,Región de Valparaíso,5,Stationary Energy,semi_coordinated,5,9,programmatic / blended,True,municipal applicant,True
+2,Valparaíso,Región de Valparaíso,5,Transportation,highly_coordinated,5,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+2,Valparaíso,Región de Valparaíso,5,Transportation,semi_coordinated,5,5,programmatic / blended,True,municipal applicant,True
+5,Lampa,Región Metropolitana de Santiago,5,Stationary Energy,highly_coordinated,5,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+5,Lampa,Región Metropolitana de Santiago,5,Stationary Energy,semi_coordinated,5,9,programmatic / blended,True,municipal applicant,True
+5,Lampa,Región Metropolitana de Santiago,5,Transportation,highly_coordinated,5,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+5,Lampa,Región Metropolitana de Santiago,5,Transportation,semi_coordinated,5,5,programmatic / blended,True,municipal applicant,True
+11,Valdivia,Región de Los Ríos,6,Stationary Energy,highly_coordinated,5,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+11,Valdivia,Región de Los Ríos,6,Stationary Energy,semi_coordinated,5,9,programmatic / blended,True,municipal applicant,True
+19,Santa Cruz,Región del Libertador Bernardo O'Higgins,9,Transportation,highly_coordinated,5,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+19,Santa Cruz,Región del Libertador Bernardo O'Higgins,9,Transportation,semi_coordinated,5,5,programmatic / blended,True,municipal applicant,True
+32,Pelluhue,Región del Maule,13,Transportation,highly_coordinated,5,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+32,Pelluhue,Región del Maule,13,Transportation,semi_coordinated,5,5,programmatic / blended,True,municipal applicant,True
+32,Pelluhue,Región del Maule,13,Waste,highly_coordinated,5,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+32,Pelluhue,Región del Maule,13,Waste,semi_coordinated,5,7,programmatic / blended,True,municipal applicant,True
+37,Rengo,Región del Libertador Bernardo O'Higgins,5,Stationary Energy,highly_coordinated,5,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+37,Rengo,Región del Libertador Bernardo O'Higgins,5,Stationary Energy,semi_coordinated,5,9,programmatic / blended,True,municipal applicant,True
+40,Los Vilos,Región de Coquimbo,5,Stationary Energy,highly_coordinated,5,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+40,Los Vilos,Región de Coquimbo,5,Stationary Energy,semi_coordinated,5,9,programmatic / blended,True,municipal applicant,True
+44,Nacimiento,Región del Bío-Bío,5,Stationary Energy,highly_coordinated,5,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+44,Nacimiento,Región del Bío-Bío,5,Stationary Energy,semi_coordinated,5,9,programmatic / blended,True,municipal applicant,True
+50,Linares,Región del Maule,6,Transportation,highly_coordinated,5,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+50,Linares,Región del Maule,6,Transportation,semi_coordinated,5,5,programmatic / blended,True,municipal applicant,True
+50,Linares,Región del Maule,6,Waste,highly_coordinated,5,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+50,Linares,Región del Maule,6,Waste,semi_coordinated,5,7,programmatic / blended,True,municipal applicant,True
+53,Villarrica,Región de La Araucanía,5,Stationary Energy,highly_coordinated,5,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+53,Villarrica,Región de La Araucanía,5,Stationary Energy,semi_coordinated,5,9,programmatic / blended,True,municipal applicant,True
+53,Villarrica,Región de La Araucanía,5,Transportation,highly_coordinated,5,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+53,Villarrica,Región de La Araucanía,5,Transportation,semi_coordinated,5,5,programmatic / blended,True,municipal applicant,True
+56,Curacautín,Región de La Araucanía,5,Stationary Energy,highly_coordinated,5,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+56,Curacautín,Región de La Araucanía,5,Stationary Energy,semi_coordinated,5,9,programmatic / blended,True,municipal applicant,True
+61,Las Cabras,Región del Libertador Bernardo O'Higgins,5,Stationary Energy,highly_coordinated,5,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+61,Las Cabras,Región del Libertador Bernardo O'Higgins,5,Stationary Energy,semi_coordinated,5,9,programmatic / blended,True,municipal applicant,True
+1,Lo Barnechea,Región Metropolitana de Santiago,6,Waste,highly_coordinated,4,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+1,Lo Barnechea,Región Metropolitana de Santiago,6,Waste,semi_coordinated,4,7,programmatic / blended,True,municipal applicant,True
+2,Valparaíso,Región de Valparaíso,5,Waste,highly_coordinated,4,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+2,Valparaíso,Región de Valparaíso,5,Waste,semi_coordinated,4,7,programmatic / blended,True,municipal applicant,True
+8,La Serena,Región de Coquimbo,6,Stationary Energy,highly_coordinated,4,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+8,La Serena,Región de Coquimbo,6,Stationary Energy,semi_coordinated,4,9,programmatic / blended,True,municipal applicant,True
+8,La Serena,Región de Coquimbo,6,Transportation,highly_coordinated,4,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+8,La Serena,Región de Coquimbo,6,Transportation,semi_coordinated,4,5,programmatic / blended,True,municipal applicant,True
+11,Valdivia,Región de Los Ríos,6,Transportation,highly_coordinated,4,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+11,Valdivia,Región de Los Ríos,6,Transportation,semi_coordinated,4,5,programmatic / blended,True,municipal applicant,True
+13,Caldera,Región de Atacama,4,Stationary Energy,highly_coordinated,4,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+13,Caldera,Región de Atacama,4,Stationary Energy,semi_coordinated,4,9,programmatic / blended,True,municipal applicant,True
+15,Lo Espejo,Región Metropolitana de Santiago,6,Stationary Energy,highly_coordinated,4,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+15,Lo Espejo,Región Metropolitana de Santiago,6,Stationary Energy,semi_coordinated,4,9,programmatic / blended,True,municipal applicant,True
+15,Lo Espejo,Región Metropolitana de Santiago,6,Transportation,highly_coordinated,4,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+15,Lo Espejo,Región Metropolitana de Santiago,6,Transportation,semi_coordinated,4,5,programmatic / blended,True,municipal applicant,True
+15,Lo Espejo,Región Metropolitana de Santiago,6,Waste,highly_coordinated,4,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+15,Lo Espejo,Región Metropolitana de Santiago,6,Waste,semi_coordinated,4,7,programmatic / blended,True,municipal applicant,True
+24,Puerto Montt,Región de Los Lagos,11,Waste,highly_coordinated,4,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+24,Puerto Montt,Región de Los Lagos,11,Waste,semi_coordinated,4,7,programmatic / blended,True,municipal applicant,True
+25,San Carlos,Región de Ñuble,7,Transportation,highly_coordinated,4,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+25,San Carlos,Región de Ñuble,7,Transportation,semi_coordinated,4,5,programmatic / blended,True,municipal applicant,True
+29,Chillán Viejo,Región de Ñuble,4,Stationary Energy,highly_coordinated,4,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+29,Chillán Viejo,Región de Ñuble,4,Stationary Energy,semi_coordinated,4,9,programmatic / blended,True,municipal applicant,True
+30,Castro,Región de Los Lagos,4,Stationary Energy,highly_coordinated,4,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+30,Castro,Región de Los Lagos,4,Stationary Energy,semi_coordinated,4,9,programmatic / blended,True,municipal applicant,True
+39,Cabrero,Región del Bío-Bío,9,Transportation,highly_coordinated,4,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+39,Cabrero,Región del Bío-Bío,9,Transportation,semi_coordinated,4,5,programmatic / blended,True,municipal applicant,True
+39,Cabrero,Región del Bío-Bío,9,Waste,highly_coordinated,4,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+39,Cabrero,Región del Bío-Bío,9,Waste,semi_coordinated,4,7,programmatic / blended,True,municipal applicant,True
+40,Los Vilos,Región de Coquimbo,5,Transportation,highly_coordinated,4,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+40,Los Vilos,Región de Coquimbo,5,Transportation,semi_coordinated,4,5,programmatic / blended,True,municipal applicant,True
+41,Talca,Región del Maule,4,Stationary Energy,highly_coordinated,4,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+41,Talca,Región del Maule,4,Stationary Energy,semi_coordinated,4,9,programmatic / blended,True,municipal applicant,True
+42,Ovalle,Región de Coquimbo,4,Stationary Energy,highly_coordinated,4,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+42,Ovalle,Región de Coquimbo,4,Stationary Energy,semi_coordinated,4,9,programmatic / blended,True,municipal applicant,True
+44,Nacimiento,Región del Bío-Bío,5,Transportation,highly_coordinated,4,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+44,Nacimiento,Región del Bío-Bío,5,Transportation,semi_coordinated,4,5,programmatic / blended,True,municipal applicant,True
+46,Quirihue,Región de Ñuble,4,Stationary Energy,highly_coordinated,4,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+46,Quirihue,Región de Ñuble,4,Stationary Energy,semi_coordinated,4,9,programmatic / blended,True,municipal applicant,True
+51,La Ligua,Región de Valparaíso,5,Stationary Energy,highly_coordinated,4,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+51,La Ligua,Región de Valparaíso,5,Stationary Energy,semi_coordinated,4,9,programmatic / blended,True,municipal applicant,True
+52,Pichilemu,Región del Libertador Bernardo O'Higgins,6,Stationary Energy,highly_coordinated,4,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+52,Pichilemu,Región del Libertador Bernardo O'Higgins,6,Stationary Energy,semi_coordinated,4,9,programmatic / blended,True,municipal applicant,True
+53,Villarrica,Región de La Araucanía,5,Waste,highly_coordinated,4,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+53,Villarrica,Región de La Araucanía,5,Waste,semi_coordinated,4,7,programmatic / blended,True,municipal applicant,True
+55,Purén,Región de La Araucanía,4,Stationary Energy,highly_coordinated,4,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+55,Purén,Región de La Araucanía,4,Stationary Energy,semi_coordinated,4,9,programmatic / blended,True,municipal applicant,True
+57,Arica,Región de Arica y Parinacota,4,Stationary Energy,highly_coordinated,4,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+57,Arica,Región de Arica y Parinacota,4,Stationary Energy,semi_coordinated,4,9,programmatic / blended,True,municipal applicant,True
+66,Vallenar,Región de Atacama,5,Stationary Energy,highly_coordinated,4,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+66,Vallenar,Región de Atacama,5,Stationary Energy,semi_coordinated,4,9,programmatic / blended,True,municipal applicant,True
+67,Lebu,Región del Bío-Bío,6,Transportation,highly_coordinated,4,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+67,Lebu,Región del Bío-Bío,6,Transportation,semi_coordinated,4,5,programmatic / blended,True,municipal applicant,True
+67,Lebu,Región del Bío-Bío,6,Waste,highly_coordinated,4,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+67,Lebu,Región del Bío-Bío,6,Waste,semi_coordinated,4,7,programmatic / blended,True,municipal applicant,True
+0,Providencia,Región Metropolitana de Santiago,3,Stationary Energy,highly_coordinated,3,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+0,Providencia,Región Metropolitana de Santiago,3,Stationary Energy,semi_coordinated,3,9,programmatic / blended,True,municipal applicant,True
+0,Providencia,Región Metropolitana de Santiago,3,Transportation,highly_coordinated,3,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+0,Providencia,Región Metropolitana de Santiago,3,Transportation,semi_coordinated,3,5,programmatic / blended,True,municipal applicant,True
+0,Providencia,Región Metropolitana de Santiago,3,Waste,highly_coordinated,3,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+0,Providencia,Región Metropolitana de Santiago,3,Waste,semi_coordinated,3,7,programmatic / blended,True,municipal applicant,True
+3,Tomé,Región del Bío-Bío,3,Stationary Energy,highly_coordinated,3,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+3,Tomé,Región del Bío-Bío,3,Stationary Energy,semi_coordinated,3,9,programmatic / blended,True,municipal applicant,True
+3,Tomé,Región del Bío-Bío,3,Transportation,highly_coordinated,3,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+3,Tomé,Región del Bío-Bío,3,Transportation,semi_coordinated,3,5,programmatic / blended,True,municipal applicant,True
+4,San Antonio,Región de Valparaíso,3,Stationary Energy,highly_coordinated,3,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+4,San Antonio,Región de Valparaíso,3,Stationary Energy,semi_coordinated,3,9,programmatic / blended,True,municipal applicant,True
+5,Lampa,Región Metropolitana de Santiago,5,Waste,highly_coordinated,3,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+5,Lampa,Región Metropolitana de Santiago,5,Waste,semi_coordinated,3,7,programmatic / blended,True,municipal applicant,True
+6,Macul,Región Metropolitana de Santiago,3,Stationary Energy,highly_coordinated,3,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+6,Macul,Región Metropolitana de Santiago,3,Stationary Energy,semi_coordinated,3,9,programmatic / blended,True,municipal applicant,True
+6,Macul,Región Metropolitana de Santiago,3,Transportation,highly_coordinated,3,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+6,Macul,Región Metropolitana de Santiago,3,Transportation,semi_coordinated,3,5,programmatic / blended,True,municipal applicant,True
+6,Macul,Región Metropolitana de Santiago,3,Waste,highly_coordinated,3,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+6,Macul,Región Metropolitana de Santiago,3,Waste,semi_coordinated,3,7,programmatic / blended,True,municipal applicant,True
+8,La Serena,Región de Coquimbo,6,Waste,highly_coordinated,3,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+8,La Serena,Región de Coquimbo,6,Waste,semi_coordinated,3,7,programmatic / blended,True,municipal applicant,True
+18,Iquique,Región de Tarapacá,7,Transportation,highly_coordinated,3,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+18,Iquique,Región de Tarapacá,7,Transportation,semi_coordinated,3,5,programmatic / blended,True,municipal applicant,True
+19,Santa Cruz,Región del Libertador Bernardo O'Higgins,9,Waste,highly_coordinated,3,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+19,Santa Cruz,Región del Libertador Bernardo O'Higgins,9,Waste,semi_coordinated,3,7,programmatic / blended,True,municipal applicant,True
+20,Panguipulli,Región de Los Ríos,3,Stationary Energy,highly_coordinated,3,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+20,Panguipulli,Región de Los Ríos,3,Stationary Energy,semi_coordinated,3,9,programmatic / blended,True,municipal applicant,True
+23,Alhué,Región Metropolitana de Santiago,3,Stationary Energy,highly_coordinated,3,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+23,Alhué,Región Metropolitana de Santiago,3,Stationary Energy,semi_coordinated,3,9,programmatic / blended,True,municipal applicant,True
+25,San Carlos,Región de Ñuble,7,Waste,highly_coordinated,3,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+25,San Carlos,Región de Ñuble,7,Waste,semi_coordinated,3,7,programmatic / blended,True,municipal applicant,True
+27,Osorno,Región de Los Lagos,6,Transportation,highly_coordinated,3,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+27,Osorno,Región de Los Lagos,6,Transportation,semi_coordinated,3,5,programmatic / blended,True,municipal applicant,True
+29,Chillán Viejo,Región de Ñuble,4,Transportation,highly_coordinated,3,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+29,Chillán Viejo,Región de Ñuble,4,Transportation,semi_coordinated,3,5,programmatic / blended,True,municipal applicant,True
+36,Molina,Región del Maule,7,Transportation,highly_coordinated,3,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+36,Molina,Región del Maule,7,Transportation,semi_coordinated,3,5,programmatic / blended,True,municipal applicant,True
+36,Molina,Región del Maule,7,Waste,highly_coordinated,3,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+36,Molina,Región del Maule,7,Waste,semi_coordinated,3,7,programmatic / blended,True,municipal applicant,True
+40,Los Vilos,Región de Coquimbo,5,Waste,highly_coordinated,3,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+40,Los Vilos,Región de Coquimbo,5,Waste,semi_coordinated,3,7,programmatic / blended,True,municipal applicant,True
+42,Ovalle,Región de Coquimbo,4,Transportation,highly_coordinated,3,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+42,Ovalle,Región de Coquimbo,4,Transportation,semi_coordinated,3,5,programmatic / blended,True,municipal applicant,True
+44,Nacimiento,Región del Bío-Bío,5,Waste,highly_coordinated,3,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+44,Nacimiento,Región del Bío-Bío,5,Waste,semi_coordinated,3,7,programmatic / blended,True,municipal applicant,True
+54,Natales,Región de Magallanes y Antártica Chilena,3,Stationary Energy,highly_coordinated,3,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+54,Natales,Región de Magallanes y Antártica Chilena,3,Stationary Energy,semi_coordinated,3,9,programmatic / blended,True,municipal applicant,True
+58,Los Andes,Región de Valparaíso,6,Transportation,highly_coordinated,3,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+58,Los Andes,Región de Valparaíso,6,Transportation,semi_coordinated,3,5,programmatic / blended,True,municipal applicant,True
+58,Los Andes,Región de Valparaíso,6,Waste,highly_coordinated,3,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+58,Los Andes,Región de Valparaíso,6,Waste,semi_coordinated,3,7,programmatic / blended,True,municipal applicant,True
+59,Portezuelo,Región de Ñuble,3,Stationary Energy,highly_coordinated,3,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+59,Portezuelo,Región de Ñuble,3,Stationary Energy,semi_coordinated,3,9,programmatic / blended,True,municipal applicant,True
+60,Yungay,Región de Ñuble,3,Stationary Energy,highly_coordinated,3,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+60,Yungay,Región de Ñuble,3,Stationary Energy,semi_coordinated,3,9,programmatic / blended,True,municipal applicant,True
+61,Las Cabras,Región del Libertador Bernardo O'Higgins,5,Transportation,highly_coordinated,3,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+61,Las Cabras,Región del Libertador Bernardo O'Higgins,5,Transportation,semi_coordinated,3,5,programmatic / blended,True,municipal applicant,True
+61,Las Cabras,Región del Libertador Bernardo O'Higgins,5,Waste,highly_coordinated,3,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+61,Las Cabras,Región del Libertador Bernardo O'Higgins,5,Waste,semi_coordinated,3,7,programmatic / blended,True,municipal applicant,True
+3,Tomé,Región del Bío-Bío,3,Waste,highly_coordinated,2,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+3,Tomé,Región del Bío-Bío,3,Waste,semi_coordinated,2,7,programmatic / blended,True,municipal applicant,True
+4,San Antonio,Región de Valparaíso,3,Transportation,highly_coordinated,2,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+4,San Antonio,Región de Valparaíso,3,Transportation,semi_coordinated,2,5,programmatic / blended,True,municipal applicant,True
+4,San Antonio,Región de Valparaíso,3,Waste,highly_coordinated,2,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+4,San Antonio,Región de Valparaíso,3,Waste,semi_coordinated,2,7,programmatic / blended,True,municipal applicant,True
+9,Coyhaique,Región de Aysén del Gral. Ibañez del Campo,9,Transportation,highly_coordinated,2,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+9,Coyhaique,Región de Aysén del Gral. Ibañez del Campo,9,Transportation,semi_coordinated,2,5,programmatic / blended,True,municipal applicant,True
+9,Coyhaique,Región de Aysén del Gral. Ibañez del Campo,9,Waste,highly_coordinated,2,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+9,Coyhaique,Región de Aysén del Gral. Ibañez del Campo,9,Waste,semi_coordinated,2,7,programmatic / blended,True,municipal applicant,True
+11,Valdivia,Región de Los Ríos,6,Waste,highly_coordinated,2,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+11,Valdivia,Región de Los Ríos,6,Waste,semi_coordinated,2,7,programmatic / blended,True,municipal applicant,True
+14,Punta Arenas,Región de Magallanes y Antártica Chilena,3,Stationary Energy,highly_coordinated,2,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+14,Punta Arenas,Región de Magallanes y Antártica Chilena,3,Stationary Energy,semi_coordinated,2,9,programmatic / blended,True,municipal applicant,True
+16,Recoleta,Región Metropolitana de Santiago,3,Stationary Energy,highly_coordinated,2,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+16,Recoleta,Región Metropolitana de Santiago,3,Stationary Energy,semi_coordinated,2,9,programmatic / blended,True,municipal applicant,True
+16,Recoleta,Región Metropolitana de Santiago,3,Transportation,highly_coordinated,2,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+16,Recoleta,Región Metropolitana de Santiago,3,Transportation,semi_coordinated,2,5,programmatic / blended,True,municipal applicant,True
+16,Recoleta,Región Metropolitana de Santiago,3,Waste,highly_coordinated,2,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+16,Recoleta,Región Metropolitana de Santiago,3,Waste,semi_coordinated,2,7,programmatic / blended,True,municipal applicant,True
+17,Puente Alto,Región Metropolitana de Santiago,4,Stationary Energy,highly_coordinated,2,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+17,Puente Alto,Región Metropolitana de Santiago,4,Stationary Energy,semi_coordinated,2,9,programmatic / blended,True,municipal applicant,True
+17,Puente Alto,Región Metropolitana de Santiago,4,Transportation,highly_coordinated,2,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+17,Puente Alto,Región Metropolitana de Santiago,4,Transportation,semi_coordinated,2,5,programmatic / blended,True,municipal applicant,True
+17,Puente Alto,Región Metropolitana de Santiago,4,Waste,highly_coordinated,2,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+17,Puente Alto,Región Metropolitana de Santiago,4,Waste,semi_coordinated,2,7,programmatic / blended,True,municipal applicant,True
+18,Iquique,Región de Tarapacá,7,Waste,highly_coordinated,2,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+18,Iquique,Región de Tarapacá,7,Waste,semi_coordinated,2,7,programmatic / blended,True,municipal applicant,True
+22,San Pedro de Atacama,Región de Antofagasta,8,Transportation,highly_coordinated,2,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+22,San Pedro de Atacama,Región de Antofagasta,8,Transportation,semi_coordinated,2,5,programmatic / blended,True,municipal applicant,True
+22,San Pedro de Atacama,Región de Antofagasta,8,Waste,highly_coordinated,2,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+22,San Pedro de Atacama,Región de Antofagasta,8,Waste,semi_coordinated,2,7,programmatic / blended,True,municipal applicant,True
+26,Concón,Región de Valparaíso,2,Stationary Energy,highly_coordinated,2,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+26,Concón,Región de Valparaíso,2,Stationary Energy,semi_coordinated,2,9,programmatic / blended,True,municipal applicant,True
+26,Concón,Región de Valparaíso,2,Transportation,highly_coordinated,2,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+26,Concón,Región de Valparaíso,2,Transportation,semi_coordinated,2,5,programmatic / blended,True,municipal applicant,True
+26,Concón,Región de Valparaíso,2,Waste,highly_coordinated,2,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+26,Concón,Región de Valparaíso,2,Waste,semi_coordinated,2,7,programmatic / blended,True,municipal applicant,True
+29,Chillán Viejo,Región de Ñuble,4,Waste,highly_coordinated,2,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+29,Chillán Viejo,Región de Ñuble,4,Waste,semi_coordinated,2,7,programmatic / blended,True,municipal applicant,True
+30,Castro,Región de Los Lagos,4,Transportation,highly_coordinated,2,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+30,Castro,Región de Los Lagos,4,Transportation,semi_coordinated,2,5,programmatic / blended,True,municipal applicant,True
+34,Algarrobo,Región de Valparaíso,2,Stationary Energy,highly_coordinated,2,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+34,Algarrobo,Región de Valparaíso,2,Stationary Energy,semi_coordinated,2,9,programmatic / blended,True,municipal applicant,True
+34,Algarrobo,Región de Valparaíso,2,Transportation,highly_coordinated,2,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+34,Algarrobo,Región de Valparaíso,2,Transportation,semi_coordinated,2,5,programmatic / blended,True,municipal applicant,True
+35,Peñalolén,Región Metropolitana de Santiago,2,Stationary Energy,highly_coordinated,2,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+35,Peñalolén,Región Metropolitana de Santiago,2,Stationary Energy,semi_coordinated,2,9,programmatic / blended,True,municipal applicant,True
+35,Peñalolén,Región Metropolitana de Santiago,2,Transportation,highly_coordinated,2,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+35,Peñalolén,Región Metropolitana de Santiago,2,Transportation,semi_coordinated,2,5,programmatic / blended,True,municipal applicant,True
+35,Peñalolén,Región Metropolitana de Santiago,2,Waste,highly_coordinated,2,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+35,Peñalolén,Región Metropolitana de Santiago,2,Waste,semi_coordinated,2,7,programmatic / blended,True,municipal applicant,True
+37,Rengo,Región del Libertador Bernardo O'Higgins,5,Transportation,highly_coordinated,2,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+37,Rengo,Región del Libertador Bernardo O'Higgins,5,Transportation,semi_coordinated,2,5,programmatic / blended,True,municipal applicant,True
+37,Rengo,Región del Libertador Bernardo O'Higgins,5,Waste,highly_coordinated,2,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+37,Rengo,Región del Libertador Bernardo O'Higgins,5,Waste,semi_coordinated,2,7,programmatic / blended,True,municipal applicant,True
+41,Talca,Región del Maule,4,Transportation,highly_coordinated,2,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+41,Talca,Región del Maule,4,Transportation,semi_coordinated,2,5,programmatic / blended,True,municipal applicant,True
+41,Talca,Región del Maule,4,Waste,highly_coordinated,2,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+41,Talca,Región del Maule,4,Waste,semi_coordinated,2,7,programmatic / blended,True,municipal applicant,True
+42,Ovalle,Región de Coquimbo,4,Waste,highly_coordinated,2,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+42,Ovalle,Región de Coquimbo,4,Waste,semi_coordinated,2,7,programmatic / blended,True,municipal applicant,True
+43,Lago Ranco,Región de Los Ríos,3,Stationary Energy,highly_coordinated,2,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+43,Lago Ranco,Región de Los Ríos,3,Stationary Energy,semi_coordinated,2,9,programmatic / blended,True,municipal applicant,True
+45,Renca,Región Metropolitana de Santiago,2,Stationary Energy,highly_coordinated,2,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+45,Renca,Región Metropolitana de Santiago,2,Stationary Energy,semi_coordinated,2,9,programmatic / blended,True,municipal applicant,True
+45,Renca,Región Metropolitana de Santiago,2,Transportation,highly_coordinated,2,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+45,Renca,Región Metropolitana de Santiago,2,Transportation,semi_coordinated,2,5,programmatic / blended,True,municipal applicant,True
+45,Renca,Región Metropolitana de Santiago,2,Waste,highly_coordinated,2,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+45,Renca,Región Metropolitana de Santiago,2,Waste,semi_coordinated,2,7,programmatic / blended,True,municipal applicant,True
+46,Quirihue,Región de Ñuble,4,Transportation,highly_coordinated,2,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+46,Quirihue,Región de Ñuble,4,Transportation,semi_coordinated,2,5,programmatic / blended,True,municipal applicant,True
+49,Coronel,Región del Bío-Bío,2,Stationary Energy,highly_coordinated,2,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+49,Coronel,Región del Bío-Bío,2,Stationary Energy,semi_coordinated,2,9,programmatic / blended,True,municipal applicant,True
+49,Coronel,Región del Bío-Bío,2,Transportation,highly_coordinated,2,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+49,Coronel,Región del Bío-Bío,2,Transportation,semi_coordinated,2,5,programmatic / blended,True,municipal applicant,True
+49,Coronel,Región del Bío-Bío,2,Waste,highly_coordinated,2,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+49,Coronel,Región del Bío-Bío,2,Waste,semi_coordinated,2,7,programmatic / blended,True,municipal applicant,True
+51,La Ligua,Región de Valparaíso,5,Transportation,highly_coordinated,2,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+51,La Ligua,Región de Valparaíso,5,Transportation,semi_coordinated,2,5,programmatic / blended,True,municipal applicant,True
+56,Curacautín,Región de La Araucanía,5,Transportation,highly_coordinated,2,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+56,Curacautín,Región de La Araucanía,5,Transportation,semi_coordinated,2,5,programmatic / blended,True,municipal applicant,True
+56,Curacautín,Región de La Araucanía,5,Waste,highly_coordinated,2,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+56,Curacautín,Región de La Araucanía,5,Waste,semi_coordinated,2,7,programmatic / blended,True,municipal applicant,True
+63,Buin,Región Metropolitana de Santiago,2,Stationary Energy,highly_coordinated,2,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+63,Buin,Región Metropolitana de Santiago,2,Stationary Energy,semi_coordinated,2,9,programmatic / blended,True,municipal applicant,True
+63,Buin,Región Metropolitana de Santiago,2,Transportation,highly_coordinated,2,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+63,Buin,Región Metropolitana de Santiago,2,Transportation,semi_coordinated,2,5,programmatic / blended,True,municipal applicant,True
+63,Buin,Región Metropolitana de Santiago,2,Waste,highly_coordinated,2,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+63,Buin,Región Metropolitana de Santiago,2,Waste,semi_coordinated,2,7,programmatic / blended,True,municipal applicant,True
+64,Ancud,Región de Los Lagos,2,Stationary Energy,highly_coordinated,2,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+64,Ancud,Región de Los Lagos,2,Stationary Energy,semi_coordinated,2,9,programmatic / blended,True,municipal applicant,True
+66,Vallenar,Región de Atacama,5,Transportation,highly_coordinated,2,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+66,Vallenar,Región de Atacama,5,Transportation,semi_coordinated,2,5,programmatic / blended,True,municipal applicant,True
+32,Pelluhue,Región del Maule,13,Stationary Energy,idiosyncratic,13,2,grant / PES / TA,True,municipal applicant,False
+28,Padre Las Casas,Región de La Araucanía,12,Stationary Energy,idiosyncratic,12,2,grant / PES / TA,True,municipal applicant,False
+32,Pelluhue,Región del Maule,13,AFOLU,idiosyncratic,12,27,grant / PES / TA,True,municipal applicant,False
+19,Santa Cruz,Región del Libertador Bernardo O'Higgins,9,Stationary Energy,idiosyncratic,9,2,grant / PES / TA,True,municipal applicant,False
+19,Santa Cruz,Región del Libertador Bernardo O'Higgins,9,AFOLU,idiosyncratic,9,27,grant / PES / TA,True,municipal applicant,False
+21,Puchuncaví,Región de Valparaíso,11,Stationary Energy,idiosyncratic,9,2,grant / PES / TA,True,municipal applicant,False
+21,Puchuncaví,Región de Valparaíso,11,IPPU,highly_coordinated,9,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+21,Puchuncaví,Región de Valparaíso,11,IPPU,idiosyncratic,9,3,grant / PES / TA,True,firm-actor: city is referrer,False
+21,Puchuncaví,Región de Valparaíso,11,IPPU,semi_coordinated,9,18,programmatic / blended,True,firm-actor: city is referrer,False
+24,Puerto Montt,Región de Los Lagos,11,Stationary Energy,idiosyncratic,9,2,grant / PES / TA,True,municipal applicant,False
+28,Padre Las Casas,Región de La Araucanía,12,Transportation,idiosyncratic,9,2,grant / PES / TA,True,municipal applicant,False
+12,Rancagua,Región del Libertador Bernardo O'Higgins,8,Stationary Energy,idiosyncratic,8,2,grant / PES / TA,True,municipal applicant,False
+12,Rancagua,Región del Libertador Bernardo O'Higgins,8,IPPU,highly_coordinated,8,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+12,Rancagua,Región del Libertador Bernardo O'Higgins,8,IPPU,idiosyncratic,8,3,grant / PES / TA,True,firm-actor: city is referrer,False
+12,Rancagua,Región del Libertador Bernardo O'Higgins,8,IPPU,semi_coordinated,8,18,programmatic / blended,True,firm-actor: city is referrer,False
+22,San Pedro de Atacama,Región de Antofagasta,8,Stationary Energy,idiosyncratic,8,2,grant / PES / TA,True,municipal applicant,False
+22,San Pedro de Atacama,Región de Antofagasta,8,IPPU,highly_coordinated,8,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+22,San Pedro de Atacama,Región de Antofagasta,8,IPPU,idiosyncratic,8,3,grant / PES / TA,True,firm-actor: city is referrer,False
+22,San Pedro de Atacama,Región de Antofagasta,8,IPPU,semi_coordinated,8,18,programmatic / blended,True,firm-actor: city is referrer,False
+28,Padre Las Casas,Región de La Araucanía,12,AFOLU,idiosyncratic,8,27,grant / PES / TA,True,municipal applicant,False
+7,Concepción,Región del Bío-Bío,7,Stationary Energy,idiosyncratic,7,2,grant / PES / TA,True,municipal applicant,False
+9,Coyhaique,Región de Aysén del Gral. Ibañez del Campo,9,Stationary Energy,idiosyncratic,7,2,grant / PES / TA,True,municipal applicant,False
+21,Puchuncaví,Región de Valparaíso,11,Transportation,idiosyncratic,7,2,grant / PES / TA,True,municipal applicant,False
+24,Puerto Montt,Región de Los Lagos,11,Transportation,idiosyncratic,7,2,grant / PES / TA,True,municipal applicant,False
+25,San Carlos,Región de Ñuble,7,Stationary Energy,idiosyncratic,7,2,grant / PES / TA,True,municipal applicant,False
+36,Molina,Región del Maule,7,Stationary Energy,idiosyncratic,7,2,grant / PES / TA,True,municipal applicant,False
+36,Molina,Región del Maule,7,AFOLU,idiosyncratic,7,27,grant / PES / TA,True,municipal applicant,False
+39,Cabrero,Región del Bío-Bío,9,Stationary Energy,idiosyncratic,7,2,grant / PES / TA,True,municipal applicant,False
+7,Concepción,Región del Bío-Bío,7,Transportation,idiosyncratic,6,2,grant / PES / TA,True,municipal applicant,False
+7,Concepción,Región del Bío-Bío,7,Waste,idiosyncratic,6,2,grant / PES / TA,True,municipal applicant,False
+10,Peñaflor,Región Metropolitana de Santiago,6,Stationary Energy,idiosyncratic,6,2,grant / PES / TA,True,municipal applicant,False
+10,Peñaflor,Región Metropolitana de Santiago,6,Transportation,idiosyncratic,6,2,grant / PES / TA,True,municipal applicant,False
+10,Peñaflor,Región Metropolitana de Santiago,6,Waste,idiosyncratic,6,2,grant / PES / TA,True,municipal applicant,False
+10,Peñaflor,Región Metropolitana de Santiago,6,IPPU,highly_coordinated,6,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+10,Peñaflor,Región Metropolitana de Santiago,6,IPPU,idiosyncratic,6,3,grant / PES / TA,True,firm-actor: city is referrer,False
+10,Peñaflor,Región Metropolitana de Santiago,6,IPPU,semi_coordinated,6,18,programmatic / blended,True,firm-actor: city is referrer,False
+12,Rancagua,Región del Libertador Bernardo O'Higgins,8,Transportation,idiosyncratic,6,2,grant / PES / TA,True,municipal applicant,False
+12,Rancagua,Región del Libertador Bernardo O'Higgins,8,Waste,idiosyncratic,6,2,grant / PES / TA,True,municipal applicant,False
+18,Iquique,Región de Tarapacá,7,Stationary Energy,idiosyncratic,6,2,grant / PES / TA,True,municipal applicant,False
+21,Puchuncaví,Región de Valparaíso,11,Waste,idiosyncratic,6,2,grant / PES / TA,True,municipal applicant,False
+25,San Carlos,Región de Ñuble,7,AFOLU,idiosyncratic,6,27,grant / PES / TA,True,municipal applicant,False
+27,Osorno,Región de Los Lagos,6,Stationary Energy,idiosyncratic,6,2,grant / PES / TA,True,municipal applicant,False
+28,Padre Las Casas,Región de La Araucanía,12,Waste,idiosyncratic,6,2,grant / PES / TA,True,municipal applicant,False
+38,Traiguén,Región de La Araucanía,6,Stationary Energy,idiosyncratic,6,2,grant / PES / TA,True,municipal applicant,False
+50,Linares,Región del Maule,6,Stationary Energy,idiosyncratic,6,2,grant / PES / TA,True,municipal applicant,False
+58,Los Andes,Región de Valparaíso,6,Stationary Energy,idiosyncratic,6,2,grant / PES / TA,True,municipal applicant,False
+58,Los Andes,Región de Valparaíso,6,IPPU,highly_coordinated,6,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+58,Los Andes,Región de Valparaíso,6,IPPU,idiosyncratic,6,3,grant / PES / TA,True,firm-actor: city is referrer,False
+58,Los Andes,Región de Valparaíso,6,IPPU,semi_coordinated,6,18,programmatic / blended,True,firm-actor: city is referrer,False
+67,Lebu,Región del Bío-Bío,6,Stationary Energy,idiosyncratic,6,2,grant / PES / TA,True,municipal applicant,False
+1,Lo Barnechea,Región Metropolitana de Santiago,6,Stationary Energy,idiosyncratic,5,2,grant / PES / TA,True,municipal applicant,False
+1,Lo Barnechea,Región Metropolitana de Santiago,6,Transportation,idiosyncratic,5,2,grant / PES / TA,True,municipal applicant,False
+2,Valparaíso,Región de Valparaíso,5,Stationary Energy,idiosyncratic,5,2,grant / PES / TA,True,municipal applicant,False
+2,Valparaíso,Región de Valparaíso,5,Transportation,idiosyncratic,5,2,grant / PES / TA,True,municipal applicant,False
+5,Lampa,Región Metropolitana de Santiago,5,Stationary Energy,idiosyncratic,5,2,grant / PES / TA,True,municipal applicant,False
+5,Lampa,Región Metropolitana de Santiago,5,Transportation,idiosyncratic,5,2,grant / PES / TA,True,municipal applicant,False
+7,Concepción,Región del Bío-Bío,7,IPPU,highly_coordinated,5,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+7,Concepción,Región del Bío-Bío,7,IPPU,idiosyncratic,5,3,grant / PES / TA,True,firm-actor: city is referrer,False
+7,Concepción,Región del Bío-Bío,7,IPPU,semi_coordinated,5,18,programmatic / blended,True,firm-actor: city is referrer,False
+11,Valdivia,Región de Los Ríos,6,Stationary Energy,idiosyncratic,5,2,grant / PES / TA,True,municipal applicant,False
+12,Rancagua,Región del Libertador Bernardo O'Higgins,8,AFOLU,idiosyncratic,5,27,grant / PES / TA,True,municipal applicant,False
+19,Santa Cruz,Región del Libertador Bernardo O'Higgins,9,Transportation,idiosyncratic,5,2,grant / PES / TA,True,municipal applicant,False
+24,Puerto Montt,Región de Los Lagos,11,AFOLU,idiosyncratic,5,27,grant / PES / TA,True,municipal applicant,False
+27,Osorno,Región de Los Lagos,6,AFOLU,idiosyncratic,5,27,grant / PES / TA,True,municipal applicant,False
+32,Pelluhue,Región del Maule,13,Transportation,idiosyncratic,5,2,grant / PES / TA,True,municipal applicant,False
+32,Pelluhue,Región del Maule,13,Waste,idiosyncratic,5,2,grant / PES / TA,True,municipal applicant,False
+37,Rengo,Región del Libertador Bernardo O'Higgins,5,Stationary Energy,idiosyncratic,5,2,grant / PES / TA,True,municipal applicant,False
+37,Rengo,Región del Libertador Bernardo O'Higgins,5,IPPU,highly_coordinated,5,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+37,Rengo,Región del Libertador Bernardo O'Higgins,5,IPPU,idiosyncratic,5,3,grant / PES / TA,True,firm-actor: city is referrer,False
+37,Rengo,Región del Libertador Bernardo O'Higgins,5,IPPU,semi_coordinated,5,18,programmatic / blended,True,firm-actor: city is referrer,False
+38,Traiguén,Región de La Araucanía,6,AFOLU,idiosyncratic,5,27,grant / PES / TA,True,municipal applicant,False
+39,Cabrero,Región del Bío-Bío,9,IPPU,highly_coordinated,5,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+39,Cabrero,Región del Bío-Bío,9,IPPU,idiosyncratic,5,3,grant / PES / TA,True,firm-actor: city is referrer,False
+39,Cabrero,Región del Bío-Bío,9,IPPU,semi_coordinated,5,18,programmatic / blended,True,firm-actor: city is referrer,False
+40,Los Vilos,Región de Coquimbo,5,Stationary Energy,idiosyncratic,5,2,grant / PES / TA,True,municipal applicant,False
+40,Los Vilos,Región de Coquimbo,5,IPPU,highly_coordinated,5,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+40,Los Vilos,Región de Coquimbo,5,IPPU,idiosyncratic,5,3,grant / PES / TA,True,firm-actor: city is referrer,False
+40,Los Vilos,Región de Coquimbo,5,IPPU,semi_coordinated,5,18,programmatic / blended,True,firm-actor: city is referrer,False
+44,Nacimiento,Región del Bío-Bío,5,Stationary Energy,idiosyncratic,5,2,grant / PES / TA,True,municipal applicant,False
+50,Linares,Región del Maule,6,Transportation,idiosyncratic,5,2,grant / PES / TA,True,municipal applicant,False
+50,Linares,Región del Maule,6,Waste,idiosyncratic,5,2,grant / PES / TA,True,municipal applicant,False
+50,Linares,Región del Maule,6,AFOLU,idiosyncratic,5,27,grant / PES / TA,True,municipal applicant,False
+53,Villarrica,Región de La Araucanía,5,Stationary Energy,idiosyncratic,5,2,grant / PES / TA,True,municipal applicant,False
+53,Villarrica,Región de La Araucanía,5,Transportation,idiosyncratic,5,2,grant / PES / TA,True,municipal applicant,False
+56,Curacautín,Región de La Araucanía,5,Stationary Energy,idiosyncratic,5,2,grant / PES / TA,True,municipal applicant,False
+61,Las Cabras,Región del Libertador Bernardo O'Higgins,5,Stationary Energy,idiosyncratic,5,2,grant / PES / TA,True,municipal applicant,False
+61,Las Cabras,Región del Libertador Bernardo O'Higgins,5,AFOLU,idiosyncratic,5,27,grant / PES / TA,True,municipal applicant,False
+1,Lo Barnechea,Región Metropolitana de Santiago,6,Waste,idiosyncratic,4,2,grant / PES / TA,True,municipal applicant,False
+2,Valparaíso,Región de Valparaíso,5,Waste,idiosyncratic,4,2,grant / PES / TA,True,municipal applicant,False
+8,La Serena,Región de Coquimbo,6,Stationary Energy,idiosyncratic,4,2,grant / PES / TA,True,municipal applicant,False
+8,La Serena,Región de Coquimbo,6,Transportation,idiosyncratic,4,2,grant / PES / TA,True,municipal applicant,False
+8,La Serena,Región de Coquimbo,6,IPPU,highly_coordinated,4,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+8,La Serena,Región de Coquimbo,6,IPPU,idiosyncratic,4,3,grant / PES / TA,True,firm-actor: city is referrer,False
+8,La Serena,Región de Coquimbo,6,IPPU,semi_coordinated,4,18,programmatic / blended,True,firm-actor: city is referrer,False
+11,Valdivia,Región de Los Ríos,6,Transportation,idiosyncratic,4,2,grant / PES / TA,True,municipal applicant,False
+11,Valdivia,Región de Los Ríos,6,AFOLU,idiosyncratic,4,27,grant / PES / TA,True,municipal applicant,False
+13,Caldera,Región de Atacama,4,Stationary Energy,idiosyncratic,4,2,grant / PES / TA,True,municipal applicant,False
+13,Caldera,Región de Atacama,4,IPPU,highly_coordinated,4,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+13,Caldera,Región de Atacama,4,IPPU,idiosyncratic,4,3,grant / PES / TA,True,firm-actor: city is referrer,False
+13,Caldera,Región de Atacama,4,IPPU,semi_coordinated,4,18,programmatic / blended,True,firm-actor: city is referrer,False
+15,Lo Espejo,Región Metropolitana de Santiago,6,Stationary Energy,idiosyncratic,4,2,grant / PES / TA,True,municipal applicant,False
+15,Lo Espejo,Región Metropolitana de Santiago,6,Transportation,idiosyncratic,4,2,grant / PES / TA,True,municipal applicant,False
+15,Lo Espejo,Región Metropolitana de Santiago,6,Waste,idiosyncratic,4,2,grant / PES / TA,True,municipal applicant,False
+15,Lo Espejo,Región Metropolitana de Santiago,6,IPPU,highly_coordinated,4,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+15,Lo Espejo,Región Metropolitana de Santiago,6,IPPU,idiosyncratic,4,3,grant / PES / TA,True,firm-actor: city is referrer,False
+15,Lo Espejo,Región Metropolitana de Santiago,6,IPPU,semi_coordinated,4,18,programmatic / blended,True,firm-actor: city is referrer,False
+18,Iquique,Región de Tarapacá,7,IPPU,highly_coordinated,4,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+18,Iquique,Región de Tarapacá,7,IPPU,idiosyncratic,4,3,grant / PES / TA,True,firm-actor: city is referrer,False
+18,Iquique,Región de Tarapacá,7,IPPU,semi_coordinated,4,18,programmatic / blended,True,firm-actor: city is referrer,False
+21,Puchuncaví,Región de Valparaíso,11,AFOLU,idiosyncratic,4,27,grant / PES / TA,True,municipal applicant,False
+24,Puerto Montt,Región de Los Lagos,11,Waste,idiosyncratic,4,2,grant / PES / TA,True,municipal applicant,False
+24,Puerto Montt,Región de Los Lagos,11,IPPU,highly_coordinated,4,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+24,Puerto Montt,Región de Los Lagos,11,IPPU,idiosyncratic,4,3,grant / PES / TA,True,firm-actor: city is referrer,False
+24,Puerto Montt,Región de Los Lagos,11,IPPU,semi_coordinated,4,18,programmatic / blended,True,firm-actor: city is referrer,False
+25,San Carlos,Región de Ñuble,7,Transportation,idiosyncratic,4,2,grant / PES / TA,True,municipal applicant,False
+29,Chillán Viejo,Región de Ñuble,4,Stationary Energy,idiosyncratic,4,2,grant / PES / TA,True,municipal applicant,False
+30,Castro,Región de Los Lagos,4,Stationary Energy,idiosyncratic,4,2,grant / PES / TA,True,municipal applicant,False
+30,Castro,Región de Los Lagos,4,IPPU,highly_coordinated,4,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+30,Castro,Región de Los Lagos,4,IPPU,idiosyncratic,4,3,grant / PES / TA,True,firm-actor: city is referrer,False
+30,Castro,Región de Los Lagos,4,IPPU,semi_coordinated,4,18,programmatic / blended,True,firm-actor: city is referrer,False
+37,Rengo,Región del Libertador Bernardo O'Higgins,5,AFOLU,idiosyncratic,4,27,grant / PES / TA,True,municipal applicant,False
+39,Cabrero,Región del Bío-Bío,9,Transportation,idiosyncratic,4,2,grant / PES / TA,True,municipal applicant,False
+39,Cabrero,Región del Bío-Bío,9,Waste,idiosyncratic,4,2,grant / PES / TA,True,municipal applicant,False
+40,Los Vilos,Región de Coquimbo,5,Transportation,idiosyncratic,4,2,grant / PES / TA,True,municipal applicant,False
+41,Talca,Región del Maule,4,Stationary Energy,idiosyncratic,4,2,grant / PES / TA,True,municipal applicant,False
+42,Ovalle,Región de Coquimbo,4,Stationary Energy,idiosyncratic,4,2,grant / PES / TA,True,municipal applicant,False
+42,Ovalle,Región de Coquimbo,4,IPPU,highly_coordinated,4,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+42,Ovalle,Región de Coquimbo,4,IPPU,idiosyncratic,4,3,grant / PES / TA,True,firm-actor: city is referrer,False
+42,Ovalle,Región de Coquimbo,4,IPPU,semi_coordinated,4,18,programmatic / blended,True,firm-actor: city is referrer,False
+44,Nacimiento,Región del Bío-Bío,5,Transportation,idiosyncratic,4,2,grant / PES / TA,True,municipal applicant,False
+44,Nacimiento,Región del Bío-Bío,5,IPPU,highly_coordinated,4,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+44,Nacimiento,Región del Bío-Bío,5,IPPU,idiosyncratic,4,3,grant / PES / TA,True,firm-actor: city is referrer,False
+44,Nacimiento,Región del Bío-Bío,5,IPPU,semi_coordinated,4,18,programmatic / blended,True,firm-actor: city is referrer,False
+46,Quirihue,Región de Ñuble,4,Stationary Energy,idiosyncratic,4,2,grant / PES / TA,True,municipal applicant,False
+46,Quirihue,Región de Ñuble,4,AFOLU,idiosyncratic,4,27,grant / PES / TA,True,municipal applicant,False
+51,La Ligua,Región de Valparaíso,5,Stationary Energy,idiosyncratic,4,2,grant / PES / TA,True,municipal applicant,False
+52,Pichilemu,Región del Libertador Bernardo O'Higgins,6,Stationary Energy,idiosyncratic,4,2,grant / PES / TA,True,municipal applicant,False
+53,Villarrica,Región de La Araucanía,5,Waste,idiosyncratic,4,2,grant / PES / TA,True,municipal applicant,False
+55,Purén,Región de La Araucanía,4,Stationary Energy,idiosyncratic,4,2,grant / PES / TA,True,municipal applicant,False
+57,Arica,Región de Arica y Parinacota,4,Stationary Energy,idiosyncratic,4,2,grant / PES / TA,True,municipal applicant,False
+61,Las Cabras,Región del Libertador Bernardo O'Higgins,5,IPPU,highly_coordinated,4,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+61,Las Cabras,Región del Libertador Bernardo O'Higgins,5,IPPU,idiosyncratic,4,3,grant / PES / TA,True,firm-actor: city is referrer,False
+61,Las Cabras,Región del Libertador Bernardo O'Higgins,5,IPPU,semi_coordinated,4,18,programmatic / blended,True,firm-actor: city is referrer,False
+66,Vallenar,Región de Atacama,5,Stationary Energy,idiosyncratic,4,2,grant / PES / TA,True,municipal applicant,False
+66,Vallenar,Región de Atacama,5,IPPU,highly_coordinated,4,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+66,Vallenar,Región de Atacama,5,IPPU,idiosyncratic,4,3,grant / PES / TA,True,firm-actor: city is referrer,False
+66,Vallenar,Región de Atacama,5,IPPU,semi_coordinated,4,18,programmatic / blended,True,firm-actor: city is referrer,False
+67,Lebu,Región del Bío-Bío,6,Transportation,idiosyncratic,4,2,grant / PES / TA,True,municipal applicant,False
+67,Lebu,Región del Bío-Bío,6,Waste,idiosyncratic,4,2,grant / PES / TA,True,municipal applicant,False
+67,Lebu,Región del Bío-Bío,6,AFOLU,idiosyncratic,4,27,grant / PES / TA,True,municipal applicant,False
+0,Providencia,Región Metropolitana de Santiago,3,Stationary Energy,idiosyncratic,3,2,grant / PES / TA,True,municipal applicant,False
+0,Providencia,Región Metropolitana de Santiago,3,Transportation,idiosyncratic,3,2,grant / PES / TA,True,municipal applicant,False
+0,Providencia,Región Metropolitana de Santiago,3,Waste,idiosyncratic,3,2,grant / PES / TA,True,municipal applicant,False
+2,Valparaíso,Región de Valparaíso,5,IPPU,highly_coordinated,3,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+2,Valparaíso,Región de Valparaíso,5,IPPU,idiosyncratic,3,3,grant / PES / TA,True,firm-actor: city is referrer,False
+2,Valparaíso,Región de Valparaíso,5,IPPU,semi_coordinated,3,18,programmatic / blended,True,firm-actor: city is referrer,False
+3,Tomé,Región del Bío-Bío,3,Stationary Energy,idiosyncratic,3,2,grant / PES / TA,True,municipal applicant,False
+3,Tomé,Región del Bío-Bío,3,Transportation,idiosyncratic,3,2,grant / PES / TA,True,municipal applicant,False
+4,San Antonio,Región de Valparaíso,3,Stationary Energy,idiosyncratic,3,2,grant / PES / TA,True,municipal applicant,False
+5,Lampa,Región Metropolitana de Santiago,5,Waste,idiosyncratic,3,2,grant / PES / TA,True,municipal applicant,False
+6,Macul,Región Metropolitana de Santiago,3,Stationary Energy,idiosyncratic,3,2,grant / PES / TA,True,municipal applicant,False
+6,Macul,Región Metropolitana de Santiago,3,Transportation,idiosyncratic,3,2,grant / PES / TA,True,municipal applicant,False
+6,Macul,Región Metropolitana de Santiago,3,Waste,idiosyncratic,3,2,grant / PES / TA,True,municipal applicant,False
+8,La Serena,Región de Coquimbo,6,Waste,idiosyncratic,3,2,grant / PES / TA,True,municipal applicant,False
+9,Coyhaique,Región de Aysén del Gral. Ibañez del Campo,9,AFOLU,idiosyncratic,3,27,grant / PES / TA,True,municipal applicant,False
+11,Valdivia,Región de Los Ríos,6,IPPU,highly_coordinated,3,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+11,Valdivia,Región de Los Ríos,6,IPPU,idiosyncratic,3,3,grant / PES / TA,True,firm-actor: city is referrer,False
+11,Valdivia,Región de Los Ríos,6,IPPU,semi_coordinated,3,18,programmatic / blended,True,firm-actor: city is referrer,False
+18,Iquique,Región de Tarapacá,7,Transportation,idiosyncratic,3,2,grant / PES / TA,True,municipal applicant,False
+18,Iquique,Región de Tarapacá,7,AFOLU,idiosyncratic,3,27,grant / PES / TA,True,municipal applicant,False
+19,Santa Cruz,Región del Libertador Bernardo O'Higgins,9,Waste,idiosyncratic,3,2,grant / PES / TA,True,municipal applicant,False
+19,Santa Cruz,Región del Libertador Bernardo O'Higgins,9,IPPU,highly_coordinated,3,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+19,Santa Cruz,Región del Libertador Bernardo O'Higgins,9,IPPU,idiosyncratic,3,3,grant / PES / TA,True,firm-actor: city is referrer,False
+19,Santa Cruz,Región del Libertador Bernardo O'Higgins,9,IPPU,semi_coordinated,3,18,programmatic / blended,True,firm-actor: city is referrer,False
+20,Panguipulli,Región de Los Ríos,3,Stationary Energy,idiosyncratic,3,2,grant / PES / TA,True,municipal applicant,False
+23,Alhué,Región Metropolitana de Santiago,3,Stationary Energy,idiosyncratic,3,2,grant / PES / TA,True,municipal applicant,False
+23,Alhué,Región Metropolitana de Santiago,3,AFOLU,idiosyncratic,3,27,grant / PES / TA,True,municipal applicant,False
+23,Alhué,Región Metropolitana de Santiago,3,IPPU,highly_coordinated,3,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+23,Alhué,Región Metropolitana de Santiago,3,IPPU,idiosyncratic,3,3,grant / PES / TA,True,firm-actor: city is referrer,False
+23,Alhué,Región Metropolitana de Santiago,3,IPPU,semi_coordinated,3,18,programmatic / blended,True,firm-actor: city is referrer,False
+25,San Carlos,Región de Ñuble,7,Waste,idiosyncratic,3,2,grant / PES / TA,True,municipal applicant,False
+25,San Carlos,Región de Ñuble,7,IPPU,highly_coordinated,3,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+25,San Carlos,Región de Ñuble,7,IPPU,idiosyncratic,3,3,grant / PES / TA,True,firm-actor: city is referrer,False
+25,San Carlos,Región de Ñuble,7,IPPU,semi_coordinated,3,18,programmatic / blended,True,firm-actor: city is referrer,False
+27,Osorno,Región de Los Lagos,6,Transportation,idiosyncratic,3,2,grant / PES / TA,True,municipal applicant,False
+29,Chillán Viejo,Región de Ñuble,4,Transportation,idiosyncratic,3,2,grant / PES / TA,True,municipal applicant,False
+29,Chillán Viejo,Región de Ñuble,4,AFOLU,idiosyncratic,3,27,grant / PES / TA,True,municipal applicant,False
+30,Castro,Región de Los Lagos,4,AFOLU,idiosyncratic,3,27,grant / PES / TA,True,municipal applicant,False
+36,Molina,Región del Maule,7,Transportation,idiosyncratic,3,2,grant / PES / TA,True,municipal applicant,False
+36,Molina,Región del Maule,7,Waste,idiosyncratic,3,2,grant / PES / TA,True,municipal applicant,False
+36,Molina,Región del Maule,7,IPPU,highly_coordinated,3,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+36,Molina,Región del Maule,7,IPPU,idiosyncratic,3,3,grant / PES / TA,True,firm-actor: city is referrer,False
+36,Molina,Región del Maule,7,IPPU,semi_coordinated,3,18,programmatic / blended,True,firm-actor: city is referrer,False
+39,Cabrero,Región del Bío-Bío,9,AFOLU,idiosyncratic,3,27,grant / PES / TA,True,municipal applicant,False
+40,Los Vilos,Región de Coquimbo,5,Waste,idiosyncratic,3,2,grant / PES / TA,True,municipal applicant,False
+42,Ovalle,Región de Coquimbo,4,Transportation,idiosyncratic,3,2,grant / PES / TA,True,municipal applicant,False
+42,Ovalle,Región de Coquimbo,4,AFOLU,idiosyncratic,3,27,grant / PES / TA,True,municipal applicant,False
+44,Nacimiento,Región del Bío-Bío,5,Waste,idiosyncratic,3,2,grant / PES / TA,True,municipal applicant,False
+50,Linares,Región del Maule,6,IPPU,highly_coordinated,3,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+50,Linares,Región del Maule,6,IPPU,idiosyncratic,3,3,grant / PES / TA,True,firm-actor: city is referrer,False
+50,Linares,Región del Maule,6,IPPU,semi_coordinated,3,18,programmatic / blended,True,firm-actor: city is referrer,False
+51,La Ligua,Región de Valparaíso,5,IPPU,highly_coordinated,3,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+51,La Ligua,Región de Valparaíso,5,IPPU,idiosyncratic,3,3,grant / PES / TA,True,firm-actor: city is referrer,False
+51,La Ligua,Región de Valparaíso,5,IPPU,semi_coordinated,3,18,programmatic / blended,True,firm-actor: city is referrer,False
+54,Natales,Región de Magallanes y Antártica Chilena,3,Stationary Energy,idiosyncratic,3,2,grant / PES / TA,True,municipal applicant,False
+55,Purén,Región de La Araucanía,4,AFOLU,idiosyncratic,3,27,grant / PES / TA,True,municipal applicant,False
+57,Arica,Región de Arica y Parinacota,4,AFOLU,idiosyncratic,3,27,grant / PES / TA,True,municipal applicant,False
+58,Los Andes,Región de Valparaíso,6,Transportation,idiosyncratic,3,2,grant / PES / TA,True,municipal applicant,False
+58,Los Andes,Región de Valparaíso,6,Waste,idiosyncratic,3,2,grant / PES / TA,True,municipal applicant,False
+58,Los Andes,Región de Valparaíso,6,AFOLU,idiosyncratic,3,27,grant / PES / TA,True,municipal applicant,False
+59,Portezuelo,Región de Ñuble,3,Stationary Energy,idiosyncratic,3,2,grant / PES / TA,True,municipal applicant,False
+59,Portezuelo,Región de Ñuble,3,AFOLU,idiosyncratic,3,27,grant / PES / TA,True,municipal applicant,False
+60,Yungay,Región de Ñuble,3,Stationary Energy,idiosyncratic,3,2,grant / PES / TA,True,municipal applicant,False
+61,Las Cabras,Región del Libertador Bernardo O'Higgins,5,Transportation,idiosyncratic,3,2,grant / PES / TA,True,municipal applicant,False
+61,Las Cabras,Región del Libertador Bernardo O'Higgins,5,Waste,idiosyncratic,3,2,grant / PES / TA,True,municipal applicant,False
+74,Palena,Región de Los Lagos,3,Stationary Energy,highly_coordinated,3,20,pooled grant/loan · ESCO · debt,False,municipal applicant,False
+74,Palena,Región de Los Lagos,3,Stationary Energy,idiosyncratic,3,2,grant / PES / TA,False,municipal applicant,False
+74,Palena,Región de Los Lagos,3,Stationary Energy,semi_coordinated,3,9,programmatic / blended,False,municipal applicant,False
+76,Porvenir,Región de Magallanes y Antártica Chilena,4,Stationary Energy,highly_coordinated,3,20,pooled grant/loan · ESCO · debt,False,municipal applicant,False
+76,Porvenir,Región de Magallanes y Antártica Chilena,4,Stationary Energy,idiosyncratic,3,2,grant / PES / TA,False,municipal applicant,False
+76,Porvenir,Región de Magallanes y Antártica Chilena,4,Stationary Energy,semi_coordinated,3,9,programmatic / blended,False,municipal applicant,False
+76,Porvenir,Región de Magallanes y Antártica Chilena,4,AFOLU,idiosyncratic,3,27,grant / PES / TA,False,municipal applicant,False
+1,Lo Barnechea,Región Metropolitana de Santiago,6,IPPU,highly_coordinated,2,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+1,Lo Barnechea,Región Metropolitana de Santiago,6,IPPU,idiosyncratic,2,3,grant / PES / TA,True,firm-actor: city is referrer,False
+1,Lo Barnechea,Región Metropolitana de Santiago,6,IPPU,semi_coordinated,2,18,programmatic / blended,True,firm-actor: city is referrer,False
+3,Tomé,Región del Bío-Bío,3,Waste,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+3,Tomé,Región del Bío-Bío,3,IPPU,highly_coordinated,2,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+3,Tomé,Región del Bío-Bío,3,IPPU,idiosyncratic,2,3,grant / PES / TA,True,firm-actor: city is referrer,False
+3,Tomé,Región del Bío-Bío,3,IPPU,semi_coordinated,2,18,programmatic / blended,True,firm-actor: city is referrer,False
+4,San Antonio,Región de Valparaíso,3,Transportation,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+4,San Antonio,Región de Valparaíso,3,Waste,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+5,Lampa,Región Metropolitana de Santiago,5,IPPU,highly_coordinated,2,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+5,Lampa,Región Metropolitana de Santiago,5,IPPU,idiosyncratic,2,3,grant / PES / TA,True,firm-actor: city is referrer,False
+5,Lampa,Región Metropolitana de Santiago,5,IPPU,semi_coordinated,2,18,programmatic / blended,True,firm-actor: city is referrer,False
+9,Coyhaique,Región de Aysén del Gral. Ibañez del Campo,9,Transportation,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+9,Coyhaique,Región de Aysén del Gral. Ibañez del Campo,9,Waste,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+11,Valdivia,Región de Los Ríos,6,Waste,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+14,Punta Arenas,Región de Magallanes y Antártica Chilena,3,Stationary Energy,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+16,Recoleta,Región Metropolitana de Santiago,3,Stationary Energy,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+16,Recoleta,Región Metropolitana de Santiago,3,Transportation,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+16,Recoleta,Región Metropolitana de Santiago,3,Waste,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+17,Puente Alto,Región Metropolitana de Santiago,4,Stationary Energy,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+17,Puente Alto,Región Metropolitana de Santiago,4,Transportation,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+17,Puente Alto,Región Metropolitana de Santiago,4,Waste,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+18,Iquique,Región de Tarapacá,7,Waste,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+22,San Pedro de Atacama,Región de Antofagasta,8,Transportation,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+22,San Pedro de Atacama,Región de Antofagasta,8,Waste,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+26,Concón,Región de Valparaíso,2,Stationary Energy,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+26,Concón,Región de Valparaíso,2,Transportation,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+26,Concón,Región de Valparaíso,2,Waste,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+26,Concón,Región de Valparaíso,2,IPPU,highly_coordinated,2,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+26,Concón,Región de Valparaíso,2,IPPU,idiosyncratic,2,3,grant / PES / TA,True,firm-actor: city is referrer,False
+26,Concón,Región de Valparaíso,2,IPPU,semi_coordinated,2,18,programmatic / blended,True,firm-actor: city is referrer,False
+29,Chillán Viejo,Región de Ñuble,4,Waste,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+29,Chillán Viejo,Región de Ñuble,4,IPPU,highly_coordinated,2,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+29,Chillán Viejo,Región de Ñuble,4,IPPU,idiosyncratic,2,3,grant / PES / TA,True,firm-actor: city is referrer,False
+29,Chillán Viejo,Región de Ñuble,4,IPPU,semi_coordinated,2,18,programmatic / blended,True,firm-actor: city is referrer,False
+30,Castro,Región de Los Lagos,4,Transportation,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+32,Pelluhue,Región del Maule,13,IPPU,highly_coordinated,2,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+32,Pelluhue,Región del Maule,13,IPPU,idiosyncratic,2,3,grant / PES / TA,True,firm-actor: city is referrer,False
+32,Pelluhue,Región del Maule,13,IPPU,semi_coordinated,2,18,programmatic / blended,True,firm-actor: city is referrer,False
+34,Algarrobo,Región de Valparaíso,2,Stationary Energy,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+34,Algarrobo,Región de Valparaíso,2,Transportation,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+35,Peñalolén,Región Metropolitana de Santiago,2,Stationary Energy,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+35,Peñalolén,Región Metropolitana de Santiago,2,Transportation,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+35,Peñalolén,Región Metropolitana de Santiago,2,Waste,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+37,Rengo,Región del Libertador Bernardo O'Higgins,5,Transportation,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+37,Rengo,Región del Libertador Bernardo O'Higgins,5,Waste,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+41,Talca,Región del Maule,4,Transportation,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+41,Talca,Región del Maule,4,Waste,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+41,Talca,Región del Maule,4,AFOLU,idiosyncratic,2,27,grant / PES / TA,True,municipal applicant,False
+42,Ovalle,Región de Coquimbo,4,Waste,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+43,Lago Ranco,Región de Los Ríos,3,Stationary Energy,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+43,Lago Ranco,Región de Los Ríos,3,AFOLU,idiosyncratic,2,27,grant / PES / TA,True,municipal applicant,False
+44,Nacimiento,Región del Bío-Bío,5,AFOLU,idiosyncratic,2,27,grant / PES / TA,True,municipal applicant,False
+45,Renca,Región Metropolitana de Santiago,2,Stationary Energy,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+45,Renca,Región Metropolitana de Santiago,2,Transportation,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+45,Renca,Región Metropolitana de Santiago,2,Waste,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+45,Renca,Región Metropolitana de Santiago,2,IPPU,highly_coordinated,2,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+45,Renca,Región Metropolitana de Santiago,2,IPPU,idiosyncratic,2,3,grant / PES / TA,True,firm-actor: city is referrer,False
+45,Renca,Región Metropolitana de Santiago,2,IPPU,semi_coordinated,2,18,programmatic / blended,True,firm-actor: city is referrer,False
+46,Quirihue,Región de Ñuble,4,Transportation,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+49,Coronel,Región del Bío-Bío,2,Stationary Energy,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+49,Coronel,Región del Bío-Bío,2,Transportation,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+49,Coronel,Región del Bío-Bío,2,Waste,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+49,Coronel,Región del Bío-Bío,2,IPPU,highly_coordinated,2,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+49,Coronel,Región del Bío-Bío,2,IPPU,idiosyncratic,2,3,grant / PES / TA,True,firm-actor: city is referrer,False
+49,Coronel,Región del Bío-Bío,2,IPPU,semi_coordinated,2,18,programmatic / blended,True,firm-actor: city is referrer,False
+51,La Ligua,Región de Valparaíso,5,Transportation,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+52,Pichilemu,Región del Libertador Bernardo O'Higgins,6,AFOLU,idiosyncratic,2,27,grant / PES / TA,True,municipal applicant,False
+54,Natales,Región de Magallanes y Antártica Chilena,3,AFOLU,idiosyncratic,2,27,grant / PES / TA,True,municipal applicant,False
+56,Curacautín,Región de La Araucanía,5,Transportation,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+56,Curacautín,Región de La Araucanía,5,Waste,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+56,Curacautín,Región de La Araucanía,5,AFOLU,idiosyncratic,2,27,grant / PES / TA,True,municipal applicant,False
+57,Arica,Región de Arica y Parinacota,4,IPPU,highly_coordinated,2,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+57,Arica,Región de Arica y Parinacota,4,IPPU,idiosyncratic,2,3,grant / PES / TA,True,firm-actor: city is referrer,False
+57,Arica,Región de Arica y Parinacota,4,IPPU,semi_coordinated,2,18,programmatic / blended,True,firm-actor: city is referrer,False
+59,Portezuelo,Región de Ñuble,3,IPPU,highly_coordinated,2,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+59,Portezuelo,Región de Ñuble,3,IPPU,idiosyncratic,2,3,grant / PES / TA,True,firm-actor: city is referrer,False
+59,Portezuelo,Región de Ñuble,3,IPPU,semi_coordinated,2,18,programmatic / blended,True,firm-actor: city is referrer,False
+60,Yungay,Región de Ñuble,3,AFOLU,idiosyncratic,2,27,grant / PES / TA,True,municipal applicant,False
+60,Yungay,Región de Ñuble,3,IPPU,highly_coordinated,2,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+60,Yungay,Región de Ñuble,3,IPPU,idiosyncratic,2,3,grant / PES / TA,True,firm-actor: city is referrer,False
+60,Yungay,Región de Ñuble,3,IPPU,semi_coordinated,2,18,programmatic / blended,True,firm-actor: city is referrer,False
+63,Buin,Región Metropolitana de Santiago,2,Stationary Energy,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+63,Buin,Región Metropolitana de Santiago,2,Transportation,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+63,Buin,Región Metropolitana de Santiago,2,Waste,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+63,Buin,Región Metropolitana de Santiago,2,IPPU,highly_coordinated,2,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+63,Buin,Región Metropolitana de Santiago,2,IPPU,idiosyncratic,2,3,grant / PES / TA,True,firm-actor: city is referrer,False
+63,Buin,Región Metropolitana de Santiago,2,IPPU,semi_coordinated,2,18,programmatic / blended,True,firm-actor: city is referrer,False
+64,Ancud,Región de Los Lagos,2,Stationary Energy,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+64,Ancud,Región de Los Lagos,2,AFOLU,idiosyncratic,2,27,grant / PES / TA,True,municipal applicant,False
+64,Ancud,Región de Los Lagos,2,IPPU,highly_coordinated,2,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+64,Ancud,Región de Los Lagos,2,IPPU,idiosyncratic,2,3,grant / PES / TA,True,firm-actor: city is referrer,False
+64,Ancud,Región de Los Lagos,2,IPPU,semi_coordinated,2,18,programmatic / blended,True,firm-actor: city is referrer,False
+66,Vallenar,Región de Atacama,5,Transportation,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False
+72,Curaco de Vélez,Región de Los Lagos,2,Stationary Energy,highly_coordinated,2,20,pooled grant/loan · ESCO · debt,False,municipal applicant,False
+72,Curaco de Vélez,Región de Los Lagos,2,Stationary Energy,idiosyncratic,2,2,grant / PES / TA,False,municipal applicant,False
+72,Curaco de Vélez,Región de Los Lagos,2,Stationary Energy,semi_coordinated,2,9,programmatic / blended,False,municipal applicant,False
+72,Curaco de Vélez,Región de Los Lagos,2,Transportation,highly_coordinated,2,1,pooled grant/loan · ESCO · debt,False,municipal applicant,False
+72,Curaco de Vélez,Región de Los Lagos,2,Transportation,idiosyncratic,2,2,grant / PES / TA,False,municipal applicant,False
+72,Curaco de Vélez,Región de Los Lagos,2,Transportation,semi_coordinated,2,5,programmatic / blended,False,municipal applicant,False
+72,Curaco de Vélez,Región de Los Lagos,2,AFOLU,idiosyncratic,2,27,grant / PES / TA,False,municipal applicant,False
+76,Porvenir,Región de Magallanes y Antártica Chilena,4,IPPU,highly_coordinated,2,5,pooled grant/loan · ESCO · debt,False,firm-actor: city is referrer,False
+76,Porvenir,Región de Magallanes y Antártica Chilena,4,IPPU,idiosyncratic,2,3,grant / PES / TA,False,firm-actor: city is referrer,False
+76,Porvenir,Región de Magallanes y Antártica Chilena,4,IPPU,semi_coordinated,2,18,programmatic / blended,False,firm-actor: city is referrer,False

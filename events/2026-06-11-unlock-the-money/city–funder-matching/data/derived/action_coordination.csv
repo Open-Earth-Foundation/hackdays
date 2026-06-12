@@ -1,0 +1,103 @@
+action_id,action_name,sector,intervention_type,cost,timeline,action_role,coordination_tier,what_pooled,instrument_class
+icare_0001,Improve heat and energy recovery,IPPU,,high,>10 years,outcome,semi_coordinated,project-prep & pipeline (feasibility + Bases),programmatic / blended
+icare_0002,Promote and expand the use of the Brazilian Energy Labeling Program for Buildings,Stationary Energy,program,low,<5 years,intervention,semi_coordinated,project-prep & pipeline (feasibility + Bases),programmatic / blended
+icare_0006,Develop integrated renewable energy planning and solar–battery microgrids for rural and peri-urban areas,Stationary Energy,planning,high,>10 years,intervention,highly_coordinated,capex (one procurement / facility),pooled grant/loan · ESCO · debt
+icare_0008,Enable smart grid integration and distributed energy storage through municipal collaboration and demonstration projects,Stationary Energy,infrastructure,high,5-10 years,intervention,semi_coordinated,project-prep & pipeline (feasibility + Bases),programmatic / blended
+icare_0009,Deploy cogeneration systems in industries,Stationary Energy,infrastructure,high,5-10 years,intervention,semi_coordinated,project-prep & pipeline (feasibility + Bases),programmatic / blended
+icare_0010,Promote Net-Zero and Green Building Certifications,Stationary Energy,program,medium,5-10 years,intervention,semi_coordinated,project-prep & pipeline (feasibility + Bases),programmatic / blended
+icare_0012,Expand solar energy generation on municipal facilities and public assets,Stationary Energy,infrastructure,medium,5-10 years,intervention,highly_coordinated,capex (one procurement / facility),pooled grant/loan · ESCO · debt
+icare_0015,Promote Mini and Micro-Hydropower and Biomass Energy,Stationary Energy,infrastructure,high,5-10 years,intervention,semi_coordinated,project-prep & pipeline (feasibility + Bases),programmatic / blended
+icare_0016,"Promote solar thermal and heat pump systems for water heating in residential, commercial, and public buildings",Stationary Energy,program,medium,<5 years,intervention,highly_coordinated,capex (one procurement / facility),pooled grant/loan · ESCO · debt
+icare_0023,Upgrade and maintain electrical substations,Stationary Energy,infrastructure,medium,5-10 years,intervention,highly_coordinated,capex (one procurement / facility),pooled grant/loan · ESCO · debt
+icare_0024,Integrate renewables into municipal water systems,Stationary Energy,infrastructure,medium,5-10 years,intervention,semi_coordinated,project-prep & pipeline (feasibility + Bases),programmatic / blended
+icare_0025,Promote energy-efficient and climate-resilient housing for low-income and informal settlements,Stationary Energy,program,medium,5-10 years,intervention,highly_coordinated,capex (one procurement / facility),pooled grant/loan · ESCO · debt
+icare_0026,Implement time-of-use electricity tariffs to enhance demand-side flexibility and efficiency,Stationary Energy,financial,low,<5 years,intervention,highly_coordinated,capex (one procurement / facility),pooled grant/loan · ESCO · debt
+icare_0027,Create financing programs for local renewable energy projects,Stationary Energy,financial,medium,5-10 years,intervention,semi_coordinated,project-prep & pipeline (feasibility + Bases),programmatic / blended
+icare_0028,"Promote passive cooling through natural shading and ventilation in residential, commercial, and public buildings",Stationary Energy,regulatory,low,<5 years,intervention,idiosyncratic,grants & technical assistance,grant / PES / TA
+icare_0031,Capture & Use Biogas at Wastewater Treatment Plants',Waste,,high,5-10 years,outcome,semi_coordinated,project-prep & pipeline (feasibility + Bases),programmatic / blended
+icare_0033,Install biodigesters in rural properties,Stationary Energy,infrastructure,medium,<5 years,intervention,highly_coordinated,capex (one procurement / facility),pooled grant/loan · ESCO · debt
+icare_0034,Improve Fuel Supply Systems for Industrial Heating,IPPU,,low,<5 years,outcome,semi_coordinated,project-prep & pipeline (feasibility + Bases),programmatic / blended
+icare_0035,Enhance industrial energy efficiency processes,Stationary Energy,infrastructure,medium,5-10 years,intervention,highly_coordinated,capex (one procurement / facility),pooled grant/loan · ESCO · debt
+icare_0040,Deploy energy-efficient and solar-powered street lighting across all neighborhoods,Stationary Energy,infrastructure,medium,5-10 years,intervention,highly_coordinated,capex (one procurement / facility),pooled grant/loan · ESCO · debt
+icare_0045,"Promote organic, regenerative and agroecological agriculture in rural areas",AFOLU,program,low,<5 years,intervention,idiosyncratic,grants & technical assistance,grant / PES / TA
+icare_0049,Develop regional hubs for renewable energy production,Stationary Energy,infrastructure,high,>10 years,intervention,semi_coordinated,project-prep & pipeline (feasibility + Bases),programmatic / blended
+icare_0050,Accelerate the adoption of Agroforestry',AFOLU,,medium,5-10 years,outcome,idiosyncratic,grants & technical assistance,grant / PES / TA
+icare_0053,Support cooperatives of voluntary waste collectors to aggregate into small enterprises and expand into organics management,Waste,program,medium,<5 years,intervention,semi_coordinated,project-prep & pipeline (feasibility + Bases),programmatic / blended
+icare_0064,Develop an organic waste management strategy,Waste,planning,medium,5-10 years,intervention,semi_coordinated,project-prep & pipeline (feasibility + Bases),programmatic / blended
+icare_0069,Complete ecological and agroclimatic mapping,AFOLU,planning,low,<5 years,intervention,idiosyncratic,grants & technical assistance,grant / PES / TA
+icare_0071,Increase efficiency of industrial furnaces and kilns,IPPU,,medium,5-10 years,outcome,highly_coordinated,capex (one procurement / facility),pooled grant/loan · ESCO · debt
+icare_0072,Improve Heat Recovery and Reuse through Heat Exchanger Networks or Heat Pumps,IPPU,,low,<5 years,outcome,highly_coordinated,capex (one procurement / facility),pooled grant/loan · ESCO · debt
+icare_0074,Adopt industrial energy efficiency technologies,IPPU,,medium,5-10 years,outcome,highly_coordinated,capex (one procurement / facility),pooled grant/loan · ESCO · debt
+icare_0076,Electrify Industrial Processes (with Renewable Power),IPPU,,medium,>10 years,outcome,semi_coordinated,project-prep & pipeline (feasibility + Bases),programmatic / blended
+icare_0078,Decarbonize industrial feedstocks,IPPU,,medium,5-10 years,outcome,semi_coordinated,project-prep & pipeline (feasibility + Bases),programmatic / blended
+icare_0079,Implement carbon capture and utilization (CCU),IPPU,infrastructure,low,<5 years,intervention,semi_coordinated,project-prep & pipeline (feasibility + Bases),programmatic / blended
+icare_0082,Implement carbon capture and storage (CCS),IPPU,infrastructure,high,>10 years,intervention,semi_coordinated,project-prep & pipeline (feasibility + Bases),programmatic / blended
+icare_0099,Increase local participation in Agroecological Certification Programmes,AFOLU,,low,<5 years,outcome,idiosyncratic,grants & technical assistance,grant / PES / TA
+icare_0101,Accelerate the adoption of Zero Emission Agricultural Machinery,AFOLU,,medium,5-10 years,outcome,idiosyncratic,grants & technical assistance,grant / PES / TA
+icare_0104,Adopt hybrid renewable energy systems (solar-wind),Stationary Energy,,high,>10 years,outcome,highly_coordinated,capex (one procurement / facility),pooled grant/loan · ESCO · debt
+icare_0105,Reduce technical losses in energy distribution networks,Stationary Energy,,medium,5-10 years,outcome,semi_coordinated,project-prep & pipeline (feasibility + Bases),programmatic / blended
+icare_0110,"Regulate Construction and Demolition Waste Management to improve deconstruction, segregation at source, reutilization and recycling",Waste,regulatory,medium,<5 years,intervention,semi_coordinated,project-prep & pipeline (feasibility + Bases),programmatic / blended
+icare_0111,Strengthen Extended Producer Responsibility (EPR) Systems,Waste,regulatory,medium,5-10 years,intervention,idiosyncratic,grants & technical assistance,grant / PES / TA
+icare_0117,Improve public transport systems to promote modal shift,Transportation,,medium,5-10 years,outcome,semi_coordinated,project-prep & pipeline (feasibility + Bases),programmatic / blended
+icare_0120,"Implement energy efficiency criteria and indicators in the procurement of goods, services, or works by the municipal public administration.",Stationary Energy,regulatory,low,<5 years,intervention,highly_coordinated,capex (one procurement / facility),pooled grant/loan · ESCO · debt
+icare_0121,"Incentive to create bike-sharing programs in urban areas, with a focus on electric bikes.",Transportation,financial,medium,<5 years,intervention,semi_coordinated,project-prep & pipeline (feasibility + Bases),programmatic / blended
+icare_0122,Establish eco-parks.,AFOLU,infrastructure,medium,<5 years,intervention,idiosyncratic,grants & technical assistance,grant / PES / TA
+icare_0127,Improve Accelerate Environmental Regularization of Rural Properties,AFOLU,,medium,5-10 years,outcome,idiosyncratic,grants & technical assistance,grant / PES / TA
+icare_0128,Establish Municipal Programs for Payment for Environmental Services and other ecological financial incentives,AFOLU,financial,medium,5-10 years,intervention,idiosyncratic,grants & technical assistance,grant / PES / TA
+icare_0131,Prioritize Procurement of Locally Produced Agroecological Products in Public Purchases,AFOLU,regulatory,low,<5 years,intervention,idiosyncratic,grants & technical assistance,grant / PES / TA
+icare_0132,Encourage Local Agroecological Production and Short Supply Chains,AFOLU,program,low,<5 years,intervention,idiosyncratic,grants & technical assistance,grant / PES / TA
+icare_0137,Replace Inefficient Lighting with LED Technology in Public Spaces,Stationary Energy,infrastructure,medium,<5 years,intervention,highly_coordinated,capex (one procurement / facility),pooled grant/loan · ESCO · debt
+icare_0139,Implement congestion pricing and restrictions on high-polluting vehicles,Transportation,regulatory,low,<5 years,intervention,idiosyncratic,grants & technical assistance,grant / PES / TA
+c40_0010,Introduce energy-efficiency standards for new residential buildings,Stationary Energy,regulatory,low,<5 years,intervention,highly_coordinated,capex (one procurement / facility),pooled grant/loan · ESCO · debt
+c40_0012,Introduce energy-efficiency standards for new institutional buildings,Stationary Energy,regulatory,low,<5 years,intervention,highly_coordinated,capex (one procurement / facility),pooled grant/loan · ESCO · debt
+c40_0013,Support Implementation of Industrial Building Efficiency Standards.,Stationary Energy,regulatory,low,<5 years,intervention,highly_coordinated,capex (one procurement / facility),pooled grant/loan · ESCO · debt
+c40_0015,Retrofit residential buildings for energy efficiency,Stationary Energy,infrastructure,low,<5 years,intervention,highly_coordinated,capex (one procurement / facility),pooled grant/loan · ESCO · debt
+c40_0016,Retrofit commercial and institutional other non-residential buildings for energy efficiency,Stationary Energy,infrastructure,low,<5 years,intervention,highly_coordinated,capex (one procurement / facility),pooled grant/loan · ESCO · debt
+c40_0017,Retrofit municipal buildings for energy efficiency,Stationary Energy,infrastructure,low,<5 years,intervention,highly_coordinated,capex (one procurement / facility),pooled grant/loan · ESCO · debt
+c40_0018,Optimize energy efficiency and sustainability standards for existing industrial infrastructure,Stationary Energy,regulatory,low,<5 years,intervention,highly_coordinated,capex (one procurement / facility),pooled grant/loan · ESCO · debt
+c40_0023,Adopt zero-emission bus fleets for public transport,Transportation,,high,<5 years,outcome,semi_coordinated,project-prep & pipeline (feasibility + Bases),programmatic / blended
+c40_0025,Promote deployment of zero-emission freight fleets (trucks),Transportation,program,medium,<5 years,intervention,semi_coordinated,project-prep & pipeline (feasibility + Bases),programmatic / blended
+c40_0029,Electrify municipal vehicle fleets,Transportation,,high,5-10 years,outcome,semi_coordinated,project-prep & pipeline (feasibility + Bases),programmatic / blended
+c40_0034,Enact and enforce material bans in order to restrict single use and non-recyclable materials,Waste,regulatory,low,<5 years,intervention,semi_coordinated,project-prep & pipeline (feasibility + Bases),programmatic / blended
+c40_0035,Optmize waste management systems,Waste,planning,medium,<5 years,intervention,idiosyncratic,grants & technical assistance,grant / PES / TA
+c40_0036,Upgrade Landfills to Engineered Sanitary Landfills with Gas Capture.,Waste,infrastructure,medium,<5 years,intervention,highly_coordinated,capex (one procurement / facility),pooled grant/loan · ESCO · debt
+c40_0037,"Implement residential and business segregated collection of recyclables, organic, and residual waste",Waste,program,medium,<5 years,intervention,semi_coordinated,project-prep & pipeline (feasibility + Bases),programmatic / blended
+c40_0040,Implement Volume-Based Collection policy,Waste,regulatory,low,5-10 years,intervention,semi_coordinated,project-prep & pipeline (feasibility + Bases),programmatic / blended
+c40_0042,Expand urban and peri-urban green spaces,AFOLU,infrastructure,low,5-10 years,intervention,idiosyncratic,grants & technical assistance,grant / PES / TA
+c40_0071,Promote the phase out the reliance on fossil fuels for cooking (in favour of high-efficiency electric cookstoves such as induction stoves).,Stationary Energy,program,low,5-10 years,intervention,highly_coordinated,capex (one procurement / facility),pooled grant/loan · ESCO · debt
+ipcc_0001,Promote compact urban form and transit-oriented development,Transportation,planning,high,>10 years,intervention,idiosyncratic,grants & technical assistance,grant / PES / TA
+ipcc_0023,Design products with lightweight materials,IPPU,program,high,5-10 years,intervention,semi_coordinated,project-prep & pipeline (feasibility + Bases),programmatic / blended
+ipcc_0024,Improve material utilization efficiency in production,IPPU,,high,5-10 years,outcome,highly_coordinated,capex (one procurement / facility),pooled grant/loan · ESCO · debt
+ipcc_0025,"Design for Recovery, Reuse, or Repurposing",IPPU,program,high,5-10 years,intervention,semi_coordinated,project-prep & pipeline (feasibility + Bases),programmatic / blended
+ipcc_0026,Adopt alternative feedstocks in industrial production,IPPU,,high,5-10 years,outcome,semi_coordinated,project-prep & pipeline (feasibility + Bases),programmatic / blended
+ipcc_0028,"Behavioral Changes for Reduced Waste (e.g., Food)",AFOLU,,high,5-10 years,outcome,idiosyncratic,grants & technical assistance,grant / PES / TA
+ipcc_0031,Enhanced product service levels per product (e.g. product sharing),IPPU,,high,5-10 years,outcome,semi_coordinated,project-prep & pipeline (feasibility + Bases),programmatic / blended
+ipcc_0033,Improve product maintenance to extend lifespan,IPPU,,high,5-10 years,outcome,semi_coordinated,project-prep & pipeline (feasibility + Bases),programmatic / blended
+ipcc_0034,Promote consumer behavior focused on sufficiency and reduced consumption,AFOLU,program,high,5-10 years,intervention,idiosyncratic,grants & technical assistance,grant / PES / TA
+ipcc_0037,Adopt net-zero-emissions materials and supply chains,IPPU,,high,>10 years,outcome,semi_coordinated,project-prep & pipeline (feasibility + Bases),programmatic / blended
+ipcc_0038,Stimulate solar energy production in industrial facilities,IPPU,infrastructure,high,5-10 years,intervention,highly_coordinated,capex (one procurement / facility),pooled grant/loan · ESCO · debt
+ipcc_0039,Promote the substitution of traditional materials with sustainable alternatives,IPPU,program,high,>10 years,intervention,semi_coordinated,project-prep & pipeline (feasibility + Bases),programmatic / blended
+ipcc_0040,Promote industry-government collaborations on emissions reduction,IPPU,planning,medium,5-10 years,intervention,idiosyncratic,grants & technical assistance,grant / PES / TA
+ipcc_0041,Support research into carbon-neutral manufacturing technologies,IPPU,program,medium,5-10 years,intervention,semi_coordinated,project-prep & pipeline (feasibility + Bases),programmatic / blended
+ipcc_0042,Set carbon emissions reduction targets for industrial sectors,IPPU,regulatory,high,5-10 years,intervention,idiosyncratic,grants & technical assistance,grant / PES / TA
+ipcc_0043,Encourage the Use of Zero-Emission Fuels in Industrial Processes,IPPU,program,high,5-10 years,intervention,semi_coordinated,project-prep & pipeline (feasibility + Bases),programmatic / blended
+ipcc_0045,Transition to renewable energy for industrial operations,IPPU,,medium,<5 years,outcome,semi_coordinated,project-prep & pipeline (feasibility + Bases),programmatic / blended
+ipcc_0049,Develop and implement circular economy policies,IPPU,regulatory,medium,5-10 years,intervention,idiosyncratic,grants & technical assistance,grant / PES / TA
+ipcc_0050,Create tax incentives for companies adopting clean technologies,IPPU,financial,low,<5 years,intervention,semi_coordinated,project-prep & pipeline (feasibility + Bases),programmatic / blended
+ipcc_0052,Reduce Deforestation and Degradation,AFOLU,,medium,5-10 years,outcome,idiosyncratic,grants & technical assistance,grant / PES / TA
+ipcc_0053,"Implement afforestation, reforestation, and forest ecosystem restoration",AFOLU,infrastructure,high,5-10 years,intervention,idiosyncratic,grants & technical assistance,grant / PES / TA
+ipcc_0054,Adopt sustainable forest management practices,AFOLU,,high,5-10 years,outcome,idiosyncratic,grants & technical assistance,grant / PES / TA
+ipcc_0055,"Implement fire management in forests, grasslands, and savannas",AFOLU,infrastructure,medium,5-10 years,intervention,idiosyncratic,grants & technical assistance,grant / PES / TA
+ipcc_0056,Reduce and prevent degradation and conversion of Grasslands and Savannas,AFOLU,,medium,5-10 years,outcome,idiosyncratic,grants & technical assistance,grant / PES / TA
+ipcc_0057,Restore degraded peatlands and prevent further conversion or degradation.,AFOLU,,high,5-10 years,outcome,idiosyncratic,grants & technical assistance,grant / PES / TA
+ipcc_0060,Protect and Restore Coastal Wetlands,AFOLU,,high,>10 years,outcome,idiosyncratic,grants & technical assistance,grant / PES / TA
+ipcc_0062,Create partnerships to implement biochar plants.,AFOLU,program,high,5-10 years,intervention,idiosyncratic,grants & technical assistance,grant / PES / TA
+ipcc_0064,Reduce methane emissions from enteric fermentation in livestock,AFOLU,,medium,5-10 years,outcome,idiosyncratic,grants & technical assistance,grant / PES / TA
+ipcc_0067,Improve manure management and crop nutrient practices,AFOLU,,high,5-10 years,outcome,idiosyncratic,grants & technical assistance,grant / PES / TA
+ipcc_0068,Pilot Bioenergy with Carbon Capture in Partnership with Utilities/Industry.,AFOLU,program,high,>10 years,intervention,idiosyncratic,grants & technical assistance,grant / PES / TA
+ipcc_0069,Promote sustainable and healthy diets,AFOLU,program,medium,5-10 years,intervention,idiosyncratic,grants & technical assistance,grant / PES / TA
+ipcc_0070,Reduce food loss and waste,AFOLU,,medium,5-10 years,outcome,idiosyncratic,grants & technical assistance,grant / PES / TA
+ipcc_0071,Increase sustainable use of wood products,AFOLU,,medium,5-10 years,outcome,idiosyncratic,grants & technical assistance,grant / PES / TA
+ipcc_0074,Promote compact urban form through spatial planning,Stationary Energy,planning,high,>10 years,intervention,idiosyncratic,grants & technical assistance,grant / PES / TA
+ipcc_0076,Implement energy audits in industrial plants,IPPU,program,high,>10 years,intervention,semi_coordinated,project-prep & pipeline (feasibility + Bases),programmatic / blended
+ipcc_0105,Promote active mobility through road space reallocation,Transportation,infrastructure,medium,<5 years,intervention,highly_coordinated,capex (one procurement / facility),pooled grant/loan · ESCO · debt

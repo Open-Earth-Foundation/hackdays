@@ -1,0 +1,7 @@
+# Notebook deps (notebooks/analyze.ipynb)
+geopandas
+pandas
+folium>=0.12
+branca
+matplotlib
+mapclassify

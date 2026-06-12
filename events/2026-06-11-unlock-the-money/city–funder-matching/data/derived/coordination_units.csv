@@ -1,0 +1,346 @@
+unit_id,comuna,region,locode,anchor_score,cofinance_score,is_anchor,unit_anchor,unit_anchor_score,unit_size,unit_viable_anchor
+0,Providencia,Región Metropolitana de Santiago,CL PRO,98.1,95.1,True,Providencia,98.1,3,True
+0,Ñuñoa,Región Metropolitana de Santiago,CL NUN,84.1,89.5,False,Providencia,98.1,3,True
+0,Santiago,Región Metropolitana de Santiago,CL SCL,67.0,93.0,False,Providencia,98.1,3,True
+1,Lo Barnechea,Región Metropolitana de Santiago,CL LBA,96.6,99.3,True,Lo Barnechea,96.6,6,True
+1,Vitacura,Región Metropolitana de Santiago,CL VIT,83.6,97.3,False,Lo Barnechea,96.6,6,True
+1,Huechuraba,Región Metropolitana de Santiago,CL HUE,83.1,96.6,False,Lo Barnechea,96.6,6,True
+1,Colina,Región Metropolitana de Santiago,CL CLN,57.0,90.7,False,Lo Barnechea,96.6,6,True
+1,San José de Maipo,Región Metropolitana de Santiago,CL SJM,34.8,82.5,False,Lo Barnechea,96.6,6,True
+1,Las Condes,Región Metropolitana de Santiago,,,,False,Lo Barnechea,96.6,6,True
+2,Valparaíso,Región de Valparaíso,CL VAP,92.3,59.4,True,Valparaíso,92.3,5,True
+2,Quilpué,Región de Valparaíso,CL QIL,73.7,41.0,False,Valparaíso,92.3,5,True
+2,Viña del Mar,Región de Valparaíso,CL KNA,73.6,94.9,False,Valparaíso,92.3,5,True
+2,Casablanca,Región de Valparaíso,CL CAS,58.2,92.2,False,Valparaíso,92.3,5,True
+2,Olmué,Región de Valparaíso,CL OLM,25.4,70.9,False,Valparaíso,92.3,5,True
+3,Tomé,Región del Bío-Bío,CL TOM,90.6,23.1,True,Tomé,90.6,3,True
+3,Penco,Región del Bío-Bío,CL PEO,75.6,48.7,False,Tomé,90.6,3,True
+3,Florida,Región del Bío-Bío,CL FLO,44.6,13.5,False,Tomé,90.6,3,True
+4,San Antonio,Región de Valparaíso,CL SAI,90.5,70.6,True,San Antonio,90.5,3,True
+4,Santo Domingo,Región de Valparaíso,CL RSD,79.6,98.2,False,San Antonio,90.5,3,True
+4,Cartagena,Región de Valparaíso,CL CGN,62.1,16.0,False,San Antonio,90.5,3,True
+5,Lampa,Región Metropolitana de Santiago,CL LAM,88.1,87.2,True,Lampa,88.1,5,True
+5,Pudahuel,Región Metropolitana de Santiago,CL PUD,75.8,84.6,False,Lampa,88.1,5,True
+5,Curacaví,Región Metropolitana de Santiago,CL CRV,32.3,78.6,False,Lampa,88.1,5,True
+5,Tiltil,Región Metropolitana de Santiago,CL TIL,23.5,69.6,False,Lampa,88.1,5,True
+5,María Pinto,Región Metropolitana de Santiago,CL MPI,40.5,72.6,False,Lampa,88.1,5,True
+6,Macul,Región Metropolitana de Santiago,CL MAC,86.7,77.6,True,Macul,86.7,3,True
+6,La Florida,Región Metropolitana de Santiago,CL LFL,79.4,64.8,False,Macul,86.7,3,True
+6,San Joaquín,Región Metropolitana de Santiago,CL SJQ,64.5,82.2,False,Macul,86.7,3,True
+7,Concepción,Región del Bío-Bío,CL CCP,86.3,89.5,True,Concepción,86.3,7,True
+7,San Pedro de la Paz,Región del Bío-Bío,CL SPP,86.2,73.1,False,Concepción,86.3,7,True
+7,Chiguayante,Región del Bío-Bío,CL CHI,76.3,51.2,False,Concepción,86.3,7,True
+7,Hualpén,Región del Bío-Bío,CL HPN,71.7,69.5,False,Concepción,86.3,7,True
+7,Hualqui,Región del Bío-Bío,CL HQI,67.1,17.6,False,Concepción,86.3,7,True
+7,Talcahuano,Región del Bío-Bío,CL TAL,60.5,85.4,False,Concepción,86.3,7,True
+7,San Rosendo,Región del Bío-Bío,CL SRO,30.4,4.3,False,Concepción,86.3,7,True
+8,La Serena,Región de Coquimbo,CL LSC,84.9,74.4,True,La Serena,84.9,6,True
+8,Coquimbo,Región de Coquimbo,CL CQQ,83.4,83.1,False,La Serena,84.9,6,True
+8,Vicuña,Región de Coquimbo,CL VIC,45.8,40.0,False,La Serena,84.9,6,True
+8,Andacollo,Región de Coquimbo,CL AND,19.8,56.7,False,La Serena,84.9,6,True
+8,La Higuera,Región de Coquimbo,,,,False,La Serena,84.9,6,True
+8,Paihuano,Región de Coquimbo,,,,False,La Serena,84.9,6,True
+9,Coyhaique,Región de Aysén del Gral. Ibañez del Campo,CL CXQ,83.3,66.2,True,Coyhaique,83.3,9,True
+9,Aysén,Región de Aysén del Gral. Ibañez del Campo,CL PSN,64.7,66.6,False,Coyhaique,83.3,9,True
+9,Río Ibáñez,Región de Aysén del Gral. Ibañez del Campo,CL RIB,34.0,34.2,False,Coyhaique,83.3,9,True
+9,Lago Verde,Región de Aysén del Gral. Ibañez del Campo,CL LVD,2.6,47.3,False,Coyhaique,83.3,9,True
+9,Cisnes,Región de Aysén del Gral. Ibañez del Campo,,,,False,Coyhaique,83.3,9,True
+9,Cochrane,Región de Aysén del Gral. Ibañez del Campo,CL COC,35.3,22.3,False,Coyhaique,83.3,9,True
+9,O'Higgins,Región de Aysén del Gral. Ibañez del Campo,CL OHI,32.2,27.8,False,Coyhaique,83.3,9,True
+9,Tortel,Región de Aysén del Gral. Ibañez del Campo,,,,False,Coyhaique,83.3,9,True
+9,Chile Chico,Región de Aysén del Gral. Ibañez del Campo,CL CCH,37.4,35.8,False,Coyhaique,83.3,9,True
+10,Peñaflor,Región Metropolitana de Santiago,CL PFL,82.4,50.1,True,Peñaflor,82.4,6,True
+10,Melipilla,Región Metropolitana de Santiago,CL MEL,65.1,28.4,False,Peñaflor,82.4,6,True
+10,Padre Hurtado,Región Metropolitana de Santiago,CL PHU,60.2,69.4,False,Peñaflor,82.4,6,True
+10,El Monte,Región Metropolitana de Santiago,CL ELM,49.3,60.4,False,Peñaflor,82.4,6,True
+10,Talagante,Región Metropolitana de Santiago,CL TLG,48.5,55.8,False,Peñaflor,82.4,6,True
+10,Calera de Tango,Región Metropolitana de Santiago,CL CDT,47.3,80.6,False,Peñaflor,82.4,6,True
+11,Valdivia,Región de Los Ríos,CL ZAL,82.2,65.7,True,Valdivia,82.2,6,True
+11,Paillaco,Región de Los Ríos,CL PAO,63.6,43.5,False,Valdivia,82.2,6,True
+11,Los Lagos,Región de Los Ríos,CL LLG,45.2,42.8,False,Valdivia,82.2,6,True
+11,Corral,Región de Los Ríos,CL CRR,27.9,10.7,False,Valdivia,82.2,6,True
+11,Máfil,Región de Los Ríos,CL MAF,22.5,25.5,False,Valdivia,82.2,6,True
+11,Mariquina,Región de Los Ríos,,,,False,Valdivia,82.2,6,True
+12,Rancagua,Región del Libertador Bernardo O'Higgins,CL QRC,82.1,61.4,True,Rancagua,82.1,8,True
+12,Machalí,Región del Libertador Bernardo O'Higgins,CL MCI,77.0,82.1,False,Rancagua,82.1,8,True
+12,Doñihue,Región del Libertador Bernardo O'Higgins,CL DOH,61.9,45.6,False,Rancagua,82.1,8,True
+12,Requínoa,Región del Libertador Bernardo O'Higgins,CL REQ,55.7,79.8,False,Rancagua,82.1,8,True
+12,Codegua,Región del Libertador Bernardo O'Higgins,CL COD,41.0,46.0,False,Rancagua,82.1,8,True
+12,Olivar,Región del Libertador Bernardo O'Higgins,CL OLI,36.9,64.9,False,Rancagua,82.1,8,True
+12,Graneros,Región del Libertador Bernardo O'Higgins,CL GRA,27.1,34.6,False,Rancagua,82.1,8,True
+12,Mostazal,Región del Libertador Bernardo O'Higgins,CL MOS,42.2,95.5,False,Rancagua,82.1,8,True
+13,Caldera,Región de Atacama,CL CLD,81.7,53.1,True,Caldera,81.7,4,True
+13,Copiapó,Región de Atacama,CL CPO,60.8,76.4,False,Caldera,81.7,4,True
+13,Chañaral,Región de Atacama,CL CNR,28.8,77.9,False,Caldera,81.7,4,True
+13,Diego de Almagro,Región de Atacama,CL DDA,46.1,88.3,False,Caldera,81.7,4,True
+14,Punta Arenas,Región de Magallanes y Antártica Chilena,CL PUQ,81.5,79.3,True,Punta Arenas,81.5,3,True
+14,San Gregorio,Región de Magallanes y Antártica Chilena,CL SGR,39.0,55.5,False,Punta Arenas,81.5,3,True
+14,Laguna Blanca,Región de Magallanes y Antártica Chilena,,,,False,Punta Arenas,81.5,3,True
+15,Lo Espejo,Región Metropolitana de Santiago,CL LEJ,81.5,19.1,True,Lo Espejo,81.5,6,True
+15,La Cisterna,Región Metropolitana de Santiago,CL LCI,79.8,76.5,False,Lo Espejo,81.5,6,True
+15,San Bernardo,Región Metropolitana de Santiago,CL SBD,66.2,69.5,False,Lo Espejo,81.5,6,True
+15,Cerrillos,Región Metropolitana de Santiago,CL CER,60.5,91.6,False,Lo Espejo,81.5,6,True
+15,Pedro Aguirre Cerda,Región Metropolitana de Santiago,,,,False,Lo Espejo,81.5,6,True
+15,El Bosque,Región Metropolitana de Santiago,,,,False,Lo Espejo,81.5,6,True
+16,Recoleta,Región Metropolitana de Santiago,CL REC,80.5,86.3,True,Recoleta,80.5,3,True
+16,Independencia,Región Metropolitana de Santiago,CL IND,56.8,67.1,False,Recoleta,80.5,3,True
+16,Conchalí,Región Metropolitana de Santiago,,,,False,Recoleta,80.5,3,True
+17,Puente Alto,Región Metropolitana de Santiago,CL PTA,80.5,26.6,True,Puente Alto,80.5,4,True
+17,Pirque,Región Metropolitana de Santiago,CL PIR,48.7,89.0,False,Puente Alto,80.5,4,True
+17,La Pintana,Región Metropolitana de Santiago,,,,False,Puente Alto,80.5,4,True
+17,San Ramón,Región Metropolitana de Santiago,,,,False,Puente Alto,80.5,4,True
+18,Iquique,Región de Tarapacá,CL IQQ,80.4,88.1,True,Iquique,80.4,7,True
+18,Alto Hospicio,Región de Tarapacá,CL AHP,68.0,31.8,False,Iquique,80.4,7,True
+18,Huara,Región de Tarapacá,CL HUA,36.4,63.7,False,Iquique,80.4,7,True
+18,Tocopilla,Región de Tarapacá,,,,False,Iquique,80.4,7,True
+18,Camiña,Región de Tarapacá,CL CMA,2.9,6.3,False,Iquique,80.4,7,True
+18,Colchane,Región de Tarapacá,CL CNE,33.7,46.1,False,Iquique,80.4,7,True
+18,Pica,Región de Tarapacá,CL PIC,47.8,93.7,False,Iquique,80.4,7,True
+19,Santa Cruz,Región del Libertador Bernardo O'Higgins,CL SCZ,80.0,72.2,True,Santa Cruz,80.0,9,True
+19,Lolol,Región del Libertador Bernardo O'Higgins,CL LOL,56.5,47.6,False,Santa Cruz,80.0,9,True
+19,Nancagua,Región del Libertador Bernardo O'Higgins,CL NCG,52.2,59.9,False,Santa Cruz,80.0,9,True
+19,Chépica,Región del Libertador Bernardo O'Higgins,CL CHE,46.7,34.3,False,Santa Cruz,80.0,9,True
+19,San Vicente,Región del Libertador Bernardo O'Higgins,CL SVT,45.1,48.0,False,Santa Cruz,80.0,9,True
+19,Palmilla,Región del Libertador Bernardo O'Higgins,CL PMA,43.1,67.0,False,Santa Cruz,80.0,9,True
+19,Chimbarongo,Región del Libertador Bernardo O'Higgins,CL CBG,50.9,35.6,False,Santa Cruz,80.0,9,True
+19,Peralillo,Región del Libertador Bernardo O'Higgins,CL PER,34.8,67.2,False,Santa Cruz,80.0,9,True
+19,Placilla,Región del Libertador Bernardo O'Higgins,CL PLA,41.9,37.4,False,Santa Cruz,80.0,9,True
+20,Panguipulli,Región de Los Ríos,CL PAN,79.6,49.4,True,Panguipulli,79.6,3,True
+20,Lanco,Región de Los Ríos,CL LAN,45.1,21.5,False,Panguipulli,79.6,3,True
+20,Futrono,Región de Los Ríos,CL FUT,44.1,59.9,False,Panguipulli,79.6,3,True
+21,Puchuncaví,Región de Valparaíso,CL PCI,79.2,91.3,True,Puchuncaví,79.2,11,True
+21,Quillota,Región de Valparaíso,CL QTA,73.7,60.5,False,Puchuncaví,79.2,11,True
+21,La Cruz,Región de Valparaíso,CL LCZ,37.8,55.6,False,Puchuncaví,79.2,11,True
+21,Nogales,Región de Valparaíso,CL NOG,28.5,55.3,False,Puchuncaví,79.2,11,True
+21,Quintero,Región de Valparaíso,,,,False,Puchuncaví,79.2,11,True
+21,Zapallar,Región de Valparaíso,,,,False,Puchuncaví,79.2,11,True
+21,Calera,Región de Valparaíso,CL LCL,47.3,49.0,False,Puchuncaví,79.2,11,True
+21,Hijuelas,Región de Valparaíso,CL HIJ,29.6,63.1,False,Puchuncaví,79.2,11,True
+21,Catemu,Región de Valparaíso,CL CAT,43.3,48.0,False,Puchuncaví,79.2,11,True
+21,Llaillay,Región de Valparaíso,CL LLA,29.8,40.7,False,Puchuncaví,79.2,11,True
+21,Panquehue,Región de Valparaíso,CL PQH,43.2,76.3,False,Puchuncaví,79.2,11,True
+22,San Pedro de Atacama,Región de Antofagasta,CL SPA,77.9,51.7,True,San Pedro de Atacama,77.9,8,True
+22,Antofagasta,Región de Antofagasta,CL ANF,76.2,81.5,False,San Pedro de Atacama,77.9,8,True
+22,Sierra Gorda,Región de Antofagasta,CL SIG,68.2,96.5,False,San Pedro de Atacama,77.9,8,True
+22,Calama,Región de Antofagasta,CL CJC,59.0,77.2,False,San Pedro de Atacama,77.9,8,True
+22,Mejillones,Región de Antofagasta,CL MJS,49.7,94.0,False,San Pedro de Atacama,77.9,8,True
+22,Taltal,Región de Antofagasta,CL TTC,35.6,85.5,False,San Pedro de Atacama,77.9,8,True
+22,Ollagüe,Región de Antofagasta,CL OLL,31.5,68.3,False,San Pedro de Atacama,77.9,8,True
+22,María Elena,Región de Antofagasta,CL MAE,36.5,82.2,False,San Pedro de Atacama,77.9,8,True
+23,Alhué,Región Metropolitana de Santiago,CL ALH,77.6,89.7,True,Alhué,77.6,3,True
+23,Paine,Región Metropolitana de Santiago,CL PNE,51.6,79.3,False,Alhué,77.6,3,True
+23,San Pedro,Región Metropolitana de Santiago,CL SPE,9.1,44.4,False,Alhué,77.6,3,True
+24,Puerto Montt,Región de Los Lagos,CL PMC,77.5,81.4,True,Puerto Montt,77.5,11,True
+24,Puerto Varas,Región de Los Lagos,CL PVS,71.1,93.3,False,Puerto Montt,77.5,11,True
+24,Los Muermos,Región de Los Lagos,CL LMU,54.6,31.2,False,Puerto Montt,77.5,11,True
+24,Calbuco,Región de Los Lagos,CL CBC,27.4,58.7,False,Puerto Montt,77.5,11,True
+24,Maullín,Región de Los Lagos,CL MLL,13.9,32.8,False,Puerto Montt,77.5,11,True
+24,Cochamó,Región de Los Lagos,,,,False,Puerto Montt,77.5,11,True
+24,Fresia,Región de Los Lagos,CL FRS,33.4,30.5,False,Puerto Montt,77.5,11,True
+24,Frutillar,Región de Los Lagos,CL FRT,43.9,82.3,False,Puerto Montt,77.5,11,True
+24,Llanquihue,Región de Los Lagos,CL LIA,33.2,68.3,False,Puerto Montt,77.5,11,True
+24,Purranque,Región de Los Lagos,CL PRQ,38.2,59.3,False,Puerto Montt,77.5,11,True
+24,Hualaihué,Región de Los Lagos,,,,False,Puerto Montt,77.5,11,True
+25,San Carlos,Región de Ñuble,CL SCR,77.3,32.1,True,San Carlos,77.3,7,True
+25,Chillán,Región de Ñuble,CL YAI,71.2,71.5,False,San Carlos,77.3,7,True
+25,Coihueco,Región de Ñuble,CL COI,48.5,16.6,False,San Carlos,77.3,7,True
+25,San Nicolás,Región de Ñuble,CL SNI,42.4,65.9,False,San Carlos,77.3,7,True
+25,San Fabián,Región de Ñuble,CL SFN,40.2,45.7,False,San Carlos,77.3,7,True
+25,Ñiquén,Región de Ñuble,CL NQN,37.6,27.8,False,San Carlos,77.3,7,True
+25,Quillón,Región de Ñuble,CL QIN,41.8,19.6,False,San Carlos,77.3,7,True
+26,Concón,Región de Valparaíso,CL CON,77.0,94.5,True,Concón,77.0,2,True
+26,Limache,Región de Valparaíso,CL LIM,62.3,48.5,False,Concón,77.0,2,True
+27,Osorno,Región de Los Lagos,CL ZOS,77.0,79.6,True,Osorno,77.0,6,True
+27,San Pablo,Región de Los Lagos,CL SPB,46.1,51.5,False,Osorno,77.0,6,True
+27,Río Negro,Región de Los Lagos,CL RNE,43.9,39.0,False,Osorno,77.0,6,True
+27,San Juan de la Costa,Región de Los Lagos,CL SJC,31.9,5.0,False,Osorno,77.0,6,True
+27,Puerto Octay,Región de Los Lagos,CL POC,25.6,69.0,False,Osorno,77.0,6,True
+27,Puyehue,Región de Los Lagos,CL CSA,,68.2,False,Osorno,77.0,6,True
+28,Padre Las Casas,Región de La Araucanía,CL PLC,76.8,27.5,True,Padre Las Casas,76.8,12,True
+28,Vilcún,Región de La Araucanía,CL VCN,70.8,24.4,False,Padre Las Casas,76.8,12,True
+28,Temuco,Región de La Araucanía,CL ZCO,68.2,75.6,False,Padre Las Casas,76.8,12,True
+28,Nueva Imperial,Región de La Araucanía,CL NIM,66.9,14.0,False,Padre Las Casas,76.8,12,True
+28,Cunco,Región de La Araucanía,CL CUN,43.7,45.3,False,Padre Las Casas,76.8,12,True
+28,Freire,Región de La Araucanía,CL FRE,29.7,26.7,False,Padre Las Casas,76.8,12,True
+28,Carahue,Región de La Araucanía,CL CAR,43.4,4.3,False,Padre Las Casas,76.8,12,True
+28,Curarrehue,Región de La Araucanía,CL CRE,28.3,6.5,False,Padre Las Casas,76.8,12,True
+28,Saavedra,Región de La Araucanía,CL SAA,23.8,2.7,False,Padre Las Casas,76.8,12,True
+28,Teodoro Schmidt,Región de La Araucanía,CL TEO,32.9,3.9,False,Padre Las Casas,76.8,12,True
+28,Toltén,Región de La Araucanía,CL TOL,38.9,6.3,False,Padre Las Casas,76.8,12,True
+28,Cholchol,Región de La Araucanía,CL CHL,32.4,7.8,False,Padre Las Casas,76.8,12,True
+29,Chillán Viejo,Región de Ñuble,CL CHV,75.5,52.8,True,Chillán Viejo,75.5,4,True
+29,Bulnes,Región de Ñuble,CL BUL,53.8,36.5,False,Chillán Viejo,75.5,4,True
+29,San Ignacio,Región de Ñuble,CL SIN,30.1,12.6,False,Chillán Viejo,75.5,4,True
+29,El Carmen,Región de Ñuble,CL ELC,21.9,31.7,False,Chillán Viejo,75.5,4,True
+30,Castro,Región de Los Lagos,CL WCA,74.2,42.1,True,Castro,74.2,4,True
+30,Chonchi,Región de Los Lagos,CL CHO,47.0,53.0,False,Castro,74.2,4,True
+30,Dalcahue,Región de Los Lagos,CL DCH,37.5,25.6,False,Castro,74.2,4,True
+30,Queilén,Región de Los Lagos,CL QLN,15.2,15.3,False,Castro,74.2,4,True
+31,Lo Prado,Región Metropolitana de Santiago,CL LPR,73.9,9.1,True,Lo Prado,73.9,4,True
+31,Quinta Normal,Región Metropolitana de Santiago,,,,False,Lo Prado,73.9,4,True
+31,Cerro Navia,Región Metropolitana de Santiago,,,,False,Lo Prado,73.9,4,True
+31,Estación Central,Región Metropolitana de Santiago,,,,False,Lo Prado,73.9,4,True
+32,Pelluhue,Región del Maule,CL PLH,73.6,26.3,True,Pelluhue,73.6,13,True
+32,Cauquenes,Región del Maule,CL CAU,50.4,30.3,False,Pelluhue,73.6,13,True
+32,Chanco,Región del Maule,CL CHA,28.5,13.4,False,Pelluhue,73.6,13,True
+32,Constitución,Región del Maule,CL CST,44.9,47.0,False,Pelluhue,73.6,13,True
+32,Curepto,Región del Maule,CL CRT,46.9,26.2,False,Pelluhue,73.6,13,True
+32,Empedrado,Región del Maule,CL EMP,32.3,14.6,False,Pelluhue,73.6,13,True
+32,Hualañé,Región del Maule,CL HLE,34.4,50.1,False,Pelluhue,73.6,13,True
+32,Licantén,Región del Maule,CL LIC,43.8,40.6,False,Pelluhue,73.6,13,True
+32,Rauco,Región del Maule,CL RAU,36.5,42.5,False,Pelluhue,73.6,13,True
+32,Teno,Región del Maule,CL TEN,50.7,66.4,False,Pelluhue,73.6,13,True
+32,Vichuquén,Región del Maule,CL VCQ,36.8,85.5,False,Pelluhue,73.6,13,True
+32,Parral,Región del Maule,CL PRL,53.4,38.1,False,Pelluhue,73.6,13,True
+32,Retiro,Región del Maule,CL RET,36.3,30.0,False,Pelluhue,73.6,13,True
+33,Quellón,Región de Los Lagos,CL PTE,73.2,37.9,True,Quellón,73.2,1,True
+34,Algarrobo,Región de Valparaíso,CL ALG,73.1,95.4,True,Algarrobo,73.1,2,True
+34,El Quisco,Región de Valparaíso,CL ELQ,50.3,41.1,False,Algarrobo,73.1,2,True
+35,Peñalolén,Región Metropolitana de Santiago,CL PLN,72.9,68.9,True,Peñalolén,72.9,2,True
+35,La Reina,Región Metropolitana de Santiago,CL REI,60.9,94.6,False,Peñalolén,72.9,2,True
+36,Molina,Región del Maule,CL MOL,71.8,40.4,True,Molina,71.8,7,True
+36,San Clemente,Región del Maule,CL SCT,69.5,38.5,False,Molina,71.8,7,True
+36,Curicó,Región del Maule,CL CUR,56.9,69.0,False,Molina,71.8,7,True
+36,Río Claro,Región del Maule,CL RCL,50.5,78.4,False,Molina,71.8,7,True
+36,Sagrada Familia,Región del Maule,CL SAF,50.2,79.5,False,Molina,71.8,7,True
+36,San Rafael,Región del Maule,CL SRA,25.2,50.2,False,Molina,71.8,7,True
+36,Romeral,Región del Maule,CL ROM,50.0,78.8,False,Molina,71.8,7,True
+37,Rengo,Región del Libertador Bernardo O'Higgins,CL RGO,70.2,58.8,True,Rengo,70.2,5,True
+37,Malloa,Región del Libertador Bernardo O'Higgins,CL MAL,56.8,43.7,False,Rengo,70.2,5,True
+37,San Fernando,Región del Libertador Bernardo O'Higgins,CL SFD,46.3,73.0,False,Rengo,70.2,5,True
+37,Coinco,Región del Libertador Bernardo O'Higgins,CL COO,36.6,32.5,False,Rengo,70.2,5,True
+37,Quinta de Tilcoco,Región del Libertador Bernardo O'Higgins,CL QDT,32.8,37.7,False,Rengo,70.2,5,True
+38,Traiguén,Región de La Araucanía,CL TRA,69.6,21.2,True,Traiguén,69.6,6,True
+38,Perquenco,Región de La Araucanía,CL PQC,36.3,28.1,False,Traiguén,69.6,6,True
+38,Victoria,Región de La Araucanía,CL ZIC,35.2,34.6,False,Traiguén,69.6,6,True
+38,Ercilla,Región de La Araucanía,CL ERC,24.8,14.0,False,Traiguén,69.6,6,True
+38,Lumaco,Región de La Araucanía,CL LUM,20.9,6.1,False,Traiguén,69.6,6,True
+38,Galvarino,Región de La Araucanía,CL GAL,20.9,9.2,False,Traiguén,69.6,6,True
+39,Cabrero,Región del Bío-Bío,CL CAB,69.0,34.3,True,Cabrero,69.0,9,True
+39,Los Angeles,Región del Bío-Bío,CL LSQ,63.3,65.7,False,Cabrero,69.0,9,True
+39,Yumbel,Región del Bío-Bío,CL YUM,61.1,24.5,False,Cabrero,69.0,9,True
+39,Mulchén,Región del Bío-Bío,CL MUL,45.2,39.8,False,Cabrero,69.0,9,True
+39,Quilaco,Región del Bío-Bío,,,,False,Cabrero,69.0,9,True
+39,Quilleco,Región del Bío-Bío,CL QLO,43.2,23.6,False,Cabrero,69.0,9,True
+39,Santa Bárbara,Región del Bío-Bío,CL SBA,51.6,35.9,False,Cabrero,69.0,9,True
+39,Tucapel,Región del Bío-Bío,CL TUC,38.4,39.3,False,Cabrero,69.0,9,True
+39,Alto Biobío,Región del Bío-Bío,,,,False,Cabrero,69.0,9,True
+40,Los Vilos,Región de Coquimbo,CL LOS,68.5,45.1,True,Los Vilos,68.5,5,True
+40,Salamanca,Región de Coquimbo,CL SAL,49.0,74.1,False,Los Vilos,68.5,5,True
+40,Illapel,Región de Coquimbo,CL ILL,47.4,32.0,False,Los Vilos,68.5,5,True
+40,Canela,Región de Coquimbo,CL CAN,17.5,50.1,False,Los Vilos,68.5,5,True
+40,Combarbalá,Región de Coquimbo,CL CBB,21.1,12.0,False,Los Vilos,68.5,5,True
+41,Talca,Región del Maule,CL TLX,68.3,71.1,True,Talca,68.3,4,True
+41,Pelarco,Región del Maule,CL PEL,43.0,83.2,False,Talca,68.3,4,True
+41,Maule,Región del Maule,CL MAU,40.9,23.0,False,Talca,68.3,4,True
+41,Pencahue,Región del Maule,CL PEN,22.0,59.1,False,Talca,68.3,4,True
+42,Ovalle,Región de Coquimbo,CL OVL,67.3,50.7,True,Ovalle,67.3,4,True
+42,Monte Patria,Región de Coquimbo,CL MTP,50.9,17.3,False,Ovalle,67.3,4,True
+42,Río Hurtado,Región de Coquimbo,CL RHU,47.1,34.3,False,Ovalle,67.3,4,True
+42,Punitaqui,Región de Coquimbo,CL PUN,19.6,34.1,False,Ovalle,67.3,4,True
+43,Lago Ranco,Región de Los Ríos,CL RNC,66.7,78.6,True,Lago Ranco,66.7,3,True
+43,La Unión,Región de Los Ríos,CL LUN,60.9,57.6,False,Lago Ranco,66.7,3,True
+43,Río Bueno,Región de Los Ríos,,,,False,Lago Ranco,66.7,3,True
+44,Nacimiento,Región del Bío-Bío,CL NAC,65.9,51.8,True,Nacimiento,65.9,5,True
+44,Santa Juana,Región del Bío-Bío,CL SJU,58.6,39.1,False,Nacimiento,65.9,5,True
+44,Laja,Región del Bío-Bío,CL LAJ,53.3,42.6,False,Nacimiento,65.9,5,True
+44,Curanilahue,Región del Bío-Bío,CL CRN,45.5,19.2,False,Nacimiento,65.9,5,True
+44,Negrete,Región del Bío-Bío,CL NEG,23.3,31.5,False,Nacimiento,65.9,5,True
+45,Renca,Región Metropolitana de Santiago,CL REN,65.0,77.1,True,Renca,65.0,2,True
+45,Quilicura,Región Metropolitana de Santiago,CL QUI,64.9,90.6,False,Renca,65.0,2,True
+46,Quirihue,Región de Ñuble,CL QRH,64.8,15.7,True,Quirihue,64.8,4,True
+46,Ninhue,Región de Ñuble,CL NIN,31.2,6.5,False,Quirihue,64.8,4,True
+46,Cobquecura,Región de Ñuble,CL CBQ,19.2,28.4,False,Quirihue,64.8,4,True
+46,Treguaco,Región de Ñuble,CL TRE,18.8,14.1,False,Quirihue,64.8,4,True
+47,Villa Alemana,Región de Valparaíso,CL VIA,64.3,39.5,True,Villa Alemana,64.3,1,True
+48,Maipú,Región Metropolitana de Santiago,CL MAI,64.3,43.0,True,Maipú,64.3,1,True
+49,Coronel,Región del Bío-Bío,CL CNL,64.0,66.6,True,Coronel,64.0,2,True
+49,Lota,Región del Bío-Bío,CL LTA,49.6,11.6,False,Coronel,64.0,2,True
+50,Linares,Región del Maule,CL LIN,63.9,42.8,True,Linares,63.9,6,True
+50,San Javier,Región del Maule,CL SJV,53.1,31.3,False,Linares,63.9,6,True
+50,Longaví,Región del Maule,CL LON,45.5,16.8,False,Linares,63.9,6,True
+50,Colbún,Región del Maule,CL COB,33.7,79.2,False,Linares,63.9,6,True
+50,Villa Alegre,Región del Maule,CL VAG,27.5,20.5,False,Linares,63.9,6,True
+50,Yerbas Buenas,Región del Maule,CL YBU,16.3,43.0,False,Linares,63.9,6,True
+51,La Ligua,Región de Valparaíso,CL LIG,63.5,53.1,True,La Ligua,63.5,5,True
+51,Papudo,Región de Valparaíso,CL PAP,22.8,89.0,False,La Ligua,63.5,5,True
+51,Petorca,Región de Valparaíso,CL PET,18.7,64.2,False,La Ligua,63.5,5,True
+51,Cabildo,Región de Valparaíso,,,,False,La Ligua,63.5,5,True
+51,Putaendo,Región de Valparaíso,CL PTO,45.3,25.8,False,La Ligua,63.5,5,True
+52,Pichilemu,Región del Libertador Bernardo O'Higgins,CL PLM,63.3,53.7,True,Pichilemu,63.3,6,True
+52,Paredones,Región del Libertador Bernardo O'Higgins,CL PAR,42.3,20.2,False,Pichilemu,63.3,6,True
+52,Pumanque,Región del Libertador Bernardo O'Higgins,CL PUM,29.9,41.7,False,Pichilemu,63.3,6,True
+52,Litueche,Región del Libertador Bernardo O'Higgins,,,,False,Pichilemu,63.3,6,True
+52,Marchigüe,Región del Libertador Bernardo O'Higgins,,,,False,Pichilemu,63.3,6,True
+52,Navidad,Región del Libertador Bernardo O'Higgins,CL NAV,46.5,19.8,False,Pichilemu,63.3,6,True
+53,Villarrica,Región de La Araucanía,CL VIL,63.0,82.3,True,Villarrica,63.0,5,True
+53,Pitrufquén,Región de La Araucanía,CL PIT,61.9,22.8,False,Villarrica,63.0,5,True
+53,Pucón,Región de La Araucanía,CL PUC,61.5,95.7,False,Villarrica,63.0,5,True
+53,Loncoche,Región de La Araucanía,CL LNC,42.2,30.5,False,Villarrica,63.0,5,True
+53,Gorbea,Región de La Araucanía,CL GOR,26.7,19.6,False,Villarrica,63.0,5,True
+54,Natales,Región de Magallanes y Antártica Chilena,CL CVJ,62.9,73.0,True,Natales,62.9,3,True
+54,Río Verde,Región de Magallanes y Antártica Chilena,CL RVE,33.2,75.0,False,Natales,62.9,3,True
+54,Torres del Paine,Región de Magallanes y Antártica Chilena,CL TDP,12.3,50.3,False,Natales,62.9,3,True
+55,Purén,Región de La Araucanía,CL PUR,62.8,8.0,True,Purén,62.8,4,True
+55,Angol,Región de La Araucanía,CL ANG,53.6,27.1,False,Purén,62.8,4,True
+55,Los Sauces,Región de La Araucanía,CL LSA,10.4,23.5,False,Purén,62.8,4,True
+55,Renaico,Región de La Araucanía,CL RNO,31.5,46.8,False,Purén,62.8,4,True
+56,Curacautín,Región de La Araucanía,CL CCN,62.5,19.3,True,Curacautín,62.5,5,True
+56,Lautaro,Región de La Araucanía,CL LAU,55.3,67.0,False,Curacautín,62.5,5,True
+56,Collipulli,Región de La Araucanía,CL CPI,51.8,59.0,False,Curacautín,62.5,5,True
+56,Lonquimay,Región de La Araucanía,CL LQY,32.5,6.4,False,Curacautín,62.5,5,True
+56,Melipeuco,Región de La Araucanía,CL MLP,17.6,5.3,False,Curacautín,62.5,5,True
+57,Arica,Región de Arica y Parinacota,CL ARI,62.3,62.7,True,Arica,62.3,4,True
+57,General Lagos,Región de Arica y Parinacota,CL GLG,26.7,25.5,False,Arica,62.3,4,True
+57,Putre,Región de Arica y Parinacota,CL PUT,20.9,29.4,False,Arica,62.3,4,True
+57,Camarones,Región de Arica y Parinacota,CL CAM,4.8,62.5,False,Arica,62.3,4,True
+58,Los Andes,Región de Valparaíso,CL LIB,62.1,61.7,True,Los Andes,62.1,6,True
+58,San Felipe,Región de Valparaíso,CL SFP,53.8,53.0,False,Los Andes,62.1,6,True
+58,Calle Larga,Región de Valparaíso,CL CLL,52.6,80.7,False,Los Andes,62.1,6,True
+58,San Esteban,Región de Valparaíso,CL SES,48.1,49.8,False,Los Andes,62.1,6,True
+58,Santa María,Región de Valparaíso,CL SMA,27.8,48.8,False,Los Andes,62.1,6,True
+58,Rinconada,Región de Valparaíso,CL RIN,38.0,84.1,False,Los Andes,62.1,6,True
+59,Portezuelo,Región de Ñuble,CL POR,61.3,6.2,True,Portezuelo,61.3,3,True
+59,Ranquil,Región de Ñuble,CL RAN,39.3,60.0,False,Portezuelo,61.3,3,True
+59,Coelemu,Región de Ñuble,CL COE,28.4,24.7,False,Portezuelo,61.3,3,True
+60,Yungay,Región de Ñuble,CL YUN,60.1,30.6,True,Yungay,60.1,3,True
+60,Pemuco,Región de Ñuble,CL PEM,44.5,64.0,False,Yungay,60.1,3,True
+60,Pinto,Región de Ñuble,CL PIN,34.3,56.2,False,Yungay,60.1,3,True
+61,Las Cabras,Región del Libertador Bernardo O'Higgins,CL LCB,60.0,86.9,True,Las Cabras,60.0,5,True
+61,Peumo,Región del Libertador Bernardo O'Higgins,CL PEU,40.3,38.1,False,Las Cabras,60.0,5,True
+61,Coltauco,Región del Libertador Bernardo O'Higgins,CL CTC,39.7,16.0,False,Las Cabras,60.0,5,True
+61,Pichidegua,Región del Libertador Bernardo O'Higgins,CL PDH,38.4,39.2,False,Las Cabras,60.0,5,True
+61,La Estrella,Región del Libertador Bernardo O'Higgins,CL LES,15.8,84.0,False,Las Cabras,60.0,5,True
+62,San Miguel,Región Metropolitana de Santiago,CL SMG,59.6,79.9,True,San Miguel,59.6,2,True
+62,La Granja,Región Metropolitana de Santiago,,,,False,San Miguel,59.6,2,True
+63,Buin,Región Metropolitana de Santiago,CL BUI,59.3,68.6,True,Buin,59.3,2,True
+63,Isla de Maipo,Región Metropolitana de Santiago,CL IDM,37.6,65.7,False,Buin,59.3,2,True
+64,Ancud,Región de Los Lagos,CL ZUD,57.8,28.8,True,Ancud,57.8,2,True
+64,Quemchi,Región de Los Lagos,CL QMC,31.8,35.6,False,Ancud,57.8,2,True
+65,El Tabo,Región de Valparaíso,CL ELT,57.4,33.0,True,El Tabo,57.4,1,True
+66,Vallenar,Región de Atacama,CL VLR,57.3,59.4,True,Vallenar,57.3,5,True
+66,Alto del Carmen,Región de Atacama,CL ADC,43.4,62.9,False,Vallenar,57.3,5,True
+66,Tierra Amarilla,Región de Atacama,CL TAM,38.5,93.2,False,Vallenar,57.3,5,True
+66,Freirina,Región de Atacama,CL FRN,24.5,56.4,False,Vallenar,57.3,5,True
+66,Huasco,Región de Atacama,,,,False,Vallenar,57.3,5,True
+67,Lebu,Región del Bío-Bío,CL LEB,56.0,8.2,True,Lebu,56.0,6,True
+67,Arauco,Región del Bío-Bío,CL ARA,55.2,50.0,False,Lebu,56.0,6,True
+67,Los Alamos,Región del Bío-Bío,CL LAL,53.1,9.7,False,Lebu,56.0,6,True
+67,Cañete,Región del Bío-Bío,CL CTE,33.4,9.8,False,Lebu,56.0,6,True
+67,Contulmo,Región del Bío-Bío,CL CTM,41.5,5.4,False,Lebu,56.0,6,True
+67,Tirúa,Región del Bío-Bío,CL TIR,54.0,3.1,False,Lebu,56.0,6,True
+68,Tocopilla,Región de Antofagasta,CL TOQ,27.3,58.4,True,Tocopilla,27.3,1,False
+69,Juan Fernández,Región de Valparaíso,,,,True,Juan Fernández,,1,False
+70,Isla de Pascua,Región de Valparaíso,CL IPC,44.6,0.2,True,Isla de Pascua,44.6,1,False
+71,Antuco,Región del Bío-Bío,CL ANT,28.5,35.0,True,Antuco,28.5,1,False
+72,Curaco de Vélez,Región de Los Lagos,CL CDV,46.3,8.9,True,Curaco de Vélez,46.3,2,False
+72,Quinchao,Región de Los Lagos,CL QCO,44.4,30.6,False,Curaco de Vélez,46.3,2,False
+73,Puqueldón,Región de Los Lagos,CL PQD,24.7,26.2,True,Puqueldón,24.7,1,False
+74,Chaitén,Región de Los Lagos,CL WCH,25.4,55.7,False,Palena,36.9,3,False
+74,Palena,Región de Los Lagos,CL PAL,36.9,23.7,True,Palena,36.9,3,False
+74,Futaleufú,Región de Los Lagos,CL FFU,28.5,20.9,False,Palena,36.9,3,False
+75,Guaitecas,Región de Aysén del Gral. Ibañez del Campo,,,,True,Guaitecas,,1,False
+76,Cabo de Hornos,Región de Magallanes y Antártica Chilena,,,,False,Porvenir,35.9,4,False
+76,Timaukel,Región de Magallanes y Antártica Chilena,CL TIM,32.1,31.1,False,Porvenir,35.9,4,False
+76,Porvenir,Región de Magallanes y Antártica Chilena,CL PVR,35.9,74.2,True,Porvenir,35.9,4,False
+76,Primavera,Región de Magallanes y Antártica Chilena,CL PRI,31.2,40.6,False,Porvenir,35.9,4,False
