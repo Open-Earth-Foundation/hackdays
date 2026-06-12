@@ -1,0 +1,34 @@
+{
+  "meta": {
+    "city": "Porto Alegre",
+    "language": "en",
+    "status": "placeholder_research_queue",
+    "purpose": "Track external municipal/community engagement records to validate and merge into civic-action-mapping.json."
+  },
+  "opportunities": [
+    {
+      "id": "poa-civil-defense",
+      "name": "Civil defense and emergency preparedness channels",
+      "type": "municipal_service",
+      "relatedRecommendationIds": ["poa-flood-resilience", "poa-landslide-prevention"],
+      "status": "needs_local_validation",
+      "researchNotes": "Find official Porto Alegre civil defense reporting, alert, and preparedness pages."
+    },
+    {
+      "id": "poa-climate-plan-consultation",
+      "name": "Climate, resilience, or recovery planning consultations",
+      "type": "municipal_process",
+      "relatedRecommendationIds": ["poa-flood-resilience", "poa-heat-and-green-infrastructure"],
+      "status": "needs_local_validation",
+      "researchNotes": "Find current public consultation processes, city council agendas, or municipal climate planning pages."
+    },
+    {
+      "id": "poa-community-groups",
+      "name": "Community climate, watershed, mobility, and neighborhood organizations",
+      "type": "community_group",
+      "relatedRecommendationIds": ["poa-flood-resilience", "poa-active-mobility", "poa-heat-and-green-infrastructure"],
+      "status": "needs_local_validation",
+      "researchNotes": "Collect 5-10 credible local organizations with website, contact, topic, and neighborhood coverage."
+    }
+  ]
+}

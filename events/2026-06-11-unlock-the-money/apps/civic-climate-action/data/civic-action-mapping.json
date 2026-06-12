@@ -1,0 +1,298 @@
+{
+  "meta": {
+    "project": "Civic Climate Action Engagement Module",
+    "city": "Porto Alegre",
+    "locode": "BR POA",
+    "language": "en",
+    "generatedFor": "Hackday 26Q2",
+    "sourceSnapshot": "./porto-alegre.snapshot.json",
+    "purpose": "Frontend-ready civic recommendations derived from CityCatalyst API data and enriched with local engagement placeholders."
+  },
+  "recommendationLogic": {
+    "rankingInputs": [
+      "climate risk severity",
+      "public relevance",
+      "connection to known climate action pathways",
+      "near-term civic engagement potential",
+      "clarity for non-technical residents"
+    ],
+    "displayRules": [
+      "Show high-risk adaptation pathways first when CCRA normalised risk score is 0.75 or higher.",
+      "Pair each technical risk or emissions signal with one plain-language explanation.",
+      "Offer at least one collective civic action before individual behavior-change actions.",
+      "Flag local engagement records as placeholders until validated against municipal or community sources."
+    ]
+  },
+  "citySummary": {
+    "name": "Porto Alegre",
+    "region": "Rio Grande do Sul",
+    "population": 1332845,
+    "areaKm2": 665,
+    "densityPeoplePerKm2": 2690.5,
+    "biome": "grassland/savanna",
+    "plainLanguageContext": "Porto Alegre is a dense city in Rio Grande do Sul with major climate priorities around flooding, landslides, heat, water security, and residential energy use."
+  },
+  "recommendations": [
+    {
+      "id": "poa-flood-resilience",
+      "title": "Help shape flood-resilience investments",
+      "category": "adaptation",
+      "priority": "very_high",
+      "sourceSignals": [
+        {
+          "module": "CCRA",
+          "field": "hazard",
+          "rawValue": "floods",
+          "friendlyLabel": "Flooding"
+        },
+        {
+          "module": "CCRA",
+          "field": "keyimpact",
+          "rawValue": "public health, infrastructure",
+          "friendlyLabel": "Health and infrastructure impacts"
+        },
+        {
+          "module": "CCRA",
+          "field": "normalised_risk_score",
+          "rawValue": 0.99,
+          "friendlyLabel": "Very high risk signal"
+        }
+      ],
+      "plainLanguageExplanation": "Flooding is one of Porto Alegre's strongest climate risk signals. Residents can help make drainage, shelter, emergency response, and recovery planning more accountable to the communities most affected.",
+      "whyItMattersLocally": "The API risk assessment marks flooding as a very high risk for both infrastructure and public health in the latest 2024 assessment.",
+      "citizenActions": [
+        {
+          "type": "attend_meeting",
+          "label": "Attend a municipal resilience, drainage, or recovery planning session",
+          "timeRequired": "1-2 hours",
+          "impactType": "policy_influence",
+          "difficulty": "medium"
+        },
+        {
+          "type": "submit_feedback",
+          "label": "Submit comments asking how flood investments will prioritize exposed neighborhoods",
+          "timeRequired": "15-30 minutes",
+          "impactType": "public_accountability",
+          "difficulty": "low"
+        },
+        {
+          "type": "join_group",
+          "label": "Join a neighborhood or watershed group working on flood preparedness",
+          "timeRequired": "ongoing",
+          "impactType": "collective_action",
+          "difficulty": "medium"
+        }
+      ],
+      "engagementOpportunities": [
+        {
+          "name": "Municipal civil defense and resilience planning",
+          "status": "needs_local_validation",
+          "sourceType": "municipal_process"
+        },
+        {
+          "name": "Watershed or neighborhood preparedness groups",
+          "status": "needs_local_validation",
+          "sourceType": "community_group"
+        }
+      ],
+      "frontendTags": ["floods", "public-health", "infrastructure", "high-priority"]
+    },
+    {
+      "id": "poa-landslide-prevention",
+      "title": "Support landslide prevention in exposed areas",
+      "category": "adaptation",
+      "priority": "very_high",
+      "sourceSignals": [
+        {
+          "module": "CCRA",
+          "field": "hazard",
+          "rawValue": "landslides",
+          "friendlyLabel": "Landslides"
+        },
+        {
+          "module": "CCRA",
+          "field": "normalised_risk_score",
+          "rawValue": 0.99,
+          "friendlyLabel": "Very high risk signal"
+        }
+      ],
+      "plainLanguageExplanation": "Landslide risk is high enough to justify visible civic pathways around prevention, slope monitoring, safe housing, and emergency preparedness.",
+      "whyItMattersLocally": "The current CCRA endpoint identifies landslides as a very high risk for both infrastructure and public health in Porto Alegre.",
+      "citizenActions": [
+        {
+          "type": "report_issue",
+          "label": "Report drainage, slope instability, or blocked stormwater channels to the city",
+          "timeRequired": "10-20 minutes",
+          "impactType": "risk_reduction",
+          "difficulty": "low"
+        },
+        {
+          "type": "advocate_policy",
+          "label": "Ask city officials to publish landslide prevention maps and investment criteria",
+          "timeRequired": "30-60 minutes",
+          "impactType": "transparency",
+          "difficulty": "medium"
+        }
+      ],
+      "engagementOpportunities": [
+        {
+          "name": "Risk mapping and civil defense channels",
+          "status": "needs_local_validation",
+          "sourceType": "municipal_service"
+        }
+      ],
+      "frontendTags": ["landslides", "civil-defense", "housing", "risk-mapping"]
+    },
+    {
+      "id": "poa-heat-and-green-infrastructure",
+      "title": "Expand shade, trees, and cooling spaces",
+      "category": "adaptation",
+      "priority": "high",
+      "sourceSignals": [
+        {
+          "module": "CCRA",
+          "field": "hazard",
+          "rawValue": "heatwaves",
+          "friendlyLabel": "Heat waves"
+        },
+        {
+          "module": "Action Pathways",
+          "field": "coBenefits.stakeholder_engagement",
+          "rawValue": "positive",
+          "friendlyLabel": "Good fit for community participation"
+        }
+      ],
+      "plainLanguageExplanation": "Heat risks affect health, infrastructure, and comfort. Tree cover, shaded corridors, public cooling spaces, and reflective surfaces are climate actions residents can help prioritize.",
+      "whyItMattersLocally": "The CCRA current scenario shows heatwave risk for infrastructure and public health. Green infrastructure is also a strong civic engagement story because residents can identify local hot spots.",
+      "citizenActions": [
+        {
+          "type": "map_priority",
+          "label": "Nominate heat hot spots that need shade, trees, or cooling infrastructure",
+          "timeRequired": "10-15 minutes",
+          "impactType": "local_knowledge",
+          "difficulty": "low"
+        },
+        {
+          "type": "volunteer",
+          "label": "Join or organize a tree planting and maintenance effort",
+          "timeRequired": "2-4 hours",
+          "impactType": "community_action",
+          "difficulty": "medium"
+        },
+        {
+          "type": "advocate_budget",
+          "label": "Support municipal budget allocations for shade, parks, and cooling spaces",
+          "timeRequired": "30-60 minutes",
+          "impactType": "budget_influence",
+          "difficulty": "medium"
+        }
+      ],
+      "engagementOpportunities": [
+        {
+          "name": "Urban forestry, parks, or cooling-space programs",
+          "status": "needs_local_validation",
+          "sourceType": "municipal_program"
+        }
+      ],
+      "frontendTags": ["heatwaves", "trees", "green-infrastructure", "public-health"]
+    },
+    {
+      "id": "poa-residential-energy",
+      "title": "Make homes more energy efficient",
+      "category": "mitigation",
+      "priority": "medium",
+      "sourceSignals": [
+        {
+          "module": "GHGI",
+          "field": "SEEG residential fuel co2eq_100yr",
+          "rawValue": 123462683,
+          "friendlyLabel": "Residential fuel emissions example"
+        },
+        {
+          "module": "GHGI",
+          "field": "EPE residential electricity co2eq_100yr",
+          "rawValue": 49086702,
+          "friendlyLabel": "Residential electricity emissions example"
+        }
+      ],
+      "plainLanguageExplanation": "Homes use energy for cooking, heating water, cooling, lighting, and appliances. Efficiency upgrades can reduce emissions and improve comfort, especially during heat events.",
+      "whyItMattersLocally": "The snapshot includes residential fuel and electricity emissions examples from SEEG and EPE for Porto Alegre.",
+      "citizenActions": [
+        {
+          "type": "learn",
+          "label": "Learn which home upgrades reduce energy use and improve heat comfort",
+          "timeRequired": "5-10 minutes",
+          "impactType": "awareness",
+          "difficulty": "low"
+        },
+        {
+          "type": "advocate_program",
+          "label": "Ask for retrofit incentives that prioritize low-income and heat-exposed households",
+          "timeRequired": "30-60 minutes",
+          "impactType": "equity",
+          "difficulty": "medium"
+        }
+      ],
+      "engagementOpportunities": [
+        {
+          "name": "Residential retrofit, building efficiency, or energy poverty programs",
+          "status": "needs_local_validation",
+          "sourceType": "program"
+        }
+      ],
+      "frontendTags": ["energy", "buildings", "retrofits", "mitigation"]
+    },
+    {
+      "id": "poa-active-mobility",
+      "title": "Support safer walking, cycling, and public-space access",
+      "category": "mitigation",
+      "priority": "medium",
+      "sourceSignals": [
+        {
+          "module": "Climate Actions",
+          "field": "ActionID",
+          "rawValue": "ipcc_0105",
+          "friendlyLabel": "Promote active mobility through road space reallocation"
+        },
+        {
+          "module": "Climate Actions",
+          "field": "GHGReductionPotential.transportation",
+          "rawValue": "20-39",
+          "friendlyLabel": "Transport emissions reduction potential"
+        }
+      ],
+      "plainLanguageExplanation": "Street design is climate policy. Safer walking, cycling, and transit access can reduce car dependence while improving health and mobility.",
+      "whyItMattersLocally": "The climate action catalogue includes active mobility as a mitigation pathway with a transportation emissions reduction potential range.",
+      "citizenActions": [
+        {
+          "type": "submit_feedback",
+          "label": "Comment on street redesigns, bike lanes, transit access, and pedestrian safety",
+          "timeRequired": "15-30 minutes",
+          "impactType": "transport_policy",
+          "difficulty": "low"
+        },
+        {
+          "type": "join_group",
+          "label": "Join a mobility or safe-streets advocacy group",
+          "timeRequired": "ongoing",
+          "impactType": "collective_action",
+          "difficulty": "medium"
+        }
+      ],
+      "engagementOpportunities": [
+        {
+          "name": "Mobility planning consultations and safe-streets campaigns",
+          "status": "needs_local_validation",
+          "sourceType": "civic_campaign"
+        }
+      ],
+      "frontendTags": ["transport", "active-mobility", "public-space", "mitigation"]
+    }
+  ],
+  "knownGaps": [
+    "Local groups and municipal engagement links need validation from Porto Alegre sources.",
+    "HIAP city-specific prioritization is not yet wired into this snapshot.",
+    "Policy score endpoint should not be used for Porto Alegre until a Brazil-specific release is confirmed.",
+    "Neighborhood-level personalization requires more granular geography than the current municipal snapshot."
+  ]
+}
