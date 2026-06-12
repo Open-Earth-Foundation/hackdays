@@ -23,6 +23,12 @@ export const stories: Story[] = [
     sourceName: "SEforALL",
     sourceUrl:
       "https://www.seforall.org/stories-of-success/creating-a-greener-cooler-and-healthier-medellin",
+    image: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/5/58/Medellin_Panorama.jpg",
+      credit: "Hanumann",
+      license: "CC BY 2.0",
+      sourcePageUrl: "https://commons.wikimedia.org/wiki/File:Medellin_Panorama.jpg",
+    },
   },
   {
     id: "bogota-ciclovia",
@@ -40,6 +46,12 @@ export const stories: Story[] = [
     sourceName: "WRI · TheCityFix",
     sourceUrl:
       "https://thecityfix.com/blog/ciclovia-at-50-what-we-can-learn-from-bogotas-open-streets-initiative/",
+    image: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/2019_Bogot%C3%A1_-_Ciclov%C3%ADa_en_la_calle_26.jpg/1280px-2019_Bogot%C3%A1_-_Ciclov%C3%ADa_en_la_calle_26.jpg",
+      credit: "Felipe Restrepo Acosta",
+      license: "CC BY-SA 4.0",
+      sourcePageUrl: "https://commons.wikimedia.org/wiki/File:2019_Bogot%C3%A1_-_Ciclov%C3%ADa_en_la_calle_26.jpg",
+    },
   },
   {
     id: "curitiba-green-exchange",
@@ -57,6 +69,12 @@ export const stories: Story[] = [
     sourceName: "NYC Food Policy Center",
     sourceUrl:
       "https://www.nycfoodpolicy.org/green-exchange-program-curitiba-urban-food-policy-snapshot/",
+    image: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Curitiba_skyline_%2829619249185%29.jpg/1280px-Curitiba_skyline_%2829619249185%29.jpg",
+      credit: "Carlos Ebert",
+      license: "CC BY 2.0",
+      sourcePageUrl: "https://commons.wikimedia.org/wiki/File:Curitiba_skyline_(29619249185).jpg",
+    },
   },
   {
     id: "rio-favela-reforestation",
@@ -74,6 +92,12 @@ export const stories: Story[] = [
     sourceName: "World Bank Blogs",
     sourceUrl:
       "https://blogs.worldbank.org/en/latinamerica/rio-de-janeiros-reforestation-changes-life-favelas",
+    image: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Rio_de_Janeiro_Tijuca_Forest_%281%29.jpg/1280px-Rio_de_Janeiro_Tijuca_Forest_%281%29.jpg",
+      credit: "Pierre Andr\u00e9",
+      license: "CC BY-SA 4.0",
+      sourcePageUrl: "https://commons.wikimedia.org/wiki/File:Rio_de_Janeiro_Tijuca_Forest_(1).jpg",
+    },
   },
   {
     id: "saopaulo-community-garden",
@@ -91,6 +115,12 @@ export const stories: Story[] = [
     sourceName: "The Sustainable Post",
     sourceUrl:
       "https://www.thesustainablepost.com/2025/08/sao-paulo-favela-community-garden-eviction-resistance.html",
+    image: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/CommunityGardening_S%C3%A3oPauloBrazil.jpg/1280px-CommunityGardening_S%C3%A3oPauloBrazil.jpg",
+      credit: "Laurenz.garbo",
+      license: "CC BY-SA 4.0",
+      sourcePageUrl: "https://commons.wikimedia.org/wiki/File:CommunityGardening_S%C3%A3oPauloBrazil.jpg",
+    },
   },
   {
     id: "portoalegre-participatory-budget",
@@ -108,6 +138,12 @@ export const stories: Story[] = [
     sourceName: "World Resources Institute",
     sourceUrl:
       "https://www.wri.org/insights/what-if-citizens-set-city-budgets-experiment-captivated-world-participatory-budgeting",
+    image: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Porto_Alegre_Skyline.jpg/1280px-Porto_Alegre_Skyline.jpg",
+      credit: "Edgar Weber",
+      license: "CC BY 2.0",
+      sourcePageUrl: "https://commons.wikimedia.org/wiki/File:Porto_Alegre_Skyline.jpg",
+    },
   },
   {
     id: "lisbon-green-budget",
@@ -125,6 +161,12 @@ export const stories: Story[] = [
     sourceName: "People Powered",
     sourceUrl:
       "https://www.peoplepowered.org/resources-content/green-participatory-budgeting-lisbon-portugal",
+    image: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Tram_28_Lisbon_Portuguese.jpg/1280px-Tram_28_Lisbon_Portuguese.jpg",
+      credit: "Andrew Shiva / \u0412\u0432\u043b\u0430\u0441\u0435\u043d\u043a\u043e",
+      license: "CC BY-SA 4.0",
+      sourcePageUrl: "https://commons.wikimedia.org/wiki/File:Tram_28_Lisbon_Portuguese.jpg",
+    },
   },
   {
     id: "seoul-one-less-plant",
@@ -141,6 +183,12 @@ export const stories: Story[] = [
     year: "2012–2014",
     sourceName: "Wikipedia (Seoul Metro Gov / C40)",
     sourceUrl: "https://en.wikipedia.org/wiki/One_Less_Nuclear_Power_Plant",
+    image: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/b/b0/Seoul_Skyline_%286907571755%29.jpg",
+      credit: "Jimmy McIntyre",
+      license: "CC BY-SA 2.0",
+      sourcePageUrl: "https://commons.wikimedia.org/wiki/File:Seoul_Skyline_(6907571755).jpg",
+    },
   },
   {
     id: "schonau-electricity-rebels",
@@ -158,6 +206,12 @@ export const stories: Story[] = [
     sourceName: "Centre for Public Impact",
     sourceUrl:
       "https://centreforpublicimpact.org/public-impact-fundamentals/community-energy-cooperative-schonau-germany/",
+    image: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Sch%C3%B6nau_im_Schwarzwald_Kirche_Maria_Himmelfahrt.jpg/1280px-Sch%C3%B6nau_im_Schwarzwald_Kirche_Maria_Himmelfahrt.jpg",
+      credit: "PantaRhei",
+      license: "CC BY-SA 4.0",
+      sourcePageUrl: "https://commons.wikimedia.org/wiki/File:Sch%C3%B6nau_im_Schwarzwald_Kirche_Maria_Himmelfahrt.jpg",
+    },
   },
   {
     id: "nyc-sunset-park-solar",
@@ -174,6 +228,12 @@ export const stories: Story[] = [
     year: "2021–present",
     sourceName: "C40 Cities",
     sourceUrl: "https://www.c40.org/case-studies/nyc-sunset-park-solar/",
+    image: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Sunset_Park_waterfront_%2885311p%29.jpg/1280px-Sunset_Park_waterfront_%2885311p%29.jpg",
+      credit: "Rhododendrites",
+      license: "CC BY-SA 4.0",
+      sourcePageUrl: "https://commons.wikimedia.org/wiki/File:Sunset_Park_waterfront_(85311p).jpg",
+    },
   },
   {
     id: "ahmedabad-heat-action",
@@ -190,6 +250,12 @@ export const stories: Story[] = [
     year: "2013–present",
     sourceName: "Exemplars in Global Health",
     sourceUrl: "https://www.exemplars.health/stories/ahmedabad-indias-heat-action-plan",
+    image: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Aerial_shot_of_Ahmedabad_city%2C_the_Sabarmati_river%2C_and_bridges.jpg/1280px-Aerial_shot_of_Ahmedabad_city%2C_the_Sabarmati_river%2C_and_bridges.jpg",
+      credit: "Brihaspati",
+      license: "CC BY-SA 4.0",
+      sourcePageUrl: "https://commons.wikimedia.org/wiki/File:Aerial_shot_of_Ahmedabad_city,_the_Sabarmati_river,_and_bridges.jpg",
+    },
   },
   {
     id: "rotterdam-water-square",
@@ -206,6 +272,12 @@ export const stories: Story[] = [
     year: "2011–2013",
     sourceName: "De Urbanisten",
     sourceUrl: "https://www.urbanisten.nl/work/benthemplein",
+    image: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Benthemplein_terrain_basket_gestion_eau.jpg/1280px-Benthemplein_terrain_basket_gestion_eau.jpg",
+      credit: "Cathrotterdam",
+      license: "CC BY-SA 4.0",
+      sourcePageUrl: "https://commons.wikimedia.org/wiki/File:Benthemplein_terrain_basket_gestion_eau.jpg",
+    },
   },
   {
     id: "copenhagen-climate-quarter",
@@ -223,6 +295,12 @@ export const stories: Story[] = [
     sourceName: "C40 Cities",
     sourceUrl:
       "https://www.c40.org/case-studies/cities100-copenhagen-creating-a-climate-resilient-neighborhood/",
+    image: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Copenhagen%2C_hotel_and_bridge_for_bicycles.jpg/1280px-Copenhagen%2C_hotel_and_bridge_for_bicycles.jpg",
+      credit: "Gerda Arendt",
+      license: "CC0",
+      sourcePageUrl: "https://commons.wikimedia.org/wiki/File:Copenhagen,_hotel_and_bridge_for_bicycles.jpg",
+    },
   },
   {
     id: "london-breathe-air",
@@ -240,6 +318,12 @@ export const stories: Story[] = [
     sourceName: "Greater London Authority",
     sourceUrl:
       "https://www.london.gov.uk/press-releases/mayoral/school-streets-improve-air-quality",
+    image: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/CycleSuperhighway2Stratford-London-P1300696.JPG/1280px-CycleSuperhighway2Stratford-London-P1300696.JPG",
+      credit: "Spsmiler",
+      license: "CC0",
+      sourcePageUrl: "https://commons.wikimedia.org/wiki/File:CycleSuperhighway2Stratford-London-P1300696.JPG",
+    },
   },
   {
     id: "paris-citizens-convention",
@@ -256,5 +340,11 @@ export const stories: Story[] = [
     year: "2019–2021",
     sourceName: "Wikipedia (Citizens' Convention for Climate)",
     sourceUrl: "https://en.wikipedia.org/wiki/Citizens_Convention_for_Climate",
+    image: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Paris_-_The_Eiffel_Tower_in_spring_-_2307.jpg/1280px-Paris_-_The_Eiffel_Tower_in_spring_-_2307.jpg",
+      credit: "Jorge Royan",
+      license: "CC BY-SA 3.0",
+      sourcePageUrl: "https://commons.wikimedia.org/wiki/File:Paris_-_The_Eiffel_Tower_in_spring_-_2307.jpg",
+    },
   },
 ];

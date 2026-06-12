@@ -1,5 +1,11 @@
 import type { City } from "./types";
 
+// Shared note for the Brazilian inventories: the CityCatalyst territorial
+// totals don't yet capture every sector (notably grid electricity / scope 2),
+// which makes transport look larger than its true share. Surfaced honestly.
+const BR_PARTIAL_NOTE =
+  "Partial territorial inventory — grid electricity and some waste aren't captured yet, so transport's share is overstated.";
+
 // Seed set of cities where citizens have shaped local climate action.
 // Each links to a sourced success story (see stories.ts). `locode` is the
 // UN/LOCODE — the same key CityCatalyst uses — so a city can later be wired
@@ -21,6 +27,27 @@ export const cities: City[] = [
       "Train as a community gardener through the city program",
     ],
     storyIds: ["medellin-green-corridors"],
+    dataProvenance: "external",
+    emissions: {
+      totalTonnesCo2e: 3208337,
+      topSector: "Transportation",
+      inventoryYear: "2016",
+      source: "Medellín Climate Action Plan (PAC 2020–2050)",
+      sourceUrl:
+        "https://www.medellin.gov.co/es/wp-content/uploads/2024/03/PAC_Medellin_Libro_Digital.pdf",
+    },
+    risk: {
+      topHazards: [
+        { hazard: "Landslides", level: "High" },
+        { hazard: "Flooding & flash floods", level: "High" },
+        { hazard: "Extreme heat & urban heat island", level: "Medium" },
+      ],
+      summary:
+        "Set in a steep Andean valley, Medellín's main risks are rain-triggered landslides and flooding on its hillsides, with intensifying urban heat in low-vegetation neighborhoods.",
+      source: "Alcaldía de Medellín / World Bank",
+      sourceUrl:
+        "https://www.medellin.gov.co/es/wp-content/uploads/2024/03/PAC_Medellin_Libro_Digital.pdf",
+    },
   },
   {
     id: "bogota",
@@ -37,6 +64,26 @@ export const cities: City[] = [
       "Back protected bike lanes in public consultations",
     ],
     storyIds: ["bogota-ciclovia"],
+    dataProvenance: "external",
+    emissions: {
+      totalTonnesCo2e: 10839378,
+      topSector: "Transportation",
+      inventoryYear: "2023",
+      source: "Bogotá GHG Inventory (Secretaría de Ambiente)",
+      sourceUrl:
+        "https://www.ambientebogota.gov.co/inventario-de-gases-de-efecto-invernadero-ingei",
+    },
+    risk: {
+      topHazards: [
+        { hazard: "Water shortage & drought", level: "High" },
+        { hazard: "Flooding & flash floods", level: "High" },
+        { hazard: "Landslides", level: "Medium" },
+      ],
+      summary:
+        "Bogotá faces recurring water-supply crises during El Niño droughts, plus flooding and landslides on its rivers and hillside settlements.",
+      source: "IDIGER / IDEAM",
+      sourceUrl: "https://www.idiger.gov.co/cambio-climatico/efectos-de-cambios-climaticos-en-bogota",
+    },
   },
   {
     id: "curitiba",
@@ -53,6 +100,28 @@ export const cities: City[] = [
       "Support organics-collection in the city budget",
     ],
     storyIds: ["curitiba-green-exchange"],
+    dataProvenance: "CityCatalyst",
+    emissions: {
+      totalTonnesCo2e: 2409000,
+      sectors: [
+        { sector: "Transportation", sharePct: 82.3 },
+        { sector: "Stationary Energy", sharePct: 11.3 },
+        { sector: "Waste", sharePct: 6.1 },
+      ],
+      inventoryYear: "2023 / 2022 (waste)",
+      note: BR_PARTIAL_NOTE,
+      source: "CityCatalyst Global API (SEEG, SINIR, SNIS)",
+      sourceUrl: "https://api.citycatalyst.io",
+    },
+    risk: {
+      topHazards: [
+        { hazard: "Diseases", keyImpact: "public health", level: "Very High" },
+        { hazard: "Floods", keyImpact: "infrastructure", level: "Very High" },
+      ],
+      year: 2024,
+      source: "CityCatalyst CCRA",
+      sourceUrl: "https://api.citycatalyst.io",
+    },
   },
   {
     id: "rio-de-janeiro",
@@ -69,6 +138,29 @@ export const cities: City[] = [
       "Volunteer for a watershed or resilience council",
     ],
     storyIds: ["rio-favela-reforestation"],
+    dataProvenance: "CityCatalyst",
+    emissions: {
+      totalTonnesCo2e: 8565000,
+      sectors: [
+        { sector: "Transportation", sharePct: 47.1 },
+        { sector: "IPPU", sharePct: 32.8 },
+        { sector: "Waste", sharePct: 11.8 },
+        { sector: "Stationary Energy", sharePct: 8.5 },
+      ],
+      inventoryYear: "2023 / 2022 (waste)",
+      note: BR_PARTIAL_NOTE,
+      source: "CityCatalyst Global API (SEEG, SINIR, SNIS)",
+      sourceUrl: "https://api.citycatalyst.io",
+    },
+    risk: {
+      topHazards: [
+        { hazard: "Heatwaves", keyImpact: "infrastructure", level: "Very High" },
+        { hazard: "Landslides", keyImpact: "infrastructure", level: "Very High" },
+      ],
+      year: 2024,
+      source: "CityCatalyst CCRA",
+      sourceUrl: "https://api.citycatalyst.io",
+    },
   },
   {
     id: "sao-paulo",
@@ -85,6 +177,28 @@ export const cities: City[] = [
       "Document local green space to protect it",
     ],
     storyIds: ["saopaulo-community-garden"],
+    dataProvenance: "CityCatalyst",
+    emissions: {
+      totalTonnesCo2e: 11663000,
+      sectors: [
+        { sector: "Transportation", sharePct: 81.1 },
+        { sector: "Stationary Energy", sharePct: 11.1 },
+        { sector: "Waste", sharePct: 8.1 },
+      ],
+      inventoryYear: "2023 / 2022 (waste)",
+      note: BR_PARTIAL_NOTE,
+      source: "CityCatalyst Global API (SEEG, SINIR, SNIS)",
+      sourceUrl: "https://api.citycatalyst.io",
+    },
+    risk: {
+      topHazards: [
+        { hazard: "Heatwaves", keyImpact: "infrastructure", level: "Very High" },
+        { hazard: "Landslides", keyImpact: "infrastructure", level: "Very High" },
+      ],
+      year: 2024,
+      source: "CityCatalyst CCRA",
+      sourceUrl: "https://api.citycatalyst.io",
+    },
   },
   {
     id: "porto-alegre",
@@ -101,6 +215,28 @@ export const cities: City[] = [
       "Rally neighbors to vote for it",
     ],
     storyIds: ["portoalegre-participatory-budget"],
+    dataProvenance: "CityCatalyst",
+    emissions: {
+      totalTonnesCo2e: 1491000,
+      sectors: [
+        { sector: "Transportation", sharePct: 77.1 },
+        { sector: "Stationary Energy", sharePct: 15.4 },
+        { sector: "Waste", sharePct: 7.4 },
+      ],
+      inventoryYear: "2023 / 2022 (waste)",
+      note: BR_PARTIAL_NOTE,
+      source: "CityCatalyst Global API (SEEG, SINIR, SNIS)",
+      sourceUrl: "https://api.citycatalyst.io",
+    },
+    risk: {
+      topHazards: [
+        { hazard: "Landslides", keyImpact: "infrastructure", level: "Very High" },
+        { hazard: "Floods", keyImpact: "infrastructure", level: "Very High" },
+      ],
+      year: 2024,
+      source: "CityCatalyst CCRA",
+      sourceUrl: "https://api.citycatalyst.io",
+    },
   },
   {
     id: "lisbon",
@@ -117,6 +253,27 @@ export const cities: City[] = [
       "Join a tree-planting or rewilding initiative",
     ],
     storyIds: ["lisbon-green-budget"],
+    dataProvenance: "external",
+    emissions: {
+      totalTonnesCo2e: 2200000,
+      topSector: "Transportation",
+      inventoryYear: "2019",
+      note: "Municipality proper (~545k residents), not the metro area.",
+      source: "Lisbon Climate City Contract 2030",
+      sourceUrl:
+        "https://netzerocities.app/_content/files/knowledge/4423/lx_contratoclimatico_10___1_.pdf",
+    },
+    risk: {
+      topHazards: [
+        { hazard: "Extreme heat", level: "High" },
+        { hazard: "Drought", level: "High" },
+        { hazard: "Flooding & coastal flooding", level: "Medium" },
+      ],
+      summary:
+        "With a Mediterranean climate, Lisbon's main risks are intensifying heatwaves and drought, alongside flash flooding and rising coastal exposure.",
+      source: "Lisbon Metro Adaptation Plan (PMAAC)",
+      sourceUrl: "https://www.aml.pt/en/iniciativas/plano-adaptacao-alteracoes-climaticas/",
+    },
   },
   {
     id: "seoul",
@@ -133,6 +290,26 @@ export const cities: City[] = [
       "Run a building energy-efficiency drive",
     ],
     storyIds: ["seoul-one-less-plant"],
+    dataProvenance: "external",
+    emissions: {
+      totalTonnesCo2e: 52340000,
+      topSector: "Buildings / Energy",
+      inventoryYear: "2005",
+      note: "2005 baseline — the most recent officially verifiable city-wide total.",
+      source: "Seoul Metropolitan Government",
+      sourceUrl:
+        "https://english.seoul.go.kr/seoul-aims-to-cut-carbon-emissions-by-50-percent-from-2005-levels-by-2033-to-lower-temperatures/",
+    },
+    risk: {
+      topHazards: [
+        { hazard: "Urban & river flooding", level: "High" },
+        { hazard: "Extreme heat", level: "Medium" },
+      ],
+      summary:
+        "Seoul's dominant climate risk is intense monsoon-season urban flooding (its worst in over a century hit in 2022), compounded by worsening summer heatwaves.",
+      source: "Seoul Metropolitan Government",
+      sourceUrl: "https://seoulsolution.kr/en/content/seoul%E2%80%99s-flood-control-policy",
+    },
   },
   {
     id: "schonau",
@@ -148,6 +325,20 @@ export const cities: City[] = [
       "Campaign for local control of the grid",
     ],
     storyIds: ["schonau-electricity-rebels"],
+    dataProvenance: "external",
+    emissions: null,
+    risk: {
+      topHazards: [
+        { hazard: "Drought & forest dieback", level: "High" },
+        { hazard: "Extreme heat", level: "Medium" },
+        { hazard: "Storms", level: "Medium" },
+      ],
+      summary:
+        "In the Black Forest, the leading threats are drought- and heat-driven forest dieback (record tree mortality since 2018) plus more frequent storms. No city-level inventory exists for a town this small.",
+      source: "Uni Freiburg / Baden-Württemberg climate projections",
+      sourceUrl:
+        "https://kommunikation.uni-freiburg.de/pm-en/press-releases-2023/tree-mortality-in-the-black-forest-on-the-rise-climate-change-a-key-driver",
+    },
   },
   {
     id: "new-york-city",
@@ -164,6 +355,27 @@ export const cities: City[] = [
       "Sign up lower-income households for bill savings",
     ],
     storyIds: ["nyc-sunset-park-solar"],
+    dataProvenance: "external",
+    emissions: {
+      totalTonnesCo2e: 48000000,
+      topSector: "Buildings / Energy",
+      inventoryYear: "2024",
+      note: "Buildings are about two-thirds of emissions; ~25% below 2005.",
+      source: "NYC Mayor's Office of Climate (MOCEJ)",
+      sourceUrl: "https://climate.cityofnewyork.us/initiatives/nyc-greenhouse-gas-inventories/",
+    },
+    risk: {
+      topHazards: [
+        { hazard: "Coastal flooding & storm surge", level: "High" },
+        { hazard: "Sea-level rise", level: "High" },
+        { hazard: "Extreme heat", level: "High" },
+      ],
+      summary:
+        "NYC's main risks are coastal and storm-surge flooding amplified by sea-level rise, plus more frequent extreme-heat events and heavy-rainfall flooding.",
+      source: "NYC Panel on Climate Change (NPCC4)",
+      sourceUrl:
+        "https://climateassessment.nyc/assessment/nyc-climate-risk-information-2022-observations-and-projections/",
+    },
   },
   {
     id: "ahmedabad",
@@ -180,6 +392,26 @@ export const cities: City[] = [
       "Map the hottest, most exposed homes",
     ],
     storyIds: ["ahmedabad-heat-action"],
+    dataProvenance: "external",
+    emissions: {
+      totalTonnesCo2e: 15100000,
+      topSector: "Industry (manufacturing & construction)",
+      inventoryYear: "2021",
+      source: "Ahmedabad Municipal Corp / ICLEI (CRCAP)",
+      sourceUrl:
+        "https://www.cities-and-regions.org/wp-content/uploads/2023-ahmedabad-climate-resilient-city-action-plan-compressed.pdf",
+    },
+    risk: {
+      topHazards: [
+        { hazard: "Extreme heat", level: "High" },
+        { hazard: "Flooding", level: "Medium" },
+        { hazard: "Water scarcity & drought", level: "Medium" },
+      ],
+      summary:
+        "Ahmedabad's defining risk is deadly extreme heat — it launched South Asia's first Heat Action Plan after a 2010 heatwave — alongside monsoon flooding and water scarcity.",
+      source: "Ahmedabad Heat Action Plan / NRDC",
+      sourceUrl: "https://www.nrdc.org/sites/default/files/ahmedabad-heat-action-plan-2019-update.pdf",
+    },
   },
   {
     id: "rotterdam",
@@ -196,6 +428,27 @@ export const cities: City[] = [
       "Adopt a street planter or water feature",
     ],
     storyIds: ["rotterdam-water-square"],
+    dataProvenance: "external",
+    emissions: {
+      totalTonnesCo2e: 21200000,
+      topSector: "Industry / Energy (port cluster)",
+      inventoryYear: "2025",
+      note: "Port-industrial cluster total — dominated by heavy industry, not comparable per-capita.",
+      source: "Port of Rotterdam / DCMR",
+      sourceUrl:
+        "https://www.portofrotterdam.com/en/news-and-press-releases/co2e-emissions-rotterdam-port-area-rose-2025-due-increased-electricity",
+    },
+    risk: {
+      topHazards: [
+        { hazard: "River & coastal flooding", level: "High" },
+        { hazard: "Sea-level rise", level: "High" },
+        { hazard: "Extreme heat", level: "Medium" },
+      ],
+      summary:
+        "Largely below sea level on a river delta, Rotterdam's central risk is flooding from sea-level rise, storm surge and extreme rainfall, with growing summer-heat stress.",
+      source: "Rotterdam Climate Adaptation Strategy",
+      sourceUrl: "https://www.urbangreenbluegrids.com/uploads/RCI_-RAS_UK_-DEF.pdf",
+    },
   },
   {
     id: "copenhagen",
@@ -212,6 +465,25 @@ export const cities: City[] = [
       "Join the neighborhood climate group",
     ],
     storyIds: ["copenhagen-climate-quarter"],
+    dataProvenance: "external",
+    emissions: {
+      totalTonnesCo2e: 470968,
+      inventoryYear: "2023",
+      perCapitaTonnes: 0.7,
+      source: "City of Copenhagen CO₂ accounts",
+      sourceUrl: "https://www.opendata.dk/city-of-copenhagen/co2-regnskab",
+    },
+    risk: {
+      topHazards: [
+        { hazard: "Cloudburst & extreme-rain flooding", level: "High" },
+        { hazard: "Storm surge & sea-level rise", level: "Medium" },
+      ],
+      summary:
+        "Copenhagen's leading risk is sudden cloudburst flooding from extreme rainfall (a 2011 storm caused major damage), plus rising storm-surge and sea-level threats.",
+      source: "Copenhagen Cloudburst Management Plan",
+      sourceUrl:
+        "https://climate-adapt.eea.europa.eu/en/metadata/case-studies/the-economics-of-managing-heavy-rains-and-stormwater-in-copenhagen-2013-the-cloudburst-management-plan",
+    },
   },
   {
     id: "london",
@@ -228,6 +500,26 @@ export const cities: City[] = [
       "Use the data to push for safer streets",
     ],
     storyIds: ["london-breathe-air"],
+    dataProvenance: "external",
+    emissions: {
+      totalTonnesCo2e: 30010000,
+      topSector: "Stationary energy",
+      inventoryYear: "2022",
+      source: "London Datastore (GLA · LEGGI)",
+      sourceUrl: "https://data.london.gov.uk/dataset/leggi/",
+    },
+    risk: {
+      topHazards: [
+        { hazard: "Surface-water & river flooding", level: "High" },
+        { hazard: "Extreme heat & overheating", level: "High" },
+        { hazard: "Drought", level: "Medium" },
+      ],
+      summary:
+        "London's core climate risks are flooding (surface-water, tidal and fluvial), overheating during more frequent heatwaves, and drought-driven water stress.",
+      source: "GLA London Climate Resilience Review",
+      sourceUrl:
+        "https://www.london.gov.uk/programmes-strategies/environment-and-climate-change/climate-change/climate-adaptation/london-climate-resilience-review",
+    },
   },
   {
     id: "paris",
@@ -244,5 +536,26 @@ export const cities: City[] = [
       "Track which proposals become policy",
     ],
     storyIds: ["paris-citizens-convention"],
+    dataProvenance: "external",
+    emissions: {
+      totalTonnesCo2e: 5070000,
+      topSector: "Buildings / Energy",
+      inventoryYear: "2022",
+      perCapitaTonnes: 2.5,
+      note: "In-territory emissions; full footprint incl. imports ≈ 18.7 Mt.",
+      source: "Ville de Paris / APUR – Bilan Carbone",
+      sourceUrl: "https://www.paris.fr/pages/les-emissions-de-gaz-a-effet-de-serre-de-paris-29491",
+    },
+    risk: {
+      topHazards: [
+        { hazard: "Extreme heat", level: "High" },
+        { hazard: "Seine river flooding", level: "Medium" },
+        { hazard: "Drought", level: "Medium" },
+      ],
+      summary:
+        "Paris's foremost risk is intensifying urban heatwaves, alongside major Seine river-flooding potential and increasing summer drought.",
+      source: "Ville de Paris – Paris Climate Action Plan",
+      sourceUrl: "https://cdn.paris.fr/paris/2021/11/16/088fcde428650ff1e3d9680f155a54a7.pdf",
+    },
   },
 ];

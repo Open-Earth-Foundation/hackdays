@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import dynamic from "next/dynamic";
 import type { City, Story } from "../data/types";
 import { categoryMeta } from "../data/types";
+import CitySnapshot from "./CitySnapshot";
 
 const CityMap = dynamic(() => import("./CityMap"), {
   ssr: false,
@@ -148,14 +149,21 @@ export default function CityExplorer({ cities, stories }: { cities: City[]; stor
               {selected.summary}
             </p>
 
+            <CitySnapshot city={selected} />
+
             {selected.highlights.length > 0 && (
-              <ul style={{ margin: "0.9rem 0 0", paddingLeft: "1.1rem", color: "var(--ink)" }}>
-                {selected.highlights.map((h) => (
-                  <li key={h} style={{ marginBottom: 3 }}>
-                    {h}
-                  </li>
-                ))}
-              </ul>
+              <div style={{ marginTop: "1.25rem" }}>
+                <div className="eyebrow" style={{ marginBottom: "0.4rem" }}>
+                  Ways to take part
+                </div>
+                <ul style={{ margin: 0, paddingLeft: "1.1rem", color: "var(--ink)" }}>
+                  {selected.highlights.map((h) => (
+                    <li key={h} style={{ marginBottom: 3 }}>
+                      {h}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             )}
 
             {selectedStories.length > 0 && (

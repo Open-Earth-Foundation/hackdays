@@ -7,6 +7,13 @@ export type Category =
   | "Participation"
   | "AirQuality";
 
+export type StoryImage = {
+  url: string;
+  credit: string;
+  license: string;
+  sourcePageUrl: string;
+};
+
 export type Story = {
   id: string;
   city: string;
@@ -19,6 +26,43 @@ export type Story = {
   outcome: string;
   year: string;
   sourceName: string;
+  sourceUrl: string;
+  image?: StoryImage;
+};
+
+export type RiskLevel = "Low" | "Medium" | "High" | "Very High";
+
+export type Hazard = {
+  hazard: string;
+  keyImpact?: string;
+  level: RiskLevel;
+  score?: number; // 0..1 normalised, when from CCRA
+};
+
+export type EmissionSector = {
+  sector: string;
+  sharePct: number;
+};
+
+export type Emissions = {
+  totalTonnesCo2e: number;
+  // Full sector breakdown (CityCatalyst cities). When absent, `topSector` is shown instead.
+  sectors?: EmissionSector[];
+  // Largest-emitting sector, when only that is known (external inventories).
+  topSector?: string;
+  inventoryYear: string;
+  perCapitaTonnes?: number | null;
+  // Short, plain-language caveat (e.g. partial coverage) shown under the figure.
+  note?: string;
+  source: string;
+  sourceUrl: string;
+};
+
+export type Risk = {
+  topHazards: Hazard[];
+  summary?: string;
+  year?: number;
+  source: string;
   sourceUrl: string;
 };
 
@@ -36,6 +80,10 @@ export type City = {
   locode?: string;
   // IDs of success stories anchored in this city.
   storyIds: string[];
+  // Where the emissions/risk data below comes from.
+  dataProvenance?: "CityCatalyst" | "external";
+  emissions?: Emissions | null;
+  risk?: Risk | null;
 };
 
 export const categoryMeta: Record<Category, { label: string; color: string }> = {

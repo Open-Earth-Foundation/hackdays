@@ -43,11 +43,41 @@ export default function StoriesGallery({ stories }: { stories: Story[] }) {
               style={{
                 border: "1px solid var(--line)",
                 borderRadius: 14,
-                padding: "1.25rem 1.35rem",
+                overflow: "hidden",
                 display: "flex",
                 flexDirection: "column",
               }}
             >
+              {s.image && (
+                <div style={{ position: "relative", aspectRatio: "16 / 9", background: "var(--bg-soft)" }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={s.image.url}
+                    alt={`${s.title} — ${s.city}, ${s.country}`}
+                    loading="lazy"
+                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                  />
+                  <a
+                    href={s.image.sourcePageUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={`${s.image.credit} · ${s.image.license}`}
+                    style={{
+                      position: "absolute",
+                      bottom: 6,
+                      right: 6,
+                      fontSize: "0.62rem",
+                      color: "#fff",
+                      background: "rgba(0,0,0,0.45)",
+                      padding: "0.1rem 0.4rem",
+                      borderRadius: 6,
+                    }}
+                  >
+                    © {s.image.license}
+                  </a>
+                </div>
+              )}
+              <div style={{ padding: "1.25rem 1.35rem", display: "flex", flexDirection: "column", flex: 1 }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
                 <span style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: "0.74rem", fontWeight: 600, color: m.color }}>
                   <span style={{ width: 8, height: 8, borderRadius: 999, background: m.color }} />
@@ -77,6 +107,7 @@ export default function StoriesGallery({ stories }: { stories: Story[] }) {
               >
                 Source: {s.sourceName} ↗
               </a>
+              </div>
             </article>
           );
         })}

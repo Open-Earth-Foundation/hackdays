@@ -85,9 +85,11 @@ export default function Home() {
             </p>
           </div>
           <p style={{ fontSize: "0.82rem", color: "var(--ink-faint)", maxWidth: 720, margin: 0 }}>
-            Built for OEF Hackday 26Q2. Cities are keyed by UN/LOCODE so they can connect to live
-            CityCatalyst Global API data (GHGI · CCRA · HIAP). Success stories are independently
-            sourced — see each card&rsquo;s link.
+            Built for OEF Hackday 26Q2. Brazilian cities pull live emissions and climate-risk data
+            from the CityCatalyst Global API (SEEG inventory · CCRA risk); other cities use the
+            latest verified inventories and risk profiles from official sources. Every figure and
+            success story links to its source — look for the &ldquo;CityCatalyst live&rdquo; vs
+            &ldquo;External source&rdquo; badge.
           </p>
         </div>
       </footer>

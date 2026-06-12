@@ -76,11 +76,23 @@ npm run dev
 
 ## Data & Sources
 
+- **City emissions + climate risk** (`src/app/data/cities.ts`): each city shows a GHG inventory
+  and a risk profile, with a **"CityCatalyst live"** or **"External source"** badge.
+  - **Brazilian cities** (São Paulo, Rio, Curitiba, Porto Alegre) pull **live** from the
+    CityCatalyst Global API: emissions assembled from the SEEG inventory (+ SINIR/SNIS waste) by
+    summing GPC sectors, and top hazards from the CCRA risk model. These are partial territorial
+    inventories (grid electricity / some waste not yet captured), so the figures are conservative
+    and a note flags this in the UI.
+  - **Other cities** use the latest verified inventory + risk profile from official sources
+    (C40/CDP, GLA-LEGGI, Ville de Paris, City of Copenhagen, NPCC, ICLEI, etc.), each linked.
+    Boundaries differ (e.g. Paris in-territory vs. footprint; Rotterdam = port-industrial cluster;
+    Seoul = 2005 baseline) — noted on the card.
 - **Success stories** (`src/app/data/stories.ts`) are real and independently sourced
-  (C40, WRI, World Bank, UN/SEforALL, city governments, etc.). Headline numbers were
-  cross-checked; uncertain figures are described qualitatively. Each card carries its source link.
-- **Cities** (`src/app/data/cities.ts`) are a curated seed set, each tagged with its UN/LOCODE
-  for live API wiring. This is intentionally a seed, not the full CityCatalyst catalogue (yet).
+  (C40, WRI, World Bank, SEforALL, city governments, etc.). Headline numbers were cross-checked;
+  uncertain figures are described qualitatively. Each card links its source.
+- **Story images** are from Wikimedia Commons under reuse-permitting licenses (CC0 / CC BY /
+  CC BY-SA); photographer credit + license are shown on each image and link to the file page.
+- **Cities** are the 15 places featured in the success stories, each tagged with its UN/LOCODE.
 
 ## If This Survives the Hackday
 
