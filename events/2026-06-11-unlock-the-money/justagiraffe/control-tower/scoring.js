@@ -1,31 +1,53 @@
 // Readiness scoring model — Sub-Sovereign Finance Program (SFP) Control Tower
 // -----------------------------------------------------------------------------
-// Grounded in IDB SFP eligibility language (GN-xxxx proposal, §4.2/4.13):
-// SNG eligibility is determined by "credit strength, financial viability, legal
-// capacity and good governance practices (including managerial capacity, fiscal
-// track record, planning, and fiscal controls) ... underpinned by an early
-// creditworthiness assessment", provided the SNG and the central/federal
-// government are not in non-accrual.
-// We turn those four pillars into a transparent, auditable composite score.
-// Owner: Sean (Finance) tunes the weights & thresholds; Mirco (AI) feeds the
-// sub-scores from CityCatalyst + open fiscal data. Kept in sync with data/sngs.js.
+// The Readiness Engine. It is now PROFILE-DRIVEN: weights, tiers, the eligibility
+// gate and the documentary checklist are read from the ACTIVE readiness profile
+// (see readiness-profiles.js), not hardcoded. The default profile "idb-sfp"
+// reproduces the IDB Sub-Sovereign Finance Program eligibility logic exactly
+// (GN-xxxx proposal §4.2/§4.3/§4.13/OP-301), so the dashboard and its live
+// re-score behave identically — but swapping the active profile re-points the
+// whole engine at a different MDB's criteria. That pluggability is the point.
+//
+// Owner: Sean (Finance) tunes the active profile's weights & thresholds; Mirco
+// (AI) feeds the sub-scores from CityCatalyst + open fiscal data. Profiles are
+// the contract the City-Funder Matching Engine and other MDBs plug into.
 // -----------------------------------------------------------------------------
 
-const READINESS_WEIGHTS = {
-  creditworthiness: 0.30, // credit signals: rating, debt service, market access
-  fiscalHealth:     0.30, // own-source revenue, operating balance, solvency
-  legalCapacity:    0.20, // can contract & borrow without sovereign guarantee
-  governance:       0.20, // managerial capacity, planning, fiscal controls, audit
-};
+// Resolve the profile registry in both browser (window) and Node (require).
+const Profiles =
+  (typeof window !== "undefined" && window.ReadinessProfiles) ||
+  (typeof require !== "undefined" ? require("./readiness-profiles.js") : null);
 
-const PILLAR_LABELS = {
-  creditworthiness: "Creditworthiness",
-  fiscalHealth:     "Fiscal health",
-  legalCapacity:    "Legal capacity",
-  governance:       "Governance",
-};
+let ACTIVE_PROFILE = Profiles ? Profiles.getProfile(Profiles.DEFAULT_PROFILE_ID) : null;
 
-const TIER_THRESHOLDS = { ready: 70, developing: 45 }; // >=70 Ready, 45-69 Developing, <45 Early
+// Live, mutable views derived from the active profile. These objects keep the
+// SAME identity/shape the dashboard already binds to (sliders mutate
+// READINESS_WEIGHTS in place; PILLAR_LABELS[key] is read for labels).
+const READINESS_WEIGHTS = {};
+const PILLAR_LABELS = {};
+const TIER_THRESHOLDS = { ready: 70, developing: 45 };
+
+// Rebuild the derived views from a profile (mutating in place to preserve identity).
+function applyProfile(profile) {
+  ACTIVE_PROFILE = profile;
+  for (const k of Object.keys(READINESS_WEIGHTS)) delete READINESS_WEIGHTS[k];
+  for (const k of Object.keys(PILLAR_LABELS)) delete PILLAR_LABELS[k];
+  for (const p of profile.pillars) {
+    READINESS_WEIGHTS[p.key] = p.weight;
+    PILLAR_LABELS[p.key] = p.label;
+  }
+  TIER_THRESHOLDS.ready = profile.tiers.thresholds.ready;
+  TIER_THRESHOLDS.developing = profile.tiers.thresholds.developing;
+  return ACTIVE_PROFILE;
+}
+if (ACTIVE_PROFILE) applyProfile(ACTIVE_PROFILE);
+
+// Switch the engine to another MDB's profile (e.g. "idb-sfp" → "caf-...").
+function setActiveProfile(id) {
+  if (!Profiles) return ACTIVE_PROFILE;
+  return applyProfile(Profiles.getProfile(id));
+}
+function activeProfile() { return ACTIVE_PROFILE; }
 
 // Replace weights (partial ok) and renormalize to sum 1 so the composite stays 0-100.
 // Used by resetWeights(); sliders use setWeightShare() so the handle tracks the label.
@@ -79,24 +101,18 @@ function tierFor(score) {
 }
 
 function readinessActionFor(tier) {
-  if (tier === "Ready") return "Move to Project Review";
-  if (tier === "Developing") return "Targeted TC / readiness acceleration";
-  return "Foundational readiness support";
+  const actions = (ACTIVE_PROFILE && ACTIVE_PROFILE.tiers.actions) || {};
+  return actions[tier] || tier;
 }
 
-// Step 2 after the early creditworthiness assessment (Step 1). Mirrors SFP §4.2:
-// ability to contract IDB financing without sovereign guarantee, plus documentary
-// evidence (§4.13 / OP-301). Analytic pillar scores do not replace these checks.
+// Step 2 after the early creditworthiness assessment (Step 1): the active
+// profile's hard clearance gates (for IDB SFP: legal capacity to borrow w/o
+// sovereign guarantee §4.2, independent audit §4.13/OP-301). Analytic pillar
+// scores do not replace these checks.
 function readinessClearanceBlockers(sng) {
   const sig = sng.signals || {};
-  const blockers = [];
-  if (!sig.canBorrowWithoutSovereignGuarantee) {
-    blockers.push("Legal capacity to borrow w/o sovereign guarantee");
-  }
-  if (!sig.independentAudit) {
-    blockers.push("Independent audit on file");
-  }
-  return blockers;
+  const gates = (ACTIVE_PROFILE && ACTIVE_PROFILE.clearanceBlockers) || [];
+  return gates.filter(g => !g.test(sig)).map(g => g.label);
 }
 
 function readinessActionForSng(sng) {
@@ -110,17 +126,13 @@ function readinessActionForSng(sng) {
   return "Ready score · clearance blocked";
 }
 
-// IDB project-eligibility gate (3 simultaneous criteria, §4.3) + the SNG-level
-// non-accrual condition (§4.2). Returns which criteria pass so the dashboard
-// can show *why* a candidate is / isn't eligible.
+// The active profile's project-eligibility gate (for IDB SFP: 3 simultaneous
+// criteria §4.3 + the non-accrual condition §4.2). Returns which criteria pass
+// (keyed object) plus `eligible`, so the dashboard can show *why*.
 function eligibilityCheck(sng) {
-  const r = sng.readiness, p = sng.proposal;
-  const checks = {
-    highDevImpact:             p.askUSDm > 15,    // material, transformational scale (Impact+)
-    noCrowdingOut:             true,              // screened at intake against §4.5 criteria
-    improvesSNGEfficiency:     r.governance >= 40, // capacity-building angle (§4.6)
-    centralGovNotInNonAccrual: true,              // country-level gate (§4.2)
-  };
+  const criteria = (ACTIVE_PROFILE && ACTIVE_PROFILE.projectEligibility) || [];
+  const checks = {};
+  for (const c of criteria) checks[c.key] = !!c.test(sng);
   checks.eligible = Object.values(checks).every(Boolean);
   return checks;
 }
@@ -131,22 +143,15 @@ function canEnterProjectReview(sng) {
     readinessClearanceBlockers(sng).length === 0;
 }
 
-// Documentary intake checklist mirroring the SFP due-diligence requirements
-// (§4.13 readiness assessment, §4.18 legal frameworks, OP-301). Drives the
-// pipeline view's workflow state — what is missing before the next gate.
+// Documentary intake checklist from the active profile (for IDB SFP: §4.13
+// readiness assessment, §4.18 legal frameworks, OP-301). Drives the pipeline
+// view's workflow state — what is missing before the next gate.
 function intakeChecklist(sng) {
-  const sig = sng.signals || {};
-  const pastIntake = sng.proposal && sng.proposal.stage !== "Proposal Intake";
-  return [
-    { key: "legal",   label: "Legal capacity to borrow w/o sovereign guarantee (OP-301)", done: !!sig.canBorrowWithoutSovereignGuarantee },
-    { key: "audit",   label: "Independent audit / audited financial statements",          done: !!sig.independentAudit },
-    { key: "fiscal",  label: "Fiscal indicators on file (own-source rev, debt service, balance)", done: typeof sig.ownSourceRevenuePct === "number" },
-    { key: "accrual", label: "Non-accrual confirmation (SNG + central government)",       done: true },
-    { key: "crowd",   label: "Crowding-out screen vs. §4.5 criteria",                     done: pastIntake },
-  ];
+  const items = (ACTIVE_PROFILE && ACTIVE_PROFILE.documentaryChecklist) || [];
+  return items.map(it => ({ key: it.key, label: it.label, done: !!it.test(sng) }));
 }
 
-// One call to (re)score a candidate end-to-end.
+// One call to (re)score a candidate end-to-end against the active profile.
 function scoreSNG(sng) {
   const score = compositeReadiness(sng.readiness);
   const tier = tierFor(score);
@@ -165,6 +170,8 @@ const ScoringModel = {
   setWeights, setWeightShare, compositeReadiness, explainScore, tierFor,
   readinessActionFor, readinessActionForSng, readinessClearanceBlockers,
   eligibilityCheck, canEnterProjectReview, intakeChecklist, scoreSNG,
+  // profile controls (new)
+  setActiveProfile, activeProfile, applyProfile,
 };
 
 if (typeof window !== "undefined") window.ScoringModel = ScoringModel;
