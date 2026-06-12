@@ -19,16 +19,15 @@ CityCatalyst tells **city governments** what to do about climate — emissions i
 citizen-facing app that answers *"What's happening in my city, and how can I take better
 action?"*
 
-It walks a resident through three steps:
+The interface is deliberately minimalist and plain-language:
 
-1. **Discover** — what is my city doing on climate? (a plain-language snapshot of emissions
-   by sector and the climate risks near them)
-2. **Learn** — what does it actually mean, in everyday language?
-3. **Engage** — concrete next steps tied to each priority: community groups, public-comment
-   periods, city-council meetings, volunteer drives, and policy/lawmaking opportunities.
-
-Each action pathway is generated from a real CityCatalyst signal (HIAP / GHGI / CCRA) and
-translated into something a person can actually do this week.
+1. **How it works** — a simple diagram showing how the same data cities use to plan (GHGI
+   emissions inventory, CCRA climate risk, HIAP priority actions) is translated into
+   *Understand → Connect → Act*.
+2. **Explore** — search across cities or pick one on an interactive map to see how residents
+   there are shaping local climate action, and what you could do in your own.
+3. **Inspiration** — a gallery of **real, independently sourced** success stories where
+   citizens changed their cities, filterable by action type. Every card links to its source.
 
 ## Revenue Connection
 
@@ -56,31 +55,37 @@ npm run dev
 
 1. **The gap** — CityCatalyst is powerful but government-only. Citizens are locked out of
    their own city's climate plan.
-2. **Discover & Learn** — open the app on a sample city (Rio Branco). Emissions by sector and
-   local climate risks, all in plain language.
-3. **The "aha"** — scroll to *Ways to take action*. Every card is generated from a real
-   CityCatalyst signal and turned into concrete civic steps (join a group, file a comment,
-   show up to a council session).
-4. **Who pays** — civic engagement is a co-benefit funders already score; this makes it
-   measurable. B2G, IDB, philanthropy.
-5. **What's next** — wire to the live Global API, add city search, and let residents track
-   the actions they've taken.
+2. **How it works** — the diagram: city planning data → plain language → *Understand, Connect,
+   Act*. No dashboards to decode.
+3. **Explore** — search a city, or click the map. Pick Medellín / Bogotá / a Brazilian city
+   and read, in everyday language, what residents there did and what you could do.
+4. **The "aha"** — the Inspiration gallery: real, sourced stories of citizens who cooled their
+   streets, bought their power grid, rewrote climate law. Filter by action type; every claim
+   links to its source.
+5. **Who pays** — civic engagement is a co-benefit funders already score; this makes it
+   visible and measurable. B2G, IDB, philanthropy.
 
 ## Built With
 
 - Cursor + Claude
 - Next.js 15 / React 19 / TypeScript
-- Data shapes modeled on the [CityCatalyst Global API](https://github.com/Open-Earth-Foundation/CityCatalyst/tree/develop/global-api)
-  (GHGI, CCRA, HIAP). Currently sample data — see `src/app/data.ts`.
+- [Leaflet](https://leafletjs.com/) + react-leaflet, with free OpenStreetMap / CARTO basemap tiles
+- Cities keyed by **UN/LOCODE** — the same key the
+  [CityCatalyst Global API](https://github.com/Open-Earth-Foundation/CityCatalyst/tree/develop/global-api)
+  uses — so they can connect to live GHGI / CCRA / HIAP data (`api.citycatalyst.io`)
 
-## What We Learned
+## Data & Sources
 
-_(fill in during the build)_
+- **Success stories** (`src/app/data/stories.ts`) are real and independently sourced
+  (C40, WRI, World Bank, UN/SEforALL, city governments, etc.). Headline numbers were
+  cross-checked; uncertain figures are described qualitatively. Each card carries its source link.
+- **Cities** (`src/app/data/cities.ts`) are a curated seed set, each tagged with its UN/LOCODE
+  for live API wiring. This is intentionally a seed, not the full CityCatalyst catalogue (yet).
 
 ## If This Survives the Hackday
 
-- [ ] Replace sample data with live CityCatalyst Global API calls (GHGI / CCRA / HIAP)
-- [ ] City search + geolocation so a resident lands on their own city
-- [ ] Real engagement directory: community groups, public-comment calendars, council agendas
+- [ ] Wire cities by LOCODE to live CityCatalyst Global API data (GHGI / CCRA / HIAP)
+- [ ] Expand from the seed set to the full CityCatalyst city catalogue + geolocation
+- [ ] Real engagement directory per city: community groups, public-comment calendars, council agendas
 - [ ] Extend Climate Advisor (AI) to answer "how do I influence my city's climate plan?"
 - [ ] Participation metrics dashboard for cities/funders (the revenue surface)
