@@ -1,0 +1,86 @@
+/* Leaflet base styles (map tiles, controls) */
+@import "leaflet/dist/leaflet.css";
+
+:root {
+  --ink: #14181f;
+  --ink-soft: #515a67;
+  --ink-faint: #8a93a0;
+  --line: #e7e9ee;
+  --bg: #ffffff;
+  --bg-soft: #f7f8fa;
+  --accent: #0f766e; /* calm teal-green */
+  --accent-soft: #e6f3f1;
+  --maxw: 1080px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-weight: 650;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+.wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.eyebrow {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.muted {
+  color: var(--ink-soft);
+}
+
+.section {
+  padding: 5rem 0;
+}
+.section + .section {
+  border-top: 1px solid var(--line);
+}
+
+/* Leaflet container needs an explicit height */
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+  background: var(--bg-soft);
+  font-family: inherit;
+}
