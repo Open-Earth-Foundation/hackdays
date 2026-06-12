@@ -2,33 +2,270 @@
   "meta": {
     "city": "Porto Alegre",
     "language": "en",
-    "status": "placeholder_research_queue",
-    "purpose": "Track external municipal/community engagement records to validate and merge into civic-action-mapping.json."
+    "status": "validated_source_inventory",
+    "lastResearchedUtc": "2026-06-12T16:25:00Z",
+    "purpose": "Track official and community engagement records that can be merged into civic-action-mapping.json."
   },
-  "opportunities": [
+  "sources": [
     {
-      "id": "poa-civil-defense",
-      "name": "Civil defense and emergency preparedness channels",
-      "type": "municipal_service",
-      "relatedRecommendationIds": ["poa-flood-resilience", "poa-landslide-prevention"],
-      "status": "needs_local_validation",
-      "researchNotes": "Find official Porto Alegre civil defense reporting, alert, and preparedness pages."
+      "id": "poa-climate-action-plan",
+      "name": "Porto Alegre Climate Action Plan",
+      "type": "official_plan",
+      "publisher": "Prefeitura de Porto Alegre / SMAMUS",
+      "url": "https://prefeitura.poa.br/smamus/plano-de-acao-climatica",
+      "relevance": "Official climate planning source for mitigation, adaptation, social, economic, environmental, and health priorities.",
+      "relatedRecommendationIds": [
+        "poa-flood-resilience",
+        "poa-landslide-prevention",
+        "poa-heat-and-green-infrastructure",
+        "poa-residential-energy",
+        "poa-active-mobility"
+      ],
+      "validationStatus": "validated"
     },
     {
-      "id": "poa-climate-plan-consultation",
-      "name": "Climate, resilience, or recovery planning consultations",
-      "type": "municipal_process",
-      "relatedRecommendationIds": ["poa-flood-resilience", "poa-heat-and-green-infrastructure"],
-      "status": "needs_local_validation",
-      "researchNotes": "Find current public consultation processes, city council agendas, or municipal climate planning pages."
+      "id": "poa-defesa-civil",
+      "name": "Defesa Civil de Porto Alegre",
+      "type": "official_service",
+      "publisher": "Prefeitura de Porto Alegre",
+      "url": "https://prefeitura.poa.br/defesa-civil",
+      "relevance": "Official channel for disaster risk, emergency response, landslide/desabamento support, and public safety information.",
+      "relatedRecommendationIds": [
+        "poa-flood-resilience",
+        "poa-landslide-prevention"
+      ],
+      "validationStatus": "validated"
     },
     {
-      "id": "poa-community-groups",
-      "name": "Community climate, watershed, mobility, and neighborhood organizations",
-      "type": "community_group",
-      "relatedRecommendationIds": ["poa-flood-resilience", "poa-active-mobility", "poa-heat-and-green-infrastructure"],
-      "status": "needs_local_validation",
-      "researchNotes": "Collect 5-10 credible local organizations with website, contact, topic, and neighborhood coverage."
+      "id": "poa-op",
+      "name": "Orcamento Participativo",
+      "type": "official_participatory_budget",
+      "publisher": "Prefeitura de Porto Alegre / SMGOV",
+      "url": "https://prefeitura.poa.br/smgov/orcamento-participativo",
+      "relevance": "Participatory budgeting process where residents can deliberate regional and thematic demands, including infrastructure and public service priorities.",
+      "relatedRecommendationIds": [
+        "poa-flood-resilience",
+        "poa-heat-and-green-infrastructure",
+        "poa-active-mobility"
+      ],
+      "validationStatus": "validated"
+    },
+    {
+      "id": "poa-cmdua",
+      "name": "Conselho Municipal de Desenvolvimento Urbano Ambiental",
+      "type": "official_council",
+      "publisher": "Prefeitura de Porto Alegre / SMAMUS",
+      "url": "https://prefeitura.poa.br/smamus/planejamento-urbano/cmdua",
+      "relevance": "Urban-environmental council linked to planning, land use, and city development decisions.",
+      "relatedRecommendationIds": [
+        "poa-flood-resilience",
+        "poa-landslide-prevention",
+        "poa-heat-and-green-infrastructure"
+      ],
+      "validationStatus": "validated"
+    },
+    {
+      "id": "poa-comam",
+      "name": "Conselho Municipal do Meio Ambiente",
+      "type": "official_council",
+      "publisher": "Prefeitura de Porto Alegre",
+      "url": "https://prefeitura.poa.br/catalogo-conselhos/comam",
+      "relevance": "Municipal environment council connected to environmental policy formulation, control, and oversight.",
+      "relatedRecommendationIds": [
+        "poa-heat-and-green-infrastructure",
+        "poa-flood-resilience"
+      ],
+      "validationStatus": "validated"
+    },
+    {
+      "id": "poa-commu",
+      "name": "Conselho Municipal de Mobilidade Urbana",
+      "type": "official_council",
+      "publisher": "Prefeitura de Porto Alegre / SMMU",
+      "url": "https://prefeitura.poa.br/catalogo-conselhos/commu",
+      "relevance": "Consultative council for mobility policy, useful for active mobility and street redesign civic pathways.",
+      "relatedRecommendationIds": [
+        "poa-active-mobility"
+      ],
+      "validationStatus": "validated"
+    },
+    {
+      "id": "poa-drena-resiliente-pepi",
+      "name": "POA+Drena Resiliente stakeholder engagement plan",
+      "type": "official_project_engagement_plan",
+      "publisher": "Prefeitura de Porto Alegre",
+      "url": "https://prefeitura.poa.br/sites/default/files/usu_doc/sites/smpg/PEPI-Arroio%20Moinho_rev.03.26.pdf",
+      "relevance": "Stakeholder engagement plan for resilient urban drainage investments, including the Arroio Moinho area.",
+      "relatedRecommendationIds": [
+        "poa-flood-resilience"
+      ],
+      "validationStatus": "validated"
+    },
+    {
+      "id": "poa-drena-resiliente-grievance",
+      "name": "POA+Drena Resiliente complaints and repair mechanism",
+      "type": "official_grievance_mechanism",
+      "publisher": "Prefeitura de Porto Alegre",
+      "url": "https://prefeitura.poa.br/sites/default/files/usu_doc/sites/smpg/Mecanismo%20de%20Queixas%20e%20Reclama%C3%A7%C3%B5es_PoA_v.2026.pdf",
+      "relevance": "Formal grievance mechanism for the drainage resilience program, useful for accountability and affected-community feedback.",
+      "relatedRecommendationIds": [
+        "poa-flood-resilience"
+      ],
+      "validationStatus": "validated"
+    },
+    {
+      "id": "poa-tree-care",
+      "name": "Planning and care for trees",
+      "type": "official_program_information",
+      "publisher": "Prefeitura de Porto Alegre / SMAMUS",
+      "url": "https://prefeitura.poa.br/smamus/planejamento-e-cuidado-com-arvores",
+      "relevance": "Official information about urban tree maintenance and care, useful for shade, cooling, and green infrastructure actions.",
+      "relatedRecommendationIds": [
+        "poa-heat-and-green-infrastructure"
+      ],
+      "validationStatus": "validated"
+    },
+    {
+      "id": "poa-tree-planting-news",
+      "name": "Porto Alegre begins planting 3,500 new trees",
+      "type": "official_program_news",
+      "publisher": "Prefeitura de Porto Alegre / SMAMUS",
+      "url": "https://prefeitura.poa.br/smamus/noticias/porto-alegre-inicia-plantio-de-35-mil-novas-arvores",
+      "relevance": "Official tree-planting program signal for green infrastructure and urban cooling pathways.",
+      "relatedRecommendationIds": [
+        "poa-heat-and-green-infrastructure"
+      ],
+      "validationStatus": "validated"
+    },
+    {
+      "id": "poa-central-green-resilient-pepi",
+      "name": "Green, resilient, and inclusive central area requalification PEPI",
+      "type": "official_project_engagement_plan",
+      "publisher": "Prefeitura de Porto Alegre",
+      "url": "https://prefeitura.poa.br/sites/default/files/usu_doc/sites/smpg/Plano%20de%20Envolvimento%20de%20Partes%20Interessadas%20%28PEPI%29.pdf",
+      "relevance": "Stakeholder engagement plan for a green, resilient, inclusive project in the Historic Center and 4th District.",
+      "relatedRecommendationIds": [
+        "poa-heat-and-green-infrastructure",
+        "poa-active-mobility"
+      ],
+      "validationStatus": "validated"
+    },
+    {
+      "id": "poa-mobirio",
+      "name": "MobiRio",
+      "type": "community_mobility_group",
+      "publisher": "MobiRio",
+      "url": "https://www.facebook.com/associacaomobirio/?locale=pt_BR",
+      "relevance": "Local mobility/cycling advocacy group; useful as a community pathway for active mobility, but should be confirmed with current contact details.",
+      "relatedRecommendationIds": [
+        "poa-active-mobility"
+      ],
+      "validationStatus": "community_source_needs_contact_validation"
+    },
+    {
+      "id": "bike-anjo",
+      "name": "Bike Anjo",
+      "type": "community_mobility_network",
+      "publisher": "Bike Anjo",
+      "url": "https://bikeanjo.org/",
+      "relevance": "Volunteer cyclist network that helps people learn and practice cycling; useful for resident-level active mobility pathways.",
+      "relatedRecommendationIds": [
+        "poa-active-mobility"
+      ],
+      "validationStatus": "validated_network_needs_local_chapter_check"
+    },
+    {
+      "id": "agapan",
+      "name": "Associacao Gaucha de Protecao ao Ambiente Natural",
+      "type": "community_environmental_organization",
+      "publisher": "AGAPAN",
+      "url": "https://www.agapan.org.br/",
+      "relevance": "Environmental advocacy organization in Rio Grande do Sul; useful for urban tree, environmental policy, and climate accountability pathways.",
+      "relatedRecommendationIds": [
+        "poa-heat-and-green-infrastructure",
+        "poa-flood-resilience"
+      ],
+      "validationStatus": "validated_organization"
+    }
+  ],
+  "engagementOpportunities": [
+    {
+      "id": "poa-resilience-public-input",
+      "name": "Climate planning and resilience public input",
+      "type": "official_planning_pathway",
+      "relatedSourceIds": [
+        "poa-climate-action-plan",
+        "poa-cmdua",
+        "poa-comam",
+        "poa-op"
+      ],
+      "relatedRecommendationIds": [
+        "poa-flood-resilience",
+        "poa-landslide-prevention",
+        "poa-heat-and-green-infrastructure"
+      ],
+      "status": "source_identified",
+      "residentAction": "Use the climate plan, councils, and participatory budget channels to ask how resilience investments are prioritized by risk, neighborhood, and equity."
+    },
+    {
+      "id": "poa-drainage-accountability",
+      "name": "Drainage resilience project accountability",
+      "type": "official_project_feedback",
+      "relatedSourceIds": [
+        "poa-drena-resiliente-pepi",
+        "poa-drena-resiliente-grievance"
+      ],
+      "relatedRecommendationIds": [
+        "poa-flood-resilience"
+      ],
+      "status": "source_identified",
+      "residentAction": "Track POA+Drena Resiliente engagement materials and use the grievance mechanism when project impacts or concerns need formal response."
+    },
+    {
+      "id": "poa-tree-and-heat-action",
+      "name": "Urban trees and cooling action",
+      "type": "official_program_plus_community_advocacy",
+      "relatedSourceIds": [
+        "poa-tree-care",
+        "poa-tree-planting-news",
+        "poa-comam",
+        "agapan"
+      ],
+      "relatedRecommendationIds": [
+        "poa-heat-and-green-infrastructure"
+      ],
+      "status": "source_identified",
+      "residentAction": "Connect heat-risk priorities to tree planting, tree care, COMAM oversight, and community advocacy for equitable shade."
+    },
+    {
+      "id": "poa-active-mobility-action",
+      "name": "Active mobility policy and community action",
+      "type": "official_council_plus_community_group",
+      "relatedSourceIds": [
+        "poa-commu",
+        "poa-central-green-resilient-pepi",
+        "poa-mobirio",
+        "bike-anjo"
+      ],
+      "relatedRecommendationIds": [
+        "poa-active-mobility"
+      ],
+      "status": "source_identified",
+      "residentAction": "Use COMMU and local mobility groups to advocate for safe walking, cycling, accessibility, and street redesign."
+    },
+    {
+      "id": "poa-emergency-preparedness",
+      "name": "Emergency preparedness and risk reporting",
+      "type": "official_service",
+      "relatedSourceIds": [
+        "poa-defesa-civil"
+      ],
+      "relatedRecommendationIds": [
+        "poa-flood-resilience",
+        "poa-landslide-prevention"
+      ],
+      "status": "source_identified",
+      "residentAction": "Use Defesa Civil channels for emergency guidance, risk situations, and disaster preparedness."
     }
   ]
 }

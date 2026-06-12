@@ -85,14 +85,24 @@
       ],
       "engagementOpportunities": [
         {
-          "name": "Municipal civil defense and resilience planning",
-          "status": "needs_local_validation",
-          "sourceType": "municipal_process"
+          "name": "Defesa Civil de Porto Alegre",
+          "status": "validated_source_identified",
+          "sourceType": "official_service",
+          "sourceId": "poa-defesa-civil",
+          "url": "https://prefeitura.poa.br/defesa-civil"
         },
         {
-          "name": "Watershed or neighborhood preparedness groups",
-          "status": "needs_local_validation",
-          "sourceType": "community_group"
+          "name": "POA+Drena Resiliente stakeholder engagement and grievance channels",
+          "status": "validated_source_identified",
+          "sourceType": "official_project_feedback",
+          "sourceIds": ["poa-drena-resiliente-pepi", "poa-drena-resiliente-grievance"]
+        },
+        {
+          "name": "Orcamento Participativo",
+          "status": "validated_source_identified",
+          "sourceType": "official_participatory_budget",
+          "sourceId": "poa-op",
+          "url": "https://prefeitura.poa.br/smgov/orcamento-participativo"
         }
       ],
       "frontendTags": ["floods", "public-health", "infrastructure", "high-priority"]
@@ -136,9 +146,18 @@
       ],
       "engagementOpportunities": [
         {
-          "name": "Risk mapping and civil defense channels",
-          "status": "needs_local_validation",
-          "sourceType": "municipal_service"
+          "name": "Defesa Civil de Porto Alegre",
+          "status": "validated_source_identified",
+          "sourceType": "official_service",
+          "sourceId": "poa-defesa-civil",
+          "url": "https://prefeitura.poa.br/defesa-civil"
+        },
+        {
+          "name": "Conselho Municipal de Desenvolvimento Urbano Ambiental",
+          "status": "validated_source_identified",
+          "sourceType": "official_council",
+          "sourceId": "poa-cmdua",
+          "url": "https://prefeitura.poa.br/smamus/planejamento-urbano/cmdua"
         }
       ],
       "frontendTags": ["landslides", "civil-defense", "housing", "risk-mapping"]
@@ -189,9 +208,25 @@
       ],
       "engagementOpportunities": [
         {
-          "name": "Urban forestry, parks, or cooling-space programs",
-          "status": "needs_local_validation",
-          "sourceType": "municipal_program"
+          "name": "Planning and care for trees",
+          "status": "validated_source_identified",
+          "sourceType": "official_program_information",
+          "sourceId": "poa-tree-care",
+          "url": "https://prefeitura.poa.br/smamus/planejamento-e-cuidado-com-arvores"
+        },
+        {
+          "name": "Conselho Municipal do Meio Ambiente",
+          "status": "validated_source_identified",
+          "sourceType": "official_council",
+          "sourceId": "poa-comam",
+          "url": "https://prefeitura.poa.br/catalogo-conselhos/comam"
+        },
+        {
+          "name": "Associacao Gaucha de Protecao ao Ambiente Natural",
+          "status": "validated_community_source",
+          "sourceType": "community_environmental_organization",
+          "sourceId": "agapan",
+          "url": "https://www.agapan.org.br/"
         }
       ],
       "frontendTags": ["heatwaves", "trees", "green-infrastructure", "public-health"]
@@ -235,9 +270,18 @@
       ],
       "engagementOpportunities": [
         {
-          "name": "Residential retrofit, building efficiency, or energy poverty programs",
-          "status": "needs_local_validation",
-          "sourceType": "program"
+          "name": "Porto Alegre Climate Action Plan",
+          "status": "validated_source_identified",
+          "sourceType": "official_plan",
+          "sourceId": "poa-climate-action-plan",
+          "url": "https://prefeitura.poa.br/smamus/plano-de-acao-climatica"
+        },
+        {
+          "name": "Orcamento Participativo",
+          "status": "validated_source_identified",
+          "sourceType": "official_participatory_budget",
+          "sourceId": "poa-op",
+          "url": "https://prefeitura.poa.br/smgov/orcamento-participativo"
         }
       ],
       "frontendTags": ["energy", "buildings", "retrofits", "mitigation"]
@@ -281,16 +325,32 @@
       ],
       "engagementOpportunities": [
         {
-          "name": "Mobility planning consultations and safe-streets campaigns",
-          "status": "needs_local_validation",
-          "sourceType": "civic_campaign"
+          "name": "Conselho Municipal de Mobilidade Urbana",
+          "status": "validated_source_identified",
+          "sourceType": "official_council",
+          "sourceId": "poa-commu",
+          "url": "https://prefeitura.poa.br/catalogo-conselhos/commu"
+        },
+        {
+          "name": "MobiRio",
+          "status": "community_source_needs_contact_validation",
+          "sourceType": "community_mobility_group",
+          "sourceId": "poa-mobirio",
+          "url": "https://www.facebook.com/associacaomobirio/?locale=pt_BR"
+        },
+        {
+          "name": "Bike Anjo",
+          "status": "validated_network_needs_local_chapter_check",
+          "sourceType": "community_mobility_network",
+          "sourceId": "bike-anjo",
+          "url": "https://bikeanjo.org/"
         }
       ],
       "frontendTags": ["transport", "active-mobility", "public-space", "mitigation"]
     }
   ],
   "knownGaps": [
-    "Local groups and municipal engagement links need validation from Porto Alegre sources.",
+    "Official municipal engagement links have been added for the first demo; community group contacts still need current local validation.",
     "HIAP city-specific prioritization is not yet wired into this snapshot.",
     "Policy score endpoint should not be used for Porto Alegre until a Brazil-specific release is confirmed.",
     "Neighborhood-level personalization requires more granular geography than the current municipal snapshot."
