@@ -1,0 +1,14 @@
+unit_id,unit_anchor,region,unit_size,sector,coordination_tier,n_comunas_sharing,n_action_archetypes,instrument_class,viable_anchor,actor_route,bundle_feasible
+11,Valdivia,Región de Los Ríos,6,Stationary Energy,highly_coordinated,5,20,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+11,Valdivia,Región de Los Ríos,6,Stationary Energy,semi_coordinated,5,9,programmatic / blended,True,municipal applicant,True
+11,Valdivia,Región de Los Ríos,6,Transportation,highly_coordinated,4,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+11,Valdivia,Región de Los Ríos,6,Transportation,semi_coordinated,4,5,programmatic / blended,True,municipal applicant,True
+11,Valdivia,Región de Los Ríos,6,Waste,highly_coordinated,2,1,pooled grant/loan · ESCO · debt,True,municipal applicant,True
+11,Valdivia,Región de Los Ríos,6,Waste,semi_coordinated,2,7,programmatic / blended,True,municipal applicant,True
+11,Valdivia,Región de Los Ríos,6,Stationary Energy,idiosyncratic,5,2,grant / PES / TA,True,municipal applicant,False
+11,Valdivia,Región de Los Ríos,6,Transportation,idiosyncratic,4,2,grant / PES / TA,True,municipal applicant,False
+11,Valdivia,Región de Los Ríos,6,AFOLU,idiosyncratic,4,27,grant / PES / TA,True,municipal applicant,False
+11,Valdivia,Región de Los Ríos,6,IPPU,highly_coordinated,3,5,pooled grant/loan · ESCO · debt,True,firm-actor: city is referrer,False
+11,Valdivia,Región de Los Ríos,6,IPPU,idiosyncratic,3,3,grant / PES / TA,True,firm-actor: city is referrer,False
+11,Valdivia,Región de Los Ríos,6,IPPU,semi_coordinated,3,18,programmatic / blended,True,firm-actor: city is referrer,False
+11,Valdivia,Región de Los Ríos,6,Waste,idiosyncratic,2,2,grant / PES / TA,True,municipal applicant,False

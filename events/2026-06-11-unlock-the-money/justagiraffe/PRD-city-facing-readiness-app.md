@@ -167,10 +167,10 @@ On Submit, emit:
 {
   "candidateId": "string",
   "kind": "city" | "pool",
-  "locode": "CL LSC",
+  "locode": "CL ZAL",
   "cityId": "uuid",
-  "anchorLocode": "CL LSC",
-  "members": ["CL LSC", "..."],
+  "anchorLocode": "CL ZAL",
+  "members": ["CL ZAL", "..."],
   "targetProfileId": "idb-sfp",
   "compositeReadiness": 74,
   "tier": "Ready",
@@ -201,7 +201,7 @@ Match CityCatalyst so the module feels native:
 
 **Phase 0 — Skeleton.** Next.js 15 + Chakra 3 app from `apps/_template`,
 CityCatalyst theme tokens, i18n scaffold, the 7-step flow shell with mock data.
-Hero city: **Valdivia (`CL LSC` [VERIFY locode])**, the cross-team worked example.
+Hero city: **Valdivia (`CL ZAL`)**, the cross-team worked example.
 
 **Phase 1 — Readiness on real-ish data.** Wire `readiness-profiles.js` +
 `scoring.js` (import the module's engine). Load Valdivia from the Matching Engine
