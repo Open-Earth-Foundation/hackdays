@@ -8,7 +8,9 @@ import {
   Container,
   Flex,
   Heading,
+  HStack,
   Icon,
+  IconButton,
   Input,
   NativeSelect,
   SimpleGrid,
@@ -16,7 +18,13 @@ import {
   Text,
 } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
-import { MdOutlineFileDownload, MdOutlineFilterAltOff, MdOutlineZoomInMap } from "react-icons/md";
+import {
+  MdNavigateBefore,
+  MdNavigateNext,
+  MdOutlineFileDownload,
+  MdOutlineFilterAltOff,
+  MdOutlineZoomInMap,
+} from "react-icons/md";
 import CityPanel from "./CityPanel";
 import LanguageToggle from "./LanguageToggle";
 import { HAZARDS, HAZARD_BY_KEY, TIER_HEX } from "../lib/display";
@@ -73,12 +81,20 @@ function TierBadge({ tier }: { tier: string }) {
   );
 }
 
-function topHazards(risks: Record<string, number> | null, n: number, prefer?: Set<string>) {
+function topHazards(
+  risks: Record<string, number> | null,
+  n: number,
+  prefer?: Set<string>,
+) {
   if (!risks) return [];
   return Object.entries(risks)
-    .map(([hazard, score]) => ({ hazard, score, preferred: !!prefer?.has(hazard) }))
+    .map(([hazard, score]) => ({
+      hazard,
+      score,
+      preferred: !!prefer?.has(hazard),
+    }))
     .sort((a, b) =>
-      a.preferred !== b.preferred ? (a.preferred ? -1 : 1) : b.score - a.score
+      a.preferred !== b.preferred ? (a.preferred ? -1 : 1) : b.score - a.score,
     )
     .slice(0, n);
 }
@@ -93,17 +109,36 @@ function toggle(set: Set<string>, value: string): Set<string> {
 function exportCsv(rows: Row[]) {
   const hazardCols = HAZARDS.map((h) => h.key);
   const header = [
-    "ibge", "municipality", "uf", "capag", "debt", "savings", "liquidity", "icf", "locode",
+    "ibge",
+    "municipality",
+    "uf",
+    "capag",
+    "debt",
+    "savings",
+    "liquidity",
+    "icf",
+    "locode",
     ...hazardCols.map((h) => `risk_${h}`),
   ];
-  const esc = (v: string) => (/[",\n]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v);
+  const esc = (v: string) =>
+    /[",\n]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v;
   const lines = [header.join(",")];
   for (const r of rows) {
     lines.push(
       [
-        r.ibge, esc(r.name), r.uf, r.capag, r.debt, r.savings, r.liquidity, r.icf, r.locode,
-        ...hazardCols.map((h) => (r.risks?.[h] != null ? (r.risks[h] * 100).toFixed(0) : "")),
-      ].join(",")
+        r.ibge,
+        esc(r.name),
+        r.uf,
+        r.capag,
+        r.debt,
+        r.savings,
+        r.liquidity,
+        r.icf,
+        r.locode,
+        ...hazardCols.map((h) =>
+          r.risks?.[h] != null ? (r.risks[h] * 100).toFixed(0) : "",
+        ),
+      ].join(","),
     );
   }
   const blob = new Blob([lines.join("\n")], { type: "text/csv;charset=utf-8" });
@@ -114,7 +149,13 @@ function exportCsv(rows: Row[]) {
   URL.revokeObjectURL(a.href);
 }
 
-export default function Explorer({ rows, projects }: { rows: Row[]; projects: Project[] }) {
+export default function Explorer({
+  rows,
+  projects,
+}: {
+  rows: Row[];
+  projects: Project[];
+}) {
   const { t } = useTranslation();
   const [tiers, setTiers] = useState<Set<string>>(new Set());
   const [hazards, setHazards] = useState<Set<string>>(new Set());
@@ -150,7 +191,12 @@ export default function Explorer({ rows, projects }: { rows: Row[]; projects: Pr
     const p = new URLSearchParams(window.location.search);
     const t = p.get("tiers");
     const h = p.get("risks");
-    if (t) setTiers(new Set(t.split(",").filter((x) => (TIERS as readonly string[]).includes(x))));
+    if (t)
+      setTiers(
+        new Set(
+          t.split(",").filter((x) => (TIERS as readonly string[]).includes(x)),
+        ),
+      );
     if (h) setHazards(new Set(h.split(",").filter((x) => HAZARD_BY_KEY[x])));
     setUf(p.get("uf") ?? "");
     setQ(p.get("q") ?? "");
@@ -167,11 +213,18 @@ export default function Explorer({ rows, projects }: { rows: Row[]; projects: Pr
     if (uf) p.set("uf", uf);
     if (q) p.set("q", q);
     const qs = p.toString();
-    window.history.replaceState(null, "", qs ? `?${qs}` : window.location.pathname);
+    window.history.replaceState(
+      null,
+      "",
+      qs ? `?${qs}` : window.location.pathname,
+    );
   }, [tiers, hazards, uf, q]);
 
   const hasRisks = useMemo(() => rows.some((r) => r.risks), [rows]);
-  const ufs = useMemo(() => Array.from(new Set(rows.map((r) => r.uf))).sort(), [rows]);
+  const ufs = useMemo(
+    () => Array.from(new Set(rows.map((r) => r.uf))).sort(),
+    [rows],
+  );
 
   const counts = useMemo(() => {
     const c: Record<string, number> = {};
@@ -179,7 +232,11 @@ export default function Explorer({ rows, projects }: { rows: Row[]; projects: Pr
     return c;
   }, [rows]);
 
+  const itemsPerPage = 300;
+  const [page, setPage] = useState(0);
+
   const filtered = useMemo(() => {
+    setPage(0);
     const needle = q.trim().toLowerCase();
     const out = rows.filter(
       (r) =>
@@ -187,7 +244,7 @@ export default function Explorer({ rows, projects }: { rows: Row[]; projects: Pr
         (!uf || r.uf === uf) &&
         (!needle || r.name.toLowerCase().includes(needle)) &&
         (hazards.size === 0 ||
-          Array.from(hazards).some((h) => (r.risks?.[h] ?? 0) >= HIGH_RISK))
+          Array.from(hazards).some((h) => (r.risks?.[h] ?? 0) >= HIGH_RISK)),
     );
     if (hazards.size > 0) {
       const sel = (r: Row) =>
@@ -197,15 +254,24 @@ export default function Explorer({ rows, projects }: { rows: Row[]; projects: Pr
     return out;
   }, [rows, tiers, uf, q, hazards]);
 
-  const shown = filtered.slice(0, 300);
-  const matchIbge = useMemo(() => new Set(filtered.map((r) => r.ibge)), [filtered]);
-  const activeFilters = tiers.size + hazards.size + (uf ? 1 : 0) + (q.trim() ? 1 : 0);
+  const pageStart = itemsPerPage * page;
+  const pageEnd = Math.min(pageStart + itemsPerPage, filtered.length);
+  const shown = filtered.slice(pageStart, pageEnd);
+  const maxPage = Math.floor(filtered.length / itemsPerPage);
+
+  const matchIbge = useMemo(
+    () => new Set(filtered.map((r) => r.ibge)),
+    [filtered],
+  );
+  const activeFilters =
+    tiers.size + hazards.size + (uf ? 1 : 0) + (q.trim() ? 1 : 0);
 
   const clearAll = () => {
     setTiers(new Set());
     setHazards(new Set());
     setUf("");
     setQ("");
+    setPage(0);
   };
 
   return (
@@ -217,7 +283,11 @@ export default function Explorer({ rows, projects }: { rows: Row[]; projects: Pr
             <Heading size="md" fontFamily="heading" color="base.light">
               {t("app.title")}
             </Heading>
-            <Text fontSize="xs" color="background.overlay" display={{ base: "none", md: "block" }}>
+            <Text
+              fontSize="xs"
+              color="background.overlay"
+              display={{ base: "none", md: "block" }}
+            >
               {t("app.subtitle")}
             </Text>
             <Box flex="1" />
@@ -232,7 +302,12 @@ export default function Explorer({ rows, projects }: { rows: Row[]; projects: Pr
         </Text>
 
         {/* map left · filters right */}
-        <Flex gap="5" mb="6" direction={{ base: "column", lg: "row" }} align="stretch">
+        <Flex
+          gap="5"
+          mb="6"
+          direction={{ base: "column", lg: "row" }}
+          align="stretch"
+        >
           <Box
             flex="1"
             minW="0"
@@ -267,8 +342,19 @@ export default function Explorer({ rows, projects }: { rows: Row[]; projects: Pr
             >
               <Flex gap="2.5" wrap="wrap">
                 {TIERS.map((tier) => (
-                  <Flex key={tier} align="center" gap="1" fontSize="2xs" color="content.secondary">
-                    <Box w="2.5" h="2.5" borderRadius="full" bg={TIER_HEX[tier]} />
+                  <Flex
+                    key={tier}
+                    align="center"
+                    gap="1"
+                    fontSize="2xs"
+                    color="content.secondary"
+                  >
+                    <Box
+                      w="2.5"
+                      h="2.5"
+                      borderRadius="full"
+                      bg={TIER_HEX[tier]}
+                    />
                     {tier}
                   </Flex>
                 ))}
@@ -300,11 +386,22 @@ export default function Explorer({ rows, projects }: { rows: Row[]; projects: Pr
           {/* filter rail */}
           <Box w={{ base: "100%", lg: "400px" }} flexShrink={0}>
             <Flex justify="space-between" align="center" mb="2">
-              <Text fontSize="xs" fontWeight="700" color="content.secondary" textTransform="uppercase" letterSpacing="wide">
+              <Text
+                fontSize="xs"
+                fontWeight="700"
+                color="content.secondary"
+                textTransform="uppercase"
+                letterSpacing="wide"
+              >
                 {t("filters.fiscal")}
               </Text>
               {activeFilters > 0 && (
-                <Button size="xs" variant="ghost" color="content.link" onClick={clearAll}>
+                <Button
+                  size="xs"
+                  variant="ghost"
+                  color="content.link"
+                  onClick={clearAll}
+                >
                   <Icon as={MdOutlineFilterAltOff} boxSize="3.5" />
                   {t("filters.clear", { count: activeFilters })}
                 </Button>
@@ -322,18 +419,30 @@ export default function Explorer({ rows, projects }: { rows: Row[]; projects: Pr
                     py="2"
                     px="2.5"
                     bg={active ? "content.alternative" : "background.default"}
-                    borderColor={active ? "content.alternative" : "border.neutral"}
+                    borderColor={
+                      active ? "content.alternative" : "border.neutral"
+                    }
                     borderWidth="2px"
                     display="block"
                     textAlign="left"
                   >
                     <Flex align="center" gap="2">
                       <TierBadge tier={tier} />
-                      <Text fontWeight="700" fontFamily="heading" fontSize="sm" color={active ? "base.light" : "content.primary"}>
+                      <Text
+                        fontWeight="700"
+                        fontFamily="heading"
+                        fontSize="sm"
+                        color={active ? "base.light" : "content.primary"}
+                      >
                         {(counts[tier] ?? 0).toLocaleString()}
                       </Text>
                     </Flex>
-                    <Text fontSize="2xs" color={active ? "background.overlay" : "content.tertiary"} mt="0.5" fontWeight="400">
+                    <Text
+                      fontSize="2xs"
+                      color={active ? "background.overlay" : "content.tertiary"}
+                      mt="0.5"
+                      fontWeight="400"
+                    >
                       {t(`tier.${tier}.label`)}
                     </Text>
                   </Button>
@@ -343,7 +452,14 @@ export default function Explorer({ rows, projects }: { rows: Row[]; projects: Pr
 
             {hasRisks && (
               <>
-                <Text fontSize="xs" fontWeight="700" color="content.secondary" textTransform="uppercase" letterSpacing="wide" mb="2">
+                <Text
+                  fontSize="xs"
+                  fontWeight="700"
+                  color="content.secondary"
+                  textTransform="uppercase"
+                  letterSpacing="wide"
+                  mb="2"
+                >
                   {t("filters.risk")}
                 </Text>
                 <Flex gap="1.5" wrap="wrap" mb="4">
@@ -357,9 +473,13 @@ export default function Explorer({ rows, projects }: { rows: Row[]; projects: Pr
                         size="xs"
                         borderRadius="full"
                         fontWeight={active ? "700" : "400"}
-                        bg={active ? "content.alternative" : "background.default"}
+                        bg={
+                          active ? "content.alternative" : "background.default"
+                        }
                         color={active ? "base.light" : "content.secondary"}
-                        borderColor={active ? "content.alternative" : "border.neutral"}
+                        borderColor={
+                          active ? "content.alternative" : "border.neutral"
+                        }
                       >
                         <Icon as={h.icon} boxSize="3.5" />
                         {t(`hazard.${h.key}`)}
@@ -369,7 +489,6 @@ export default function Explorer({ rows, projects }: { rows: Row[]; projects: Pr
                 </Flex>
               </>
             )}
-
           </Box>
         </Flex>
 
@@ -394,7 +513,10 @@ export default function Explorer({ rows, projects }: { rows: Row[]; projects: Pr
             minW="220px"
           />
           <NativeSelect.Root bg="background.default" w="180px" flexShrink={0}>
-            <NativeSelect.Field value={uf} onChange={(e) => setUf(e.target.value)}>
+            <NativeSelect.Field
+              value={uf}
+              onChange={(e) => setUf(e.target.value)}
+            >
               <option value="">{t("search.allStates")}</option>
               {ufs.map((u) => (
                 <option key={u} value={u}>
@@ -423,24 +545,64 @@ export default function Explorer({ rows, projects }: { rows: Row[]; projects: Pr
           </Button>
         </Flex>
 
-        <Text fontSize="sm" color="content.tertiary" mb="2">
-          {filtered.length > shown.length
-            ? t("table.showing", { shown: shown.length, total: filtered.length })
-            : ""}
-        </Text>
+        {filtered.length > shown.length && (
+          <HStack mb={2}>
+            <IconButton
+              variant="ghost"
+              onClick={() => {
+                if (page > 0) {
+                  setPage(page - 1);
+                }
+              }}
+            >
+              <Icon as={MdNavigateBefore} />
+            </IconButton>
+            <Text fontSize="sm" color="content.tertiary" spaceX={2}>
+              {t("table.showing", {
+                start: pageStart,
+                end: pageEnd,
+                total: filtered.length,
+              })}
+            </Text>
+            <IconButton
+              variant="ghost"
+              onClick={() => {
+                if (page < maxPage) {
+                  setPage(page + 1);
+                }
+              }}
+            >
+              <Icon as={MdNavigateNext} />
+            </IconButton>
+          </HStack>
+        )}
 
-        <Box bg="background.default" borderRadius="lg" borderWidth="1px" borderColor="border.neutral" overflow="hidden">
+        <Box
+          bg="background.default"
+          borderRadius="lg"
+          borderWidth="1px"
+          borderColor="border.neutral"
+          overflow="hidden"
+        >
           <Table.Root size="sm" striped>
             <Table.Header>
               <Table.Row>
                 <Table.ColumnHeader>{t("col.municipality")}</Table.ColumnHeader>
                 <Table.ColumnHeader>{t("col.uf")}</Table.ColumnHeader>
                 <Table.ColumnHeader>{t("col.capag")}</Table.ColumnHeader>
-                <Table.ColumnHeader title={t("indicator.debt.what")}>{t("col.debt")}</Table.ColumnHeader>
-                <Table.ColumnHeader title={t("indicator.savings.what")}>{t("col.savings")}</Table.ColumnHeader>
-                <Table.ColumnHeader title={t("indicator.liquidity.what")}>{t("col.liquidity")}</Table.ColumnHeader>
+                <Table.ColumnHeader title={t("indicator.debt.what")}>
+                  {t("col.debt")}
+                </Table.ColumnHeader>
+                <Table.ColumnHeader title={t("indicator.savings.what")}>
+                  {t("col.savings")}
+                </Table.ColumnHeader>
+                <Table.ColumnHeader title={t("indicator.liquidity.what")}>
+                  {t("col.liquidity")}
+                </Table.ColumnHeader>
                 <Table.ColumnHeader>{t("col.icf")}</Table.ColumnHeader>
-                {hasRisks && <Table.ColumnHeader>{t("col.top3")}</Table.ColumnHeader>}
+                {hasRisks && (
+                  <Table.ColumnHeader>{t("col.top3")}</Table.ColumnHeader>
+                )}
               </Table.Row>
             </Table.Header>
             <Table.Body>
@@ -478,7 +640,11 @@ export default function Explorer({ rows, projects }: { rows: Row[]; projects: Pr
                                   gap="0.5"
                                   fontSize="xs"
                                   title={`${t(`hazard.${hz.hazard}`)} ${(hz.score * 100).toFixed(0)}`}
-                                  color={hz.score >= HIGH_RISK ? "rating.d" : "content.tertiary"}
+                                  color={
+                                    hz.score >= HIGH_RISK
+                                      ? "rating.d"
+                                      : "content.tertiary"
+                                  }
                                   fontWeight={hz.preferred ? "700" : "400"}
                                 >
                                   <Icon as={meta.icon} boxSize="3.5" />

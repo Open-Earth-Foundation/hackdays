@@ -38,7 +38,7 @@
 
   "map.zoomToSelection": "Zoom to selection",
   "map.dotSize": "dot size = selected risk score",
-  "table.showing": "Showing first {{shown, number}} of {{total, number}}",
+  "table.showing": "Showing {{start, number}} - {{end, number}} of {{total, number}}",
 
   "col.municipality": "Municipality",
   "col.uf": "UF",

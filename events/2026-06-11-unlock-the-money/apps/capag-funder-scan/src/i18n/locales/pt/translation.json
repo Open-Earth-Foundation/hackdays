@@ -38,7 +38,7 @@
 
   "map.zoomToSelection": "Ampliar para seleção",
   "map.dotSize": "tamanho do ponto = risco selecionado",
-  "table.showing": "Mostrando os primeiros {{shown, number}} de {{total, number}}",
+  "table.showing": "Mostrando os {{start, number}} - {{end, number}} de {{total, number}}",
 
   "col.municipality": "Município",
   "col.uf": "UF",
