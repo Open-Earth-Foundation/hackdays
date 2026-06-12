@@ -45,7 +45,7 @@ visible, measurable participation metrics — the kind MDBs, the IDB, and philan
 ## How to Run
 
 ```bash
-cd events/2026-06-11-unlock-the-money/apps/civic-climate-action
+cd events/2026-06-11-unlock-the-money/civic-climate-action/app
 npm install
 npm run dev
 # Open http://localhost:3000
