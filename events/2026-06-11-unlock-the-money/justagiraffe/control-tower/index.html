@@ -208,7 +208,7 @@ const barColor = v => v>=70?"var(--green)":v>=45?"var(--amber)":"var(--red)";
 const daysIn = s => Math.max(0, Math.round((TODAY - new Date(s.proposal.submitted))/86400000));
 const askSum = arr => arr.reduce((a,b)=>a+b.proposal.askUSDm,0);
 
-function renderAll(){ renderKPIs(); renderPipeline(); renderReadiness(); renderME(); }
+function renderAll(){ renderKPIs(); renderPipeline(); renderReadiness(false); renderME(); }
 
 /* ---------- KPIs ---------- */
 function renderKPIs(){
@@ -294,10 +294,26 @@ function moveStage(ev,id,dir){
 
 /* ---------- Readiness scoring (early creditworthiness assessment) ---------- */
 let sortKey="compositeReadiness", sortDir=-1, filterCountry="all", filterTier="all";
-function rescore(){ DATA.sngs=DATA.sngs.map(s=>SM.scoreSNG(s)); renderAll(); }
-function onWeight(k,v){ SM.setWeights({[k]:Number(v)}); rescore(); }
-function resetWeights(){ SM.setWeights({creditworthiness:.30,fiscalHealth:.30,legalCapacity:.20,governance:.20}); rescore(); }
-function renderReadiness(){
+function rescore(skipWeights){ DATA.sngs=DATA.sngs.map(s=>SM.scoreSNG(s)); renderKPIs(); renderPipeline(); renderReadiness(skipWeights); renderME(); }
+let activeWeightKey=null;
+function onWeightInput(k,v){ activeWeightKey=k; SM.setWeightShare(k,Number(v)); updateWeightUI(k); rescore(true); }
+function onWeightChange(){ activeWeightKey=null; syncWeightSliders(); }
+function updateWeightUI(skipKey){
+  const W=SM.READINESS_WEIGHTS;
+  for(const k of Object.keys(W)){
+    const box=document.getElementById("weight-"+k); if(!box) continue;
+    box.querySelector("b").textContent=Math.round(W[k]*100)+"%";
+    if(k!==skipKey){ const inp=box.querySelector("input"); if(inp) inp.value=Math.round(W[k]*100); }
+  }
+}
+function syncWeightSliders(){
+  const W=SM.READINESS_WEIGHTS;
+  for(const k of Object.keys(W)){
+    const inp=document.querySelector("#weight-"+k+" input"); if(inp) inp.value=Math.round(W[k]*100);
+  }
+}
+function resetWeights(){ SM.setWeights({creditworthiness:.30,fiscalHealth:.30,legalCapacity:.20,governance:.20}); renderAll(); }
+function renderReadiness(skipWeights){
   const W=SM.READINESS_WEIGHTS;
   let rows=DATA.sngs.filter(s=>
     (filterCountry==="all"||s.country===filterCountry)&&(filterTier==="all"||s.tier===filterTier));
@@ -309,8 +325,9 @@ function renderReadiness(){
   const countries=["all",...[...new Set(DATA.sngs.map(s=>s.country))].sort()];
   const th=(k,l)=>`<th onclick="setSort('${k}')">${l}${sortKey===k?(sortDir<0?" ▾":" ▴"):""}</th>`;
   const sliders=Object.keys(W).map(k=>`
-    <div class="w"><label>${SM.PILLAR_LABELS[k]}<b>${Math.round(W[k]*100)}%</b></label>
-    <input type="range" min="0" max="60" value="${Math.round(W[k]*100)}" oninput="onWeight('${k}',this.value)"/></div>`).join("");
+    <div class="w" id="weight-${k}"><label>${SM.PILLAR_LABELS[k]}<b>${Math.round(W[k]*100)}%</b></label>
+    <input type="range" min="0" max="100" value="${Math.round(W[k]*100)}"
+      oninput="onWeightInput('${k}',this.value)" onchange="onWeightChange()"/></div>`).join("");
   const body=rows.map(s=>{
     const prov=s.signals.capagRating?`<span class="badge real" title="Anchored to Brazil Treasury CAPAG open data">CAPAG ${s.signals.capagRating}</span>`:`<span class="badge" title="Mock value — wire CityCatalyst for live signals">mock</span>`;
     return `
@@ -324,18 +341,10 @@ function renderReadiness(){
       <td><span class="pill" style="background:${tierColor(s.tier)}22;color:${tierColor(s.tier)}">${s.tier}</span></td>
       <td style="color:var(--muted)">${prov}</td>
     </tr>`;}).join("");
-  document.getElementById("tab-readiness").innerHTML=`
-    <div class="section-title">Early creditworthiness assessment</div>
-    <p class="section-sub">The SFP eligibility test (§4.2): <i>credit strength, financial viability, legal capacity and good governance</i>,
-    scored 0–100 per pillar and weighted into a composite. Drag a weight and every score in the app — pipeline, KPIs, M&amp;E —
-    re-computes live from <code>scoring.js</code>. Click a row for the full assessment and the project-eligibility gate.</p>
-    <div class="weights">${sliders}
-      <button class="btn ghost" onclick="resetWeights()">Reset weights</button>
-      <div style="color:var(--muted);font-size:11.5px">weights renormalize to 100%</div>
-    </div>
+  const bodyHtml=`
     <div class="controls">
-      <select onchange="filterCountry=this.value;renderReadiness()">${countries.map(c=>`<option value="${c}" ${c===filterCountry?"selected":""}>${c==="all"?"All countries":c}</option>`).join("")}</select>
-      <select onchange="filterTier=this.value;renderReadiness()">
+      <select onchange="filterCountry=this.value;renderReadiness(false)">${countries.map(c=>`<option value="${c}" ${c===filterCountry?"selected":""}>${c==="all"?"All countries":c}</option>`).join("")}</select>
+      <select onchange="filterTier=this.value;renderReadiness(false)">
         ${["all","Ready","Developing","Early"].map(t=>`<option ${t===filterTier?"selected":""} value="${t}">${t==="all"?"All tiers":t}</option>`).join("")}
       </select>
       <div style="flex:1"></div>
@@ -346,9 +355,24 @@ function renderReadiness(){
       ${th("legalCapacity","Legal")}${th("governance","Govern.")}${th("compositeReadiness","Score")}
       <th>Tier</th><th>Source</th>
     </tr></thead><tbody>${body}</tbody></table>`;
+  if(skipWeights){
+    const el=document.getElementById("tab-readiness-body");
+    if(el) el.innerHTML=bodyHtml;
+    return;
+  }
+  document.getElementById("tab-readiness").innerHTML=`
+    <div class="section-title">Early creditworthiness assessment</div>
+    <p class="section-sub">The SFP eligibility test (§4.2): <i>credit strength, financial viability, legal capacity and good governance</i>,
+    scored 0–100 per pillar and weighted into a composite. Drag a weight and every score in the app — pipeline, KPIs, M&amp;E —
+    re-computes live from <code>scoring.js</code>. Click a row for the full assessment and the project-eligibility gate.</p>
+    <div class="weights">${sliders}
+      <button class="btn ghost" onclick="resetWeights()">Reset weights</button>
+      <div style="color:var(--muted);font-size:11.5px">weights renormalize to 100%</div>
+    </div>
+    <div id="tab-readiness-body">${bodyHtml}</div>`;
 }
 function cellBar(v){return `<div style="display:flex;align-items:center;gap:7px"><div class="bar"><i style="width:${v}%;background:${barColor(v)}"></i></div><span style="font-size:11px;color:var(--muted)">${v}</span></div>`;}
-function setSort(k){ if(sortKey===k)sortDir*=-1; else {sortKey=k;sortDir=-1;} renderReadiness(); }
+function setSort(k){ if(sortKey===k)sortDir*=-1; else {sortKey=k;sortDir=-1;} renderReadiness(false); }
 
 /* ---------- M&E + Board (OVE evaluation spine) ---------- */
 // map the pilot indicators onto the SFP vertical logic (Annex IV)

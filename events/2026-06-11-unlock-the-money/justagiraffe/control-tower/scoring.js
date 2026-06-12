@@ -28,11 +28,29 @@ const PILLAR_LABELS = {
 const TIER_THRESHOLDS = { ready: 70, developing: 45 }; // >=70 Ready, 45-69 Developing, <45 Early
 
 // Replace weights (partial ok) and renormalize to sum 1 so the composite stays 0-100.
-// The dashboard's weight sliders call this, then re-score every candidate live.
+// Used by resetWeights(); sliders use setWeightShare() so the handle tracks the label.
 function setWeights(partial) {
   Object.assign(READINESS_WEIGHTS, partial);
   const total = Object.values(READINESS_WEIGHTS).reduce((a, b) => a + b, 0) || 1;
   for (const k of Object.keys(READINESS_WEIGHTS)) READINESS_WEIGHTS[k] /= total;
+  return { ...READINESS_WEIGHTS };
+}
+
+// Set one pillar to targetPct (0–100) of the composite; scale the others proportionally.
+function setWeightShare(key, targetPct) {
+  const target = Math.max(0, Math.min(100, targetPct)) / 100;
+  const others = Object.keys(READINESS_WEIGHTS).filter(k => k !== key);
+  const otherSum = others.reduce((s, k) => s + READINESS_WEIGHTS[k], 0);
+  READINESS_WEIGHTS[key] = target;
+  if (target >= 1) {
+    others.forEach(k => { READINESS_WEIGHTS[k] = 0; });
+  } else if (otherSum > 0) {
+    const scale = (1 - target) / otherSum;
+    others.forEach(k => { READINESS_WEIGHTS[k] *= scale; });
+  } else {
+    const each = (1 - target) / others.length;
+    others.forEach(k => { READINESS_WEIGHTS[k] = each; });
+  }
   return { ...READINESS_WEIGHTS };
 }
 
@@ -103,7 +121,7 @@ function scoreSNG(sng) {
 
 const ScoringModel = {
   READINESS_WEIGHTS, TIER_THRESHOLDS, PILLAR_LABELS,
-  setWeights, compositeReadiness, explainScore, tierFor,
+  setWeights, setWeightShare, compositeReadiness, explainScore, tierFor,
   eligibilityCheck, intakeChecklist, scoreSNG,
 };
 
