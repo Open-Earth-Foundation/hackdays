@@ -78,6 +78,38 @@ function tierFor(score) {
   return "Early";
 }
 
+function readinessActionFor(tier) {
+  if (tier === "Ready") return "Move to Project Review";
+  if (tier === "Developing") return "Targeted TC / readiness acceleration";
+  return "Foundational readiness support";
+}
+
+// Step 2 after the early creditworthiness assessment (Step 1). Mirrors SFP §4.2:
+// ability to contract IDB financing without sovereign guarantee, plus documentary
+// evidence (§4.13 / OP-301). Analytic pillar scores do not replace these checks.
+function readinessClearanceBlockers(sng) {
+  const sig = sng.signals || {};
+  const blockers = [];
+  if (!sig.canBorrowWithoutSovereignGuarantee) {
+    blockers.push("Legal capacity to borrow w/o sovereign guarantee");
+  }
+  if (!sig.independentAudit) {
+    blockers.push("Independent audit on file");
+  }
+  return blockers;
+}
+
+function readinessActionForSng(sng) {
+  const tier = tierFor(compositeReadiness(sng.readiness));
+  if (tier !== "Ready") {
+    return readinessActionFor(tier);
+  }
+  if (canEnterProjectReview(sng)) {
+    return "Cleared for Project Review";
+  }
+  return "Ready score · clearance blocked";
+}
+
 // IDB project-eligibility gate (3 simultaneous criteria, §4.3) + the SNG-level
 // non-accrual condition (§4.2). Returns which criteria pass so the dashboard
 // can show *why* a candidate is / isn't eligible.
@@ -93,12 +125,18 @@ function eligibilityCheck(sng) {
   return checks;
 }
 
+// Step 2 after the composite score: binary clearance before active project review.
+function canEnterProjectReview(sng) {
+  return tierFor(compositeReadiness(sng.readiness)) === "Ready" &&
+    readinessClearanceBlockers(sng).length === 0;
+}
+
 // Documentary intake checklist mirroring the SFP due-diligence requirements
 // (§4.13 readiness assessment, §4.18 legal frameworks, OP-301). Drives the
 // pipeline view's workflow state — what is missing before the next gate.
 function intakeChecklist(sng) {
   const sig = sng.signals || {};
-  const pastIntake = sng.proposal && sng.proposal.stage !== "Intake";
+  const pastIntake = sng.proposal && sng.proposal.stage !== "Proposal Intake";
   return [
     { key: "legal",   label: "Legal capacity to borrow w/o sovereign guarantee (OP-301)", done: !!sig.canBorrowWithoutSovereignGuarantee },
     { key: "audit",   label: "Independent audit / audited financial statements",          done: !!sig.independentAudit },
@@ -111,18 +149,22 @@ function intakeChecklist(sng) {
 // One call to (re)score a candidate end-to-end.
 function scoreSNG(sng) {
   const score = compositeReadiness(sng.readiness);
+  const tier = tierFor(score);
   return {
     ...sng,
     compositeReadiness: score,
-    tier: tierFor(score),
+    tier,
+    readinessAction: readinessActionForSng(sng),
     eligibility: eligibilityCheck(sng),
+    canEnterProjectReview: canEnterProjectReview(sng),
   };
 }
 
 const ScoringModel = {
   READINESS_WEIGHTS, TIER_THRESHOLDS, PILLAR_LABELS,
   setWeights, setWeightShare, compositeReadiness, explainScore, tierFor,
-  eligibilityCheck, intakeChecklist, scoreSNG,
+  readinessActionFor, readinessActionForSng, readinessClearanceBlockers,
+  eligibilityCheck, canEnterProjectReview, intakeChecklist, scoreSNG,
 };
 
 if (typeof window !== "undefined") window.ScoringModel = ScoringModel;

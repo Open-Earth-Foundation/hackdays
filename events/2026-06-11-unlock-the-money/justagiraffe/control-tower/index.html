@@ -152,6 +152,36 @@
   .rrow input[type=range]{flex:1;accent-color:var(--cyan)}
   .rrow output{width:30px;text-align:right;font-size:12.5px;font-weight:650;color:var(--ink2)}
   .modal .actions{display:flex;justify-content:flex-end;gap:10px;margin-top:18px}
+  /* methodology help */
+  .method-box{background:var(--cyan-bg);border:1px solid #B8E4E8;border-left:4px solid var(--cyan);border-radius:0 10px 10px 0;padding:14px 16px;margin:0 0 16px;box-shadow:var(--shadow)}
+  .method-box h4{margin:0 0 6px;font-size:13px;color:var(--ink2)}
+  .method-box p,.method-box li{font-size:12.5px;color:var(--muted);line-height:1.55;margin:0}
+  .method-box ul{margin:8px 0 0;padding-left:18px}
+  .method-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+  .method-step{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+  .method-step .n{font-size:10px;font-weight:700;color:var(--cyan-d);text-transform:uppercase;letter-spacing:.6px}
+  .method-step .t{font-size:12.5px;font-weight:650;color:var(--ink2);margin-top:4px}
+  .method-step .d{font-size:11.5px;color:var(--muted);margin-top:4px;line-height:1.45}
+  .faq{margin:0 0 16px}
+  .faq details{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin-bottom:8px;box-shadow:var(--shadow)}
+  .faq summary{cursor:pointer;font-size:13px;font-weight:650;color:var(--ink2);list-style:none}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary:before{content:"▸ ";color:var(--cyan-d)}
+  .faq details[open] summary:before{content:"▾ "}
+  .faq .ans{font-size:12.5px;color:var(--muted);line-height:1.55;margin-top:8px;padding-top:8px;border-top:1px solid var(--line)}
+  .helpnote{font-size:11.5px;color:var(--muted);line-height:1.5;background:var(--panel2);border-radius:8px;padding:10px 12px;margin:10px 0}
+  .helpnote b{color:var(--ink2)}
+  .field-help{font-size:10.5px;color:var(--muted);font-weight:400;line-height:1.4;margin-top:2px}
+  .field-prov{font-size:10.5px;color:var(--muted);font-weight:400;line-height:1.4;margin-top:2px}
+  .btn.help{font-size:12px;padding:7px 12px}
+  .brandtag .api-status{display:inline-block;margin-top:4px;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700}
+  .brandtag .api-status.loading{background:#FBF1DC;color:#9A6B14}
+  .brandtag .api-status.ok{background:#E2F2E9;color:#2A7A4F}
+  .brandtag .api-status.err{background:#F9E5E3;color:#A33730}
+  .live-summary{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:0 0 14px;box-shadow:var(--shadow);font-size:12px;color:var(--muted);line-height:1.5}
+  .live-summary b{color:var(--ink2)}
+  .live-summary .ok{font-weight:700}
+  .live-summary .no{font-weight:700}
 </style>
 </head>
 <body>
@@ -162,17 +192,17 @@
     <div class="sub">Inter-American Development Bank — 5-year pilot · lending to SNGs without sovereign guarantee · 63 candidates · 8 countries</div>
   </div>
   <div class="spacer"></div>
-  <div class="brandtag">Data trust layer powered by <b>OpenEarth · CityCatalyst</b><br/>Demo build — all figures fictional unless marked</div>
+  <div class="brandtag">Data trust layer powered by <b>OpenEarth · CityCatalyst</b><br/>Demo build — all figures fictional unless marked<br/><span id="apiStatus" class="api-status loading">CityCatalyst API: checking...</span></div>
 </header>
 <nav>
-  <button data-tab="pipeline" class="active">Intake &amp; Triage</button>
-  <button data-tab="readiness">Readiness Scoring</button>
+  <button data-tab="readiness" class="active">Readiness Scoring</button>
+  <button data-tab="pipeline">Project Review</button>
   <button data-tab="me">M&amp;E &amp; Board</button>
 </nav>
 <main>
   <div class="kpis" id="kpis"></div>
-  <div id="tab-pipeline"></div>
-  <div id="tab-readiness" style="display:none"></div>
+  <div id="tab-pipeline" style="display:none"></div>
+  <div id="tab-readiness"></div>
   <div id="tab-me" style="display:none"></div>
 </main>
 
@@ -185,28 +215,279 @@
 <script>
 const DATA = window.CONTROL_TOWER_DATA;
 const SM = window.ScoringModel;
-// re-score from the shared model so the dashboard proves the pipeline is live
-DATA.sngs = DATA.sngs.map(s => SM.scoreSNG(s));
 // deterministic "today" for the demo = dataset generation date
 const TODAY = new Date(DATA.generated + "T12:00:00");
 
-const STAGES = ["Intake","Screening","Readiness Review","Structuring","Board Pipeline"];
-// the IDB SFP review instances each stage maps to (proposal doc, fn.59 + §4.17)
+const LEGACY_STAGE_MAP = {
+  "Intake": "Proposal Intake",
+  "Screening": "Project Screening",
+  "Readiness Review": "Project Screening",
+  "Structuring": "Structuring",
+  "Board Pipeline": "Board Pipeline",
+};
+const STAGES = ["Proposal Intake","Project Screening","Structuring","Quality & Risk Review","Board Pipeline"];
+const ADVANCED_PROJECT_STAGES = ["Structuring","Quality & Risk Review","Board Pipeline"];
+const ACTIVE_PROJECT_STAGES = ["Project Screening","Structuring","Quality & Risk Review","Board Pipeline"];
+// the IDB SFP review instances each stage maps to after the readiness split
 const STAGE_META = {
-  "Intake":           "Proposal received · documentary intake (legal, fiscal, audit, non-accrual)",
-  "Screening":        "Gate 1 — early SNG eligibility: legal capacity, credit risk, integrity, expected impact",
-  "Readiness Review": "Early creditworthiness assessment · readiness tiering (CityCatalyst signals)",
-  "Structuring":      "Gate 2 — quality &amp; risk review: credit rating, additionality, fiduciary &amp; safeguards",
-  "Board Pipeline":   "Board approval under SG procedures (GN-1838-3)",
+  "Proposal Intake":       "Concept received from a Ready city or held as a blocked concept note pending readiness.",
+  "Project Screening":     "Project-level screen: development impact, crowding-in, SNG efficiency, documentary completeness.",
+  "Structuring":           "Structuring with the Ready city: scope, financing, safeguards, and implementation approach.",
+  "Quality & Risk Review": "Gate 2 — quality, risk, fiduciary, safeguards, and additionality review.",
+  "Board Pipeline":        "Board approval under SG procedures (GN-1838-3).",
 };
 const ISO = {Brazil:"BR",Mexico:"MX",Colombia:"CO",Argentina:"AR",Peru:"PE",Chile:"CL",Ecuador:"EC","Dominican Republic":"DO"};
+const CITYCATALYST_LOCODES = {
+  "Curitiba":"BR CWB",
+  "Recife":"BR REC",
+  "Fortaleza":"BR FOR",
+  "Belo Horizonte":"BR BHZ",
+  "Salvador":"BR SSA",
+  "Porto Alegre":"BR POA",
+  "Campinas":"BR CPQ",
+  "Manaus":"BR MAO",
+  "Goiania":"BR GYN",
+  "Florianopolis":"BR FLN",
+  "Niteroi":"BR NIT",
+  "Joinville":"BR JOI",
+  "State of Ceara":null,
+  "State of Parana":null,
+  "Guadalajara":"MX GDL",
+  "Monterrey":"MX MTY",
+  "Merida":"MX MID",
+  "Queretaro":"MX QRO",
+  "Puebla":"MX PBC",
+  "Leon":"MX LEN",
+  "Aguascalientes":"MX AGU",
+  "State of Jalisco":null,
+  "State of Yucatan":null,
+  "Medellin":"CO MDE",
+  "Barranquilla":"CO BAQ",
+  "Cali":"CO CLO",
+  "Bucaramanga":"CO BGA",
+  "Cartagena":"CO CTG",
+  "Manizales":"CO MZL",
+  "Pereira":"CO PEI",
+  "Dept. of Antioquia":null,
+  "Dept. of Cundinamarca":null,
+  "Cordoba":"AR COR",
+  "Rosario":"AR ROS",
+  "Mendoza":"AR MDZ",
+  "La Plata":"AR LPG",
+  "Mar del Plata":"AR MDQ",
+  "Salta":"AR SLA",
+  "Province of Santa Fe":null,
+  "Province of Mendoza":null,
+  "Arequipa":"PE AQP",
+  "Trujillo":"PE TRU",
+  "Cusco":"PE CUZ",
+  "Piura":"PE PIU",
+  "Chiclayo":"PE CIX",
+  "Region of Arequipa":null,
+  "Region of La Libertad":null,
+  "Valparaiso":"CL VAP",
+  "Concepcion":"CL CCP",
+  "Antofagasta":"CL ANF",
+  "Temuco":"CL ZCO",
+  "La Serena":"CL LSC",
+  "Biobio Region":null,
+  "Cuenca":"EC CUE",
+  "Guayaquil":"EC GYE",
+  "Quito":"EC UIO",
+  "Ambato":"EC ATA",
+  "Manta":"EC MEC",
+  "Santiago de los Caballeros":"DO STI",
+  "Santo Domingo Este":"DO SDQ",
+  "La Romana":"DO LRM",
+  "San Cristobal":"DO SNC",
+  "Punta Cana-Higuey":"DO PUJ",
+};
+const LIVE_DATA = {
+  cityContext: {
+    status: "idle",
+    checked: 0,
+    loaded: 0,
+    failed: 0,
+    unsupported: 0,
+    error: "",
+  }
+};
+
+function normalizeSNG(sng) {
+  const stage = LEGACY_STAGE_MAP[sng.proposal.stage] || sng.proposal.stage || "Proposal Intake";
+  let next = {
+    ...sng,
+    locode: CITYCATALYST_LOCODES[sng.name] ?? null,
+    proposal: {
+      ...sng.proposal,
+      stage,
+    },
+  };
+  next = SM.scoreSNG(next);
+  if (!next.canEnterProjectReview && ADVANCED_PROJECT_STAGES.includes(next.proposal.stage)) {
+    next = {
+      ...next,
+      proposal: {
+        ...next.proposal,
+        stage: "Proposal Intake",
+      },
+    };
+    next = SM.scoreSNG(next);
+  }
+  return next;
+}
+
+// re-score from the shared model so the dashboard proves the pipeline is live
+DATA.sngs = DATA.sngs.map(normalizeSNG);
 
 const fmt = n => n.toLocaleString();
 const fv = (v,suf="") => (v===null||v===undefined) ? "—" : v + suf;
 const tierColor = t => ({Ready:"var(--green)",Developing:"var(--amber)",Early:"var(--red)"}[t]);
+const actionColor = action =>
+  action === "Cleared for Project Review" ? "good" :
+  action === "Ready score · clearance blocked" ? "warn" :
+  action === "Targeted TC / readiness acceleration" ? "warn" :
+  "bad";
 const barColor = v => v>=70?"var(--green)":v>=45?"var(--amber)":"var(--red)";
 const daysIn = s => Math.max(0, Math.round((TODAY - new Date(s.proposal.submitted))/86400000));
 const askSum = arr => arr.reduce((a,b)=>a+b.proposal.askUSDm,0);
+const countChecklistGaps = s => SM.intakeChecklist(s).filter(c=>!c.done).length;
+const uniqCount = arr => new Set(arr).size;
+const isAdvancedProject = s => s.canEnterProjectReview && ADVANCED_PROJECT_STAGES.includes(s.proposal.stage);
+const isActiveProject = s => s.canEnterProjectReview && ACTIVE_PROJECT_STAGES.includes(s.proposal.stage);
+const isBlockedConcept = s => !s.canEnterProjectReview && !!(s.proposal && s.proposal.title);
+const livePopulation = s => s.cityContext && typeof s.cityContext.populationSize === "number" ? s.cityContext.populationSize : s.population;
+const livePopulationSource = s => s.cityContext && typeof s.cityContext.populationSize === "number" ? "CityCatalyst live" : "Mock fallback";
+const hasLiveCityContext = s => !!(s.cityContext && s.cityContext.__live);
+const cityContextFieldStatus = (s, field) => {
+  if (!hasLiveCityContext(s)) return "unavailable";
+  return s.cityContext[field] === null || s.cityContext[field] === undefined ? "fallback" : "live";
+};
+function cityContextBadge(s){
+  if (!hasLiveCityContext(s)) return { label:"mock context", title:"CityCatalyst city context not loaded for this record", className:"badge" };
+  const liveFields=["populationSize","populationDensity","area","regionName","region","biome"].filter(f=>s.cityContext[f] !== null && s.cityContext[f] !== undefined);
+  if (!liveFields.length) return { label:"CityCatalyst connected · no populated fields", title:"A live CityCatalyst record exists, but these fields are null so the app falls back to mock where needed.", className:"badge" };
+  const hasFallbackPopulation = cityContextFieldStatus(s,"populationSize")==="fallback";
+  return {
+    label: hasFallbackPopulation ? "CityCatalyst partial live" : "CityCatalyst live",
+    title: hasFallbackPopulation
+      ? "Live CityCatalyst record loaded, but population is null so the app falls back to the mock dataset."
+      : "Live CityCatalyst city context loaded for this record.",
+    className:"badge real"
+  };
+}
+
+function renderApiStatus() {
+  const el = document.getElementById("apiStatus");
+  if (!el) return;
+  const d = LIVE_DATA.cityContext;
+  const base = `CityCatalyst API: ${d.loaded}/${d.checked} live`;
+  if (d.status === "loading") {
+    el.className = "api-status loading";
+    el.textContent = `CityCatalyst API: loading ${d.loaded}/${d.checked || 0}`;
+  } else if (d.status === "ok") {
+    el.className = "api-status ok";
+    el.textContent = `${base} · ${d.failed} failed · ${d.unsupported} unsupported`;
+  } else if (d.status === "error") {
+    el.className = "api-status err";
+    el.textContent = `${base} · ${d.failed} failed · check CORS/network`;
+  } else {
+    el.className = "api-status loading";
+    el.textContent = "CityCatalyst API: not started";
+  }
+}
+
+function liveDataSummary() {
+  const d = LIVE_DATA.cityContext;
+  const note = window.location.protocol === "file:"
+    ? "If the badge stays blocked when opening from file://, try serving the folder over http:// to rule out browser CORS restrictions."
+    : "Running over http://; if requests still fail, the issue is likely API CORS, network, or invalid locodes.";
+  return `<div class="live-summary">
+    <b>CityCatalyst live city context</b> — using <code>GET /api/v0/city_context/city/{locode}</code> to replace mock city context where available.
+    Current status: ${d.status === "ok" ? '<span class="ok">connected</span>' : d.status === "error" ? '<span class="no">blocked / failing</span>' : "loading"}.
+    Checked <b>${d.checked}</b> records with locodes; loaded <b>${d.loaded}</b> live contexts; failed <b>${d.failed}</b>; unsupported region entries <b>${d.unsupported}</b>.
+    <div style="margin-top:6px">${note}</div>
+    ${d.error ? `<div style="margin-top:6px">Last error: <code>${d.error}</code></div>` : ""}
+  </div>`;
+}
+
+async function loadCityContextData() {
+  const targets = DATA.sngs.filter(s => !!s.locode);
+  LIVE_DATA.cityContext = {
+    status: "loading",
+    checked: targets.length,
+    loaded: 0,
+    failed: 0,
+    unsupported: DATA.sngs.filter(s => !s.locode).length,
+    error: "",
+  };
+  renderApiStatus();
+  const results = await Promise.allSettled(targets.map(async s => {
+    const url = `https://ccglobal.openearth.dev/api/v0/city_context/city/${encodeURIComponent(s.locode)}`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`HTTP ${res.status} for ${s.locode}`);
+    const data = await res.json();
+    return { id: s.id, data };
+  }));
+  for (const result of results) {
+    if (result.status === "fulfilled") {
+      const s = DATA.sngs.find(x => x.id === result.value.id);
+      if (!s) continue;
+      s.cityContext = { ...result.value.data, __live: true };
+      if (typeof result.value.data.populationSize === "number") {
+        s.population = result.value.data.populationSize;
+      }
+      LIVE_DATA.cityContext.loaded += 1;
+    } else {
+      LIVE_DATA.cityContext.failed += 1;
+      if (!LIVE_DATA.cityContext.error) {
+        LIVE_DATA.cityContext.error = String(result.reason && result.reason.message ? result.reason.message : result.reason);
+      }
+    }
+  }
+  LIVE_DATA.cityContext.status = LIVE_DATA.cityContext.failed > 0 && LIVE_DATA.cityContext.loaded === 0 ? "error" : "ok";
+  renderApiStatus();
+  renderAll();
+}
+
+function methodologyGuide(compact){
+  const faq=compact?"":`
+    <div class="faq">
+      <details><summary>Why are there two steps before Project Review?</summary>
+        <div class="ans">IDB separates <b>early creditworthiness assessment</b> (an analytic score across credit, fiscal, legal, and governance pillars)
+        from <b>SNG eligibility</b> (whether this borrower can actually use the SFP instrument). The score ranks candidates; clearance confirms the
+        program's core legal and documentary conditions are met (SFP proposal §4.2, §4.13; OP-301).</div></details>
+      <details><summary>What does “can borrow without sovereign guarantee” mean?</summary>
+        <div class="ans">Normally, a city loan might be backed by the national government. This pilot lends <b>directly</b> to the subnational government
+        <b>without</b> that central guarantee. This field records whether local law and institutional practice allow the SNG to contract and repay
+        IDB financing on its own account — a prerequisite for the whole program, not just one pillar of the score.</div></details>
+      <details><summary>Why can a city be Ready but still blocked?</summary>
+        <div class="ans">A high composite score means the SNG looks strong on credit, fiscal, legal, and governance indicators. Clearance can still fail if
+        a verified legal opinion shows the SNG cannot borrow without sovereign guarantee, or if audited financial statements are not on file.
+        Example: strong fiscal signals, but national law still requires central authorization.</div></details>
+      <details><summary>Isn’t legal capacity in the score the same thing?</summary>
+        <div class="ans">Related, but not identical. The <b>legal capacity pillar</b> is an analytic 0–100 judgment drawn from multiple signals.
+        <b>Can borrow w/o sovereign guarantee</b> is a documented eligibility fact under OP-301 / §4.2 — a pass/fail check that the SFP instrument
+        applies to this borrower. The score can be high while a country-level legal constraint still blocks the instrument.</div></details>
+      <details><summary>What happens in Project Review?</summary>
+        <div class="ans">Only cities that are <b>Ready</b> and <b>cleared</b> enter active project review. There the team evaluates the specific project:
+        development impact, crowding-in, documentary intake, structuring, quality &amp; risk review, and Board pipeline — separate from the city readiness gate.</div></details>
+    </div>`;
+  return `
+    <div class="method-box">
+      <h4>IDB methodology — two gates before Project Review</h4>
+      <p>Following the SFP proposal (§4.2 SNG eligibility, §4.13 readiness assessment, OP-301 legal frameworks):</p>
+      <div class="method-steps">
+        <div class="method-step"><div class="n">Step 1</div><div class="t">Early creditworthiness assessment</div>
+          <div class="d">Weighted composite of creditworthiness, fiscal health, legal capacity, and governance → <b>Ready</b> / Developing / Early.</div></div>
+        <div class="method-step"><div class="n">Step 2</div><div class="t">SNG eligibility clearance</div>
+          <div class="d">Hard checks: can contract IDB financing <b>without sovereign guarantee</b> + <b>independent audit</b> on file.</div></div>
+        <div class="method-step"><div class="n">Step 3</div><div class="t">Project Review</div>
+          <div class="d">Only after Steps 1–2 pass. Project-level screen, structuring, quality &amp; risk review, Board pipeline.</div></div>
+      </div>
+      ${faq}
+    </div>`;
+}
 
 function renderAll(){ renderKPIs(); renderPipeline(); renderReadiness(false); renderME(); }
 
@@ -214,29 +495,30 @@ function renderAll(){ renderKPIs(); renderPipeline(); renderReadiness(false); re
 function renderKPIs(){
   const s=DATA.sngs;
   const ready=s.filter(x=>x.tier==="Ready").length;
-  const pipe=s.filter(x=>["Structuring","Board Pipeline"].includes(x.proposal.stage)).length;
-  const committed=askSum(s.filter(x=>x.proposal.stage==="Board Pipeline"));
-  const avg=Math.round(s.reduce((a,b)=>a+b.compositeReadiness,0)/s.length);
-  const noGuarantee=s.filter(x=>x.signals.canBorrowWithoutSovereignGuarantee).length;
+  const acceleration=s.filter(x=>x.tier!=="Ready").length;
+  const reviewReady=s.filter(x=>x.canEnterProjectReview).length;
+  const advanced=s.filter(isAdvancedProject).length;
+  const committed=askSum(s.filter(x=>x.canEnterProjectReview && x.proposal.stage==="Board Pipeline"));
   const k=[
-    [s.length,"Candidate SNGs screened"],
-    [ready,"Ready tier (early creditworthiness)"],
-    [pipe,"In structuring / Board pipeline"],
+    [s.length,"Candidate SNGs assessed"],
+    [ready,"Ready cities / SNGs"],
+    [acceleration,"Developing or Early · readiness acceleration"],
+    [reviewReady,"Eligible for Project Review"],
+    [advanced,"Projects in structuring / risk / Board"],
     ["$"+committed.toFixed(0)+"M","Indicative committed · of US$1B Subprogram 1"],
-    [avg+" pts","Avg composite readiness"],
-    [noGuarantee,"Can borrow w/o sovereign guarantee"],
   ];
   document.getElementById("kpis").innerHTML=k.map(([v,l])=>
     `<div class="kpi"><div class="v">${v}</div><div class="l">${l}</div></div>`).join("");
 }
 
-/* ---------- Pipeline (intake & triage — stage-gate tracker) ---------- */
-let pCountry="all", pTier="all", pIssues=false;
+/* ---------- Project review ---------- */
+let pCountry="all", pTier="Ready", pIssues=false, pShowBlocked=false;
 function renderPipeline(){
   const visible=DATA.sngs.filter(s=>
     (pCountry==="all"||s.country===pCountry)&&
     (pTier==="all"||s.tier===pTier)&&
-    (!pIssues||!s.eligibility.eligible||SM.intakeChecklist(s).some(c=>!c.done)));
+    (pShowBlocked || s.canEnterProjectReview) &&
+    (!pIssues||!s.eligibility.eligible||countChecklistGaps(s)>0||!s.canEnterProjectReview));
   const byStage=Object.fromEntries(STAGES.map(s=>[s,[]]));
   visible.forEach(s=>byStage[s.proposal.stage].push(s));
   const countries=["all",...[...new Set(DATA.sngs.map(s=>s.country))].sort()];
@@ -246,19 +528,22 @@ function renderPipeline(){
       const d=daysIn(s);
       const cl=SM.intakeChecklist(s); const done=cl.filter(c=>c.done).length;
       const age=d>120?"bad":d>60?"warn":"";
+      const blocked=!s.canEnterProjectReview;
       return `
-      <div class="card" onclick="openDrawer('${s.id}')">
+      <div class="card" onclick="openDrawer('${s.id}','project')">
         <div class="nm"><span class="dot bg-${s.tier}" title="${s.tier} · ${s.compositeReadiness} pts"></span>${s.name}</div>
         <div class="meta"><span>${s.country} · ${s.type}</span><span>$${s.proposal.askUSDm}M</span></div>
         <div class="meta"><span>${s.proposal.title}</span></div>
         <div class="chips">
           <span class="chip ${age}" title="Days since submission">${d}d</span>
           <span class="chip ${done<cl.length?"warn":"good"}" title="Documentary checklist">docs ${done}/${cl.length}</span>
+          <span class="chip ${actionColor(s.readinessAction)}">${s.readinessAction}</span>
+          ${blocked?'<span class="chip bad" title="This city must pass readiness before active project review">blocked: city not Ready</span>':'<span class="chip good">ready for review</span>'}
           ${s.eligibility.eligible?"":'<span class="chip bad" title="Fails an IDB project-eligibility criterion">not eligible</span>'}
           ${s.signals.independentAudit?"":'<span class="chip warn">no audit</span>'}
           <span class="stagebtns">
-            ${i>0?`<button onclick="moveStage(event,'${s.id}',-1)" title="Send back a stage">◂</button>`:""}
-            ${i<STAGES.length-1?`<button onclick="moveStage(event,'${s.id}',1)" title="Advance a stage">▸</button>`:""}
+            ${!blocked&&i>0?`<button onclick="moveStage(event,'${s.id}',-1)" title="Send back a stage">◂</button>`:""}
+            ${!blocked&&i<STAGES.length-1?`<button onclick="moveStage(event,'${s.id}',1)" title="Advance a stage">▸</button>`:""}
           </span>
         </div>
       </div>`;}).join("");
@@ -268,23 +553,26 @@ function renderPipeline(){
       <div class="gate">${STAGE_META[st]}</div>${cards}</div>`;
   }).join("");
   document.getElementById("tab-pipeline").innerHTML=`
-    <div class="section-title">Proposal pipeline — stage-gate tracker</div>
-    <p class="section-sub">Workflow view: where each proposal sits in the SFP process, how long it has waited, and what documentation
-    is missing before the next review gate. For the analytic question — <i>is this SNG actually ready?</i> — open a card or switch
-    to <b>Readiness Scoring</b>: both views read the same live candidate record.</p>
+    <div class="section-title">Project review — ready city pipeline</div>
+    <p class="section-sub">This workflow starts <b>after</b> IDB Steps 1–2: early creditworthiness assessment (Ready tier) <i>and</i> SNG eligibility clearance.
+    By default only <b>cleared</b> cities appear here. Use <b>show blocked concepts</b> to see Ready cities still missing legal clearance or audit evidence.</p>
+    ${liveDataSummary()}
+    ${methodologyGuide(true)}
     <div class="controls">
-      <button class="btn" onclick="openIntakeForm()">+ New proposal</button>
+      <button class="btn" onclick="openIntakeForm()">+ New city / project concept</button>
       <select onchange="pCountry=this.value;renderPipeline()">${countries.map(c=>`<option value="${c}" ${c===pCountry?"selected":""}>${c==="all"?"All countries":c}</option>`).join("")}</select>
       <select onchange="pTier=this.value;renderPipeline()">${["all","Ready","Developing","Early"].map(t=>`<option value="${t}" ${t===pTier?"selected":""}>${t==="all"?"All tiers":t}</option>`).join("")}</select>
       <label class="checklabel"><input type="checkbox" ${pIssues?"checked":""} onchange="pIssues=this.checked;renderPipeline()"/>issues only</label>
+      <label class="checklabel"><input type="checkbox" ${pShowBlocked?"checked":""} onchange="pShowBlocked=this.checked;renderPipeline()"/>show blocked concepts</label>
       <div style="flex:1"></div>
-      <div style="color:var(--muted);font-size:12px">${visible.length} proposals · $${askSum(visible).toFixed(0)}M total ask</div>
+      <div style="color:var(--muted);font-size:12px">${visible.length} project records · $${askSum(visible).toFixed(0)}M total ask</div>
     </div>
     <div class="board">${cols}</div>`;
 }
 function moveStage(ev,id,dir){
   ev.stopPropagation();
   const s=DATA.sngs.find(x=>x.id===id); if(!s)return;
+  if(!s.canEnterProjectReview)return;
   const i=STAGES.indexOf(s.proposal.stage)+dir;
   if(i<0||i>=STAGES.length)return;
   s.proposal.stage=STAGES[i];
@@ -292,9 +580,9 @@ function moveStage(ev,id,dir){
   renderAll();
 }
 
-/* ---------- Readiness scoring (early creditworthiness assessment) ---------- */
+/* ---------- Readiness scoring ---------- */
 let sortKey="compositeReadiness", sortDir=-1, filterCountry="all", filterTier="all";
-function rescore(skipWeights){ DATA.sngs=DATA.sngs.map(s=>SM.scoreSNG(s)); renderKPIs(); renderPipeline(); renderReadiness(skipWeights); renderME(); }
+function rescore(skipWeights){ DATA.sngs=DATA.sngs.map(normalizeSNG); renderKPIs(); renderPipeline(); renderReadiness(skipWeights); renderME(); }
 let activeWeightKey=null;
 function onWeightInput(k,v){ activeWeightKey=k; SM.setWeightShare(k,Number(v)); updateWeightUI(k); rescore(true); }
 function onWeightChange(){ activeWeightKey=null; syncWeightSliders(); }
@@ -312,7 +600,7 @@ function syncWeightSliders(){
     const inp=document.querySelector("#weight-"+k+" input"); if(inp) inp.value=Math.round(W[k]*100);
   }
 }
-function resetWeights(){ SM.setWeights({creditworthiness:.30,fiscalHealth:.30,legalCapacity:.20,governance:.20}); renderAll(); }
+function resetWeights(){ SM.setWeights({creditworthiness:.30,fiscalHealth:.30,legalCapacity:.20,governance:.20}); rescore(false); }
 function renderReadiness(skipWeights){
   const W=SM.READINESS_WEIGHTS;
   let rows=DATA.sngs.filter(s=>
@@ -329,16 +617,25 @@ function renderReadiness(skipWeights){
     <input type="range" min="0" max="100" value="${Math.round(W[k]*100)}"
       oninput="onWeightInput('${k}',this.value)" onchange="onWeightChange()"/></div>`).join("");
   const body=rows.map(s=>{
-    const prov=s.signals.capagRating?`<span class="badge real" title="Anchored to Brazil Treasury CAPAG open data">CAPAG ${s.signals.capagRating}</span>`:`<span class="badge" title="Mock value — wire CityCatalyst for live signals">mock</span>`;
+    const cityBadge=cityContextBadge(s);
+    const prov=hasLiveCityContext(s)
+      ? `<span class="${cityBadge.className}" title="${cityBadge.title}">${cityBadge.label}</span>`
+      : s.signals.capagRating
+        ? `<span class="badge real" title="Anchored to Brazil Treasury CAPAG open data">CAPAG ${s.signals.capagRating}</span>`
+        : `<span class="badge" title="Mock value — live CityCatalyst city context not available for this record">mock</span>`;
+    const gaps=countChecklistGaps(s);
     return `
-    <tr onclick="openDrawer('${s.id}')">
-      <td><b>${s.name}</b><div style="color:var(--muted);font-size:11px">${s.country} · ${s.type}</div></td>
+    <tr onclick="openDrawer('${s.id}','readiness')">
+      <td><b>${s.name}</b><div style="color:var(--muted);font-size:11px">${s.country} · ${s.type} · ${s.locode || "no locode"}</div></td>
       <td>${cellBar(s.readiness.creditworthiness)}</td>
       <td>${cellBar(s.readiness.fiscalHealth)}</td>
       <td>${cellBar(s.readiness.legalCapacity)}</td>
       <td>${cellBar(s.readiness.governance)}</td>
       <td><b style="font-size:15px;color:${tierColor(s.tier)}">${s.compositeReadiness}</b></td>
       <td><span class="pill" style="background:${tierColor(s.tier)}22;color:${tierColor(s.tier)}">${s.tier}</span></td>
+      <td><span class="chip ${actionColor(s.readinessAction)}" title="${s.canEnterProjectReview?"Ready tier + SNG eligibility clearance passed (§4.2)":"Ready tier but clearance blocked — open record for blockers"}">${s.readinessAction}</span></td>
+      <td style="color:var(--muted)">${s.canEnterProjectReview?'<span class="ok">cleared</span>':'<span class="no">blocked</span>'}</td>
+      <td style="color:var(--muted)">${gaps===0?'<span class="ok">0 open</span>':`${gaps} open`}</td>
       <td style="color:var(--muted)">${prov}</td>
     </tr>`;}).join("");
   const bodyHtml=`
@@ -353,7 +650,7 @@ function renderReadiness(skipWeights){
     <table><thead><tr>
       ${th("name","Candidate")}${th("creditworthiness","Credit")}${th("fiscalHealth","Fiscal")}
       ${th("legalCapacity","Legal")}${th("governance","Govern.")}${th("compositeReadiness","Score")}
-      <th>Tier</th><th>Source</th>
+      <th>Tier</th><th>Clearance status</th><th title="SNG eligibility clearance per §4.2">Project clearance</th><th title="Documentary checklist items still open">Docs open</th><th>Source</th>
     </tr></thead><tbody>${body}</tbody></table>`;
   if(skipWeights){
     const el=document.getElementById("tab-readiness-body");
@@ -361,10 +658,11 @@ function renderReadiness(skipWeights){
     return;
   }
   document.getElementById("tab-readiness").innerHTML=`
-    <div class="section-title">Early creditworthiness assessment</div>
-    <p class="section-sub">The SFP eligibility test (§4.2): <i>credit strength, financial viability, legal capacity and good governance</i>,
-    scored 0–100 per pillar and weighted into a composite. Drag a weight and every score in the app — pipeline, KPIs, M&amp;E —
-    re-computes live from <code>scoring.js</code>. Click a row for the full assessment and the project-eligibility gate.</p>
+    <div class="section-title">Readiness scoring — city / SNG gate (Step 1 + Step 2)</div>
+    <p class="section-sub">Per IDB SFP §4.2 and §4.13: first run the <b>early creditworthiness assessment</b> (weighted pillars below), then apply
+    <b>SNG eligibility clearance</b> before any city enters Project Review. Drag a weight and every downstream view re-computes live from <code>scoring.js</code>.</p>
+    ${liveDataSummary()}
+    ${methodologyGuide(false)}
     <div class="weights">${sliders}
       <button class="btn ghost" onclick="resetWeights()">Reset weights</button>
       <div style="color:var(--muted);font-size:11.5px">weights renormalize to 100%</div>
@@ -380,13 +678,20 @@ const RESULTS_MATRIX=[
   {title:"Specific objective 1 — strengthen SNGs' fiscal & financial management",
    desc:"Early-outcome family: financing conditions, fiscal transparency, local autonomy (Annex IV fig. 1).",
    names:["SNGs creditworthy w/o sovereign guarantee","SNGs w/ independent audit","Avg readiness score (pipeline)"]},
-  {title:"Specific objective 2 — strengthen capacity to structure & implement project pipelines",
-   desc:"Early-outcome family: investment project management, regulatory compliance, risk management.",
+  {title:"Specific objective 2 — strengthen readiness and project pipeline capacity",
+   desc:"Early-outcome family: more cities cleared for project review, and stronger project maturation once they are ready.",
    names:["SNGs screened for readiness","SNGs passing readiness (Ready tier)","Projects in structuring/Board pipeline"]},
   {title:"Specific objective 3 — improve service delivery & infrastructure at subnational level",
    desc:"Early-outcome family: investment via sub-sovereign finance, access, private-sector participation.",
    names:["Indicative financing committed","Countries with active pipeline"]},
 ];
+function statusFor(current,target){
+  if(target<=0)return "on-track";
+  const ratio=current/target;
+  if(ratio>=1)return "on-track";
+  if(ratio>=0.8)return "at-risk";
+  return "off-track";
+}
 function gapText(i){
   if(i.status==="on-track")return "";
   const gap=Math.round((i.target-i.current)*10)/10;
@@ -406,43 +711,89 @@ function meCard(i){
   </div>`;
 }
 function renderME(){
+  const assessed=DATA.sngs.length;
+  const ready=DATA.sngs.filter(s=>s.tier==="Ready").length;
+  const developing=DATA.sngs.filter(s=>s.tier==="Developing").length;
+  const early=DATA.sngs.filter(s=>s.tier==="Early").length;
+  const reviewReady=DATA.sngs.filter(s=>s.canEnterProjectReview).length;
+  const blockedConcepts=DATA.sngs.filter(isBlockedConcept).length;
+  const committed=askSum(DATA.sngs.filter(x=>x.canEnterProjectReview && x.proposal.stage==="Board Pipeline"));
+  const structuring=askSum(DATA.sngs.filter(x=>x.canEnterProjectReview && ["Structuring","Quality & Risk Review"].includes(x.proposal.stage)));
+  const activeAdvanced=DATA.sngs.filter(isAdvancedProject);
+  const activeProjects=DATA.sngs.filter(isActiveProject);
+  const advancedCount=activeAdvanced.length;
+  const activeCountries=uniqCount(activeProjects.map(s=>s.country));
+  const creditworthy=DATA.sngs.filter(s=>s.signals.canBorrowWithoutSovereignGuarantee).length;
+  const avg=Math.round(DATA.sngs.reduce((a,b)=>a+b.compositeReadiness,0)/DATA.sngs.length);
+  const audits=DATA.sngs.filter(s=>s.signals.independentAudit).length;
   const tl=DATA.boardMilestones.map(m=>`
     <div class="ms-node ${new Date(m.date)<TODAY?"past":""}"><div class="pt"></div>
       <div class="d">${m.date}</div><div class="ti">${m.title}</div><div class="ds">${m.desc}</div></div>`).join("");
+  const indicatorMap = Object.fromEntries(DATA.meIndicators.map(i=>[i.name,i]));
+  const metric = (name,current) => {
+    const base=indicatorMap[name];
+    if(!base)return null;
+    return {...base,current,status:statusFor(current,base.target)};
+  };
+  const indicators = {
+    screened: metric("SNGs screened for readiness", assessed),
+    ready: metric("SNGs passing readiness (Ready tier)", ready),
+    projects: metric("Projects in structuring/Board pipeline", advancedCount),
+    committed: metric("Indicative financing committed", Math.round(committed*10)/10),
+    countries: metric("Countries with active pipeline", activeCountries),
+    creditworthy: metric("SNGs creditworthy w/o sovereign guarantee", creditworthy),
+    avg: metric("Avg readiness score (pipeline)", avg),
+    audits: metric("SNGs w/ independent audit", audits),
+  };
+  const liveIndicatorMap = Object.fromEntries(Object.values(indicators).filter(Boolean).map(i=>[i.name,i]));
   // subprograms (proposal §1.3): SP1 US$1B OC investment finance; SP2 ~US$13M TC readiness
-  const committed=askSum(DATA.sngs.filter(x=>x.proposal.stage==="Board Pipeline"));
-  const structuring=askSum(DATA.sngs.filter(x=>x.proposal.stage==="Structuring"));
   const sp1pct=Math.min(100,committed/1000*100);
   // portfolio risk: country concentration of active pipeline (Structuring + Board)
-  const active=DATA.sngs.filter(x=>["Structuring","Board Pipeline"].includes(x.proposal.stage));
-  const byCountry={}; active.forEach(s=>byCountry[s.country]=(byCountry[s.country]||0)+s.proposal.askUSDm);
-  const tot=askSum(active)||1;
+  const byCountry={}; activeAdvanced.forEach(s=>byCountry[s.country]=(byCountry[s.country]||0)+s.proposal.askUSDm);
+  const tot=askSum(activeAdvanced)||1;
   const conc=Object.entries(byCountry).sort((a,b)=>b[1]-a[1]);
   const topShare=conc.length?Math.round(conc[0][1]/tot*100):0;
-  const concBars=conc.map(([c,v])=>`<div class="hbar"><div class="lab">${c}</div>
+  const concBars=conc.length?conc.map(([c,v])=>`<div class="hbar"><div class="lab">${c}</div>
     <div class="bar" style="flex:1"><i style="width:${Math.round(v/tot*100)}%;background:${v/tot>0.3?"var(--amber)":"var(--cyan)"}"></i></div>
-    <div class="val">$${v.toFixed(0)}M · ${Math.round(v/tot*100)}%</div></div>`).join("");
-  const noG=active.filter(s=>s.signals.canBorrowWithoutSovereignGuarantee).length;
+    <div class="val">$${v.toFixed(0)}M · ${Math.round(v/tot*100)}%</div></div>`).join(""):'<div class="hint">No projects beyond screening yet.</div>';
+  const noG=activeAdvanced.filter(s=>s.signals.canBorrowWithoutSovereignGuarantee).length;
   const matrix=RESULTS_MATRIX.map(g=>{
-    const cards=g.names.map(n=>DATA.meIndicators.find(i=>i.name===n)).filter(Boolean).map(meCard).join("");
+    const cards=g.names.map(n=>liveIndicatorMap[n]).filter(Boolean).map(meCard).join("");
     return `<div class="obj"><div class="ot">${g.title}</div><div class="od">${g.desc}</div></div>
       <div class="me-grid">${cards}</div>`;
   }).join("");
   document.getElementById("tab-me").innerHTML=`
     <div class="section-title">Board reporting timeline</div>
-    <p class="section-sub">The pilot must prove itself to the Board: a mid-term report in year 3, then OVE evaluates the SFP
-    as a lending instrument after year 5 (8–10 projects expected), informing extension or mainstreaming.</p>
+    <p class="section-sub">This tab stays, but now tracks the full two-stage funnel: first how many cities become Ready, then how many Ready-city
+    projects mature toward structuring and Board approval. The pilot still has to prove both readiness-building and investment delivery to the Board.</p>
     <div class="timeline">${tl}</div>
     <div class="evalnote">··· then Year-5: OVE evaluation of the SFP as a lending instrument → Board decides continuation / mainstreaming</div>
     <div class="twocol">
+      <div class="panelcard"><h4>Readiness funnel</h4>
+        <div class="hint">City / SNG gate before any active project review.</div>
+        <div class="hbar"><div class="lab">SNGs assessed</div><div class="bar" style="flex:1"><i style="width:100%;background:var(--cyan)"></i></div><div class="val">${assessed}</div></div>
+        <div class="hbar"><div class="lab">Ready</div><div class="bar" style="flex:1"><i style="width:${Math.round(ready/(assessed||1)*100)}%;background:var(--green)"></i></div><div class="val">${ready}</div></div>
+        <div class="hbar"><div class="lab">Developing</div><div class="bar" style="flex:1"><i style="width:${Math.round(developing/(assessed||1)*100)}%;background:var(--amber)"></i></div><div class="val">${developing}</div></div>
+        <div class="hbar"><div class="lab">Early</div><div class="bar" style="flex:1"><i style="width:${Math.round(early/(assessed||1)*100)}%;background:var(--red)"></i></div><div class="val">${early}</div></div>
+        <div class="hint" style="margin-top:8px">Average readiness score: <b>${avg} pts</b>.</div>
+      </div>
+      <div class="panelcard"><h4>Project funnel</h4>
+        <div class="hint">Only Ready cities should move into active project review.</div>
+        <div class="hbar"><div class="lab">Eligible for Project Review</div><div class="bar" style="flex:1"><i style="width:${Math.round(reviewReady/(assessed||1)*100)}%;background:var(--green)"></i></div><div class="val">${reviewReady}</div></div>
+        <div class="hbar"><div class="lab">Blocked concepts</div><div class="bar" style="flex:1"><i style="width:${Math.round(blockedConcepts/(assessed||1)*100)}%;background:var(--amber)"></i></div><div class="val">${blockedConcepts}</div></div>
+        <div class="hbar"><div class="lab">Advanced projects</div><div class="bar" style="flex:1"><i style="width:${Math.round(advancedCount/(reviewReady||1)*100)}%;background:var(--cyan)"></i></div><div class="val">${advancedCount}</div></div>
+        <div class="hbar"><div class="lab">Board pipeline</div><div class="bar" style="flex:1"><i style="width:${Math.round(DATA.sngs.filter(x=>x.canEnterProjectReview&&x.proposal.stage==="Board Pipeline").length/(reviewReady||1)*100)}%;background:var(--cyan-b)"></i></div><div class="val">${DATA.sngs.filter(x=>x.canEnterProjectReview&&x.proposal.stage==="Board Pipeline").length}</div></div>
+      </div>
+    </div>
+    <div class="twocol">
       <div class="panelcard"><h4>Subprogram 1 — Investment finance (Ordinary Capital)</h4>
-        <div class="hint">Up to US$1,000M for loans &amp; guarantees to eligible SNGs, no sovereign guarantee. Live from the pipeline:</div>
+        <div class="hint">Up to US$1,000M for loans &amp; guarantees to eligible SNGs, no sovereign guarantee. Live from the ready-city project funnel:</div>
         <div class="hbar"><div class="lab">Indicative committed</div><div class="bar" style="flex:1"><i style="width:${sp1pct}%;background:var(--cyan)"></i></div><div class="val">$${committed.toFixed(0)}M</div></div>
-        <div class="hbar"><div class="lab">In structuring</div><div class="bar" style="flex:1"><i style="width:${Math.min(100,structuring/1000*100)}%;background:var(--cyan-b)"></i></div><div class="val">$${structuring.toFixed(0)}M</div></div>
+        <div class="hbar"><div class="lab">In structuring / risk review</div><div class="bar" style="flex:1"><i style="width:${Math.min(100,structuring/1000*100)}%;background:var(--cyan-b)"></i></div><div class="val">$${structuring.toFixed(0)}M</div></div>
         <div class="hint" style="margin-top:8px">${(sp1pct).toFixed(1)}% of the US$1B envelope at Board stage.</div>
       </div>
       <div class="panelcard"><h4>Subprogram 2 — TC "sub-sovereign readiness" (~US$13M)</h4>
-        <div class="hint">Technical cooperation that gets candidates ready (mock utilization):</div>
+        <div class="hint">Technical cooperation that gets Developing and Early cities ready to enter Project Review (mock utilization):</div>
         <div class="hbar"><div class="lab">Regular TC · reforms &amp; prefeasibility</div><div class="bar" style="flex:1"><i style="width:46%;background:var(--cyan)"></i></div><div class="val">of $4M</div></div>
         <div class="hbar"><div class="lab">Contingent-recovery TC · project design</div><div class="bar" style="flex:1"><i style="width:31%;background:var(--cyan-b)"></i></div><div class="val">of $6M</div></div>
         <div class="hbar"><div class="lab">Pilot implementation + M&amp;E</div><div class="bar" style="flex:1"><i style="width:38%;background:var(--cyan-d)"></i></div><div class="val">of $3M</div></div>
@@ -450,14 +801,14 @@ function renderME(){
     </div>
     <div class="twocol">
       <div class="panelcard"><h4>Portfolio risk — country concentration (active pipeline)</h4>
-        <div class="hint">Share of $ ask in Structuring + Board Pipeline. ${topShare>30?`<b style="color:#9A6B14">Top country holds ${topShare}% — concentration watch.</b>`:"No single-country concentration above 30%."}</div>
+        <div class="hint">Share of $ ask in advanced ready-city projects. ${topShare>30?`<b style="color:#9A6B14">Top country holds ${topShare}% — concentration watch.</b>`:"No single-country concentration above 30%."}</div>
         ${concBars}
       </div>
       <div class="panelcard"><h4>Risk posture (proposal §1.6)</h4>
         <div class="hint">Mitigation = deliberate selection of creditworthy borrowers + fiscal-responsibility frameworks + regular monitoring of financial indicators.</div>
-        <div class="hbar"><div class="lab">Active pipeline able to borrow w/o guarantee</div><div class="bar" style="flex:1"><i style="width:${Math.round(noG/(active.length||1)*100)}%;background:var(--green)"></i></div><div class="val">${noG}/${active.length}</div></div>
-        <div class="hbar"><div class="lab">Active pipeline in Ready tier</div><div class="bar" style="flex:1"><i style="width:${Math.round(active.filter(s=>s.tier==="Ready").length/(active.length||1)*100)}%;background:var(--green)"></i></div><div class="val">${active.filter(s=>s.tier==="Ready").length}/${active.length}</div></div>
-        <div class="hbar"><div class="lab">Active pipeline with independent audit</div><div class="bar" style="flex:1"><i style="width:${Math.round(active.filter(s=>s.signals.independentAudit).length/(active.length||1)*100)}%;background:var(--green)"></i></div><div class="val">${active.filter(s=>s.signals.independentAudit).length}/${active.length}</div></div>
+        <div class="hbar"><div class="lab">Advanced projects able to borrow w/o guarantee</div><div class="bar" style="flex:1"><i style="width:${Math.round(noG/(activeAdvanced.length||1)*100)}%;background:var(--green)"></i></div><div class="val">${noG}/${activeAdvanced.length}</div></div>
+        <div class="hbar"><div class="lab">Advanced projects with Ready city</div><div class="bar" style="flex:1"><i style="width:${Math.round(activeAdvanced.filter(s=>s.tier==="Ready").length/(activeAdvanced.length||1)*100)}%;background:var(--green)"></i></div><div class="val">${activeAdvanced.filter(s=>s.tier==="Ready").length}/${activeAdvanced.length}</div></div>
+        <div class="hbar"><div class="lab">Advanced projects with independent audit</div><div class="bar" style="flex:1"><i style="width:${Math.round(activeAdvanced.filter(s=>s.signals.independentAudit).length/(activeAdvanced.length||1)*100)}%;background:var(--green)"></i></div><div class="val">${activeAdvanced.filter(s=>s.signals.independentAudit).length}/${activeAdvanced.length}</div></div>
       </div>
     </div>
     <div class="section-title" style="margin-top:8px">Results matrix — pilot indicators vs. targets (Annex IV vertical logic)</div>
@@ -465,7 +816,7 @@ function renderME(){
 }
 
 /* ---------- Drawer (one candidate record · two lenses) ---------- */
-function openDrawer(id){
+function openDrawer(id,mode="readiness"){
   const s=DATA.sngs.find(x=>x.id===id); if(!s)return;
   const yn=b=>b?'<span class="ok">✓ yes</span>':'<span class="no">✗ no</span>';
   const e=s.eligibility;
@@ -475,38 +826,58 @@ function openDrawer(id){
     <div class="pts">${x.score} × ${Math.round(x.weight*100)}% = <b>${x.points}</b></div></div>`).join("");
   const cl=SM.intakeChecklist(s);
   const checks=cl.map(c=>`<div class="check">${c.done?'<span class="ok">✓</span>':'<span class="no">✗</span>'}<span>${c.label}</span></div>`).join("");
+  const missing=cl.filter(c=>!c.done).length;
+  const clearanceBlockers=SM.readinessClearanceBlockers(s);
+  const clearanceBlockerList=clearanceBlockers.map(b=>`<div class="check"><span class="no">✗</span><span>${b}</span></div>`).join("");
   const stageIdx=STAGES.indexOf(s.proposal.stage);
   const strip=STAGES.map((st,i)=>`<div class="st ${i<stageIdx?"done":i===stageIdx?"cur":""}">${st}</div>`).join("");
-  const prov=s.signals.capagRating?'<span class="badge real">CAPAG open data</span>':'<span class="badge">mock signals</span>';
-  document.getElementById("drawer").innerHTML=`
-    <div class="x" onclick="closeDrawer()">✕</div>
-    <h2>${s.name}</h2>
-    <div style="color:var(--muted);font-size:12.5px">${s.country} · ${s.type} · pop. ${fmt(s.population)} · ${s.id}</div>
-
-    <div class="sechead">Early creditworthiness assessment ${prov}</div>
+  const cityBadge=cityContextBadge(s);
+  const prov=hasLiveCityContext(s)
+    ? `<span class="${cityBadge.className}" title="${cityBadge.title}">${cityBadge.label}</span>`
+    : s.signals.capagRating
+      ? '<span class="badge real">CAPAG open data</span>'
+      : '<span class="badge">mock signals</span>';
+  const pop = livePopulation(s);
+  const popSource = livePopulationSource(s);
+  const readinessBlock=`
+    <div class="sechead">Step 1 · Early creditworthiness assessment ${prov}</div>
+    <div class="helpnote"><b>§4.13 / Annex logic:</b> credit strength, financial viability, legal capacity, and governance — weighted into a composite tier.
+    This is analytic scoring, not the final legal clearance.</div>
     <div class="scorewheel">
       <div class="big" style="color:${tierColor(s.tier)}">${s.compositeReadiness}</div>
-      <div><span class="pill" style="background:${tierColor(s.tier)}22;color:${tierColor(s.tier)};font-size:13px">${s.tier}</span>
-      <div style="color:var(--muted);font-size:11.5px;margin-top:5px">Composite readiness · pillar score × weight = points</div></div>
+      <div>
+        <span class="pill" style="background:${tierColor(s.tier)}22;color:${tierColor(s.tier)};font-size:13px">${s.tier}</span>
+        <div style="margin-top:7px"><span class="chip ${actionColor(s.readinessAction)}">${s.readinessAction}</span></div>
+        <div style="color:var(--muted);font-size:11.5px;margin-top:5px">Tier from composite score · pillar score × weight = points</div>
+        <div style="color:var(--muted);font-size:11.5px;margin-top:4px">Project clearance: ${s.canEnterProjectReview?'<span class="ok">cleared</span>':'<span class="no">blocked</span>'}</div>
+      </div>
     </div>
     ${subs}
     <div class="kv" style="margin-top:12px">
+      <div><div class="k">LOCODE<div class="field-help">CityCatalyst / UN LOCODE identifier</div></div><div class="val">${s.locode || "n/a for region"}</div></div>
+      <div><div class="k">Population<div class="field-help">${cityContextFieldStatus(s,"populationSize")==="live"?"Live from CityCatalyst city_context.populationSize":hasLiveCityContext(s)?"CityCatalyst record found, but populationSize is null so mock value is shown":"Mock dataset only"}</div></div><div class="val">${fmt(pop)}</div></div>
       <div><div class="k">CAPAG rating</div><div class="val">${s.signals.capagRating||"n/a"}</div></div>
       <div><div class="k">Own-source revenue</div><div class="val">${fv(s.signals.ownSourceRevenuePct,"%")}</div></div>
       <div><div class="k">Debt service ratio</div><div class="val">${fv(s.signals.debtServiceRatioPct,"%")}</div></div>
       <div><div class="k">Operating balance</div><div class="val">${fv(s.signals.currentBalancePct,"%")}</div></div>
+      <div><div class="k">Independent audit<div class="field-help">Step 2 clearance · audited statements on file (§4.13)</div></div><div class="val">${s.signals.independentAudit?"Yes":"No"}</div></div>
+      <div><div class="k">Can borrow without sovereign guarantee<div class="field-help">Step 2 clearance · OP-301 / §4.2: SNG may contract IDB financing without central guarantee</div></div><div class="val">${s.signals.canBorrowWithoutSovereignGuarantee?"Yes":"No"}</div></div>
     </div>
-    <div class="elig" style="margin-top:14px">
-      <div class="k" style="color:var(--muted);text-transform:uppercase;letter-spacing:.5px;font-size:11px">IDB eligibility gate — 3 simultaneous project criteria + SNG conditions</div>
-      <div>High developmental impact ${yn(e.highDevImpact)}</div>
-      <div>No private-sector crowding-out ${yn(e.noCrowdingOut)}</div>
-      <div>Improves SNG efficiency &amp; effectiveness ${yn(e.improvesSNGEfficiency)}</div>
-      <div>SNG / central gov not in non-accrual ${yn(e.centralGovNotInNonAccrual)}</div>
-      <div>Can borrow without sovereign guarantee ${yn(s.signals.canBorrowWithoutSovereignGuarantee)}</div>
-      <div style="margin-top:8px;font-weight:700">Overall: ${e.eligible?'<span class="ok">Eligible to advance</span>':'<span class="no">Not yet eligible</span>'}</div>
-    </div>
-
-    <div class="sechead">Proposal &amp; process</div>
+    ${hasLiveCityContext(s) ? `<div class="helpnote"><b>CityCatalyst context connected</b> — area: ${cityContextFieldStatus(s,"area")==="live"?`${fv(s.cityContext.area," km²")} (live)`:"not available"}, density: ${cityContextFieldStatus(s,"populationDensity")==="live"?`${fv(s.cityContext.populationDensity)} (live)`:"not available"}, region: ${cityContextFieldStatus(s,"regionName")==="live"||cityContextFieldStatus(s,"region")==="live"?`${s.cityContext.regionName || s.cityContext.region} (live)`:"not available"}.</div>` : s.locode ? `<div class="helpnote"><b>CityCatalyst locode mapped</b> — live city context not loaded yet or request failed.</div>` : `<div class="helpnote"><b>No CityCatalyst locode mapped</b> — this record is a region entry, so the city context endpoint is not applied.</div>`}
+    <div class="sechead">Step 2 · SNG eligibility clearance (§4.2)</div>
+    <div class="helpnote">Required <b>in addition to</b> a Ready tier score. Confirms this borrower can use the SFP instrument — direct sub-sovereign lending
+    without sovereign guarantee — not just that pillar scores look strong.</div>
+    ${clearanceBlockers.length?`<div style="color:var(--muted);font-size:12px;margin-bottom:8px"><span class="no">Clearance blocked</span> — city stays out of active Project Review until resolved:</div>
+    ${clearanceBlockerList}`:'<div class="check"><span class="ok">✓</span><span>Clearance passed — eligible to enter Project Review</span></div>'}
+    <div class="sechead">Documentary checklist (workflow)</div>
+    <div style="color:var(--muted);font-size:12px;margin-bottom:8px">Tracks intake evidence and project workflow steps — separate from the Step 2 clearance gates above.
+    ${missing===0?"All items present.":`${missing} item${missing===1?"":"s"} still open.`}</div>
+    ${checks}`;
+  const projectBlock=`
+    <div class="sechead">Project review</div>
+    ${s.canEnterProjectReview
+      ? '<div class="chip good" style="margin-bottom:10px">City is ready to enter active project review</div>'
+      : '<div class="chip bad" style="margin-bottom:10px">Blocked concept: city must pass readiness before active project review</div>'}
     <div class="kv">
       <div><div class="k">Proposal</div><div class="val">${s.proposal.title}</div></div>
       <div><div class="k">Ask</div><div class="val">$${s.proposal.askUSDm}M ${s.proposal.cofinance?'<span class="badge good" style="background:#E2F2E9;color:#2A7A4F">cofinance</span>':""}</div></div>
@@ -514,10 +885,26 @@ function openDrawer(id){
       <div><div class="k">Current stage</div><div class="val">${s.proposal.stage}</div></div>
     </div>
     <div class="procstrip">${strip}</div>
-    <div style="color:var(--muted);font-size:11px;margin-bottom:10px">Next gate: ${STAGE_META[STAGES[Math.min(stageIdx+1,STAGES.length-1)]]}</div>
-    <div class="k" style="color:var(--muted);text-transform:uppercase;letter-spacing:.5px;font-size:11px;margin-top:6px">Documentary intake checklist</div>
-    ${checks}
-
+    <div style="color:var(--muted);font-size:11px;margin-bottom:10px">${s.canEnterProjectReview?`Next gate: ${STAGE_META[STAGES[Math.min(stageIdx+1,STAGES.length-1)]]}`:"Next gate: unlock city readiness first, then continue project review."}</div>
+    <div class="elig" style="margin-top:14px">
+      <div class="k" style="color:var(--muted);text-transform:uppercase;letter-spacing:.5px;font-size:11px">IDB project eligibility gate</div>
+      <div>High developmental impact ${yn(e.highDevImpact)}</div>
+      <div>No private-sector crowding-out ${yn(e.noCrowdingOut)}</div>
+      <div>Improves SNG efficiency &amp; effectiveness ${yn(e.improvesSNGEfficiency)}</div>
+      <div>SNG / central gov not in non-accrual ${yn(e.centralGovNotInNonAccrual)}</div>
+      <div>Can borrow without sovereign guarantee ${yn(s.signals.canBorrowWithoutSovereignGuarantee)}</div>
+      <div style="margin-top:8px;font-weight:700">Overall: ${e.eligible&&s.canEnterProjectReview?'<span class="ok">Eligible to advance</span>':'<span class="no">Not yet eligible</span>'}</div>
+    </div>`;
+  const switcher = mode==="project"
+    ? `<div style="margin-top:14px"><button class="btn ghost" onclick="openDrawer('${s.id}','readiness')">Back to readiness view</button></div>`
+    : `<div style="margin-top:14px"><button class="btn ghost" onclick="openDrawer('${s.id}','project')">View project review</button></div>`;
+  document.getElementById("drawer").innerHTML=`
+    <div class="x" onclick="closeDrawer()">✕</div>
+    <h2>${s.name}</h2>
+    <div style="color:var(--muted);font-size:12.5px">${s.country} · ${s.type} · pop. ${fmt(pop)} · ${s.id}${s.locode?` · ${s.locode}`:""}</div>
+    ${readinessBlock}
+    ${switcher}
+    ${mode==="project"?projectBlock:""}
     <div class="footnote">Readiness signals would be fed live from <b>CityCatalyst</b> (OpenEarth) + open fiscal data
     (e.g. Brazil Treasury CAPAG). Sub-scores marked "mock" are fictional demo values. Scoring weights &amp; thresholds
     are transparent in <code>scoring.js</code> and tunable from the Readiness Scoring tab.</div>`;
@@ -532,9 +919,9 @@ function openIntakeForm(){
   const slider=(k,l)=>`<label class="full">${l}
     <span class="rrow"><input type="range" min="0" max="100" value="50" id="f_${k}" oninput="this.nextElementSibling.value=this.value"/><output>50</output></span></label>`;
   document.getElementById("modal").innerHTML=`
-    <h3>New proposal — documentary intake</h3>
-    <div class="hint">Creates a candidate card in <b>Intake</b>, scored immediately by the live model. In production the readiness
-    inputs come from a CityCatalyst lookup; here they are manual sliders.</div>
+    <h3>New city / project concept</h3>
+    <div class="hint">Creates a city readiness record and a linked project concept. If the city is Ready and core legal / audit conditions
+    are present, it can enter active Project Review; otherwise it remains a blocked concept note until readiness improves.</div>
     <div class="fgrid">
       <label>SNG name<input type="text" id="f_name" placeholder="e.g. Santa Marta"/></label>
       <label>Country<select id="f_country">${countries.map(c=>`<option>${c}</option>`).join("")}</select></label>
@@ -552,7 +939,7 @@ function openIntakeForm(){
     </div>
     <div class="actions">
       <button class="btn ghost" onclick="closeModal()">Cancel</button>
-      <button class="btn" onclick="submitIntake()">Create &amp; score</button>
+      <button class="btn" onclick="submitIntake()">Create record</button>
     </div>`;
   document.getElementById("modalBg").style.display="flex";
 }
@@ -566,14 +953,14 @@ function submitIntake(){
     id:"SNG-"+(maxId+1), name, country, iso:ISO[country]||"??",
     type:g("f_type").value, population:Number(g("f_pop").value)||0,
     proposal:{ title:g("f_title").value.trim()||"Untitled project", askUSDm:Number(g("f_ask").value)||0,
-      stage:"Intake", submitted:DATA.generated, cofinance:g("f_cof").checked },
+      stage:"Proposal Intake", submitted:DATA.generated, cofinance:g("f_cof").checked },
     readiness:{ creditworthiness:Number(g("f_credit").value), fiscalHealth:Number(g("f_fiscal").value),
       legalCapacity:Number(g("f_legal").value), governance:Number(g("f_gov").value) },
     signals:{ capagRating:null, ownSourceRevenuePct:null, debtServiceRatioPct:null, currentBalancePct:null,
       independentAudit:g("f_audit").checked, canBorrowWithoutSovereignGuarantee:g("f_nosg").checked },
   });
   DATA.sngs.unshift(sng);
-  closeModal(); renderAll(); openDrawer(sng.id);
+  closeModal(); renderAll(); openDrawer(sng.id,"readiness");
 }
 
 /* ---------- tabs ---------- */
@@ -585,6 +972,7 @@ document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{
 });
 
 renderAll();
+loadCityContextData();
 </script>
 </body>
 </html>
