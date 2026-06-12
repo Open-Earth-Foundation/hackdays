@@ -1,6 +1,7 @@
 import FlowDiagram from "./components/FlowDiagram";
 import CityExplorer from "./components/CityExplorer";
 import StoriesGallery from "./components/StoriesGallery";
+import TakeAction from "./components/TakeAction";
 import { cities } from "./data/cities";
 import { stories } from "./data/stories";
 
@@ -43,7 +44,7 @@ export default function Home() {
       </section>
 
       {/* Explore cities */}
-      <section className="section">
+      <section className="section" id="explore">
         <div className="wrap">
           <div className="eyebrow">Explore</div>
           <h2 style={{ fontSize: "1.8rem", margin: "0.75rem 0 0.75rem", maxWidth: 640 }}>
@@ -69,6 +70,21 @@ export default function Home() {
             with trees to rewriting climate law. Every card links to its source.
           </p>
           <StoriesGallery stories={stories} />
+        </div>
+      </section>
+
+      {/* Take action */}
+      <section className="section" id="act">
+        <div className="wrap">
+          <div className="eyebrow">Take action</div>
+          <h2 style={{ fontSize: "1.8rem", margin: "0.75rem 0 0.75rem", maxWidth: 640 }}>
+            Your next step
+          </h2>
+          <p className="muted" style={{ maxWidth: 640, marginBottom: "2.5rem" }}>
+            You don&rsquo;t need to be an expert or wait for permission. Pick what you care about,
+            and start with one concrete move.
+          </p>
+          <TakeAction />
         </div>
       </section>
 
