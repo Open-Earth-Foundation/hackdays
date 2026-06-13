@@ -28,9 +28,9 @@ The interface is deliberately minimalist and plain-language:
    there are shaping local climate action, and what you could do in your own.
 3. **Inspiration** — a gallery of **real, independently sourced** success stories where
    citizens changed their cities, filterable by action type. Every card links to its source.
-4. **Take Action** — universal civic pathways plus a Porto Alegre demo layer with real local
-   sources such as Defesa Civil, Orçamento Participativo, municipal councils, POA+Drena
-   Resiliente, AGAPAN, MobiRio, and Bike Anjo.
+4. **Take Action** — universal civic pathways. Porto Alegre also gets a contextual local-source
+   panel inside Explore, with real sources such as Defesa Civil, Orçamento Participativo,
+   municipal councils, POA+Drena Resiliente, AGAPAN, MobiRio, and Bike Anjo.
 
 ## Revenue Connection
 
@@ -97,9 +97,9 @@ npm run dev
   CC BY-SA); photographer credit + license are shown on each image and link to the file page.
 - **Cities** are the 15 places featured in the success stories, each tagged with its UN/LOCODE.
 - **Porto Alegre local engagement source** (`src/app/data/localEngagement.ts`) turns the
-  data-mapping track into demo-ready cards: flood resilience, landslide prevention, heat and
-  green infrastructure, residential energy, and active mobility. Each card has first moves and
-  source links; community sources are included with validation caveats where needed.
+  data-mapping track into contextual Explore content: flood resilience, landslide prevention,
+  heat and green infrastructure, residential energy, and active mobility. Each item has first
+  moves and source links; community sources are included with validation caveats where needed.
 
 ## If This Survives the Hackday
 

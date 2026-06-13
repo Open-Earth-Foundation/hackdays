@@ -25,7 +25,8 @@ app/src/app/
     CityMap.tsx         Leaflet map, circle markers, fly-to selection (client, dynamic import, ssr:false)
     CitySnapshot.tsx    emissions bars + risk hazards + provenance badge
     StoriesGallery.tsx  success-story cards with images + category filter (client)
-    TakeAction.tsx      civic action pathways + cause filter + CTA (client)
+    TakeAction.tsx      universal civic action pathways + cause filter + CTA (client)
+    LocalEngagementPanel.tsx contextual Porto Alegre local-source panel in Explore
   data/
     types.ts            City, Story, Emissions, Risk, Hazard, StoryImage, Category, ActionPathway
     cities.ts           15 cities: coords, LOCODE, summary, highlights, emissions, risk, provenance
@@ -73,7 +74,7 @@ Base: `https://api.citycatalyst.io`. Cities are keyed by UN/LOCODE (e.g. `BR SAO
 - All 4 sections built and verified; production build clean; 15 story images load and are licensed.
 - Live CityCatalyst emissions + CCRA risk baked in for São Paulo, Rio, Curitiba, Porto Alegre.
 - Verified external inventories + risk for the 11 other cities, each with a source link.
-- Porto Alegre "Take Action" demo layer added with official/community engagement sources.
+- Porto Alegre local-source panel added to the selected-city Explore view with official/community engagement sources.
 
 **Next (in priority order)**
 1. **Widen emissions coverage** — sum more GPC sectors / add scope-2 so the breakdown stops being
