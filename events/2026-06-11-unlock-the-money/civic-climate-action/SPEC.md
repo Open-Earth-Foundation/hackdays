@@ -9,7 +9,7 @@
 ## 0. Open product questions — investigate before building more
 
 - **Localization & "my city" entry point.** A citizen should land on *their* city, not a global list. Is the right next move geolocation + a typeahead over the full CityCatalyst city catalogue, or staying with a curated, high-quality seed set? What breaks (data coverage, map clutter) if we go to thousands of cities?
-- **The "Act" gap.** The Take Action step is currently *generic* (universal pathways). The real value is **local** next steps — the actual community group, the actual open public-comment window, the actual council agenda. Where does that data come from, and can any of it be sourced reliably per-city rather than hand-curated?
+- **The "Act" gap.** The Explore step now has a Porto Alegre-specific local-source panel, but the pattern is still hand-curated. The real value is scaling this to actual community groups, open public-comment windows, and council agendas for every supported city. Where can that data be sourced reliably per-city rather than maintained manually?
 - **Emissions honesty.** The Brazilian inventories pulled live are *partial* (no scope-2 grid electricity yet), which overstates transport's share. Should we (a) sum more datasources for fuller coverage, (b) show a clear "partial" framing (current approach), or (c) switch to a per-capita / sector-relative view that's less sensitive to coverage gaps?
 - **Citizen feedback loop.** Should residents be able to *report back* (pledged an action, joined a group) so the module produces the participation metrics funders want — closing the loop from engagement to measurable co-benefit?
 

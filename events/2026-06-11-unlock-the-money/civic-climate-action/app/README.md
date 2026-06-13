@@ -28,6 +28,9 @@ The interface is deliberately minimalist and plain-language:
    there are shaping local climate action, and what you could do in your own.
 3. **Inspiration** — a gallery of **real, independently sourced** success stories where
    citizens changed their cities, filterable by action type. Every card links to its source.
+4. **Take Action** — universal civic pathways. Porto Alegre also gets a contextual local-source
+   panel inside Explore, with real sources such as Defesa Civil, Orçamento Participativo,
+   municipal councils, POA+Drena Resiliente, AGAPAN, MobiRio, and Bike Anjo.
 
 ## Revenue Connection
 
@@ -121,11 +124,17 @@ To refresh the baked HIAP action library: `npm run data:actions`.
 - **Engagement opportunities** (`src/app/data/engagement.ts`) are curated, LATAM-first, and
   flagged `needs_local_validation` until a local partner confirms them.
 - **Cities** are the 15 places featured in the success stories, each tagged with its UN/LOCODE.
+- **Porto Alegre local engagement source** (`src/app/data/localEngagement.ts`) turns the
+  data-mapping track into contextual Explore content: flood resilience, landslide prevention,
+  heat and green infrastructure, residential energy, and active mobility. Each item has first
+  moves and source links; community sources are included with validation caveats where needed.
 
 ## If This Survives the Hackday
 
 - [ ] Wire cities by LOCODE to live CityCatalyst Global API data (GHGI / CCRA / HIAP)
 - [ ] Expand from the seed set to the full CityCatalyst city catalogue + geolocation
-- [ ] Real engagement directory per city: community groups, public-comment calendars, council agendas
+- [x] Add a Porto Alegre-specific engagement source for the demo
+- [ ] Generalize the local engagement source into a real directory per city: community groups,
+  public-comment calendars, council agendas
 - [ ] Extend Climate Advisor (AI) to answer "how do I influence my city's climate plan?"
 - [ ] Participation metrics dashboard for cities/funders (the revenue surface)
