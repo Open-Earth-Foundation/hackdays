@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { CarbonProvider } from "./lib/carbonContext";
+import CarbonCounter from "./components/CarbonCounter";
 
 export const metadata: Metadata = {
   title: "Civic Climate Action — Your City, Your Move",
@@ -10,7 +12,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <CarbonProvider>
+          {children}
+          <CarbonCounter />
+        </CarbonProvider>
+      </body>
     </html>
   );
 }

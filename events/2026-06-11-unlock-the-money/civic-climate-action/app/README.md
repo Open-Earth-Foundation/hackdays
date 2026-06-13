@@ -47,9 +47,22 @@ visible, measurable participation metrics — the kind MDBs, the IDB, and philan
 ```bash
 cd events/2026-06-11-unlock-the-money/civic-climate-action/app
 npm install
-npm run dev
+npm run build && npm start      # stable; dev (--turbopack) can 500 on stale state
 # Open http://localhost:3000
 ```
+
+The **AI localizer** (the "Make this concrete for my city" button) calls an optional
+green-LLM sidecar; if it isn't running, the app's route handler falls back to a built-in
+localizer, so the demo works either way. To run the real sidecar (mock mode, no key):
+
+```bash
+cd ../llm-service
+python -m venv .venv && source .venv/bin/activate
+pip install fastapi "uvicorn[standard]" pydantic python-dotenv
+uvicorn main:app --port 8000     # see llm-service/README.md for live/green providers
+```
+
+To refresh the baked HIAP action library: `npm run data:actions`.
 
 ## Demo Script (5 min)
 
@@ -59,10 +72,15 @@ npm run dev
    Act*. No dashboards to decode.
 3. **Explore** — search a city, or click the map. Pick Medellín / Bogotá / a Brazilian city
    and read, in everyday language, what residents there did and what you could do.
-4. **The "aha"** — the Inspiration gallery: real, sourced stories of citizens who cooled their
+4. **Prioritized actions** — pick a Brazilian hero city (São Paulo): real CityCatalyst **HIAP**
+   actions, ranked for *this* city's hazards and emitting sectors, each with a "why this matters
+   here" trace. Switch EN/ES/PT. Hit **"Make this concrete for my city"** → a cheap, green
+   open-weight LLM rewrites the action into localized next steps, and the **CO₂ counter** (bottom
+   right) shows the call's EcoLogits footprint.
+5. **The "aha"** — the Inspiration gallery: real, sourced stories of citizens who cooled their
    streets, bought their power grid, rewrote climate law. Filter by action type; every claim
    links to its source.
-5. **Who pays** — civic engagement is a co-benefit funders already score; this makes it
+6. **Who pays** — civic engagement is a co-benefit funders already score; this makes it
    visible and measurable. B2G, IDB, philanthropy.
 
 ## Built With
@@ -72,7 +90,12 @@ npm run dev
 - [Leaflet](https://leafletjs.com/) + react-leaflet, with free OpenStreetMap / CARTO basemap tiles
 - Cities keyed by **UN/LOCODE** — the same key the
   [CityCatalyst Global API](https://github.com/Open-Earth-Foundation/CityCatalyst/tree/develop/global-api)
-  uses — so they can connect to live GHGI / CCRA / HIAP data (`api.citycatalyst.io`)
+  uses — so they connect to live GHGI / CCRA / HIAP data (`api.citycatalyst.io`)
+- **HIAP action library** baked from `GET /api/v0/climate_actions` (155 actions, EN/ES/PT),
+  prioritized per city in `src/app/lib/prioritize.ts`
+- **Green LLM localizer**: a Python/FastAPI sidecar (`../llm-service`) calling an open-weight
+  model via an OpenAI-compatible API on a low-carbon EU provider, instrumented with
+  [EcoLogits](https://ecologits.ai/) for per-call carbon; model/provider is an env-only swap
 
 ## Data & Sources
 
@@ -92,6 +115,11 @@ npm run dev
   uncertain figures are described qualitatively. Each card links its source.
 - **Story images** are from Wikimedia Commons under reuse-permitting licenses (CC0 / CC BY /
   CC BY-SA); photographer credit + license are shown on each image and link to the file page.
+- **Climate actions** (`src/app/data/climateActions.generated.ts`) are CityCatalyst's HIAP
+  library, fetched once and committed (EN/ES/PT). We compute per-city prioritization ourselves
+  because the per-city ranking endpoints aren't populated in prod yet.
+- **Engagement opportunities** (`src/app/data/engagement.ts`) are curated, LATAM-first, and
+  flagged `needs_local_validation` until a local partner confirms them.
 - **Cities** are the 15 places featured in the success stories, each tagged with its UN/LOCODE.
 
 ## If This Survives the Hackday

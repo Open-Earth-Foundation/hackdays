@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import type { City, Story } from "../data/types";
 import { categoryMeta } from "../data/types";
 import CitySnapshot from "./CitySnapshot";
+import CityActions from "./CityActions";
 
 const CityMap = dynamic(() => import("./CityMap"), {
   ssr: false,
@@ -150,6 +151,8 @@ export default function CityExplorer({ cities, stories }: { cities: City[]; stor
             </p>
 
             <CitySnapshot city={selected} />
+
+            <CityActions key={selected.id} city={selected} />
 
             {selected.highlights.length > 0 && (
               <div style={{ marginTop: "1.25rem" }}>
