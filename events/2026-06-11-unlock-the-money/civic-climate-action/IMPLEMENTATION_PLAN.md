@@ -31,6 +31,7 @@ app/src/app/
     cities.ts           15 cities: coords, LOCODE, summary, highlights, emissions, risk, provenance
     stories.ts          15 sourced success stories + images
     actions.ts          7 universal civic action pathways, tagged by cause
+    localEngagement.ts  Porto Alegre-specific civic recommendations and source links for the demo
 ```
 
 ## 3. Data model (the important part)
@@ -42,6 +43,9 @@ app/src/app/
 - **`Risk`** — `topHazards[]` (`hazard`, `keyImpact?`, `level`, `score?`), `summary?`, `source`, `sourceUrl`.
 - **`Story`** — city, coords, `title`, `category`, `whatCitizensDid`, `outcome`, `year`,
   `sourceName/Url`, `image?` (`url`, `credit`, `license`, `sourcePageUrl`).
+- **`LocalEngagementRecommendation`** — Porto Alegre demo cards with `title`, `priority`, `theme`,
+  `whyItMatters`, `firstActions[]`, and `sources[]`. This is the bridge from CityCatalyst risk /
+  emissions data to actual civic pathways and source links.
 
 The provenance badge keys off `dataProvenance`; the UI renders sector **bars** when `sectors`
 exist, else a "largest source" line. Honest caveats live in `emissions.note`.
@@ -69,6 +73,7 @@ Base: `https://api.citycatalyst.io`. Cities are keyed by UN/LOCODE (e.g. `BR SAO
 - All 4 sections built and verified; production build clean; 15 story images load and are licensed.
 - Live CityCatalyst emissions + CCRA risk baked in for São Paulo, Rio, Curitiba, Porto Alegre.
 - Verified external inventories + risk for the 11 other cities, each with a source link.
+- Porto Alegre "Take Action" demo layer added with official/community engagement sources.
 
 **Next (in priority order)**
 1. **Widen emissions coverage** — sum more GPC sectors / add scope-2 so the breakdown stops being
@@ -76,7 +81,8 @@ Base: `https://api.citycatalyst.io`. Cities are keyed by UN/LOCODE (e.g. `BR SAO
 2. **"My city" entry** — geolocation or a typeahead over the live CCRA city list (5,570 BR cities).
 3. **Live fetch at runtime** — replace baked-in numbers with on-demand API calls + caching, so
    data refreshes without a rebuild (add a small route handler or server action).
-4. **Real local "Act" data** — per-hero-city community groups, public-comment windows, council agendas.
+4. **Real local "Act" data** — expand the Porto Alegre model to the other hero cities:
+   community groups, public-comment windows, council agendas.
 5. **Participation loop** — let residents log an action → produce the measurable co-benefit metric.
 
 ## 6. Gotchas
