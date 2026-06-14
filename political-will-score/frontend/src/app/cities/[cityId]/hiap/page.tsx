@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { HiapPageClient } from "@/components/hiap/HiapPageClient";
 import { getCityHiapData } from "@/data/political-will";
+import { fetchCityHiapData } from "@/lib/political-will/api";
 
 type PageProps = {
   params: Promise<{ cityId: string }>;
@@ -9,7 +10,8 @@ type PageProps = {
 
 export default async function HiapPage({ params }: PageProps) {
   const { cityId } = await params;
-  const data = getCityHiapData(cityId);
+  const data =
+    (await fetchCityHiapData(cityId).catch(() => undefined)) ?? getCityHiapData(cityId);
 
   if (!data) {
     notFound();

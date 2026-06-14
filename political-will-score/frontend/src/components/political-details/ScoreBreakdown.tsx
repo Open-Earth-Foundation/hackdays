@@ -13,7 +13,7 @@ export function ScoreBreakdown({ signals }: ScoreBreakdownProps) {
         <h2 className="card-title">Score breakdown</h2>
       </div>
       <div style={{ overflowX: "auto" }}>
-        <table className="data-table">
+        <table className="data-table compact-table">
           <thead>
             <tr>
               <th>Signal</th>
@@ -29,7 +29,7 @@ export function ScoreBreakdown({ signals }: ScoreBreakdownProps) {
                 <tr key={signal.key} style={{ cursor: "default" }}>
                   <td>{signal.label}</td>
                   <td>{Math.round(signal.weight * 100)}%</td>
-                  <td style={{ minWidth: 140 }}>
+                  <td>
                     <div style={{ marginBottom: 6 }}>{signal.score}/100</div>
                     <ScoreBar score={signal.score} height={6} />
                   </td>

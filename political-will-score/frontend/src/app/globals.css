@@ -303,6 +303,18 @@ button {
   background: var(--color-primary-light);
 }
 
+.compact-table {
+  table-layout: fixed;
+  font-size: 0.8125rem;
+}
+
+.compact-table th,
+.compact-table td {
+  padding: 10px 10px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
 .tabs {
   display: flex;
   gap: 4px;

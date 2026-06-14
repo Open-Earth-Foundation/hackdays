@@ -233,6 +233,7 @@ const warsawActions: CityHiapData["actions"] = [
 export const aiSuggestions: AiSuggestion[] = [
   {
     id: "sug-1",
+    evidenceId: "sug-1",
     claim: "Started contract covers public transport priority works",
     signalKey: "budgetFollowThrough",
     signalLabel: "Budget follow-through",
@@ -242,6 +243,7 @@ export const aiSuggestions: AiSuggestion[] = [
   },
   {
     id: "sug-2",
+    evidenceId: "sug-2",
     claim: "Mayor statement supports bus lane expansion",
     signalKey: "publicCommitment",
     signalLabel: "Public commitment",
@@ -250,6 +252,7 @@ export const aiSuggestions: AiSuggestion[] = [
   },
   {
     id: "sug-3",
+    evidenceId: "sug-3",
     claim: "Election timing may delay procurement phase",
     signalKey: "electionExposure",
     signalLabel: "Election exposure",

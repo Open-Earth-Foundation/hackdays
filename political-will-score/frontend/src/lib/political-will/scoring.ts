@@ -20,11 +20,11 @@ export function getConfidenceLabel(
 export function getConfidenceRange(level: ConfidenceLevel): string {
   switch (level) {
     case "high":
-      return "80–100";
+      return "80-100";
     case "medium":
-      return "60–79";
+      return "60-79";
     case "low":
-      return "0–59";
+      return "0-59";
   }
 }
 

@@ -20,44 +20,53 @@ export function AuditLog({ events }: AuditLogProps) {
       <div className="card-header">
         <h2 className="card-title">Audit log</h2>
       </div>
-      <div style={{ overflowX: "auto" }}>
-        <table className="data-table">
-          <thead>
-            <tr>
-              <th>Time</th>
-              <th>User</th>
-              <th>Event</th>
-              <th>Details</th>
-            </tr>
-          </thead>
-          <tbody>
-            {events.map((event) => (
-              <tr key={event.id} style={{ cursor: "default" }}>
-                <td style={{ whiteSpace: "nowrap" }}>{formatTime(event.createdAt)}</td>
-                <td>{event.actorName}</td>
-                <td>{event.eventType.replace(/_/g, " ")}</td>
-                <td>{event.message}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        {events.map((event) => (
+          <div
+            key={event.id}
+            style={{
+              padding: "12px 20px",
+              borderBottom: "1px solid var(--color-border)",
+              display: "grid",
+              gap: 6,
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                gap: 12,
+                fontSize: "0.75rem",
+                color: "var(--color-text-muted)",
+              }}
+            >
+              <span>{formatTime(event.createdAt)}</span>
+              <span>{event.actorName}</span>
+            </div>
+            <div style={{ fontWeight: 600, fontSize: "0.8125rem" }}>
+              {event.eventType.replace(/_/g, " ")}
+            </div>
+            <div style={{ fontSize: "0.8125rem", lineHeight: 1.4 }}>{event.message}</div>
+          </div>
+        ))}
+        {events.length === 0 && (
+          <div style={{ padding: 20, color: "var(--color-text-muted)", fontSize: "0.875rem" }}>
+            No audit events yet.
+          </div>
+        )}
       </div>
       <div
         style={{
           padding: "12px 20px",
-          borderTop: "1px solid var(--color-border)",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          gap: 12,
-          flexWrap: "wrap",
+          display: "grid",
+          gap: 8,
         }}
       >
         <a href="#" className="link-muted">
           View full log
         </a>
         <span style={{ fontSize: "0.75rem", color: "var(--color-text-muted)" }}>
-          🔒 Score updates only after evidence is approved
+          Score updates only after evidence is approved
         </span>
       </div>
     </div>

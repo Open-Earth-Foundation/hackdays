@@ -25,6 +25,7 @@ export type PoliticalWillSignal = {
 export type PoliticalWillEvidence = {
   id: string;
   actionId: string;
+  sourceId?: string;
   type: string;
   sourceName: string;
   sourceUrl?: string;
@@ -34,9 +35,14 @@ export type PoliticalWillEvidence = {
   impactValue?: number;
   evidenceDate?: string;
   extractedClaim?: string;
+  sourceExcerpt?: string;
   contractStatus?: string;
   addedBy?: string;
+  confidence?: ConfidenceLevel;
+  reviewerDecision?: string;
+  reviewerNote?: string;
   createdAt: string;
+  reviewedAt?: string;
 };
 
 export type PoliticalWillAuditEvent = {
@@ -81,10 +87,43 @@ export type CityHiapData = {
 
 export type AiSuggestion = {
   id: string;
+  evidenceId: string;
   claim: string;
   signalKey: SignalKey;
   signalLabel: string;
   contractStatus?: string;
   impact: number;
   confidence: ConfidenceLevel;
+  sourceName?: string;
+  sourceUrl?: string;
+  sourceExcerpt?: string;
+  status?: "suggested" | "needs_review";
+};
+
+export type PoliticalWillSource = {
+  id: string;
+  cityId: string;
+  actionId: string;
+  sourceKind: "url" | "uploaded_document" | "structured_data" | "manual_note" | "web_search_result";
+  sourceType: string;
+  title?: string;
+  url?: string;
+  fileName?: string;
+  fileMimeType?: string;
+  fileSizeBytes?: number;
+  storagePath?: string;
+  contentSha256?: string;
+  excerpt?: string;
+  contractStatus?: string;
+  dateChecked: string;
+  submittedBy: string;
+  reviewStatus: "unreviewed" | "analyzed" | "approved" | "rejected" | "needs_review";
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type PoliticalWillDetail = {
+  city: CityHiapData;
+  action: PoliticalWillAction;
+  suggestions: AiSuggestion[];
 };

@@ -9,3 +9,6 @@ __pycache__/
 dist/
 .DS_Store
 *.log
+political-will-score/backend/data/
+political-will-score/frontend/screenshots/
+output/browser-demo-recording/
