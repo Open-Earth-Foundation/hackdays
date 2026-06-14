@@ -6,7 +6,13 @@ import { useCarbon } from "./carbonContext";
 
 export type LocalizeRequest = {
   action: { name: string; description: string; type: "mitigation" | "adaptation" };
-  cityContext: { name: string; country: string; topHazards: string[]; topSectors: string[] };
+  cityContext: {
+    name: string;
+    country: string;
+    topHazards: string[];
+    topSectors: string[];
+    localSources: string[];
+  };
   language: Lang;
 };
 

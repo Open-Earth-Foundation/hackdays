@@ -61,7 +61,7 @@ def localize(req: LocalizeRequest):
             {"role": "user", "content": _prompt(req)},
         ],
         temperature=0.4,
-        max_tokens=400,
+        max_tokens=500,
     )
     text = resp.choices[0].message.content or ""
     impacts = ecolog.measure(resp)
@@ -83,10 +83,12 @@ _LANG_NAME = {"en": "English", "es": "Spanish", "pt": "Brazilian Portuguese"}
 def _system(language: str) -> str:
     lang = _LANG_NAME.get(language, "English")
     return (
-        f"You are a civic-engagement assistant. Reply ONLY in {lang}. "
-        "Turn a city climate action into 4 short, concrete, executable next steps "
-        "a resident can actually take. Each step one sentence, imperative, no preamble. "
-        "Return a numbered list, nothing else."
+        f"You are a civic-engagement assistant for city residents. Reply ONLY in {lang}. "
+        "Turn a city climate action into a short plan of 4-6 concrete, executable next steps an "
+        "ordinary resident can take over the coming weeks. Each step: one imperative sentence, "
+        "specific and doable, no preamble. Where a step involves contacting government or joining "
+        "a group, name a real local channel from the context when one is provided. "
+        "Return ONLY a numbered list — no title, no closing remarks."
     )
 
 
@@ -94,15 +96,18 @@ def _prompt(req: LocalizeRequest) -> str:
     c = req.cityContext
     hazards = ", ".join(c.topHazards[:3]) or "n/a"
     sectors = ", ".join(c.topSectors[:3]) or "n/a"
+    channels = ", ".join(c.localSources[:5]) or "n/a"
     return (
         f"City: {c.name}, {c.country}\n"
         f"Top climate hazards: {hazards}\n"
         f"Top emitting sectors: {sectors}\n"
+        f"Local civic channels: {channels}\n"
         f"Action ({req.action.type}): {req.action.name}\n"
         f"Description: {req.action.description[:400]}\n\n"
-        "Give 4 concrete next steps a resident of this city can take to push this "
-        "action forward (join a group, attend a meeting, submit a comment, start "
-        "something small). Ground them in the city's hazards/sectors above."
+        "Write 4-6 concrete next steps a resident of this city can take to push this action "
+        "forward (join a group, attend a meeting, submit a public comment, start something small). "
+        "Ground them in the city's hazards/sectors, and when a step involves contacting government "
+        "or joining a group, name one of the local civic channels above explicitly."
     )
 
 
@@ -112,7 +117,7 @@ def _parse_steps(text: str) -> list[str]:
     lines = [l.strip() for l in text.splitlines() if l.strip()]
     steps = [re.sub(r"^\s*(?:\d+[\.\)]|[-*•])\s*", "", l) for l in lines]
     steps = [s for s in steps if len(s) > 8]
-    return steps[:4] if steps else [text.strip()]
+    return steps[:6] if steps else [text.strip()]
 
 
 # ---------------------------------------------------------------------------

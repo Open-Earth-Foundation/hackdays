@@ -9,7 +9,13 @@ export const runtime = "nodejs";
 
 type Body = {
   action: { name: string; description: string; type: "mitigation" | "adaptation" };
-  cityContext: { name: string; country: string; topHazards: string[]; topSectors: string[] };
+  cityContext: {
+    name: string;
+    country: string;
+    topHazards: string[];
+    topSectors: string[];
+    localSources: string[];
+  };
   language: "en" | "es" | "pt";
 };
 
@@ -49,13 +55,15 @@ function fallbackLocalize(body: Body) {
       ? cityContext.topHazards[0] ?? "climate risk"
       : cityContext.topSectors[0] ?? "emissions";
   const focus = translateFocus(rawFocus, language);
+  const channel = cityContext.localSources?.[0] ?? null;
 
-  const steps = templates(language, city, focus, action.name);
-  // A modest estimate (no live call): ~0.3 g CO₂e for a small open model call.
+  const steps = templates(language, city, focus, action.name, channel);
+  // Token-based estimate consistent with the sidecar (small open model, low-carbon
+  // EU grid): ~350 tokens × 0.0009 Wh × 0.052 gCO2e/Wh.
   return {
     localizedSteps: steps,
-    energyWh: 0.8,
-    gCO2e: 0.3,
+    energyWh: 0.32,
+    gCO2e: 0.016,
     model: "templated-fallback",
     provider: "fallback",
     mock: true,
@@ -87,27 +95,39 @@ function translateFocus(raw: string, lang: "en" | "es" | "pt"): string {
   return s;
 }
 
-function templates(lang: "en" | "es" | "pt", city: string, focus: string, action: string): string[] {
+function templates(
+  lang: "en" | "es" | "pt",
+  city: string,
+  focus: string,
+  action: string,
+  channel: string | null
+): string[] {
   if (lang === "es") {
     return [
       `Identifica en ${city} a un grupo vecinal o colectivo que ya trabaje en ${focus}.`,
-      `Asiste a la próxima sesión del consejo municipal donde se discuta "${action}".`,
-      `Presenta esta acción como propuesta o comentario público, citando el riesgo local.`,
+      channel
+        ? `Lleva esta acción a ${channel} como propuesta o comentario público.`
+        : `Asiste a la próxima sesión del consejo municipal donde se discuta "${action}".`,
+      `Documenta el riesgo local con datos para respaldar la propuesta.`,
       `Invita a tres vecinos a sumarse y comparte el avance en tu comunidad.`,
     ];
   }
   if (lang === "pt") {
     return [
       `Identifique em ${city} um grupo de bairro ou coletivo que já atue em ${focus}.`,
-      `Participe da próxima sessão do conselho municipal onde "${action}" for discutida.`,
-      `Apresente esta ação como proposta ou comentário público, citando o risco local.`,
+      channel
+        ? `Leve esta ação ao ${channel} como proposta ou comentário público.`
+        : `Participe da próxima sessão do conselho municipal onde "${action}" for discutida.`,
+      `Documente o risco local com dados para embasar a proposta.`,
       `Convide três vizinhos para participar e compartilhe o progresso na sua comunidade.`,
     ];
   }
   return [
     `Find a neighborhood group or collective in ${city} already working on ${focus}.`,
-    `Attend the next city-council session where "${action}" is on the agenda.`,
-    `Submit this action as a proposal or public comment, citing the local risk.`,
+    channel
+      ? `Bring this action to ${channel} as a proposal or public comment.`
+      : `Attend the next city-council session where "${action}" is on the agenda.`,
+    `Back it with local risk data to make the case.`,
     `Invite three neighbors to join and share progress in your community.`,
   ];
 }

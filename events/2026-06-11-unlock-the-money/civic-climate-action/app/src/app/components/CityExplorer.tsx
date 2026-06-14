@@ -6,7 +6,8 @@ import type { City, Story } from "../data/types";
 import { categoryMeta } from "../data/types";
 import CitySnapshot from "./CitySnapshot";
 import CityActions from "./CityActions";
-import LocalEngagementPanel from "./LocalEngagementPanel";
+import { isPilot } from "../lib/pilots";
+import { profileHeadline } from "../lib/profileHeadline";
 
 const CityMap = dynamic(() => import("./CityMap"), {
   ssr: false,
@@ -69,10 +70,14 @@ export default function CityExplorer({ cities, stories }: { cities: City[]; stor
     setSelectedId(id);
   }
 
+  const headline = selected ? profileHeadline(selected, "en") : null;
+
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "minmax(280px, 360px) 1fr", gap: "1.5rem" }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: "1.75rem" }}>
+      {/* Top row: search + list | map */}
+      <div className="explorer-top">
       {/* Left: search + list */}
-      <div style={{ display: "flex", flexDirection: "column", minHeight: 480 }}>
+      <div style={{ display: "flex", flexDirection: "column", minHeight: 360 }}>
         <input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
@@ -136,44 +141,41 @@ export default function CityExplorer({ cities, stories }: { cities: City[]; stor
         </div>
       </div>
 
-      {/* Right: map + detail */}
-      <div style={{ display: "grid", gridTemplateRows: "320px auto", gap: "1.25rem" }}>
-        <div style={{ height: 320 }}>
-          <CityMap cities={cities} selectedId={selectedId} onSelect={pick} />
-        </div>
+      {/* Right: map */}
+      <div style={{ height: 320 }}>
+        <CityMap cities={cities} selectedId={selectedId} onSelect={pick} />
+      </div>
+      </div>
 
-        {selected && (
-          <div>
-            <h3 style={{ fontSize: "1.4rem" }}>
-              {selected.name}, {selected.country}
-            </h3>
-            <p className="muted" style={{ marginTop: "0.4rem" }}>
-              {selected.summary}
-            </p>
+      {/* Full-width detail for the selected city */}
+      {selected && (
+        <div>
+          <h3 style={{ fontSize: "1.5rem" }}>
+            {selected.name}, {selected.country}
+          </h3>
+          {headline && (
+            <p style={{ fontWeight: 600, fontSize: "1.05rem", margin: "0.45rem 0 0" }}>{headline}</p>
+          )}
+          <p className="muted" style={{ marginTop: "0.35rem", maxWidth: 680 }}>
+            {selected.summary}
+          </p>
 
-            <CitySnapshot city={selected} />
+          <CitySnapshot city={selected} />
 
-            <CityActions key={selected.id} city={selected} />
+          {isPilot(selected.id) && <CityActions key={selected.id} city={selected} />}
 
-            {selected.highlights.length > 0 && (
-              <div style={{ marginTop: "1.25rem" }}>
-                <div className="eyebrow" style={{ marginBottom: "0.4rem" }}>
-                  Ways to take part
-                </div>
-                <ul style={{ margin: 0, paddingLeft: "1.1rem", color: "var(--ink)" }}>
-                  {selected.highlights.map((h) => (
-                    <li key={h} style={{ marginBottom: 3 }}>
-                      {h}
-                    </li>
-                  ))}
-                </ul>
+          {selectedStories.length > 0 && (
+            <div style={{ marginTop: "1.75rem" }}>
+              <div className="eyebrow" style={{ marginBottom: "0.6rem" }}>
+                Citizens have done this
               </div>
-            )}
-
-            <LocalEngagementPanel cityId={selected.id} />
-
-            {selectedStories.length > 0 && (
-              <div style={{ marginTop: "1.25rem", display: "grid", gap: "0.75rem" }}>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
+                  gap: "0.75rem",
+                }}
+              >
                 {selectedStories.map((s) => (
                   <div
                     key={s.id}
@@ -202,10 +204,10 @@ export default function CityExplorer({ cities, stories }: { cities: City[]; stor
                   </div>
                 ))}
               </div>
-            )}
-          </div>
-        )}
-      </div>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

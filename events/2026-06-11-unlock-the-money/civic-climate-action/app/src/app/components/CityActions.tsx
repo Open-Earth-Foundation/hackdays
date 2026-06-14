@@ -5,8 +5,9 @@ import type { City } from "../data/types";
 import type { Lang } from "../data/climateActions";
 import { climateActions } from "../data/climateActions";
 import { prioritizeActions } from "../lib/prioritize";
-import { engagementByCity } from "../data/engagement";
-import ActionCard from "./ActionCard";
+import { localSourcesByCity, localSourceNamesByCity } from "../data/localSources";
+import ActionRow from "./ActionRow";
+import AiDevelopPanel from "./AiDevelopPanel";
 
 const LANGS: { key: Lang; label: string }[] = [
   { key: "en", label: "EN" },
@@ -21,37 +22,40 @@ const defaultLang = (country: string): Lang => {
 };
 
 const copy = {
-  heading: { en: "Prioritized actions for", es: "Acciones prioritarias para", pt: "Ações prioritárias para" },
+  heading: { en: "Develop an action for", es: "Desarrolla una acción para", pt: "Desenvolva uma ação para" },
   intro: {
-    en: "Drawn from CityCatalyst's HIAP library and ranked for this city's top risks and emissions.",
-    es: "Tomadas de la biblioteca HIAP de CityCatalyst y priorizadas según los riesgos y emisiones de la ciudad.",
-    pt: "Extraídas da biblioteca HIAP do CityCatalyst e priorizadas pelos riscos e emissões da cidade.",
+    en: "Priorities from CityCatalyst's HIAP library, ranked for this city. Pick one and build a concrete, local plan.",
+    es: "Prioridades de la biblioteca HIAP de CityCatalyst, ordenadas para esta ciudad. Elige una y crea un plan local concreto.",
+    pt: "Prioridades da biblioteca HIAP do CityCatalyst, ordenadas para esta cidade. Escolha uma e crie um plano local concreto.",
   },
-  engage: { en: "Where to engage", es: "Dónde participar", pt: "Onde participar" },
-  unverified: { en: "needs local validation", es: "requiere validación local", pt: "requer validação local" },
 };
 
 export default function CityActions({ city }: { city: City }) {
   const [lang, setLang] = useState<Lang>(defaultLang(city.country));
+  const ranked = useMemo(() => prioritizeActions(city, climateActions, { topN: 4 }), [city]);
+  const [selectedActionId, setSelectedActionId] = useState(ranked[0]?.action.actionId ?? null);
 
-  const ranked = useMemo(() => prioritizeActions(city, climateActions, { topN: 6 }), [city]);
   if (ranked.length === 0) return null;
+  const selected = ranked.find((r) => r.action.actionId === selectedActionId) ?? ranked[0];
 
   const cityContext = {
     country: city.country,
     topHazards: (city.risk?.topHazards ?? []).map((h) => h.hazard),
-    topSectors: city.emissions?.sectors?.map((s) => s.sector) ??
+    topSectors:
+      city.emissions?.sectors?.map((s) => s.sector) ??
       (city.emissions?.topSector ? [city.emissions.topSector] : []),
+    localSources: localSourceNamesByCity[city.id] ?? [],
   };
-
-  const engagement = engagementByCity[city.id] ?? [];
+  const localSources = localSourcesByCity[city.id] ?? [];
 
   return (
-    <div style={{ marginTop: "1.5rem" }}>
+    <div style={{ marginTop: "1.75rem" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12, flexWrap: "wrap" }}>
         <div>
-          <div className="eyebrow">{copy.heading[lang]} {city.name}</div>
-          <p className="muted" style={{ fontSize: "0.88rem", margin: "0.3rem 0 0", maxWidth: 520 }}>
+          <div className="eyebrow">
+            {copy.heading[lang]} {city.name}
+          </div>
+          <p className="muted" style={{ fontSize: "0.88rem", margin: "0.3rem 0 0", maxWidth: 560 }}>
             {copy.intro[lang]}
           </p>
         </div>
@@ -79,65 +83,28 @@ export default function CityActions({ city }: { city: City }) {
         </div>
       </div>
 
-      <div
-        style={{
-          marginTop: "1rem",
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-          gap: "1rem",
-        }}
-      >
-        {ranked.map((r) => (
-          <ActionCard
-            key={r.action.actionId}
-            ranked={r}
-            cityName={city.name}
-            cityContext={cityContext}
-            lang={lang}
-          />
-        ))}
-      </div>
-
-      {engagement.length > 0 && (
-        <div style={{ marginTop: "1.5rem" }}>
-          <div className="eyebrow" style={{ marginBottom: "0.6rem" }}>
-            {copy.engage[lang]}
-          </div>
-          <div style={{ display: "grid", gap: "0.75rem" }}>
-            {engagement.map((o) => (
-              <div key={o.id} style={{ border: "1px solid var(--line)", borderRadius: 12, padding: "0.9rem 1.1rem" }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 8 }}>
-                  <strong style={{ fontSize: "0.95rem" }}>{o.title[lang]}</strong>
-                  {o.needs_local_validation && (
-                    <span style={{ fontSize: "0.66rem", color: "var(--ink-faint)", border: "1px solid var(--line)", borderRadius: 999, padding: "0.05rem 0.45rem", whiteSpace: "nowrap" }}>
-                      {copy.unverified[lang]}
-                    </span>
-                  )}
-                </div>
-                <p style={{ fontSize: "0.86rem", color: "var(--ink-soft)", margin: "0.3rem 0 0.6rem" }}>
-                  {o.description[lang]}
-                </p>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-                  {o.citizenActions.map((a, i) => (
-                    <span
-                      key={i}
-                      style={{
-                        fontSize: "0.78rem",
-                        color: "var(--accent)",
-                        background: "var(--accent-soft)",
-                        borderRadius: 999,
-                        padding: "0.2rem 0.6rem",
-                      }}
-                    >
-                      {a.label[lang]}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
+      <div className="lab-grid" style={{ marginTop: "1.1rem" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+          {ranked.map((r) => (
+            <ActionRow
+              key={r.action.actionId}
+              ranked={r}
+              lang={lang}
+              selected={r.action.actionId === selected.action.actionId}
+              onSelect={() => setSelectedActionId(r.action.actionId)}
+            />
+          ))}
         </div>
-      )}
+
+        <AiDevelopPanel
+          key={selected.action.actionId}
+          ranked={selected}
+          cityName={city.name}
+          cityContext={cityContext}
+          localSources={localSources}
+          lang={lang}
+        />
+      </div>
     </div>
   );
 }

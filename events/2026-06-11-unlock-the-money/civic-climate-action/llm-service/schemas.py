@@ -13,6 +13,7 @@ class CityContext(BaseModel):
     country: str = ""
     topHazards: list[str] = Field(default_factory=list)
     topSectors: list[str] = Field(default_factory=list)
+    localSources: list[str] = Field(default_factory=list)
 
 
 class LocalizeRequest(BaseModel):
