@@ -1,277 +1,232 @@
-import type { AiSuggestion, CityHiapData } from "@/types/political-will";
+import actionCatalog from "./action-catalog.json";
+import type {
+  AiSuggestion,
+  CityHiapData,
+  ConfidenceLevel,
+  PoliticalWillAction,
+  PoliticalWillEvidence,
+  PoliticalWillSignal,
+  SignalKey,
+} from "@/types/political-will";
 
-const warsawActions: CityHiapData["actions"] = [
-  {
-    id: "waw-transport-priority",
-    rank: 1,
-    title: "Establish traffic privileges for public transport vehicles.",
-    sector: "Transport",
-    sectorIcon: "🚌",
-    sourceName: "Sustainable Development of Warsaw",
-    sourceUrl: "https://bip.warszawa.pl/",
-    sourceCheckedDate: "11 Jun 2026",
+type CatalogAction = {
+  id: string;
+  rank: number;
+  title: string;
+  sector: string;
+  sectorIcon: string;
+  sourceName: string;
+  sourceUrl: string;
+  sourceCheckedDate: string;
+  sourceExcerpt: string;
+  score: number;
+  confidence: ConfidenceLevel;
+  topDataGap: string | null;
+};
+
+type CatalogCity = {
+  cityId: string;
+  cityName: string;
+  actions: CatalogAction[];
+};
+
+const signalLabels: Record<SignalKey, string> = {
+  budgetFollowThrough: "Budget follow-through",
+  electionExposure: "Election exposure",
+  institutionalContinuity: "Institutional continuity",
+  publicCommitment: "Public commitment",
+};
+
+const signalWeights: Record<SignalKey, number> = {
+  budgetFollowThrough: 0.35,
+  electionExposure: 0.25,
+  institutionalContinuity: 0.25,
+  publicCommitment: 0.15,
+};
+
+const gapToSignal: Record<string, SignalKey> = {
+  "Budget follow-through": "budgetFollowThrough",
+  "Election exposure": "electionExposure",
+  "Institutional continuity": "institutionalContinuity",
+  "Public commitment": "publicCommitment",
+};
+
+const citywidePoliticalEvents: Record<
+  string,
+  Array<{
+    id: string;
+    sourceName: string;
+    sourceUrl: string;
+    signalKey: SignalKey;
+    impactValue: number;
+    confidence: ConfidenceLevel;
+    evidenceDate: string;
+    claim: string;
+    sourceExcerpt: string;
+  }>
+> = {
+  krakow: [
+    {
+      id: "mayor-recall-notes-from-poland",
+      sourceName: "Notes from Poland",
+      sourceUrl: "https://notesfrompoland.com/2026/05/25/mayor-of-krakow-dismissed-in-rare-recall-referendum/",
+      signalKey: "electionExposure",
+      impactValue: -35,
+      confidence: "high",
+      evidenceDate: "25 May 2026",
+      claim:
+        "Krakow Mayor Aleksander Miszalski was removed from office in a recall referendum on 24 May 2026 after criticism including the clean transport zone, public finances, and governance.",
+      sourceExcerpt:
+        "Notes from Poland reported that Krakow's mayor was dismissed in a rare recall referendum, with criticism including the city's clean transport zone, finances, and governance.",
+    },
+    {
+      id: "mayor-recall-polskie-radio",
+      sourceName: "Polskie Radio",
+      sourceUrl: "https://www.polskieradio.pl/395/7784/artykul/3690942%2Ckrakow-mayor-ousted-in-recall-referendum",
+      signalKey: "electionExposure",
+      impactValue: -30,
+      confidence: "high",
+      evidenceDate: "25 May 2026",
+      claim:
+        "Polskie Radio reported that residents voted to remove Krakow Mayor Aleksander Miszalski, with more than 171,000 votes in favor of removal.",
+      sourceExcerpt:
+        "Polskie Radio described the mayoral recall result and listed public criticism over debt, cronyism, election promises, clean transport policy, ticket prices, and parking rules.",
+    },
+    {
+      id: "mayor-recall-tvp-world",
+      sourceName: "TVP World",
+      sourceUrl: "https://tvpworld.com/93467997/why-polands-right-wing-thinks-krakow-mayor-miszalskis-recall-is-start-of-a-wave",
+      signalKey: "institutionalContinuity",
+      impactValue: -12,
+      confidence: "medium",
+      evidenceDate: "1 Jun 2026",
+      claim:
+        "TVP World reported that the Krakow mayoral recall could become a broader opposition campaign signal, creating continuity risk for city policy delivery.",
+      sourceExcerpt:
+        "TVP World framed the Krakow recall as a political signal beyond one local contest, relevant to continuity and implementation risk.",
+    },
+  ],
+};
+
+function clamp(value: number) {
+  return Math.max(0, Math.min(100, Math.round(value)));
+}
+
+function buildSignals(action: CatalogAction): PoliticalWillSignal[] {
+  const rows: Array<[SignalKey, number, PoliticalWillSignal["status"]]> = [
+    ["budgetFollowThrough", clamp(action.score - 8), "needs_review"],
+    ["electionExposure", clamp(action.score - 14), "needs_review"],
+    ["institutionalContinuity", clamp(action.score - 4), "needs_review"],
+    ["publicCommitment", clamp(action.score + 8), "verified"],
+  ];
+  const gapSignal = action.topDataGap ? gapToSignal[action.topDataGap] : undefined;
+
+  return rows.map(([key, score, status]) => ({
+    key,
+    label: signalLabels[key],
+    weight: signalWeights[key],
+    score,
+    status: key === gapSignal ? "missing" : status,
+    evidenceIds: key === "publicCommitment" ? [`ev-catalog-${action.id}`] : [],
+  }));
+}
+
+function buildCitywideEvidence(cityId: string, actionId: string): PoliticalWillEvidence[] {
+  return (citywidePoliticalEvents[cityId] ?? []).map((event) => ({
+    id: `ev-citywide-${event.id}-${actionId}`,
+    actionId,
+    sourceId: `src-citywide-${event.id}-${actionId}`,
+    type: "news_article",
+    sourceName: event.sourceName,
+    sourceUrl: event.sourceUrl,
+    signalKey: event.signalKey,
+    status: "suggested",
+    impact: "negative",
+    impactValue: event.impactValue,
+    evidenceDate: event.evidenceDate,
+    extractedClaim: event.claim,
+    sourceExcerpt: event.sourceExcerpt,
+    addedBy: "Seed catalog",
+    confidence: event.confidence,
+    createdAt: "2026-06-15T00:00:00Z",
+  }));
+}
+
+function buildAction(cityId: string, action: CatalogAction): PoliticalWillAction {
+  const citywideEvidence = buildCitywideEvidence(cityId, action.id);
+
+  return {
+    id: action.id,
+    rank: action.rank,
+    title: action.title,
+    sector: action.sector,
+    sectorIcon: action.sectorIcon,
+    sourceName: action.sourceName,
+    sourceUrl: action.sourceUrl,
+    sourceCheckedDate: action.sourceCheckedDate,
     selected: true,
-    score: 74,
-    confidence: "medium",
-    evidenceComplete: 4,
+    score: action.score,
+    confidence: action.confidence,
+    evidenceComplete: 1,
     evidenceExpected: 4,
-    pendingReview: 3,
-    topDataGap: null,
-    signals: [
-      {
-        key: "budgetFollowThrough",
-        label: "Budget follow-through",
-        weight: 0.35,
-        score: 75,
-        status: "verified",
-        evidenceIds: ["ev-1"],
-      },
-      {
-        key: "electionExposure",
-        label: "Election exposure",
-        weight: 0.25,
-        score: 55,
-        status: "needs_review",
-        evidenceIds: ["ev-2"],
-      },
-      {
-        key: "institutionalContinuity",
-        label: "Institutional continuity",
-        weight: 0.25,
-        score: 70,
-        status: "verified",
-        evidenceIds: ["ev-3"],
-      },
-      {
-        key: "publicCommitment",
-        label: "Public commitment",
-        weight: 0.15,
-        score: 70,
-        status: "missing",
-        evidenceIds: [],
-      },
-    ],
+    pendingReview: citywideEvidence.length,
+    topDataGap: action.topDataGap,
+    signals: buildSignals(action),
     evidence: [
       {
-        id: "ev-1",
-        actionId: "waw-transport-priority",
-        type: "started_contract",
-        sourceName: "City contract register",
-        sourceUrl: "https://bip.warszawa.pl/",
-        signalKey: "budgetFollowThrough",
+        id: `ev-catalog-${action.id}`,
+        actionId: action.id,
+        sourceId: `src-catalog-${action.id}`,
+        type: "action_source",
+        sourceName: action.sourceName,
+        sourceUrl: action.sourceUrl,
+        signalKey: "publicCommitment",
         status: "verified",
         impact: "positive",
-        impactValue: 18,
-        evidenceDate: "10 Jun 2026",
-        addedBy: "A. Morgan",
-        createdAt: "2026-06-10T09:00:00Z",
+        impactValue: 8,
+        evidenceDate: action.sourceCheckedDate,
+        extractedClaim: action.title,
+        sourceExcerpt: action.sourceExcerpt,
+        addedBy: "Seed catalog",
+        confidence: action.confidence,
+        reviewerDecision: "approved",
+        createdAt: "2026-06-15T00:00:00Z",
+        reviewedAt: "2026-06-15T00:00:00Z",
       },
-      {
-        id: "ev-2",
-        actionId: "waw-transport-priority",
-        type: "news_article",
-        sourceName: "Warsaw transport news",
-        sourceUrl: "https://example.com/news",
-        signalKey: "electionExposure",
-        status: "verified",
-        impact: "negative",
-        impactValue: -8,
-        evidenceDate: "9 Jun 2026",
-        addedBy: "A. Morgan",
-        createdAt: "2026-06-09T14:00:00Z",
-      },
-      {
-        id: "ev-3",
-        actionId: "waw-transport-priority",
-        type: "department_owner",
-        sourceName: "Transport department page",
-        sourceUrl: "https://bip.warszawa.pl/",
-        signalKey: "institutionalContinuity",
-        status: "verified",
-        impact: "positive",
-        impactValue: 12,
-        evidenceDate: "8 Jun 2026",
-        addedBy: "K. Nowak",
-        createdAt: "2026-06-08T11:00:00Z",
-      },
+      ...citywideEvidence,
     ],
-    auditLog: [
-      {
-        id: "audit-1",
-        actionId: "waw-transport-priority",
-        actorName: "A. Morgan",
-        eventType: "score_recalculated",
-        message: "Political will: 74 / 100",
-        createdAt: "2026-06-11T10:32:00Z",
-      },
-      {
-        id: "audit-2",
-        actionId: "waw-transport-priority",
-        actorName: "K. Nowak",
-        eventType: "evidence_verified",
-        message: "Started contract evidence approved",
-        createdAt: "2026-06-10T09:15:00Z",
-      },
-      {
-        id: "audit-3",
-        actionId: "waw-transport-priority",
-        actorName: "A. Morgan",
-        eventType: "source_added",
-        message: "City contract register URL added",
-        createdAt: "2026-06-09T16:40:00Z",
-      },
-    ],
-  },
-  {
-    id: "waw-building-retrofit",
-    rank: 2,
-    title: "Comprehensive green retrofits of public buildings.",
-    sector: "Buildings",
-    sectorIcon: "🏢",
-    sourceName: "Warsaw climate plan annex",
-    sourceUrl: "https://bip.warszawa.pl/",
-    sourceCheckedDate: "10 Jun 2026",
-    selected: true,
-    score: 62,
-    confidence: "medium",
-    evidenceComplete: 3,
-    evidenceExpected: 4,
-    pendingReview: 2,
-    topDataGap: "Budget follow-through",
-    signals: [
-      {
-        key: "budgetFollowThrough",
-        label: "Budget follow-through",
-        weight: 0.35,
-        score: 50,
-        status: "needs_review",
-        evidenceIds: [],
-      },
-      {
-        key: "electionExposure",
-        label: "Election exposure",
-        weight: 0.25,
-        score: 65,
-        status: "verified",
-        evidenceIds: [],
-      },
-      {
-        key: "institutionalContinuity",
-        label: "Institutional continuity",
-        weight: 0.25,
-        score: 70,
-        status: "verified",
-        evidenceIds: [],
-      },
-      {
-        key: "publicCommitment",
-        label: "Public commitment",
-        weight: 0.15,
-        score: 60,
-        status: "verified",
-        evidenceIds: [],
-      },
-    ],
-    evidence: [],
     auditLog: [],
-  },
-  {
-    id: "waw-park-ride",
-    rank: 3,
-    title: "Develop Park & Ride and Bike & Ride systems.",
-    sector: "Mobility",
-    sectorIcon: "🚲",
-    sourceName: "Warsaw transport strategy",
-    sourceUrl: "https://bip.warszawa.pl/",
-    sourceCheckedDate: "9 Jun 2026",
-    selected: true,
-    score: 51,
-    confidence: "low",
-    evidenceComplete: 2,
-    evidenceExpected: 4,
-    pendingReview: 1,
-    topDataGap: "Institutional continuity",
-    signals: [
-      {
-        key: "budgetFollowThrough",
-        label: "Budget follow-through",
-        weight: 0.35,
-        score: 40,
-        status: "missing",
-        evidenceIds: [],
-      },
-      {
-        key: "electionExposure",
-        label: "Election exposure",
-        weight: 0.25,
-        score: 55,
-        status: "needs_review",
-        evidenceIds: [],
-      },
-      {
-        key: "institutionalContinuity",
-        label: "Institutional continuity",
-        weight: 0.25,
-        score: 45,
-        status: "missing",
-        evidenceIds: [],
-      },
-      {
-        key: "publicCommitment",
-        label: "Public commitment",
-        weight: 0.15,
-        score: 60,
-        status: "verified",
-        evidenceIds: [],
-      },
-    ],
-    evidence: [],
-    auditLog: [],
-  },
-];
+  };
+}
 
-export const aiSuggestions: AiSuggestion[] = [
-  {
-    id: "sug-1",
-    evidenceId: "sug-1",
-    claim: "Started contract covers public transport priority works",
-    signalKey: "budgetFollowThrough",
-    signalLabel: "Budget follow-through",
-    contractStatus: "started",
-    impact: 18,
-    confidence: "high",
-  },
-  {
-    id: "sug-2",
-    evidenceId: "sug-2",
-    claim: "Mayor statement supports bus lane expansion",
-    signalKey: "publicCommitment",
-    signalLabel: "Public commitment",
-    impact: 8,
-    confidence: "medium",
-  },
-  {
-    id: "sug-3",
-    evidenceId: "sug-3",
-    claim: "Election timing may delay procurement phase",
-    signalKey: "electionExposure",
-    signalLabel: "Election exposure",
-    impact: -6,
-    confidence: "low",
-  },
-];
+function buildCityData(city: CatalogCity): CityHiapData {
+  const actions = city.actions.map((action) => buildAction(city.cityId, action));
+  const actionConfidence = Math.round(
+    actions.reduce((total, action) => total + action.score, 0) / actions.length
+  );
+  const evidenceGaps = actions.reduce(
+    (total, action) => total + action.signals.filter((signal) => signal.status === "missing").length,
+    0
+  );
+  const pendingReview = actions.reduce((total, action) => total + action.pendingReview, 0);
 
-const cityData: Record<string, CityHiapData> = {
-  warsaw: {
-    cityId: "warsaw",
-    cityName: "Warsaw",
-    actionConfidence: 68,
-    sourceBackedActions: 3,
-    evidenceGaps: 4,
-    pendingReview: 6,
-    actions: warsawActions,
-  },
-};
+  return {
+    cityId: city.cityId,
+    cityName: city.cityName,
+    actionConfidence,
+    sourceBackedActions: actions.length,
+    evidenceGaps,
+    pendingReview,
+    actions,
+  };
+}
+
+export const aiSuggestions: AiSuggestion[] = [];
+
+const cities = actionCatalog.cities as CatalogCity[];
+const cityData: Record<string, CityHiapData> = Object.fromEntries(
+  cities.map((city) => [city.cityId, buildCityData(city)])
+);
 
 export function getCityHiapData(cityId: string): CityHiapData | undefined {
   return cityData[cityId];
@@ -280,4 +235,20 @@ export function getCityHiapData(cityId: string): CityHiapData | undefined {
 export function getAction(cityId: string, actionId: string) {
   const city = getCityHiapData(cityId);
   return city?.actions.find((action) => action.id === actionId);
+}
+
+export function getSuggestionsForAction(cityId: string, actionId: string): AiSuggestion[] {
+  return buildCitywideEvidence(cityId, actionId).map((evidence) => ({
+    id: evidence.id,
+    evidenceId: evidence.id,
+    claim: evidence.extractedClaim ?? "Untitled suggested evidence",
+    signalKey: evidence.signalKey,
+    signalLabel: signalLabels[evidence.signalKey],
+    impact: evidence.impactValue ?? 0,
+    confidence: evidence.confidence ?? "medium",
+    sourceName: evidence.sourceName,
+    sourceUrl: evidence.sourceUrl,
+    sourceExcerpt: evidence.sourceExcerpt,
+    status: "suggested",
+  }));
 }

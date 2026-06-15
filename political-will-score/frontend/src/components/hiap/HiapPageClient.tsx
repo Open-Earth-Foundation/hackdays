@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { FindActionsPanel } from "@/components/hiap/FindActionsPanel";
 import { PoliticalActionInspector } from "@/components/hiap/PoliticalActionInspector";
 import { SelectedActionTable } from "@/components/hiap/SelectedActionTable";
@@ -16,6 +16,10 @@ export function HiapPageClient({ data }: HiapPageClientProps) {
     data.actions[0]?.id ?? null
   );
 
+  useEffect(() => {
+    setSelectedActionId(data.actions[0]?.id ?? null);
+  }, [data.cityId, data.actions]);
+
   const selectedAction = useMemo(
     () => data.actions.find((action) => action.id === selectedActionId) ?? null,
     [data.actions, selectedActionId]
@@ -24,7 +28,7 @@ export function HiapPageClient({ data }: HiapPageClientProps) {
   return (
     <>
       <SummaryTiles data={data} />
-      <FindActionsPanel />
+      <FindActionsPanel cityId={data.cityId} />
       <div style={{ display: "flex", gap: 20, alignItems: "flex-start" }}>
         <div style={{ flex: 1, minWidth: 0 }}>
           <SelectedActionTable

@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { PoliticalDetailsClient } from "@/components/political-details/PoliticalDetailsClient";
-import { aiSuggestions, getAction, getCityHiapData } from "@/data/political-will";
+import { getAction, getCityHiapData, getSuggestionsForAction } from "@/data/political-will";
 import { fetchPoliticalWillDetail } from "@/lib/political-will/api";
 import type { PoliticalWillDetail } from "@/types/political-will";
 
@@ -18,7 +18,7 @@ export default async function PoliticalDetailsPage({ params }: PageProps) {
       ? {
           city,
           action,
-          suggestions: aiSuggestions,
+          suggestions: getSuggestionsForAction(cityId, actionId),
         }
       : undefined;
   const detail = apiDetail ?? fallbackDetail;

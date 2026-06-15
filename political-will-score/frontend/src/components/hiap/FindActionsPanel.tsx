@@ -1,6 +1,20 @@
 "use client";
 
-export function FindActionsPanel() {
+import { useRouter } from "next/navigation";
+
+const citySourceDefaults: Record<string, string> = {
+  warsaw: "https://transport.um.warszawa.pl/sct",
+  krakow: "https://www.bip.krakow.pl/?dok_id=226666",
+  gdansk: "https://www.gdansk.pl/gpw",
+};
+
+type FindActionsPanelProps = {
+  cityId: string;
+};
+
+export function FindActionsPanel({ cityId }: FindActionsPanelProps) {
+  const router = useRouter();
+
   return (
     <div className="card" style={{ marginBottom: 20, padding: 20 }}>
       <div
@@ -44,7 +58,12 @@ export function FindActionsPanel() {
           <label className="form-label" htmlFor="city">
             City
           </label>
-          <select id="city" className="form-select" defaultValue="warsaw">
+          <select
+            id="city"
+            className="form-select"
+            value={cityId}
+            onChange={(event) => router.push(`/cities/${event.target.value}/hiap`)}
+          >
             <option value="warsaw">Warsaw</option>
             <option value="krakow">Krakow</option>
             <option value="gdansk">Gdansk</option>
@@ -67,7 +86,8 @@ export function FindActionsPanel() {
           <input
             id="source-url"
             className="form-input"
-            defaultValue="https://bip.warszawa.pl/"
+            value={citySourceDefaults[cityId] ?? ""}
+            readOnly
             placeholder="Paste official source URL"
           />
         </div>

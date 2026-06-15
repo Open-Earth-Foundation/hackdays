@@ -26,6 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / "data"
 UPLOAD_DIR = DATA_DIR / "uploads"
 DB_PATH = DATA_DIR / "political_will.sqlite"
+ACTION_CATALOG_PATH = BASE_DIR.parent / "frontend" / "src" / "data" / "action-catalog.json"
 
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 OPENROUTER_MODEL = os.getenv("OPENROUTER_MODEL", "google/gemini-3.5-flash")
@@ -46,6 +47,65 @@ SIGNAL_WEIGHTS: dict[str, float] = {
 }
 ALLOWED_SIGNAL_KEYS = set(SIGNAL_LABELS)
 ALLOWED_UPLOAD_SUFFIXES = {".pdf", ".txt", ".csv", ".json"}
+
+CITYWIDE_POLITICAL_EVENTS: dict[str, list[dict[str, Any]]] = {
+    "krakow": [
+        {
+            "id": "mayor-recall-notes-from-poland",
+            "sourceName": "Notes from Poland",
+            "sourceUrl": "https://notesfrompoland.com/2026/05/25/mayor-of-krakow-dismissed-in-rare-recall-referendum/",
+            "signalKey": "electionExposure",
+            "impact": -35,
+            "confidence": "high",
+            "evidenceDate": "25 May 2026",
+            "claim": (
+                "Krakow Mayor Aleksander Miszalski was removed from office in a "
+                "recall referendum on 24 May 2026 after criticism including the clean "
+                "transport zone, public finances, and governance."
+            ),
+            "sourceExcerpt": (
+                "Notes from Poland reported that Krakow's mayor was dismissed in a "
+                "rare recall referendum, with criticism including the city's clean "
+                "transport zone, finances, and governance."
+            ),
+        },
+        {
+            "id": "mayor-recall-polskie-radio",
+            "sourceName": "Polskie Radio",
+            "sourceUrl": "https://www.polskieradio.pl/395/7784/artykul/3690942%2Ckrakow-mayor-ousted-in-recall-referendum",
+            "signalKey": "electionExposure",
+            "impact": -30,
+            "confidence": "high",
+            "evidenceDate": "25 May 2026",
+            "claim": (
+                "Polskie Radio reported that residents voted to remove Krakow Mayor "
+                "Aleksander Miszalski, with more than 171,000 votes in favor of removal."
+            ),
+            "sourceExcerpt": (
+                "Polskie Radio described the mayoral recall result and listed public "
+                "criticism over debt, cronyism, election promises, clean transport "
+                "policy, ticket prices, and parking rules."
+            ),
+        },
+        {
+            "id": "mayor-recall-tvp-world",
+            "sourceName": "TVP World",
+            "sourceUrl": "https://tvpworld.com/93467997/why-polands-right-wing-thinks-krakow-mayor-miszalskis-recall-is-start-of-a-wave",
+            "signalKey": "institutionalContinuity",
+            "impact": -12,
+            "confidence": "medium",
+            "evidenceDate": "1 Jun 2026",
+            "claim": (
+                "TVP World reported that the Krakow mayoral recall could become a "
+                "broader opposition campaign signal, creating continuity risk for city policy delivery."
+            ),
+            "sourceExcerpt": (
+                "TVP World framed the Krakow recall as a political signal beyond one "
+                "local contest, relevant to continuity and implementation risk."
+            ),
+        },
+    ],
+}
 
 
 class SourceCreate(BaseModel):
@@ -238,8 +298,7 @@ def init_db() -> None:
             );
             """
         )
-        if conn.execute("SELECT COUNT(*) FROM cities").fetchone()[0] == 0:
-            seed_demo_data(conn)
+        seed_demo_data(conn)
 
 
 @app.on_event("startup")
@@ -383,358 +442,389 @@ def insert_evidence(
     return evidence_id
 
 
-def seed_demo_data(conn: sqlite3.Connection) -> None:
-    now = utc_now()
-    conn.execute(
-        """
-        INSERT INTO cities (id, name, action_confidence, source_backed_actions, evidence_gaps, pending_review)
-        VALUES (?, ?, ?, ?, ?, ?)
-        """,
-        ("warsaw", "Warsaw", 68, 3, 4, 6),
-    )
-    conn.execute(
-        """
-        INSERT INTO cities (id, name, action_confidence, source_backed_actions, evidence_gaps, pending_review)
-        VALUES (?, ?, ?, ?, ?, ?)
-        """,
-        ("krakow", "Krakow", 48, 1, 3, 0),
-    )
+def load_action_catalog() -> dict[str, Any]:
+    with ACTION_CATALOG_PATH.open("r", encoding="utf-8") as handle:
+        return json.load(handle)
 
-    actions = [
-        (
-            "waw-transport-priority",
-            1,
-            "Establish traffic privileges for public transport vehicles.",
-            "Transport",
-            "\U0001f68c",
-            "Sustainable Development of Warsaw",
-            "https://bip.warszawa.pl/",
-            "11 Jun 2026",
-            74,
-            "medium",
-            4,
-            4,
-            3,
-            None,
-        ),
-        (
-            "waw-building-retrofit",
-            2,
-            "Comprehensive green retrofits of public buildings.",
-            "Buildings",
-            "\U0001f3e2",
-            "Warsaw climate plan annex",
-            "https://bip.warszawa.pl/",
-            "10 Jun 2026",
-            62,
-            "medium",
-            3,
-            4,
-            2,
-            "Budget follow-through",
-        ),
-        (
-            "waw-park-ride",
-            3,
-            "Develop Park & Ride and Bike & Ride systems.",
-            "Mobility",
-            "\U0001f6b2",
-            "Warsaw transport strategy",
-            "https://bip.warszawa.pl/",
-            "9 Jun 2026",
-            51,
-            "low",
-            2,
-            4,
-            1,
-            "Institutional continuity",
-        ),
+
+def seeded_signal_rows(action: dict[str, Any]) -> list[tuple[str, int, str]]:
+    score = clamp_int(action.get("score"), 0, 100, 50)
+    top_gap = action.get("topDataGap")
+    rows = [
+        ("budgetFollowThrough", clamp_int(score - 8, 0, 100, 45), "needs_review"),
+        ("electionExposure", clamp_int(score - 14, 0, 100, 45), "needs_review"),
+        ("institutionalContinuity", clamp_int(score - 4, 0, 100, 45), "needs_review"),
+        ("publicCommitment", clamp_int(score + 8, 0, 100, 60), "verified"),
     ]
-    for action in actions:
-        conn.execute(
-            """
-            INSERT INTO actions (
-                id, city_id, rank, title, sector, sector_icon, source_name, source_url,
-                source_checked_date, selected, score, confidence, evidence_complete,
-                evidence_expected, pending_review, top_data_gap, updated_at
-            )
-            VALUES (?, 'warsaw', ?, ?, ?, ?, ?, ?, ?, 1, ?, ?, ?, ?, ?, ?, ?)
-            """,
-            (*action, now),
-        )
+    gap_to_signal = {
+        "Budget follow-through": "budgetFollowThrough",
+        "Election exposure": "electionExposure",
+        "Institutional continuity": "institutionalContinuity",
+        "Public commitment": "publicCommitment",
+    }
+    gap_signal = gap_to_signal.get(str(top_gap))
+    if not gap_signal:
+        return rows
+    return [
+        (signal_key, signal_score, "missing" if signal_key == gap_signal else status)
+        for signal_key, signal_score, status in rows
+    ]
 
+
+def upsert_catalog_source_and_evidence(
+    conn: sqlite3.Connection,
+    *,
+    city_id: str,
+    action: dict[str, Any],
+    now: str,
+) -> None:
+    action_id = str(action["id"])
+    source_id = f"src-catalog-{action_id}"
+    evidence_id = f"ev-catalog-{action_id}"
+    source_name = str(action["sourceName"])
+    source_url = str(action["sourceUrl"])
+    source_excerpt = str(action.get("sourceExcerpt") or action["title"])
+    date_checked = str(action.get("sourceCheckedDate") or now[:10])
+    confidence = str(action.get("confidence") or "medium")
+    metadata = {
+        "contract": "catalog_action_source_v1",
+        "saved_fields": [
+            "city_id",
+            "action_id",
+            "title",
+            "url",
+            "source_excerpt",
+            "date_checked",
+        ],
+    }
     conn.execute(
         """
-        INSERT INTO actions (
-            id, city_id, rank, title, sector, sector_icon, source_name, source_url,
-            source_checked_date, selected, score, confidence, evidence_complete,
-            evidence_expected, pending_review, top_data_gap, updated_at
+        INSERT INTO political_will_sources (
+            id, city_id, action_id, source_kind, source_type, title, url, file_name,
+            file_mime_type, file_size_bytes, storage_path, content_sha256, raw_text,
+            extracted_text, excerpt, contract_status, date_checked, submitted_by,
+            review_status, status_code, metadata_json, created_at, updated_at
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, 'url', 'official_action_source', ?, ?, NULL, NULL, NULL, NULL, ?, ?, ?, ?, NULL, ?, 'Seed catalog', 'approved', NULL, ?, ?, ?)
+        ON CONFLICT(id) DO UPDATE SET
+            city_id = excluded.city_id,
+            action_id = excluded.action_id,
+            title = excluded.title,
+            url = excluded.url,
+            content_sha256 = excluded.content_sha256,
+            raw_text = excluded.raw_text,
+            extracted_text = excluded.extracted_text,
+            excerpt = excluded.excerpt,
+            date_checked = excluded.date_checked,
+            review_status = excluded.review_status,
+            metadata_json = excluded.metadata_json,
+            updated_at = excluded.updated_at
         """,
         (
-            "krk-public-transport-priority",
-            "krakow",
-            1,
-            "Prioritize public transport corridors and clean mobility delivery.",
-            "Transport",
-            "\U0001f68c",
-            "Krakow public transport strategy",
-            "https://www.krakow.pl/",
-            "12 Jun 2026",
-            48,
-            "low",
-            1,
-            4,
-            0,
-            "Election exposure",
+            source_id,
+            city_id,
+            action_id,
+            source_name,
+            source_url,
+            content_hash(source_excerpt),
+            source_excerpt,
+            source_excerpt,
+            excerpt(source_excerpt),
+            date_checked,
+            json.dumps(metadata, ensure_ascii=False),
+            now,
+            now,
+        ),
+    )
+    conn.execute(
+        """
+        INSERT INTO political_will_evidence (
+            id, city_id, action_id, source_id, type, source_name, source_url, signal_key,
+            status, impact, impact_value, evidence_date, extracted_claim, source_excerpt,
+            contract_status, added_by, confidence, reviewer_decision, reviewer_note,
+            created_at, reviewed_at
+        )
+        VALUES (?, ?, ?, ?, 'action_source', ?, ?, 'publicCommitment', 'verified',
+            'positive', 8, ?, ?, ?, NULL, 'Seed catalog', ?, 'approved', NULL, ?, ?)
+        ON CONFLICT(id) DO UPDATE SET
+            city_id = excluded.city_id,
+            action_id = excluded.action_id,
+            source_id = excluded.source_id,
+            source_name = excluded.source_name,
+            source_url = excluded.source_url,
+            evidence_date = excluded.evidence_date,
+            extracted_claim = excluded.extracted_claim,
+            source_excerpt = excluded.source_excerpt,
+            confidence = excluded.confidence,
+            reviewed_at = excluded.reviewed_at
+        """,
+        (
+            evidence_id,
+            city_id,
+            action_id,
+            source_id,
+            source_name,
+            source_url,
+            date_checked,
+            str(action["title"]),
+            source_excerpt,
+            confidence,
+            now,
             now,
         ),
     )
 
-    signal_rows = {
-        "waw-transport-priority": [
-            ("budgetFollowThrough", 75, "verified"),
-            ("electionExposure", 55, "needs_review"),
-            ("institutionalContinuity", 70, "verified"),
-            ("publicCommitment", 70, "missing"),
-        ],
-        "waw-building-retrofit": [
-            ("budgetFollowThrough", 50, "needs_review"),
-            ("electionExposure", 65, "verified"),
-            ("institutionalContinuity", 70, "verified"),
-            ("publicCommitment", 60, "verified"),
-        ],
-        "waw-park-ride": [
-            ("budgetFollowThrough", 40, "missing"),
-            ("electionExposure", 55, "needs_review"),
-            ("institutionalContinuity", 45, "missing"),
-            ("publicCommitment", 60, "verified"),
-        ],
-        "krk-public-transport-priority": [
-            ("budgetFollowThrough", 50, "needs_review"),
-            ("electionExposure", 20, "missing"),
-            ("institutionalContinuity", 45, "missing"),
-            ("publicCommitment", 55, "missing"),
-        ],
-    }
-    for action_id, signals in signal_rows.items():
-        for signal_key, score, status in signals:
+
+def remove_old_krakow_recall_search_suggestions(conn: sqlite3.Connection) -> None:
+    conn.execute(
+        """
+        DELETE FROM political_will_news_findings
+        WHERE city_id = 'krakow'
+          AND (
+            COALESCE(title, '') IN ('notesfrompoland.com', 'polskieradio.pl', 'tvpworld.com')
+            OR COALESCE(excerpt, '') LIKE '%Miszalski%'
+            OR COALESCE(excerpt, '') LIKE '%recall referendum%'
+          )
+        """
+    )
+    conn.execute(
+        """
+        DELETE FROM political_will_evidence
+        WHERE city_id = 'krakow'
+          AND type = 'news_article'
+          AND status IN ('suggested', 'needs_review')
+          AND id NOT LIKE 'ev-citywide-%'
+          AND (
+            COALESCE(source_name, '') IN ('notesfrompoland.com', 'polskieradio.pl', 'tvpworld.com')
+            OR COALESCE(extracted_claim, '') LIKE '%Miszalski%'
+            OR COALESCE(extracted_claim, '') LIKE '%recall referendum%'
+          )
+        """
+    )
+
+
+def upsert_citywide_political_events(
+    conn: sqlite3.Connection,
+    *,
+    city_id: str,
+    action_ids: list[str],
+    now: str,
+) -> None:
+    events = CITYWIDE_POLITICAL_EVENTS.get(city_id, [])
+    if not events:
+        return
+    if city_id == "krakow":
+        remove_old_krakow_recall_search_suggestions(conn)
+
+    for action_id in action_ids:
+        for event in events:
+            source_id = f"src-citywide-{event['id']}-{action_id}"
+            evidence_id = f"ev-citywide-{event['id']}-{action_id}"
+            reviewed_match = conn.execute(
+                """
+                SELECT id FROM political_will_evidence
+                WHERE city_id = ?
+                  AND action_id = ?
+                  AND type = 'news_article'
+                  AND status IN ('verified', 'rejected')
+                  AND (
+                    COALESCE(extracted_claim, '') LIKE '%Miszalski%'
+                    OR COALESCE(extracted_claim, '') LIKE '%recall referendum%'
+                    OR COALESCE(source_excerpt, '') LIKE '%Miszalski%'
+                    OR COALESCE(source_excerpt, '') LIKE '%recall referendum%'
+                  )
+                LIMIT 1
+                """,
+                (city_id, action_id),
+            ).fetchone()
+            if reviewed_match:
+                conn.execute("DELETE FROM political_will_evidence WHERE id = ?", (evidence_id,))
+                conn.execute("DELETE FROM political_will_sources WHERE id = ?", (source_id,))
+                continue
+            source_excerpt = str(event["sourceExcerpt"])
+            metadata = {
+                "contract": "citywide_political_event_v1",
+                "applies_to": "all_city_actions",
+                "city_id": city_id,
+                "event_id": event["id"],
+            }
             conn.execute(
                 """
-                INSERT INTO political_will_action_score (action_id, signal_key, score, status, updated_at)
-                VALUES (?, ?, ?, ?, ?)
+                INSERT INTO political_will_sources (
+                    id, city_id, action_id, source_kind, source_type, title, url, file_name,
+                    file_mime_type, file_size_bytes, storage_path, content_sha256, raw_text,
+                    extracted_text, excerpt, contract_status, date_checked, submitted_by,
+                    review_status, status_code, metadata_json, created_at, updated_at
+                )
+                VALUES (?, ?, ?, 'web_search_result', 'citywide_political_event', ?, ?, NULL, NULL, NULL, NULL,
+                    ?, ?, ?, ?, NULL, ?, 'Seed catalog', 'analyzed', NULL, ?, ?, ?)
+                ON CONFLICT(id) DO UPDATE SET
+                    city_id = excluded.city_id,
+                    action_id = excluded.action_id,
+                    title = excluded.title,
+                    url = excluded.url,
+                    content_sha256 = excluded.content_sha256,
+                    raw_text = excluded.raw_text,
+                    extracted_text = excluded.extracted_text,
+                    excerpt = excluded.excerpt,
+                    date_checked = excluded.date_checked,
+                    metadata_json = excluded.metadata_json,
+                    updated_at = excluded.updated_at
                 """,
-                (action_id, signal_key, score, status, now),
+                (
+                    source_id,
+                    city_id,
+                    action_id,
+                    event["sourceName"],
+                    event["sourceUrl"],
+                    content_hash(source_excerpt),
+                    source_excerpt,
+                    source_excerpt,
+                    excerpt(source_excerpt),
+                    str(event["evidenceDate"]),
+                    json.dumps(metadata, ensure_ascii=False),
+                    now,
+                    now,
+                ),
+            )
+            conn.execute(
+                """
+                INSERT INTO political_will_evidence (
+                    id, city_id, action_id, source_id, type, source_name, source_url, signal_key,
+                    status, impact, impact_value, evidence_date, extracted_claim, source_excerpt,
+                    contract_status, added_by, confidence, reviewer_decision, reviewer_note,
+                    created_at, reviewed_at
+                )
+                VALUES (?, ?, ?, ?, 'news_article', ?, ?, ?, 'suggested',
+                    'negative', ?, ?, ?, ?, NULL, 'Seed catalog', ?, NULL, NULL, ?, NULL)
+                ON CONFLICT(id) DO UPDATE SET
+                    city_id = excluded.city_id,
+                    action_id = excluded.action_id,
+                    source_id = excluded.source_id,
+                    source_name = excluded.source_name,
+                    source_url = excluded.source_url,
+                    signal_key = excluded.signal_key,
+                    impact = excluded.impact,
+                    impact_value = excluded.impact_value,
+                    evidence_date = excluded.evidence_date,
+                    extracted_claim = excluded.extracted_claim,
+                    source_excerpt = excluded.source_excerpt,
+                    confidence = excluded.confidence
+                """,
+                (
+                    evidence_id,
+                    city_id,
+                    action_id,
+                    source_id,
+                    event["sourceName"],
+                    event["sourceUrl"],
+                    event["signalKey"],
+                    event["impact"],
+                    event["evidenceDate"],
+                    event["claim"],
+                    source_excerpt,
+                    event["confidence"],
+                    now,
+                ),
             )
 
-    source_specs = [
-        (
-            "waw-transport-priority",
-            "contract_register",
-            "City contract register",
-            "https://bip.warszawa.pl/",
-            "started",
-        ),
-        (
-            "waw-transport-priority",
-            "news",
-            "Warsaw transport news",
-            "https://example.com/news",
-            None,
-        ),
-        (
-            "waw-transport-priority",
-            "bip_page",
-            "Transport department page",
-            "https://bip.warszawa.pl/",
-            None,
-        ),
-    ]
-    source_ids: dict[str, str] = {}
-    for action_id, source_type, title, url, contract_status in source_specs:
-        source_ids[title] = insert_source(
-            conn,
-            city_id="warsaw",
-            action_id=action_id,
-            source_kind="url",
-            source_type=source_type,
-            title=title,
-            url=url,
-            raw_text=f"Demo source-backed text for {title}.",
-            extracted_text=f"Demo source-backed text for {title}.",
-            contract_status=contract_status,
-            submitted_by="A. Morgan",
-            review_status="approved",
-        )
 
-    seed_evidence = [
-        (
-            "ev-1",
-            "waw-transport-priority",
-            source_ids["City contract register"],
-            "started_contract",
-            "City contract register",
-            "https://bip.warszawa.pl/",
-            "budgetFollowThrough",
-            "verified",
-            18,
-            "10 Jun 2026",
-            "Started contract evidence approved",
-            "The contract register shows started public transport priority works.",
-            "started",
-            "A. Morgan",
-            "high",
-        ),
-        (
-            "ev-2",
-            "waw-transport-priority",
-            source_ids["Warsaw transport news"],
-            "news_article",
-            "Warsaw transport news",
-            "https://example.com/news",
-            "electionExposure",
-            "verified",
-            -8,
-            "9 Jun 2026",
-            "Election timing may delay procurement phase",
-            "Local reporting describes procurement risks around election timing.",
-            None,
-            "A. Morgan",
-            "medium",
-        ),
-        (
-            "ev-3",
-            "waw-transport-priority",
-            source_ids["Transport department page"],
-            "department_owner",
-            "Transport department page",
-            "https://bip.warszawa.pl/",
-            "institutionalContinuity",
-            "verified",
-            12,
-            "8 Jun 2026",
-            "Transport department owner is listed for the action",
-            "The department page names an accountable transport owner.",
-            None,
-            "K. Nowak",
-            "medium",
-        ),
-    ]
-    for ev in seed_evidence:
-        insert_evidence(
-            conn,
-            city_id="warsaw",
-            action_id=ev[1],
-            source_id=ev[2],
-            evidence_id=ev[0],
-            evidence_type=ev[3],
-            source_name=ev[4],
-            source_url=ev[5],
-            signal_key=ev[6],
-            status=ev[7],
-            impact_value=ev[8],
-            evidence_date=ev[9],
-            extracted_claim=ev[10],
-            source_excerpt=ev[11],
-            contract_status=ev[12],
-            added_by=ev[13],
-            confidence=ev[14],
-        )
+def seed_demo_data(conn: sqlite3.Connection) -> None:
+    now = utc_now()
+    catalog = load_action_catalog()
+    catalog_action_ids: set[str] = set()
 
-    suggestions = [
-        (
-            "sug-1",
-            "waw-transport-priority",
-            "Started contract covers public transport priority works",
-            "budgetFollowThrough",
-            18,
-            "high",
-            "started",
-        ),
-        (
-            "sug-2",
-            "waw-transport-priority",
-            "Mayor statement supports bus lane expansion",
-            "publicCommitment",
-            8,
-            "medium",
-            None,
-        ),
-        (
-            "sug-3",
-            "waw-transport-priority",
-            "Election timing may delay procurement phase",
-            "electionExposure",
-            -6,
-            "low",
-            None,
-        ),
-        (
-            "sug-4",
-            "waw-building-retrofit",
-            "Retrofit budget line requires confirmation",
-            "budgetFollowThrough",
-            6,
-            "medium",
-            "planned",
-        ),
-        (
-            "sug-5",
-            "waw-building-retrofit",
-            "Procurement owner continuity appears stable",
-            "institutionalContinuity",
-            5,
-            "medium",
-            None,
-        ),
-        (
-            "sug-6",
-            "waw-park-ride",
-            "Institutional owner for Park & Ride is unclear",
-            "institutionalContinuity",
-            -7,
-            "low",
-            None,
-        ),
-    ]
-    for evidence_id, action_id, claim, signal_key, impact_value, confidence, contract_status in suggestions:
-        source_id = insert_source(
-            conn,
-            city_id="warsaw",
-            action_id=action_id,
-            source_kind="manual_note",
-            source_type="manual_note",
-            title="Seeded AI suggestion source",
-            raw_text=claim,
-            extracted_text=claim,
-            contract_status=contract_status,
-            submitted_by="Seed data",
-            review_status="analyzed",
-        )
-        insert_evidence(
-            conn,
-            city_id="warsaw",
-            action_id=action_id,
-            source_id=source_id,
-            evidence_id=evidence_id,
-            evidence_type="ai_suggestion",
-            source_name="Seeded AI suggestion source",
-            source_url=None,
-            signal_key=signal_key,
-            status="suggested",
-            impact_value=impact_value,
-            evidence_date=now[:10],
-            extracted_claim=claim,
-            source_excerpt=claim,
-            contract_status=contract_status,
-            added_by="AI",
-            confidence=confidence,
-        )
+    # Remove only the old deterministic demo records; keep user-uploaded/search evidence.
+    conn.execute(
+        """
+        DELETE FROM political_will_evidence
+        WHERE id IN ('ev-1', 'ev-2', 'ev-3', 'sug-1', 'sug-2', 'sug-3', 'sug-4', 'sug-5', 'sug-6')
+        """
+    )
+    conn.execute(
+        """
+        DELETE FROM political_will_sources
+        WHERE submitted_by = 'Seed data' OR title IN ('City contract register', 'Warsaw transport news', 'Transport department page')
+        """
+    )
 
-    add_audit(conn, "waw-transport-priority", "A. Morgan", "score_recalculated", "Political will: 74 / 100")
-    add_audit(conn, "waw-transport-priority", "K. Nowak", "evidence_verified", "Started contract evidence approved")
-    add_audit(conn, "waw-transport-priority", "A. Morgan", "source_added", "City contract register URL added")
+    for city in catalog["cities"]:
+        city_id = str(city["cityId"])
+        city_action_ids: list[str] = []
+        conn.execute(
+            """
+            INSERT INTO cities (id, name, action_confidence, source_backed_actions, evidence_gaps, pending_review)
+            VALUES (?, ?, 0, 0, 0, 0)
+            ON CONFLICT(id) DO UPDATE SET name = excluded.name
+            """,
+            (city_id, str(city["cityName"])),
+        )
+        for action in city["actions"]:
+            action_id = str(action["id"])
+            catalog_action_ids.add(action_id)
+            city_action_ids.append(action_id)
+            confidence = str(action.get("confidence") or "medium")
+            pending_review = 0 if confidence == "high" else 1
+            conn.execute(
+                """
+                INSERT INTO actions (
+                    id, city_id, rank, title, sector, sector_icon, source_name, source_url,
+                    source_checked_date, selected, score, confidence, evidence_complete,
+                    evidence_expected, pending_review, top_data_gap, updated_at
+                )
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ?, 1, 4, ?, ?, ?)
+                ON CONFLICT(id) DO UPDATE SET
+                    city_id = excluded.city_id,
+                    rank = excluded.rank,
+                    title = excluded.title,
+                    sector = excluded.sector,
+                    sector_icon = excluded.sector_icon,
+                    source_name = excluded.source_name,
+                    source_url = excluded.source_url,
+                    source_checked_date = excluded.source_checked_date,
+                    selected = excluded.selected,
+                    score = excluded.score,
+                    confidence = excluded.confidence,
+                    evidence_expected = excluded.evidence_expected,
+                    top_data_gap = excluded.top_data_gap,
+                    updated_at = excluded.updated_at
+                """,
+                (
+                    action_id,
+                    city_id,
+                    int(action["rank"]),
+                    str(action["title"]),
+                    str(action["sector"]),
+                    str(action["sectorIcon"]),
+                    str(action["sourceName"]),
+                    str(action["sourceUrl"]),
+                    str(action["sourceCheckedDate"]),
+                    clamp_int(action.get("score"), 0, 100, 50),
+                    confidence,
+                    pending_review,
+                    action.get("topDataGap"),
+                    now,
+                ),
+            )
+            for signal_key, signal_score, status in seeded_signal_rows(action):
+                conn.execute(
+                    """
+                    INSERT INTO political_will_action_score (action_id, signal_key, score, status, updated_at)
+                    VALUES (?, ?, ?, ?, ?)
+                    ON CONFLICT(action_id, signal_key) DO UPDATE SET
+                        score = excluded.score,
+                        status = excluded.status,
+                        updated_at = excluded.updated_at
+                    """,
+                    (action_id, signal_key, signal_score, status, now),
+            )
+            upsert_catalog_source_and_evidence(conn, city_id=city_id, action=action, now=now)
+            refresh_action_metrics(conn, city_id, action_id)
+
+        upsert_citywide_political_events(conn, city_id=city_id, action_ids=city_action_ids, now=now)
+        for action_id in city_action_ids:
+            refresh_action_metrics(conn, city_id, action_id)
+        refresh_city_metrics(conn, city_id)
 
 
 def row_to_source(row: sqlite3.Row) -> dict[str, Any]:
