@@ -14,8 +14,8 @@ export default function Sidebar({
 }) {
   return (
     <aside className="sidebar">
-      <div className="logo">City<span>Catalyst</span> · Readiness Navigator</div>
-      <div className="tagline">Climate-finance readiness for cities &amp; regions</div>
+      <div className="logo">City<span>Catalyst</span> · Climate-Finance Readiness</div>
+      <div className="tagline">Navigator — get cities &amp; regions ready to access climate finance</div>
 
       <div className="menu-label">Process</div>
       <div style={{ position: "relative" }}>

@@ -8,11 +8,12 @@ import { SCOPES, mapPoints, scopeLegend, journeyCity, DATA } from "@/lib/adapter
 import { SM, provenanceKind, type Scored, type Comuna } from "@/lib/engine";
 import { getCityContext, agentAssist } from "@/lib/context";
 import { assembleDossier } from "@/lib/dossier";
+import { FUNDERS, getFunder } from "@/lib/funders";
 
 const STAGES: StageDef[] = [
   { key: "explore", title: "Explore", sub: "Region & data" },
   { key: "context", title: "City context", sub: "From CityCatalyst" },
-  { key: "instrument", title: "Choose instrument", sub: "Readiness for whom" },
+  { key: "instrument", title: "Find financing", sub: "Funder · program · instrument" },
   { key: "readiness", title: "Readiness pathways", sub: "Assess & route" },
   { key: "portfolio", title: "Portfolio", sub: "Reach the ticket" },
   { key: "intake", title: "Funder intake", sub: "Dossier & submit" },
@@ -52,7 +53,9 @@ export default function Page() {
   const [viewLevel, setViewLevel] = useState<"cities" | "state">("cities");
   const [cityId, setCityId] = useState<string | null>(null);
   const [entry, setEntry] = useState<"entity" | "project">("entity");
-  const [instrument, setInstrument] = useState<string | null>(null);
+  const [selFunderId, setSelFunderId] = useState<string | null>(null);
+  const [selProgramId, setSelProgramId] = useState<string | null>(null);
+  const [selInstrumentId, setSelInstrumentId] = useState<string | null>(null);
   const [portfolioMode, setPortfolioMode] = useState<"intra" | "cross">("intra");
   const [stage, setStage] = useState(0);
   const [maxReached, setMaxReached] = useState(0);
@@ -67,6 +70,11 @@ export default function Page() {
   const ctx = cityId ? getCityContext(cityId) : null;
   const pathway = scored ? pathwayOf(scored) : null;
 
+  const selFunder = getFunder(selFunderId);
+  const selProgram = selFunder?.programs.find((p) => p.id === selProgramId) || null;
+  const selInstrument = selProgram?.instruments.find((i) => i.id === selInstrumentId) || null;
+  const instrLabel = selProgram && selInstrument ? `${selProgram.name} · ${selInstrument.name}` : SM.activeProfile().instrument;
+
   // Cross-city pool (Chile) and intra-city portfolio (the city's own projects).
   const pool = scopeId === "cl-losrios" ? DATA.cl.pool : null;
   const poolScored = scored && pool ? SM.scoreSNG({ ...(scored as any), proposal: pool.pooledProposal }) : null;
@@ -74,7 +82,7 @@ export default function Page() {
   const intraScored = scored && ctx ? SM.scoreSNG({ ...(scored as any), proposal: { title: `${scored.name} climate portfolio`, sector: "multi-sector", askUSDm: intraTotal, stage: "Structuring", cofinance: true } }) : null;
 
   function goto(i: number) { setStage(i); setMaxReached((m) => Math.max(m, i)); }
-  function pickCity(id: string) { setCityId(id); setSubmitState(null); setInstrument(null); goto(1); }
+  function pickCity(id: string) { setCityId(id); setSubmitState(null); setSelFunderId(null); setSelProgramId(null); setSelInstrumentId(null); goto(1); }
 
   // Region-level summary (the "state layer").
   const regionSummary = useMemo(() => {
@@ -90,11 +98,11 @@ export default function Page() {
     if (pathway === "capacity-building") {
       opts = { scored, kind: "city", pathway: "capacity-building", instrumentName: "Capacity-building / PPF + blended finance", pool: null, proposal: scored.proposal };
     } else if (portfolioMode === "cross" && pool) {
-      opts = { scored: poolScored, kind: "pool", pathway: "pool",
+      opts = { scored: poolScored, kind: "pool", pathway: "pool", instrumentName: instrLabel,
         pool: { anchor: scored.name, members: pool.members.map((m: any) => ({ name: m.name, role: m.isAnchor ? "anchor" : "member", cofinance: m.cofinanceScore })) },
         proposal: pool.pooledProposal };
     } else {
-      opts = { scored: intraScored, kind: "city", pathway: "instrument", pool: null,
+      opts = { scored: intraScored, kind: "city", pathway: "instrument", pool: null, instrumentName: instrLabel,
         proposal: { title: `${scored.name} climate portfolio (${ctx!.projects.length} projects)`, sector: "multi-sector", askUSDm: intraTotal, cofinance: true } };
     }
     const dossier = assembleDossier(opts);
@@ -203,31 +211,59 @@ export default function Page() {
             {entry === "project" && (
               <div className="note">Project-first: <b>import a prepared project</b> (a Concept Note from the <b>Project Preparator</b>) — it enters at the Portfolio step. <button className="btn secondary" style={{ marginLeft: 10, padding: "5px 12px" }} disabled>Import project from Preparator (mock)</button></div>
             )}
-            <div className="btn-row"><button className="btn" onClick={() => goto(2)}>Choose a financing instrument →</button></div>
+            <div className="btn-row"><button className="btn" onClick={() => goto(2)}>Find financing →</button></div>
           </>
         )}
 
-        {/* 2 — CHOOSE INSTRUMENT */}
+        {/* 2 — FIND FINANCING (funder navigator: funder → program → instrument) */}
         {stage === 2 && scored && (
           <>
-            <div className="h-stage">Readiness against which instrument?</div>
-            <p className="h-sub">Readiness is instrument-specific — it depends on the <b>funder</b>, their institutional requirements, and the nature of the financial product. {entry === "entity" ? "Entity-first: a direct line for the city." : "Project-first: instruments that fund a specific project."}</p>
-            <div className={`card pathcard ${instrument === "idb-sfp" ? "ok" : ""}`} style={{ borderColor: instrument === "idb-sfp" ? "var(--cc-blue)" : undefined, cursor: "pointer" }} onClick={() => { setInstrument("idb-sfp"); SM.setActiveProfile("idb-sfp"); }}>
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <h2>Inter-American Development Bank — Sub-Sovereign Finance Program (SFP)</h2>
-                {instrument === "idb-sfp" && <span className="pill-tag">selected</span>}
+            <div className="h-stage">Find a financing line</div>
+            <p className="h-sub">Readiness is specific to the product. Drill down <b>funder → program → instrument</b>. {entry === "entity" ? "Entity-first: a direct line for the city." : "Project-first: also surfaces grants & PPFs via the matching service / Preparator."}</p>
+
+            <div className="crumbs" style={{ marginBottom: 12 }}>
+              {selFunder ? <b>{selFunder.short}</b> : "Funder"} › {selProgram ? <b>{selProgram.name}</b> : "Program"} › {selInstrument ? <b>{selInstrument.name}</b> : "Instrument"}
+            </div>
+
+            <div className="card">
+              <h2>1 · Funder</h2>
+              {FUNDERS.map((f) => (
+                <div key={f.id} className="actionrow">
+                  <span>{f.name} {f.template && <span className="pill-tag">template</span>}</span>
+                  <button className={`btn ${selFunderId === f.id ? "" : "secondary"}`} style={{ padding: "5px 12px" }} disabled={f.template} onClick={() => { setSelFunderId(f.id); setSelProgramId(null); setSelInstrumentId(null); }}>
+                    {selFunderId === f.id ? "Selected" : f.template ? "Coming soon" : "Select"}
+                  </button>
+                </div>
+              ))}
+            </div>
+
+            {selFunder && (
+              <div className="card">
+                <h2>2 · Program <span className="muted" style={{ fontSize: 13, fontWeight: 400 }}>within {selFunder.short}</span></h2>
+                {selFunder.programs.map((p) => (
+                  <div key={p.id} className={`card pathcard ${selProgramId === p.id ? "ok" : ""}`} style={{ marginBottom: 10, cursor: "pointer", borderColor: selProgramId === p.id ? "var(--cc-blue)" : undefined }} onClick={() => { setSelProgramId(p.id); setSelInstrumentId(null); SM.setActiveProfile(p.profileId); }}>
+                    <div style={{ display: "flex", justifyContent: "space-between" }}><h2 style={{ fontSize: 16 }}>{p.name}</h2>{selProgramId === p.id && <span className="pill-tag">selected</span>}</div>
+                    <p className="sub" style={{ marginBottom: p.eligibilityNote && selProgramId === p.id ? 8 : 0 }}>{p.summary}</p>
+                    {p.eligibilityNote && selProgramId === p.id && <div className="note">{p.eligibilityNote}</div>}
+                  </div>
+                ))}
               </div>
-              <p className="sub" style={{ marginBottom: 8 }}>Direct lending to subnational governments without a sovereign guarantee.</p>
-              <div className="note">You may be eligible for a <b>direct line from the IDB</b>. Assess readiness against this instrument and program line.</div>
-            </div>
-            <div className="card" style={{ opacity: 0.6 }}>
-              <h2 className="muted">CAF · World Bank · GCF <span className="pill-tag">template</span></h2>
-              <p className="sub">Other MDBs plug in their own readiness profile — same engine, different criteria. (Illustrative for now.)</p>
-            </div>
-            {entry === "project" && (
-              <div className="note">Project-first also surfaces <b>grants &amp; project-preparation facilities (PPFs)</b> via the matching service / Project Preparator — for actions that aren&apos;t loan-shaped.</div>
             )}
-            <div className="btn-row"><button className="btn" disabled={!instrument} onClick={() => goto(3)}>Assess readiness against {instrument ? "IDB SFP" : "an instrument"} →</button></div>
+
+            {selProgram && (
+              <div className="card">
+                <h2>3 · Instrument <span className="muted" style={{ fontSize: 13, fontWeight: 400 }}>within {selProgram.name}</span></h2>
+                {selProgram.instruments.map((i) => (
+                  <div key={i.id} className="actionrow">
+                    <span><b>{i.name}</b> {i.note && <span className="muted">· {i.note}</span>}</span>
+                    <button className={`btn ${selInstrumentId === i.id ? "" : "secondary"}`} style={{ padding: "5px 12px" }} onClick={() => setSelInstrumentId(i.id)}>{selInstrumentId === i.id ? "Selected" : "Select"}</button>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            <div className="note" style={{ background: "#f1f5f9", color: "#475569" }}>Fed by the <b>funder sourcing service</b> — a converged catalog (today fragmented across CityCatalyst + the hackday apps). Mock for the demo.</div>
+            <div className="btn-row"><button className="btn" disabled={!selInstrumentId} onClick={() => goto(3)}>Assess readiness against {selFunder ? selFunder.short : "—"}{selProgram ? ` · ${selProgram.name}` : ""} →</button></div>
           </>
         )}
 

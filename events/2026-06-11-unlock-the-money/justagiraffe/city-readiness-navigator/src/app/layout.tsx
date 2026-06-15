@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "City Readiness Navigator — CityCatalyst × IDB",
+  title: "Climate-Finance Readiness Navigator — CityCatalyst × IDB",
   description:
-    "Find which funders your climate plan can reach, see how ready you are for a financing instrument, and submit when ready.",
+    "Get cities & regions ready to access climate finance: find a financing line, assess readiness, and submit when ready.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
