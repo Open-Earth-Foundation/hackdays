@@ -1,0 +1,69 @@
+export interface CityRecord {
+  id: number;
+  name: string;
+  country: string;
+  region: string;
+  flag: string;
+  sector: string;
+  impact: string;
+  risk: string;
+  fundingNeed: string;
+  population: string;
+  co2Reduction: string;
+  intro: string;
+  why: string;
+  political: string;
+  credibility: { label: string; value: string; sub: string; color: string }[];
+  risks: { label: string; level: number; color: string; note: string }[];
+  timeline: { phase: string; desc: string; date: string }[];
+  kpis: { label: string; value: string; icon: string }[];
+  contacts: { name: string; role: string; email: string; phone: string }[];
+  tags: string[];
+  tagColors: string[];
+}
+
+export interface InstrumentMatch {
+  id: number;
+  name: string;
+  score: number;
+  tags: { label: string; variant?: "ppf" | "climate" | "bilateral" | "" }[];
+  why: string;
+}
+
+export interface ReadinessGap {
+  title: string;
+  effort: "done" | "med" | "high" | "low";
+  done: boolean;
+}
+
+export interface WizardState {
+  funding: string;
+  sectors: string[];
+  urgency: string;
+  country: string;
+  population: string;
+  fiscal: string;
+  borrowing: string;
+  capacity: string;
+  climateChecks: string[];
+  projectType: string;
+  readiness: string;
+  cofinance: string;
+  mrv: string[];
+}
+
+export const defaultWizardState: WizardState = {
+  funding: "Grant",
+  sectors: ["Waste", "Energy"],
+  urgency: "Actively seeking funding now",
+  country: "Chile",
+  population: "Medium (100k–1M)",
+  fiscal: "B — Moderate",
+  borrowing: "Yes",
+  capacity: "Medium — Some capacity",
+  climateChecks: ["GHG Inventory (GHGI)", "Climate Risk Assessment"],
+  projectType: "Savings-based",
+  readiness: "Concept",
+  cofinance: "10–30%",
+  mrv: ["GHG baseline established"],
+};

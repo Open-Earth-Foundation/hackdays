@@ -1,5 +1,6 @@
 import { getNational, getValdivia } from "@/lib/data";
 import MapPanel from "@/components/MapPanel";
+import SiteNav from "@/components/SiteNav";
 
 const fmt = (n: number) => n.toLocaleString("en-US");
 
@@ -15,9 +16,11 @@ export default function Home() {
   const losRiosUnits = new Set(losRios.map((c) => c.unit_id)).size;
 
   return (
-    <main>
+    <>
+      <SiteNav />
+      <main>
       {/* ===================== HERO / BEAT 1 ===================== */}
-      <section className="hero">
+      <section id="overview" className="hero">
         <div className="wrap">
           <div className="eyebrow">OpenEarth · Unlock the Money · Chile</div>
           <h1>The same engine that returns &ldquo;no match&rdquo; for one city returns a financeable deal for six.</h1>
@@ -45,7 +48,7 @@ export default function Home() {
       </section>
 
       {/* national map */}
-      <section className="beat">
+      <section id="national" className="beat">
         <div className="wrap">
           <span className="beat-tag">Beat 1 · The national pipeline</span>
           <h2>One computation, every region in Chile</h2>
@@ -117,7 +120,7 @@ export default function Home() {
       </section>
 
       {/* ===================== BEAT 2 — REGION ===================== */}
-      <section className="beat">
+      <section id="region" className="beat">
         <div className="wrap">
           <span className="beat-tag">Beat 2 · Drill into a region</span>
           <h2>Los Ríos, in miniature</h2>
@@ -130,7 +133,7 @@ export default function Home() {
       </section>
 
       {/* ===================== BEAT 3 — CITY ===================== */}
-      <section className="beat">
+      <section id="valdivia" className="beat">
         <div className="wrap">
           <span className="beat-tag">Beat 3 · Meet the city</span>
           <h2>Valdivia — funders open to you</h2>
@@ -164,7 +167,7 @@ export default function Home() {
       </section>
 
       {/* ===================== BEAT 4 — THE GAP ===================== */}
-      <section className="beat">
+      <section id="gap" className="beat">
         <div className="wrap">
           <span className="beat-tag">Beat 4 · The gap</span>
           <h2>Where one city stops: transport</h2>
@@ -195,7 +198,7 @@ export default function Home() {
       </section>
 
       {/* ===================== BEAT 5 — THE POOL ===================== */}
-      <section className="beat">
+      <section id="pool" className="beat">
         <div className="wrap">
           <span className="beat-tag">Beat 5 · The payoff</span>
           <h2>The gap becomes the deal</h2>
@@ -250,7 +253,8 @@ export default function Home() {
           <code>notebooks/analyze.ipynb</code>. Green scored · red flagged, not faked.
         </div>
       </footer>
-    </main>
+      </main>
+    </>
   );
 }
 
