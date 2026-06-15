@@ -106,6 +106,52 @@ CityCatalyst:  GHG inventory ──┐         ┌── CCRA climate risk
                     • CAPAG/BNDES-CCFLA funder screening (other funders)
 ```
 
+## 5a. Diagram (Mermaid — canonical, renders on GitHub)
+
+```mermaid
+flowchart TB
+  subgraph CC["CityCatalyst — host & shared context"]
+    HIAP["HIAP prioritized actions"]
+    INV["GHG inventory · CCRA risk"]
+    AGENT(["AI agents / MCP — shared context across modules"])
+  end
+
+  DATA["Fiscal Data Adapters (locode-keyed) + map view<br/>CAPAG · Brazil &nbsp;|&nbsp; SINIM/FCM · Chile"]
+
+  MATCH(["Matching &amp; Pooling — core service<br/>action→instrument &nbsp;|&nbsp; entity/pool→instruments + pooling"])
+
+  PREP["Project Preparator<br/>project bankability (Tech/Fin/Pol)<br/>→ Concept Note"]
+
+  subgraph NAV["City Readiness Navigator — entity / portfolio (one vertical)"]
+    N1["① Entity creditworthiness"]
+    N2["② Portfolio &amp; pooling → submit"]
+    N1 --> N2
+  end
+
+  CAP["Capacity building / PPF<br/>(entity or project, when not ready)"]
+
+  subgraph FUND["Funder pipelines"]
+    IDB["IDB Control Tower<br/>Intake &amp; Triage · Readiness Scoring · M&amp;E &amp; Board"]
+    OTHER["Other funders · BNDES / CCFLA"]
+  end
+
+  HIAP --> PREP
+  PREP -- "Concept Note (Path A)" --> N2
+  DATA -- "Path B · entity-first" --> N1
+  N1 -- "not ready" --> CAP
+  CAP -.-> PREP
+  MATCH -.-> PREP
+  MATCH -.-> NAV
+  N2 -- "dossier = Concept Note + creditworthiness" --> IDB
+  AGENT -.-> PREP
+  AGENT -.-> NAV
+  AGENT -.-> IDB
+```
+
+> Refinements behind this diagram (matching-as-core-service, entity-first naming,
+> capacity-building as a branch, single-vertical Navigator, AI-agent context) are detailed in
+> [`ITERATION-2.1-PLAN.md` §F–G](ITERATION-2.1-PLAN.md).
+
 ## 6. Module boundaries & contracts (to agree)
 
 - **HIAP → Preparator / Navigator:** prioritized actions (`actionId`, sector, type).

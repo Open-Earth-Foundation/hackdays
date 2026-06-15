@@ -63,9 +63,10 @@ city app (the user is an expert) — but it currently assumes too much. Upgrade 
 2. **Define acronyms once, inline, on first use** (hover or a small glossary chip): SFP, SNG,
    sovereign guarantee, non-accrual, OVE, Ordinary Capital, TC, Subprogram 1/2. Don't strip
    them (IDB uses them) — just gloss them once.
-3. **Rename "M&E & Board" → "Results & Board Reporting"** with a one-line subhead: *"How the
-   pilot proves itself — indicators vs. targets for the year-3 and year-5 Board/OVE reviews."*
-   (M&E = Monitoring & Evaluation; nobody should need to know the acronym.)
+3. **Keep "M&E" explicit — title it "Monitoring & Evaluation (M&E) & Board".** M&E *is*
+   understood at IDB, and the team has built real M&E content, so spell it out rather than
+   hide it. Add a one-line subhead: *"How the pilot proves itself — indicators vs. targets
+   for the year-3 and year-5 Board / OVE reviews."* (Expand the acronym once on first use.)
 4. **Tab subheads** — each of the three tabs gets a one-line "what this answers":
    - Intake & Triage → "Where each candidate sits in the IDB review process, and what's blocking it."
    - Readiness Scoring → "The early creditworthiness assessment — is this SNG ready, and why."
@@ -94,3 +95,70 @@ Per Martin: review the two running apps + this plan together → lock §D → ex
 city-app workstreams (B) and the Control Tower upgrade (C) → **then** render the
 [architecture diagram](INTEGRATED-ARCHITECTURE.md) as the visual artifact on top of the
 built result.
+
+---
+
+## F. Refinements from review 3 (architecture + UX)
+
+These came from Martin's read of the integrated architecture and refine §A–§C:
+
+1. **Matching is a *core service*, not Chile-only data.** The City-Funder Matching Engine's
+   reusable part is its **matching + pooling logic**, callable at *both* altitudes — *action →
+   instrument/funder* (project level, what the Preparator needs) and *entity/pool → eligible
+   instruments + pooling* (entity level, what the Navigator needs). SINIM is just its current
+   Chilean **data instance**. Model it as a shared service with pluggable data, alongside the
+   Fiscal Data Adapters.
+2. **"Path B" is entity-first, not "capacity-first."** It analyses the **municipal entity's
+   creditworthiness**, so name it **"entity-first"** (vs. "project-first" for Path A).
+   Separately, **"capacity building" is a support track**, not an entry path — it's what a
+   city *or* a project may need when the diagnosis says they're not yet ready (e.g. a fiscal
+   improvement plan before creditworthiness, or feasibility work before a PPF). Show it as a
+   branch off the readiness diagnosis that applies to both layers.
+3. **The Navigator is one vertical with two steps**, not two boxes. ① Entity creditworthiness
+   → ② Portfolio & pooling → submit. **Path A (a prepared project / Concept Note) connects
+   into step ②**; **Path B (entity-first) enters at step ①.**
+4. **Dual entry + import/interoperability.** Because these modules interoperate, the Navigator
+   should offer **import options** at entry (pull a prepared project from the Preparator, pull
+   an entity's fiscal profile from an adapter) rather than re-entry.
+5. **"Build readiness" → "Readiness pathways."** The step *assesses* readiness and **routes**:
+   ready → proceed; not-ready → a capacity-building/PPF pathway; ready-but-sub-scale → pooling.
+   "Build readiness" wrongly presumes not-ready; **"Readiness pathways"** frames it as the
+   diagnosis-and-route step.
+6. **Geographic / map view of financial readiness.** A map layer that shows readiness across a
+   scope (CAPAG tiers over Brazil, SINIM over Chile) and **zooms to the city/project location**
+   — an intuitive front door for the adapters and for funders scanning a portfolio.
+7. **Left-hand process menu.** The workstreams are a top-to-bottom process (upstream →
+   downstream). Use a **left vertical nav** (Source → Readiness → Portfolio → Funder intake)
+   rather than a horizontal stepper, so the flow reads as a pipeline.
+
+## G. Cross-cutting requirement — AI-agent shared context (CityCatalyst)
+
+The app must integrate with **CityCatalyst's AI-agent infrastructure** (its MCP server /
+climate-advisor / the Preparator's agent layer) so **context is shared across modules** — a
+city's inventory, HIAP priorities, prepared projects, and readiness travel with the user
+instead of being re-derived per app. Practically: the Navigator reads/writes through the
+CityCatalyst agent/MCP layer, and exposes its own readiness + dossier as agent-callable
+context. This is a first-class requirement, not a nice-to-have.
+
+## H. Build pathway — to make the running app reflect the architecture
+
+The sequence to get from today's Phase-0–3 app to an app that *shows the architecture through
+its interface*:
+
+1. **Shell & navigation (WS-1, §F-7):** restructure the app around a **left-hand process menu**
+   (Source · Readiness pathways · Portfolio · Funder intake), single-vertical Navigator.
+2. **Fiscal Data Adapter + map (WS-2, §F-6):** implement the adapter interface with **CAPAG
+   (Brazil)** and **SINIM (Chile)**; add the **map view** of readiness; add a Brazilian hero
+   city beside Valdivia.
+3. **Readiness pathways (WS-5, §F-5):** the assess-and-route step (ready / capacity-building /
+   pool), with the capacity-building branch shown for entity *and* project.
+4. **Matching core service (§F-1):** wire discovery + pooling as calls to one matching service.
+5. **Dual entry + import (§F-4):** project-first (import a Concept Note → step ②) and
+   entity-first (→ step ①).
+6. **Dossier = Concept Note (WS-7):** assemble + write into the Control Tower Intake.
+7. **AI-agent context (§G):** read/write city context through the CityCatalyst MCP/agent layer.
+8. **Control Tower language upgrade (§C):** thin IDB-facing copy incl. **M&E** kept explicit.
+9. **Copy/polish (WS-8):** kill marketing titles, disable the dev indicator.
+
+Recommended build order: **1 → 2 → 3 → 5 → 4 → 6 → 8 → 7 → 9** (UI shell first so the
+architecture is legible as it fills in; AI-agent wiring after the data contracts are stable).
