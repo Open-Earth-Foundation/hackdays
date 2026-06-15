@@ -19,18 +19,23 @@ import {
 } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
 import {
+  MdBolt,
   MdNavigateBefore,
   MdNavigateNext,
+  MdOutlineAutoAwesome,
   MdOutlineFileDownload,
   MdOutlineFilterAltOff,
   MdOutlineZoomInMap,
 } from "react-icons/md";
 import CityPanel from "./CityPanel";
 import LanguageToggle from "./LanguageToggle";
+import MandateWizard, { type Mandate } from "./MandateWizard";
 import { HAZARDS, HAZARD_BY_KEY, TIER_HEX } from "../lib/display";
 import { useTranslation } from "../i18n/client";
 import type { CityData } from "../lib/cityData";
 import type { Project } from "../lib/matchProjects";
+import type { Leverage } from "../lib/leverage";
+import { instrumentGroup, INSTRUMENT_LABEL_KEY, type InstrumentGroup } from "../lib/instrument";
 
 const CityMap = dynamic(() => import("./CityMap"), {
   ssr: false,
@@ -50,6 +55,7 @@ export type Row = {
   risks: Record<string, number> | null;
   lat: number | null;
   lng: number | null;
+  leverage: Leverage | null;
 };
 
 const TIERS = ["A+", "A", "B+", "B", "C", "D", "n.d.", "n.e."] as const;
@@ -113,10 +119,13 @@ function exportCsv(rows: Row[]) {
     "municipality",
     "uf",
     "capag",
+    "instrument",
     "debt",
     "savings",
     "liquidity",
     "icf",
+    "leverage",
+    "leverage_blockers",
     "locode",
     ...hazardCols.map((h) => `risk_${h}`),
   ];
@@ -130,10 +139,13 @@ function exportCsv(rows: Row[]) {
         esc(r.name),
         r.uf,
         r.capag,
+        instrumentGroup(r.capag),
         r.debt,
         r.savings,
         r.liquidity,
         r.icf,
+        r.leverage?.kind ?? "",
+        r.leverage ? esc(r.leverage.blockers.join("|")) : "",
         r.locode,
         ...hazardCols.map((h) =>
           r.risks?.[h] != null ? (r.risks[h] * 100).toFixed(0) : "",
@@ -161,6 +173,10 @@ export default function Explorer({
   const [hazards, setHazards] = useState<Set<string>>(new Set());
   const [uf, setUf] = useState("");
   const [q, setQ] = useState("");
+  const [instrument, setInstrument] = useState<InstrumentGroup | "any">("any");
+  const [highLevOnly, setHighLevOnly] = useState(false);
+  const [sort, setSort] = useState<"match" | "leverage">("match");
+  const [wizardOpen, setWizardOpen] = useState(false);
   const [selected, setSelected] = useState<Row | null>(null);
   const [cityData, setCityData] = useState<CityData | null>(null);
   const [cityFailed, setCityFailed] = useState(false);
@@ -241,18 +257,22 @@ export default function Explorer({
     const out = rows.filter(
       (r) =>
         (tiers.size === 0 || tiers.has(r.capag)) &&
+        (instrument === "any" || instrumentGroup(r.capag) === instrument) &&
         (!uf || r.uf === uf) &&
         (!needle || r.name.toLowerCase().includes(needle)) &&
+        (!highLevOnly || r.leverage != null) &&
         (hazards.size === 0 ||
           Array.from(hazards).some((h) => (r.risks?.[h] ?? 0) >= HIGH_RISK)),
     );
-    if (hazards.size > 0) {
+    if (sort === "leverage") {
+      out.sort((a, b) => (b.leverage?.rank ?? 0) - (a.leverage?.rank ?? 0));
+    } else if (hazards.size > 0) {
       const sel = (r: Row) =>
         Math.max(...Array.from(hazards).map((h) => r.risks?.[h] ?? 0));
       out.sort((a, b) => sel(b) - sel(a));
     }
     return out;
-  }, [rows, tiers, uf, q, hazards]);
+  }, [rows, tiers, instrument, uf, q, highLevOnly, hazards, sort]);
 
   const pageStart = itemsPerPage * page;
   const pageEnd = Math.min(pageStart + itemsPerPage, filtered.length);
@@ -264,14 +284,33 @@ export default function Explorer({
     [filtered],
   );
   const activeFilters =
-    tiers.size + hazards.size + (uf ? 1 : 0) + (q.trim() ? 1 : 0);
+    tiers.size +
+    hazards.size +
+    (uf ? 1 : 0) +
+    (q.trim() ? 1 : 0) +
+    (instrument !== "any" ? 1 : 0) +
+    (highLevOnly ? 1 : 0);
 
   const clearAll = () => {
     setTiers(new Set());
     setHazards(new Set());
     setUf("");
     setQ("");
+    setInstrument("any");
+    setHighLevOnly(false);
+    setSort("match");
     setPage(0);
+  };
+
+  const applyMandate = (m: Mandate) => {
+    setInstrument(m.instrument);
+    setTiers(new Set());
+    setUf(m.uf);
+    setHazards(new Set(m.hazards));
+    setSort("leverage");
+    setHighLevOnly(false);
+    setQ("");
+    setWizardOpen(false);
   };
 
   return (
@@ -291,6 +330,17 @@ export default function Explorer({
               {t("app.subtitle")}
             </Text>
             <Box flex="1" />
+            <Button
+              size="sm"
+              bg="base.light"
+              color="content.alternative"
+              fontWeight="700"
+              _hover={{ bg: "background.overlay" }}
+              onClick={() => setWizardOpen(true)}
+            >
+              <Icon as={MdOutlineAutoAwesome} boxSize="4" />
+              {t("mandate.build")}
+            </Button>
             <LanguageToggle />
           </Flex>
         </Container>
@@ -385,6 +435,79 @@ export default function Explorer({
 
           {/* filter rail */}
           <Box w={{ base: "100%", lg: "400px" }} flexShrink={0}>
+            {/* funder mandate (inline) */}
+            <Box
+              bg="background.default"
+              borderWidth="1px"
+              borderColor="border.neutral"
+              borderRadius="md"
+              p="3"
+              mb="4"
+            >
+              <Text
+                fontSize="xs"
+                fontWeight="700"
+                color="content.secondary"
+                textTransform="uppercase"
+                letterSpacing="wide"
+                mb="2"
+              >
+                {t("mandate.title")}
+              </Text>
+              <NativeSelect.Root bg="background.default" mb="2">
+                <NativeSelect.Field
+                  value={instrument}
+                  onChange={(e) =>
+                    setInstrument(e.target.value as InstrumentGroup | "any")
+                  }
+                >
+                  <option value="any">{t("instr.any")}</option>
+                  <option value="credit">{t("instr.credit")}</option>
+                  <option value="blended">{t("instr.blended")}</option>
+                  <option value="grant_ta">{t("instr.grant_ta")}</option>
+                  <option value="distressed">{t("instr.distressed")}</option>
+                </NativeSelect.Field>
+                <NativeSelect.Indicator />
+              </NativeSelect.Root>
+              <Flex gap="2" align="center">
+                <Button
+                  size="xs"
+                  flex="1"
+                  variant="outline"
+                  fontWeight={highLevOnly ? "700" : "400"}
+                  bg={highLevOnly ? "content.alternative" : "background.default"}
+                  color={highLevOnly ? "base.light" : "content.secondary"}
+                  borderColor={
+                    highLevOnly ? "content.alternative" : "border.neutral"
+                  }
+                  onClick={() => setHighLevOnly((v) => !v)}
+                >
+                  <Icon as={MdBolt} boxSize="3.5" />
+                  {t("filters.highLeverage")}
+                </Button>
+                <Flex
+                  borderWidth="1px"
+                  borderColor="border.neutral"
+                  borderRadius="md"
+                  overflow="hidden"
+                >
+                  {(["match", "leverage"] as const).map((s) => (
+                    <Button
+                      key={s}
+                      size="xs"
+                      borderRadius="0"
+                      fontWeight={sort === s ? "700" : "400"}
+                      bg={sort === s ? "content.alternative" : "background.default"}
+                      color={sort === s ? "base.light" : "content.secondary"}
+                      onClick={() => setSort(s)}
+                    >
+                      {t(`sort.${s}`)}
+                    </Button>
+                  ))}
+                </Flex>
+              </Flex>
+            </Box>
+
             <Flex justify="space-between" align="center" mb="2">
               <Text
                 fontSize="xs"
@@ -590,6 +713,7 @@ export default function Explorer({
                 <Table.ColumnHeader>{t("col.municipality")}</Table.ColumnHeader>
                 <Table.ColumnHeader>{t("col.uf")}</Table.ColumnHeader>
                 <Table.ColumnHeader>{t("col.capag")}</Table.ColumnHeader>
+                <Table.ColumnHeader>{t("col.instrument")}</Table.ColumnHeader>
                 <Table.ColumnHeader title={t("indicator.debt.what")}>
                   {t("col.debt")}
                 </Table.ColumnHeader>
@@ -600,6 +724,7 @@ export default function Explorer({
                   {t("col.liquidity")}
                 </Table.ColumnHeader>
                 <Table.ColumnHeader>{t("col.icf")}</Table.ColumnHeader>
+                <Table.ColumnHeader>{t("col.leverage")}</Table.ColumnHeader>
                 {hasRisks && (
                   <Table.ColumnHeader>{t("col.top3")}</Table.ColumnHeader>
                 )}
@@ -622,10 +747,34 @@ export default function Explorer({
                     <Table.Cell>
                       <TierBadge tier={r.capag} />
                     </Table.Cell>
+                    <Table.Cell fontSize="xs" color="content.secondary">
+                      {t(INSTRUMENT_LABEL_KEY[instrumentGroup(r.capag)])}
+                    </Table.Cell>
                     <Table.Cell>{r.debt}</Table.Cell>
                     <Table.Cell>{r.savings}</Table.Cell>
                     <Table.Cell>{r.liquidity}</Table.Cell>
                     <Table.Cell color="content.tertiary">{r.icf}</Table.Cell>
+                    <Table.Cell>
+                      {r.leverage ? (
+                        <Flex
+                          align="center"
+                          gap="1"
+                          fontSize="2xs"
+                          fontWeight="700"
+                          color="content.link"
+                          title={r.leverage.blockers
+                            .map((b) => t(`lev.blocker.${b}`))
+                            .join(", ")}
+                        >
+                          <Icon as={MdBolt} boxSize="3.5" />
+                          {t(`lev.${r.leverage.kind}`)}
+                        </Flex>
+                      ) : (
+                        <Text fontSize="xs" color="content.tertiary">
+                          —
+                        </Text>
+                      )}
+                    </Table.Cell>
                     {hasRisks && (
                       <Table.Cell>
                         {top3.length > 0 ? (
@@ -673,6 +822,23 @@ export default function Explorer({
             failed={cityFailed}
             projects={projects}
             onClose={() => setSelected(null)}
+          />
+        )}
+        {wizardOpen && (
+          <MandateWizard
+            ufs={ufs}
+            resultCount={(m) =>
+              rows.filter(
+                (r) =>
+                  (m.instrument === "any" ||
+                    instrumentGroup(r.capag) === m.instrument) &&
+                  (!m.uf || r.uf === m.uf) &&
+                  (m.hazards.length === 0 ||
+                    m.hazards.some((h) => (r.risks?.[h] ?? 0) >= HIGH_RISK)),
+              ).length
+            }
+            onApply={applyMandate}
+            onClose={() => setWizardOpen(false)}
           />
         )}
       </Container>
