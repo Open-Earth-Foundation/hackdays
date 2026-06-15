@@ -12,6 +12,7 @@ import {
   Icon,
   IconButton,
   Input,
+  Link as ChakraLink,
   NativeSelect,
   SimpleGrid,
   Table,
@@ -26,12 +27,14 @@ import {
   MdOutlineFileDownload,
   MdOutlineFilterAltOff,
   MdOutlineInfo,
+  MdOutlineSlideshow,
   MdOutlineZoomInMap,
 } from "react-icons/md";
 import CityPanel from "./CityPanel";
 import LanguageToggle from "./LanguageToggle";
 import MandateWizard, { type Mandate } from "./MandateWizard";
 import OnboardingCarousel from "./OnboardingCarousel";
+import PortfolioMatrix from "./PortfolioMatrix";
 import { HAZARDS, HAZARD_BY_KEY, TIER_HEX } from "../lib/display";
 import { useTranslation } from "../i18n/client";
 import type { CityData } from "../lib/cityData";
@@ -39,6 +42,7 @@ import type { Project } from "../lib/matchProjects";
 import type { Leverage } from "../lib/leverage";
 import { instrumentGroup, INSTRUMENT_LABEL_KEY, type InstrumentGroup } from "../lib/instrument";
 import { fmtBrl } from "../lib/headroom";
+import { riskBand as cityBand, type RiskBand } from "../lib/risk";
 
 const CityMap = dynamic(() => import("./CityMap"), {
   ssr: false,
@@ -186,8 +190,10 @@ export default function Explorer({
   const [uf, setUf] = useState("");
   const [q, setQ] = useState("");
   const [instrument, setInstrument] = useState<InstrumentGroup | "any">("any");
+  const [band, setBand] = useState<RiskBand | "all">("all");
   const [highLevOnly, setHighLevOnly] = useState(false);
   const [sort, setSort] = useState<"match" | "leverage">("match");
+  const [view, setView] = useState<"explore" | "portfolio">("explore");
   const [wizardOpen, setWizardOpen] = useState(false);
   const [introOpen, setIntroOpen] = useState(false);
   const [selected, setSelected] = useState<Row | null>(null);
@@ -280,6 +286,7 @@ export default function Explorer({
       (r) =>
         (tiers.size === 0 || tiers.has(r.capag)) &&
         (instrument === "any" || instrumentGroup(r.capag) === instrument) &&
+        (band === "all" || cityBand(r.risks) === band) &&
         (!uf || r.uf === uf) &&
         (!needle || r.name.toLowerCase().includes(needle)) &&
         (!highLevOnly || r.leverage != null) &&
@@ -298,7 +305,7 @@ export default function Explorer({
       out.sort((a, b) => sel(b) - sel(a));
     }
     return out;
-  }, [rows, tiers, instrument, uf, q, highLevOnly, hazards, sort]);
+  }, [rows, tiers, instrument, band, uf, q, highLevOnly, hazards, sort]);
 
   const pageStart = itemsPerPage * page;
   const pageEnd = Math.min(pageStart + itemsPerPage, filtered.length);
@@ -331,6 +338,7 @@ export default function Explorer({
     (uf ? 1 : 0) +
     (q.trim() ? 1 : 0) +
     (instrument !== "any" ? 1 : 0) +
+    (band !== "all" ? 1 : 0) +
     (highLevOnly ? 1 : 0);
 
   const clearAll = () => {
@@ -339,6 +347,7 @@ export default function Explorer({
     setUf("");
     setQ("");
     setInstrument("any");
+    setBand("all");
     setHighLevOnly(false);
     setSort("match");
     setPage(0);
@@ -347,12 +356,26 @@ export default function Explorer({
   const applyMandate = (m: Mandate) => {
     setInstrument(m.instrument);
     setTiers(new Set());
+    setBand("all");
     setUf(m.uf);
     setHazards(new Set(m.hazards));
     setSort("leverage");
     setHighLevOnly(false);
     setQ("");
     setWizardOpen(false);
+  };
+
+  // drill from a portfolio matrix cell into the filtered Explore pipeline
+  const drillFromMatrix = (group: InstrumentGroup, b: RiskBand) => {
+    setInstrument(group);
+    setBand(b);
+    setTiers(new Set());
+    setHazards(new Set());
+    setUf("");
+    setQ("");
+    setHighLevOnly(false);
+    setSort("leverage");
+    setView("explore");
   };
 
   return (
@@ -399,7 +422,38 @@ export default function Explorer({
         </Container>
       </Box>
 
+      {/* tab bar */}
+      <Box borderBottomWidth="1px" borderColor="border.neutral" bg="background.default">
+        <Container maxW="7xl">
+          <Flex gap="1">
+            {(["explore", "portfolio"] as const).map((v) => (
+              <Box
+                key={v}
+                as="button"
+                onClick={() => setView(v)}
+                px="4"
+                py="3"
+                fontSize="sm"
+                fontWeight={view === v ? "700" : "500"}
+                color={view === v ? "content.alternative" : "content.tertiary"}
+                borderBottomWidth="2px"
+                borderColor={view === v ? "content.alternative" : "transparent"}
+                _hover={{ color: "content.alternative" }}
+              >
+                {t(`tab.${v}`)}
+              </Box>
+            ))}
+          </Flex>
+        </Container>
+      </Box>
+
       <Container maxW="7xl" py="6">
+        {view === "portfolio" && (
+          <PortfolioMatrix rows={rows} onCell={drillFromMatrix} />
+        )}
+
+        {view === "explore" && (
+          <>
         <Text color="content.tertiary" fontSize="sm" mb="5">
           {t("app.intro", { count: rows.length })}
         </Text>
@@ -915,6 +969,29 @@ export default function Explorer({
             </Table.Body>
           </Table.Root>
         </Box>
+          </>
+        )}
+
+        {/* footer · sources + shareable prototype */}
+        <Box mt="10" pt="5" borderTopWidth="1px" borderColor="border.neutral">
+          <Text fontSize="xs" color="content.tertiary" lineHeight="1.6" maxW="52rem">
+            {t("footer.sources")}
+          </Text>
+          <ChakraLink
+            href="/capag-funder-tool.html"
+            target="_blank"
+            fontSize="xs"
+            color="content.link"
+            mt="2"
+            display="inline-flex"
+            alignItems="center"
+            gap="1"
+          >
+            <Icon as={MdOutlineSlideshow} boxSize="3.5" />
+            {t("footer.prototype")}
+          </ChakraLink>
+        </Box>
+
         {selected && (
           <CityPanel
             row={selected}

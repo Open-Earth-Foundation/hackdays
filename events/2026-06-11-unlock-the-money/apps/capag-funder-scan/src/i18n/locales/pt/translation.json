@@ -3,6 +3,24 @@
   "app.subtitle": "CAPAG do Tesouro Nacional (nov/2025) × dados climáticos do CityCatalyst",
   "app.intro": "{{count, number}} municípios brasileiros. Sinal indicativo de triagem, não uma decisão de crédito.",
 
+  "tab.explore": "Explorar",
+  "tab.portfolio": "Portfólio",
+
+  "portfolio.title": "O mercado que os financiadores não veem",
+  "portfolio.intro": "Cada município por faixa fiscal (linhas) × risco climático (colunas). O sistema de crédito atende apenas o canto superior esquerdo. As células destacadas são os mercados de financiamento combinado e de AT invisíveis aos canais de crédito. Clique em qualquer célula para carregá-la como pipeline mobilizável.",
+  "portfolio.note": "Contagens por faixa e R$ mobilizáveis são reais (Tesouro nov/2025 + RGF). Faixa de risco = maior ameaça CCRA por cidade (alto ≥ 50, moderado ≥ 25). 'Mobilizável' exclui cidades C simples e em situação crítica — sem canal de crédito.",
+  "portfolio.band.low": "Risco climático baixo",
+  "portfolio.band.moderate": "Risco climático moderado",
+  "portfolio.band.high": "Risco climático alto",
+  "portfolio.group.credit": "Financiável · A/B",
+  "portfolio.group.blended": "Bloqueado · C",
+  "portfolio.group.grant_ta": "Sem nota · n.d.",
+  "portfolio.group.distressed": "Crítico · D",
+  "portfolio.cantSee": "invisível hoje",
+
+  "footer.sources": "Dados reais: notas CAPAG + sub-indicadores e RGF (RCL, Dívida Consolidada) — Tesouro Nacional, nov/2025, ODbL · emissões SEEG/SINIR/SNIS + risco climático CCRA — CityCatalyst Global API · base de projetos financiados curada pela OEF. Sinal indicativo de triagem — a CAPAG definitiva é calculada pela STN quando o município solicita crédito garantido. Não é uma decisão de crédito.",
+  "footer.prototype": "Abrir o protótipo independente (compartilhável)",
+
   "filters.fiscal": "Capacidade fiscal (CAPAG)",
   "filters.risk": "Alto risco climático (≥ 50, qualquer selecionado)",
   "filters.clear": "Limpar ({{count}})",

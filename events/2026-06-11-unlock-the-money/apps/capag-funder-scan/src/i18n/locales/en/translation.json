@@ -3,6 +3,24 @@
   "app.subtitle": "Tesouro Nacional CAPAG (Nov 2025) × CityCatalyst climate data",
   "app.intro": "{{count, number}} Brazilian municipalities. Indicative screening signal, not a credit decision.",
 
+  "tab.explore": "Explore",
+  "tab.portfolio": "Portfolio",
+
+  "portfolio.title": "The market funders can't see",
+  "portfolio.intro": "Every municipality by fiscal tier (rows) × climate risk (columns). The credit system serves only the top-left. Outlined cells are the blended-finance and TA markets invisible to credit channels. Click any cell to load it as a deployable pipeline.",
+  "portfolio.note": "Tier counts and deployable R$ are real (Tesouro Nov-2025 + RGF). Climate-risk band = highest CCRA hazard per city (high ≥ 50, moderate ≥ 25). 'Deployable' excludes plain-C and distressed cities — no credit channel.",
+  "portfolio.band.low": "Low climate risk",
+  "portfolio.band.moderate": "Moderate climate risk",
+  "portfolio.band.high": "High climate risk",
+  "portfolio.group.credit": "Bankable · A/B",
+  "portfolio.group.blended": "Blocked · C",
+  "portfolio.group.grant_ta": "Unrated · n.d.",
+  "portfolio.group.distressed": "Distressed · D",
+  "portfolio.cantSee": "can't see today",
+
+  "footer.sources": "Real data: CAPAG ratings + sub-indicators and RGF (RCL, Dívida Consolidada) — Tesouro Nacional, Nov-2025, ODbL · SEEG/SINIR/SNIS emissions + CCRA climate risk — CityCatalyst Global API · funded-projects set curated by OEF. Indicative screening signal — the definitive CAPAG is computed by STN when a municipality applies for guaranteed credit. Not a credit decision.",
+  "footer.prototype": "Open the standalone prototype (shareable)",
+
   "filters.fiscal": "Fiscal capacity (CAPAG)",
   "filters.risk": "High climate risk (≥ 50, any selected)",
   "filters.clear": "Clear ({{count}})",
