@@ -11,7 +11,8 @@ import { VerifiedEvidenceTable } from "@/components/political-details/VerifiedEv
 import { ConfidenceBadge } from "@/components/ui/ConfidenceBadge";
 import { ScoreBar } from "@/components/ui/ScoreBar";
 import { getConfidenceRange } from "@/lib/political-will/scoring";
-import { reviewEvidence } from "@/lib/political-will/api";
+import { reviewEvidence, updateEvidence } from "@/lib/political-will/api";
+import type { EvidenceUpdatePayload } from "@/lib/political-will/api";
 import type { PoliticalWillDetail } from "@/types/political-will";
 
 type PoliticalDetailsClientProps = {
@@ -47,11 +48,25 @@ export function PoliticalDetailsClient({
     }
   }
 
+  async function handleEditEvidence(evidenceId: string, payload: EvidenceUpdatePayload) {
+    setBusyEvidenceId(evidenceId);
+    setStatus("Saving evidence edits...");
+    try {
+      const updated = await updateEvidence(cityId, action.id, evidenceId, payload);
+      setDetail(updated);
+      setStatus("Evidence edits saved.");
+    } catch (error) {
+      setStatus(error instanceof Error ? error.message : "Evidence edit failed");
+    } finally {
+      setBusyEvidenceId(null);
+    }
+  }
+
   return (
     <main className="page-content">
       <header className="page-header">
         <nav className="breadcrumb" aria-label="Breadcrumb">
-          <Link href={`/cities/${cityId}/hiap`}>HIAP</Link>
+          <Link href="/hiap">HIAP</Link>
           <span className="breadcrumb-sep">›</span>
           <Link href={`/cities/${cityId}/hiap`}>Top actions</Link>
           <span className="breadcrumb-sep">›</span>
@@ -167,10 +182,15 @@ export function PoliticalDetailsClient({
             <AiReviewQueue
               suggestions={detail.suggestions}
               onReview={handleReview}
+              onEdit={handleEditEvidence}
               busyEvidenceId={busyEvidenceId}
             />
           </div>
-          <VerifiedEvidenceTable evidence={action.evidence} />
+          <VerifiedEvidenceTable
+            evidence={action.evidence}
+            onReview={handleReview}
+            busyEvidenceId={busyEvidenceId}
+          />
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 20, minWidth: 0 }}>
           <div id="score-breakdown">

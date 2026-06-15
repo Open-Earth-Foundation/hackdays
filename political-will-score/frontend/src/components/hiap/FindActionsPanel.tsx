@@ -35,10 +35,7 @@ export function FindActionsPanel({ cityId }: FindActionsPanelProps) {
         </div>
         <div style={{ display: "flex", gap: 8 }}>
           <button type="button" className="btn btn-secondary btn-sm">
-            🔍 Find actions
-          </button>
-          <button type="button" className="btn btn-secondary btn-sm">
-            Import actions ▾
+            Import actions
           </button>
           <button type="button" className="btn btn-primary btn-sm">
             + Add action

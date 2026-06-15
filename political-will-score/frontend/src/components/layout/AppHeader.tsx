@@ -3,7 +3,7 @@ import Link from "next/link";
 const navItems = [
   { label: "Dashboard", href: "#" },
   { label: "GHGI", href: "#" },
-  { label: "HIAP", href: "/cities/warsaw/hiap", active: true },
+  { label: "HIAP", href: "/hiap", active: true },
   { label: "CCRA", href: "#" },
 ];
 
@@ -31,7 +31,7 @@ export function AppHeader() {
       >
         <div style={{ display: "flex", alignItems: "center", gap: 40 }}>
           <Link
-            href="/cities/warsaw/hiap"
+            href="/hiap"
             style={{
               fontWeight: 700,
               fontSize: "1.05rem",

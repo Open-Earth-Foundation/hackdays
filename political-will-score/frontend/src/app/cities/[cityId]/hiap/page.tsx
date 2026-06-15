@@ -21,7 +21,7 @@ export default async function HiapPage({ params }: PageProps) {
     <main className="page-content">
       <header className="page-header">
         <nav className="breadcrumb" aria-label="Breadcrumb">
-          <Link href={`/cities/${cityId}/hiap`}>HIAP</Link>
+          <Link href="/hiap">HIAP</Link>
           <span className="breadcrumb-sep">›</span>
           <span>Top actions</span>
         </nav>

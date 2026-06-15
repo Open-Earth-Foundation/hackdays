@@ -124,6 +124,21 @@ class NewsSearchRequest(BaseModel):
     submittedBy: str = "Demo reviewer"
 
 
+class EvidenceUpdate(BaseModel):
+    claim: str | None = Field(default=None, min_length=1, max_length=3000)
+    signalKey: Literal[
+        "budgetFollowThrough",
+        "electionExposure",
+        "institutionalContinuity",
+        "publicCommitment",
+    ] | None = None
+    impact: int | None = Field(default=None, ge=-40, le=40)
+    confidence: Literal["low", "medium", "high"] | None = None
+    contractStatus: str | None = Field(default=None, max_length=100)
+    sourceExcerpt: str | None = Field(default=None, max_length=3000)
+    submittedBy: str = "Demo reviewer"
+
+
 app = FastAPI(title="Political Will Score API", version="0.1.0")
 
 allowed_origins = [
@@ -638,8 +653,9 @@ def upsert_citywide_political_events(
                 (city_id, action_id),
             ).fetchone()
             if reviewed_match:
-                conn.execute("DELETE FROM political_will_evidence WHERE id = ?", (evidence_id,))
-                conn.execute("DELETE FROM political_will_sources WHERE id = ?", (source_id,))
+                if reviewed_match["id"] != evidence_id:
+                    conn.execute("DELETE FROM political_will_evidence WHERE id = ?", (evidence_id,))
+                    conn.execute("DELETE FROM political_will_sources WHERE id = ?", (source_id,))
                 continue
             source_excerpt = str(event["sourceExcerpt"])
             metadata = {
@@ -1568,6 +1584,29 @@ def review_evidence(city_id: str, action_id: str, evidence_id: str, decision: st
             )
             add_audit(conn, action_id, actor, "evidence_verified", evidence["extracted_claim"] or "Evidence approved")
         elif decision == "rejected":
+            if evidence["status"] == "verified":
+                signal = conn.execute(
+                    """
+                    SELECT * FROM political_will_action_score
+                    WHERE action_id = ? AND signal_key = ?
+                    """,
+                    (action_id, evidence["signal_key"]),
+                ).fetchone()
+                if signal:
+                    new_signal_score = clamp_int(
+                        signal["score"] - (evidence["impact_value"] or 0),
+                        0,
+                        100,
+                        signal["score"],
+                    )
+                    conn.execute(
+                        """
+                        UPDATE political_will_action_score
+                        SET score = ?, status = 'needs_review', updated_at = ?
+                        WHERE action_id = ? AND signal_key = ?
+                        """,
+                        (new_signal_score, utc_now(), action_id, evidence["signal_key"]),
+                    )
             conn.execute(
                 """
                 UPDATE political_will_evidence
@@ -1578,6 +1617,29 @@ def review_evidence(city_id: str, action_id: str, evidence_id: str, decision: st
             )
             add_audit(conn, action_id, actor, "evidence_rejected", evidence["extracted_claim"] or "Evidence rejected")
         else:
+            if evidence["status"] == "verified":
+                signal = conn.execute(
+                    """
+                    SELECT * FROM political_will_action_score
+                    WHERE action_id = ? AND signal_key = ?
+                    """,
+                    (action_id, evidence["signal_key"]),
+                ).fetchone()
+                if signal:
+                    new_signal_score = clamp_int(
+                        signal["score"] - (evidence["impact_value"] or 0),
+                        0,
+                        100,
+                        signal["score"],
+                    )
+                    conn.execute(
+                        """
+                        UPDATE political_will_action_score
+                        SET score = ?, status = 'needs_review', updated_at = ?
+                        WHERE action_id = ? AND signal_key = ?
+                        """,
+                        (new_signal_score, utc_now(), action_id, evidence["signal_key"]),
+                    )
             conn.execute(
                 """
                 UPDATE political_will_evidence
@@ -1604,6 +1666,79 @@ def reject_evidence(city_id: str, action_id: str, evidence_id: str) -> dict[str,
 @app.post("/api/v1/cities/{city_id}/hiap/actions/{action_id}/political-will/evidence/{evidence_id}/needs-review")
 def needs_review_evidence(city_id: str, action_id: str, evidence_id: str) -> dict[str, Any]:
     return review_evidence(city_id, action_id, evidence_id, "needs_review")
+
+
+@app.patch("/api/v1/cities/{city_id}/hiap/actions/{action_id}/political-will/evidence/{evidence_id}")
+def update_evidence(
+    city_id: str,
+    action_id: str,
+    evidence_id: str,
+    payload: EvidenceUpdate,
+) -> dict[str, Any]:
+    init_db()
+    with get_conn() as conn:
+        evidence = conn.execute(
+            """
+            SELECT * FROM political_will_evidence
+            WHERE city_id = ? AND action_id = ? AND id = ?
+            """,
+            (city_id, action_id, evidence_id),
+        ).fetchone()
+        if not evidence:
+            raise HTTPException(status_code=404, detail="Evidence not found")
+        if evidence["status"] == "verified":
+            raise HTTPException(status_code=400, detail="Pull back verified evidence before editing it.")
+
+        claim = payload.claim.strip() if payload.claim is not None else evidence["extracted_claim"]
+        source_excerpt = (
+            payload.sourceExcerpt.strip()
+            if payload.sourceExcerpt is not None
+            else evidence["source_excerpt"]
+        )
+        contract_status = (
+            payload.contractStatus.strip() if payload.contractStatus is not None else evidence["contract_status"]
+        )
+        if contract_status == "":
+            contract_status = None
+        impact_value = payload.impact if payload.impact is not None else evidence["impact_value"]
+        impact = "neutral"
+        if impact_value is not None and impact_value > 0:
+            impact = "positive"
+        elif impact_value is not None and impact_value < 0:
+            impact = "negative"
+
+        conn.execute(
+            """
+            UPDATE political_will_evidence
+            SET extracted_claim = ?, signal_key = ?, impact = ?, impact_value = ?,
+                confidence = ?, contract_status = ?, source_excerpt = ?,
+                reviewer_decision = 'edited', reviewed_at = ?
+            WHERE id = ?
+            """,
+            (
+                claim,
+                payload.signalKey or evidence["signal_key"],
+                impact,
+                impact_value,
+                payload.confidence or evidence["confidence"],
+                contract_status,
+                source_excerpt,
+                utc_now(),
+                evidence_id,
+            ),
+        )
+        if evidence["source_id"] and source_excerpt:
+            conn.execute(
+                """
+                UPDATE political_will_sources
+                SET extracted_text = ?, excerpt = ?, updated_at = ?
+                WHERE id = ?
+                """,
+                (source_excerpt, excerpt(source_excerpt), utc_now(), evidence["source_id"]),
+            )
+        add_audit(conn, action_id, payload.submittedBy, "evidence_edited", claim or "Evidence edited")
+        refresh_action_metrics(conn, city_id, action_id)
+        return build_detail(conn, city_id, action_id)
 
 
 @app.post("/api/v1/cities/{city_id}/hiap/actions/{action_id}/political-will/news-search")

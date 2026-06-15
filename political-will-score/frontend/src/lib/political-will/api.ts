@@ -1,7 +1,9 @@
 import type {
   CityHiapData,
+  ConfidenceLevel,
   PoliticalWillDetail,
   PoliticalWillSource,
+  SignalKey,
 } from "@/types/political-will";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://127.0.0.1:8000";
@@ -19,6 +21,15 @@ type SourceCreatePayload = {
 type SourceResponse = {
   source: PoliticalWillSource;
   detail: PoliticalWillDetail;
+};
+
+export type EvidenceUpdatePayload = {
+  claim?: string;
+  signalKey?: SignalKey;
+  impact?: number;
+  confidence?: ConfidenceLevel;
+  contractStatus?: string | null;
+  sourceExcerpt?: string;
 };
 
 async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
@@ -122,6 +133,21 @@ export async function reviewEvidence(
   return apiFetch<PoliticalWillDetail>(
     `/api/v1/cities/${cityId}/hiap/actions/${actionId}/political-will/evidence/${evidenceId}/${decision}`,
     { method: "POST", body: JSON.stringify({}) }
+  );
+}
+
+export async function updateEvidence(
+  cityId: string,
+  actionId: string,
+  evidenceId: string,
+  payload: EvidenceUpdatePayload
+): Promise<PoliticalWillDetail> {
+  return apiFetch<PoliticalWillDetail>(
+    `/api/v1/cities/${cityId}/hiap/actions/${actionId}/political-will/evidence/${evidenceId}`,
+    {
+      method: "PATCH",
+      body: JSON.stringify({ submittedBy: "Demo reviewer", ...payload }),
+    }
   );
 }
 

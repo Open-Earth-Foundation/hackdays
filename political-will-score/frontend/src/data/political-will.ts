@@ -224,9 +224,15 @@ function buildCityData(city: CatalogCity): CityHiapData {
 export const aiSuggestions: AiSuggestion[] = [];
 
 const cities = actionCatalog.cities as CatalogCity[];
+export const cityIds = cities.map((city) => city.cityId);
+
 const cityData: Record<string, CityHiapData> = Object.fromEntries(
   cities.map((city) => [city.cityId, buildCityData(city)])
 );
+
+export function getAllCityHiapData(): CityHiapData[] {
+  return cityIds.map((cityId) => cityData[cityId]).filter(Boolean);
+}
 
 export function getCityHiapData(cityId: string): CityHiapData | undefined {
   return cityData[cityId];
