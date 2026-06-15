@@ -13,7 +13,7 @@ embed (OAuth, live city context, HIAP) is Phase 4.
 ## Run it
 
 ```bash
-cd events/2026-06-11-unlock-the-money/apps/city-readiness-navigator
+cd events/2026-06-11-unlock-the-money/justagiraffe/city-readiness-navigator
 npm install
 npm run dev
 # open http://localhost:3000

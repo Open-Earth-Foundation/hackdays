@@ -13,7 +13,7 @@ hackday modules) together.
 
 | App | Faces | Lives in | Run |
 |---|---|---|---|
-| **City Readiness Navigator** | the **city** — match → readiness pathways → portfolio → submit | [`../apps/city-readiness-navigator/`](../apps/city-readiness-navigator/) | Next.js (`npm i && npm run dev`) |
+| **City Readiness Navigator** | the **city** — match → readiness pathways → portfolio → submit | [`city-readiness-navigator/`](city-readiness-navigator/) | Next.js (`npm i && npm run dev`) |
 | **SFP Control Tower** | the **IDB** — Intake & Triage · Readiness Scoring · M&E & Board | [`control-tower/`](control-tower/) | static — open `index.html` |
 
 They share a **readiness engine** (`readiness-profiles.js` + `scoring.js`). It currently
@@ -23,17 +23,19 @@ one shared `@oef/readiness` package is an open decision (architecture §8).
 ## Folder layout
 
 ```
-justagiraffe/
+justagiraffe/                         everything the team builds lives here
 ├── README.md                         ← you are here (the map)
 ├── INTEGRATED-ARCHITECTURE.md        canonical · system map (§5a diagram)
 ├── PRD-city-facing-readiness-app.md  canonical · city app definition
 ├── ITERATION-2.1-PLAN.md             canonical · current execution plan
 ├── diagrams/                         polished SVGs for presenting
+├── city-readiness-navigator/         the city-facing app (Next.js)
 ├── control-tower/                    the IDB-facing app (code + its own docs + M&E)
 ├── archive/                          superseded / historical (not current)
 └── reference/                        source material (IDB PDF, notes, team)
 ```
-The **city-facing app** lives outside this folder, in [`../apps/city-readiness-navigator/`](../apps/city-readiness-navigator/) (repo convention).
+Both apps are siblings under `justagiraffe/` — the team folder is self-contained
+(no team code outside it), which keeps things clean when branches merge to `main`.
 
 ## The documents
 

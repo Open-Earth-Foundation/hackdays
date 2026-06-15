@@ -34,7 +34,7 @@ projects and adds creditworthiness + pooling + the funder handoff.
 | **CityCatalyst** | `Open-Earth-Foundation/CityCatalyst` | Host: GHG inventory, **HIAP** (prioritized actions), CCRA risk, Journey Navigator module catalog, OAuth, Global API | Production |
 | **Project Preparator** | `joaquinOEF/NBS-Project-Preparation` | Project bankability (Tech/Fin/Pol), project-funder matching, Concept Note | POC |
 | **justagiraffe Control Tower** | hackdays `justagiraffe/control-tower` | IDB-facing: Intake & Triage, Readiness Scoring (profile-driven engine), Results/Board | Hackday |
-| **City Readiness Navigator** | hackdays `apps/city-readiness-navigator` | City-facing: the 7-step journey; entity readiness + pooling + submit | Hackday (ours) |
+| **City Readiness Navigator** | hackdays `justagiraffe/city-readiness-navigator` | City-facing: the 7-step journey; entity readiness + pooling + submit | Hackday (ours) |
 | **City-Funder Matching Engine** | hackdays `city–funder-matching` + `apps/funder-scan` | **Chile** capacity (SINIM/FCM), action→funder matching, **pooling/aggregation** | Hackday |
 | **CAPAG Funder Scan** | hackdays `apps/capag-funder-scan` | **Brazil** creditworthiness (Treasury CAPAG A/B/C/D for 5,570 munis) | Hackday |
 | **Political-will signal** | hackdays `codex/8-political-will-score` | LLM-derived governance/political-will sub-score from news/articles | Hackday (early) |
