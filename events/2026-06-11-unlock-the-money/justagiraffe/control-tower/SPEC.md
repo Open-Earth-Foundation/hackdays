@@ -1,7 +1,7 @@
 # Sub-Sovereign Pilot Control Tower — Product Specification
 
 **Status:** Hackday prototype (working scaffold) · **Audience:** the Claude Code session that will improve this app
-**Inputs you should load alongside this spec:** `index.html`, `scoring.js`, `data/sngs.js`, and the IDB program PDF (`IDB cities regions - Document proposal - Public.pdf`).
+**Inputs you should load alongside this spec:** `index.html`, `scoring.js`, `data/sngs.js`, and the IDB program PDF (`../reference/IDB cities regions - Document proposal - Public.pdf`).
 **Goal of the next iteration:** deepen the app's fidelity to the real IDB program, polish each of the three features, and re-skin the UI in **IDB branding** (reference https://www.iadb.org/en).
 
 ---

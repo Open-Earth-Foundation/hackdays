@@ -1,6 +1,6 @@
 # Iteration 2.1 — City Readiness Navigator + SFP Control Tower upgrade
 
-**Supersedes:** [`ITERATION-2-PLAN.md`](ITERATION-2-PLAN.md) (all its points still hold;
+**Supersedes:** [`ITERATION-2-PLAN.md`](archive/ITERATION-2-PLAN.md) (all its points still hold;
 this refines them with the integrated architecture).
 **Reads with:** [`INTEGRATED-ARCHITECTURE.md`](INTEGRATED-ARCHITECTURE.md).
 **Why 2.1:** after reviewing the **Project Preparator** POC, the **CAPAG** project (Brazil

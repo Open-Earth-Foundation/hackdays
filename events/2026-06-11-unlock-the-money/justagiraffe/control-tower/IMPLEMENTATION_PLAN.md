@@ -15,7 +15,7 @@ This turns readiness into the first filter and moves project-level proposal deta
 
 ### Current Issue
 
-Today, `control-tower/index.html` defines proposal stages as:
+Today, `index.html` defines proposal stages as:
 
 ```js
 const STAGES = ["Intake","Screening","Readiness Review","Structuring","Board Pipeline"];
@@ -164,7 +164,7 @@ Future production model should support multiple proposals per SNG, because one c
 
 ### 1. Make Readiness Scoring the First Tab
 
-Change navigation order in `control-tower/index.html`:
+Change navigation order in `index.html`:
 
 Current:
 
@@ -406,7 +406,7 @@ This makes the Board story clearer: the pilot is not only tracking projects, it 
 ### Phase 4: Demo Story and Docs
 
 - Update `SPEC.md` to reflect the two-stage model.
-- Update `ROADMAP.md` demo script:
+- Update `../archive/ROADMAP.md` demo script:
   1. Readiness Scoring: "Which cities are ready?"
   2. Project Review: "For ready cities, which projects advance?"
   3. M&E & Board: "Is the pilot proving itself?"
