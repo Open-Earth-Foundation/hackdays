@@ -1,4 +1,5 @@
 import type { City } from "./types";
+import { PILOT_CITY_IDS } from "../lib/pilots";
 
 // Shared note for the Brazilian inventories: the CityCatalyst territorial
 // totals don't yet capture every sector (notably grid electricity / scope 2),
@@ -11,7 +12,7 @@ const BR_PARTIAL_NOTE =
 // UN/LOCODE — the same key CityCatalyst uses — so a city can later be wired
 // to live GHGI / CCRA / HIAP data from the CityCatalyst Global API.
 
-export const cities: City[] = [
+const allCities: City[] = [
   {
     id: "medellin",
     name: "Medellín",
@@ -559,3 +560,10 @@ export const cities: City[] = [
     },
   },
 ];
+
+// The prototype is scoped to our Brazilian use-case cities (live CityCatalyst
+// data). The other cities above remain in `allCities` and can be re-enabled by
+// widening this filter. Pilots (full AI workspace) are surfaced first.
+export const cities: City[] = allCities
+  .filter((c) => c.country === "Brazil")
+  .sort((a, b) => Number(PILOT_CITY_IDS.has(b.id)) - Number(PILOT_CITY_IDS.has(a.id)));

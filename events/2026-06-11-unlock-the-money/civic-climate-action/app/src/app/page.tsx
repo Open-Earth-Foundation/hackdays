@@ -84,10 +84,11 @@ export default function Home() {
             </p>
           </div>
           <p style={{ fontSize: "0.82rem", color: "var(--ink-faint)", maxWidth: 720, margin: 0 }}>
-            Built for OEF Hackday 26Q2. Brazilian cities pull live emissions-inventory and
-            climate-risk data from CityCatalyst; other cities use the latest verified inventories
-            and risk assessments from official sources. Every figure and success story links to its
-            source — look for the &ldquo;CityCatalyst live&rdquo; vs &ldquo;External source&rdquo; badge.
+            Built for OEF Hackday 26Q2. This pilot is scoped to Brazilian cities, which pull live
+            emissions-inventory and climate-risk data from CityCatalyst. The AI workspace runs a
+            small open-weight model on a low-carbon grid; its carbon figure is an estimate.
+            Inspiration stories from around the world are independently sourced — every figure and
+            story links to its source.
           </p>
         </div>
       </footer>

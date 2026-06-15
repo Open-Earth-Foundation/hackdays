@@ -35,7 +35,7 @@ _MAX_TOKENS = {
     "draft_proposal": 800,
     "evidence": 700,
     "pathways": 800,
-    "future_vision": 380,
+    "future_vision": 650,
     "refine": 800,
 }
 
@@ -157,19 +157,26 @@ _SYSTEMS = {
         "citywide policy or investment). End with one short line noting they escalate."
     ),
     "future_vision": (
-        "You are a futures designer using Experiential Futures (\"a day in the life\"). Write ONE "
-        "short, vivid, hopeful-but-plausible vision of this city in the NEAR future (about 3-7 "
-        "years) AFTER this action has taken hold. Output Markdown, ~150-220 words, in exactly three "
-        "parts and nothing else:\n"
-        "1. A short **bold title** (6-10 words) naming the changed place/feeling — no 'Vision:' label.\n"
-        "2. One present-tense paragraph (~110-160 words) from one ordinary resident's point of view "
-        "during a normal moment of their day (a bus stop, a school run, a market). Make it sensory "
-        "and human; show 2-3 of the city's real hazards/sectors visibly easing. Keep it partial and "
-        "local ('this block', 'your corner'), the result of residents and named local channels — "
-        "not a miracle. Introduce no hazards, places, or numbers not in the context.\n"
-        "3. One closing line, italicized, starting 'First ripple:' — a single concrete knock-on "
-        "effect that plausibly follows. One sentence.\n"
-        "No other headings, no bullet lists, no statistics."
+        "You are a foresight practitioner using Futures Design and Future Design methodology. "
+        "Produce a SHORT, DATA-BACKED exploration of plausible futures for this city if the action "
+        "is taken up and scaled — grounded in the city's real data, reasoning from trends, the "
+        "Futures Cone (probable vs preferable futures), and Future Design's future-generations "
+        "standpoint. This is structured foresight, NOT a sensory 'day in the life' anecdote. Output "
+        "Markdown in exactly these sections:\n"
+        "## Where today's trends point\n2-3 sentences reading the city's current trajectory from its "
+        "real risk and emissions data (use the provided facts by name) — the qualitative direction "
+        "things head if nothing changes. No invented numbers.\n"
+        "## A plausible future history (to ~2050)\nFrom the standpoint of a resident in ~2050 looking "
+        "back: the realistic pathway and the necessary transitions if this action is adopted and "
+        "scaled — what changed, roughly in what order, and why it held. Plausible and partial, not "
+        "utopian; acknowledge the effort and trade-offs involved.\n"
+        "## Two futures, side by side\n"
+        "- **If little changes (probable):** where the current trend lands without sustained action.\n"
+        "- **If this action takes hold (preferable):** the better-but-plausible outcome, plus one or "
+        "two systemic ripple effects it unlocks (health, mobility, equity, cost of living).\n"
+        "Close with one italicized line starting '_What it asks of us now:_' — the present trade-off "
+        "that future generations would thank us for. Keep the whole thing tight (~200-280 words). "
+        "Qualitative trends only; the only numbers allowed are the provided facts."
     ),
     "refine": (
         "You are refining a resident's existing draft. Revise the PRIOR content according to the "
@@ -234,13 +241,17 @@ def mock_content(req: GenerateRequest, task: str) -> str:
     hazard = c.topHazards[0] if c.topHazards else "local climate risk"
     if task == "future_vision":
         return (
-            f"**A cooler, calmer corner of {c.name}**\n\n"
-            f"A few years from now you walk your usual block in {c.name} and it simply feels "
-            f"better cared for — more shade, cleaner air, fewer worries when the rain comes hard. "
-            f"The change started small, pushed by neighbors through {channel}, and it shows: "
-            f"{a.lower()} has quietly reshaped the everyday. It isn't finished, but your corner "
-            f"feels looked after.\n\n"
-            f"*First ripple: the next block asks for the same, and the idea spreads.*"
+            f"## Where today's trends point\n"
+            f"On its current path, {c.name} faces growing pressure from {hazard.lower()} and its "
+            f"main emitting sectors. Without sustained action, those pressures compound.\n\n"
+            f"## A plausible future history (to ~2050)\n"
+            f"Looking back from 2050, {a.lower()} started small — championed by residents through "
+            f"{channel} — then scaled neighborhood by neighborhood as results showed and held.\n\n"
+            f"## Two futures, side by side\n"
+            f"- **If little changes (probable):** the same risks, unevenly felt.\n"
+            f"- **If this action takes hold (preferable):** a measurably more resilient, livable city, "
+            f"with knock-on gains in health and cost of living.\n\n"
+            f"_What it asks of us now: a modest, shared effort today for a city future generations inherit._"
         )
     if task == "draft_proposal":
         return (

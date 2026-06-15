@@ -79,11 +79,11 @@ const LENSES: {
   {
     key: "future_vision",
     llm: true,
-    label: { en: "Future vision", es: "Visión de futuro", pt: "Visão de futuro" },
+    label: { en: "Futures", es: "Futuros", pt: "Futuros" },
     desc: {
-      en: "Picture your city once this takes hold.",
-      es: "Imagina tu ciudad cuando esto se afiance.",
-      pt: "Imagine sua cidade quando isto se firmar.",
+      en: "Data-backed plausible futures if this scales — trends, not guesses.",
+      es: "Futuros plausibles con base en datos — tendencias, no conjeturas.",
+      pt: "Futuros plausíveis com base em dados — tendências, não palpites.",
     },
   },
 ];
@@ -102,7 +102,11 @@ const t = {
   refine: { en: "Refine", es: "Refinar", pt: "Refinar" },
   where: { en: "Where to engage locally", es: "Dónde participar localmente", pt: "Onde participar localmente" },
   estimated: { en: "est.", es: "est.", pt: "est." },
-  futureLabel: { en: "An imagined near future", es: "Un futuro cercano imaginado", pt: "Um futuro próximo imaginado" },
+  futureLabel: {
+    en: "Plausible futures · grounded in this city's data (Futures Design)",
+    es: "Futuros plausibles · con base en los datos de la ciudad (Futures Design)",
+    pt: "Futuros plausíveis · com base nos dados da cidade (Futures Design)",
+  },
   noExamples: { en: "No close examples yet — browse the Inspiration gallery below.", es: "Aún sin ejemplos cercanos — mira la galería de Inspiración abajo.", pt: "Ainda sem exemplos próximos — veja a galeria de Inspiração abaixo." },
 };
 
