@@ -11,6 +11,30 @@
 
 ---
 
+## 0. Build status & key clarifications (v2.2, 15 Jun 2026)
+
+**Built (runs locally):** a **6-stage** city-facing flow — **Explore** (readiness map with a
+**state/region ↔ city** toggle + a data-source toggle) → **City context** (inventory + CCRA +
+HIAP + climate plan, from the CityCatalyst seam) → **Choose instrument** → **Readiness
+pathways** (assess + route) → **Portfolio** (**intra-city** vs **cross-city pool**) → **Funder
+intake** (dossier → pipeline). Real fiscal data via **CAPAG (Brazil)** and **SINIM (Chile)**
+adapters; two worked cities — **Valdivia** (Ready → portfolio → IDB SFP) and **Canoas** (CAPAG
+C → capacity-building). The 7-step spec in §4 is the origin; the built structure is the 6 stages
+above (left-hand process menu).
+
+**Naming.** "Readiness" is too broad — this is **finance readiness** / **climate-finance
+readiness**. Keep the app's subtitle ("Climate-finance readiness for cities & regions") front
+and center; a rename should preserve that.
+
+**Funder hierarchy (3 levels) — refines "Choose instrument".** Financing has three levels of
+specificity and readiness is assessed against the most specific: **funder/bank → program →
+instrument**. The **IDB SFP is a *program***, not an instrument; its instruments are the
+investment loan / guarantee (Subprogram 1) and TC (Subprogram 2). So this step should become a
+**funder navigator** that drills funder → program → instrument, fed by a converged **funder
+sourcing database / service** (today fragmented across CityCatalyst and the hackday apps; see
+[`INTEGRATED-ARCHITECTURE.md` §4.3](INTEGRATED-ARCHITECTURE.md)). *Not yet built — current step
+selects IDB SFP directly.*
+
 ## 1. Why this exists
 
 Two hackday prototypes each built half of the "unlock the money" chain and neither
@@ -108,7 +132,7 @@ acceptance behavior.
 |---|------|--------------------|--------|
 | 1 | **Enter** | The city's existing profile (name, locode, population, region, GPC emissions, HIAP priorities) auto-loaded — no re-entry. | CityCatalyst app `/api/v1` (OAuth) + Global API city context |
 | 2 | **Discover** | "Funders your plan can reach" — instruments matched to the city's prioritized actions, each tagged applicant / facilitator / referrer, with gaps named. IDB SFP appears when eligible. | Matching Engine outputs (`valdivia_funders_open.csv`, `*_action_matches.csv`); HIAP for priorities |
-| 3 | **Choose the instrument** | The user selects a financing instrument (default IDB SFP). The app loads that instrument's **readiness profile**. (formerly "Pick a target") | `readiness-profiles.js` registry |
+| 3 | **Choose instrument** *(→ funder navigator)* | Today: selects IDB SFP and loads its **readiness profile**. Target (§0): a **funder navigator** drilling **funder → program → instrument** (SFP is a *program*), fed by the funder sourcing service. Carries the "you may be eligible for a direct line" note. | `readiness-profiles.js` registry; funder sourcing service (to build) |
 | 4 | **Diagnose** | Readiness score (composite + four pillars), tier (Ready/Developing/Early), "why this score" per-pillar contribution, the eligibility gate pass/fail, and the documentary checklist — all for the chosen target. Real-vs-estimated badges per signal. | `scoring.js` (active profile) over CityCatalyst + Matching Engine capacity data |
 | 5 | **Readiness pathways** | Assess-and-route, not just "prepare." For each gap: the concrete fix and its route — self-serve coaching to the funder's requirements, or a funded capacity-building/PPF track (for IDB, **Subprogram 2 TC**, ~US$13M envelope: regular + contingent-recovery). Turns "rejected" into "here's the path." (formerly "Prepare") | Profile `preparation` track + checklist gaps |
 | 6 | **Pool (if needed)** | If the city is below the target's ticket size, the engine pools it with neighbours into one financeable bundle, names the anchor, flags TA-needed members. Readiness then evaluates the anchor/pool. | Matching Engine `coordination_units.csv`, `unit_bundle_candidates.csv` |
@@ -236,6 +260,12 @@ Match CityCatalyst so the module feels native:
   PKCE via `oauth4webapi`, surfaced later as a Module `url`.
 
 ## 8. Build phases (for the autonomous agent)
+
+> **Status (v2.2):** Phases 0–3 are **built** (the 6-stage flow, CAPAG+SINIM adapters, map,
+> instrument step, intra/cross portfolio, dossier → pipeline, simulated context/agent seam).
+> **Remaining:** Phase 4 (live CityCatalyst embed — OAuth/MCP), the **funder navigator**
+> drill-down + funder sourcing service (§0), shared `@oef/readiness` package, and real
+> Navigator↔Control Tower wiring.
 
 **Phase 0 — Skeleton.** Next.js 15 + Chakra 3 app from `apps/_template`,
 CityCatalyst theme tokens, i18n scaffold, the 7-step flow shell with mock data.

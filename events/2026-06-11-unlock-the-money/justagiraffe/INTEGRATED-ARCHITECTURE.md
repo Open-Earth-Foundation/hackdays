@@ -2,8 +2,14 @@
 
 **Purpose:** define how the hackday modules fit into one coherent system, so the
 city-facing app (City Readiness Navigator) is built against the right boundaries.
-**Status:** proposal for review (12–14 Jun 2026). Pairs with
+**Status:** reflects the **v2.2 build** (12–15 Jun 2026) — the Navigator is built through
+the city-facing flow below; CityCatalyst embed (OAuth/MCP) remains. Pairs with
 [`ITERATION-2.1-PLAN.md`](ITERATION-2.1-PLAN.md).
+
+> **Naming.** "Readiness" alone is too broad — this stack assesses **finance readiness**
+> (specifically **climate-finance readiness**): is a city/pool ready to access a *specific
+> financing instrument* for its climate plan. The app's subtitle carries this ("Climate-finance
+> readiness for cities & regions"); keep that framing in any rename.
 
 ---
 
@@ -34,7 +40,7 @@ projects and adds creditworthiness + pooling + the funder handoff.
 | **CityCatalyst** | `Open-Earth-Foundation/CityCatalyst` | Host: GHG inventory, **HIAP** (prioritized actions), CCRA risk, Journey Navigator module catalog, OAuth, Global API | Production |
 | **Project Preparator** | `joaquinOEF/NBS-Project-Preparation` | Project bankability (Tech/Fin/Pol), project-funder matching, Concept Note | POC |
 | **justagiraffe Control Tower** | hackdays `justagiraffe/control-tower` | IDB-facing: Intake & Triage, Readiness Scoring (profile-driven engine), Results/Board | Hackday |
-| **City Readiness Navigator** | hackdays `justagiraffe/city-readiness-navigator` | City-facing: the 7-step journey; entity readiness + pooling + submit | Hackday (ours) |
+| **City Readiness Navigator** | hackdays `justagiraffe/city-readiness-navigator` | City-facing: 6-stage finance-readiness journey; entity creditworthiness + intra/cross-city portfolio + dossier handoff | Hackday (built, v2.2) |
 | **City-Funder Matching Engine** | hackdays `city–funder-matching` + `apps/funder-scan` | **Chile** capacity (SINIM/FCM), action→funder matching, **pooling/aggregation** | Hackday |
 | **CAPAG Funder Scan** | hackdays `apps/capag-funder-scan` | **Brazil** creditworthiness (Treasury CAPAG A/B/C/D for 5,570 munis) | Hackday |
 | **Political-will signal** | hackdays `codex/8-political-will-score` | LLM-derived governance/political-will sub-score from news/articles | Hackday (early) |
@@ -71,9 +77,22 @@ The readiness engine consumes the normalized output; the UI badges provenance.
    - *Entity/instrument profiles* (justagiraffe: IDB SFP #1; CAF/WB/GCF next).
    Extract as a shared package so there aren't 3 divergent models.
 2. **Fiscal Data Adapters** (§3) — CAPAG, SINIM, …
-3. **Funder/instrument catalog** — today split (Preparator's 18 LatAm instruments;
-   Matching Engine's Chile funds; CAPAG's BNDES/CCFLA angle). Converge to one catalog
-   with eligibility metadata (borrower type, ticket window, sovereign-guarantee flag).
+3. **Funder catalog + funder navigator (a 3-level hierarchy).** Financing is specified at
+   three levels of granularity, and readiness is ultimately assessed against the most
+   specific one:
+   - **Funder / bank** — IDB, CAF, World Bank, GCF, BNDES…
+   - **Program** within the funder — e.g. IDB's **Sub-Sovereign Finance Program (SFP)**. *The
+     SFP is a **program**, not an instrument.*
+   - **Instrument** within the program — e.g. under SFP Subprogram 1, an **investment loan** or
+     **investment guarantee** (without sovereign guarantee); Subprogram 2's TC instruments.
+
+   So the city app's "choose instrument" step is really a **funder navigator** that drills
+   *funder → program → instrument*. It is fed by a **funder sourcing database / service** — the
+   converged catalog (today fragmented: Preparator's 18 LatAm instruments; Matching Engine's
+   Chile funds; CAPAG's BNDES/CCFLA angle; and funder data living in *different areas of
+   CityCatalyst*). Consolidating these into one sourcing service, plugged into the navigator,
+   is the target; each entry carries eligibility metadata (borrower type, ticket window,
+   sovereign-guarantee flag) and links to the readiness profile it implies.
 4. **Candidate dossier = the Concept Note, extended** — the machine-readable handoff
    into a funder pipeline. Reuse the Preparator's GCF/C40 Concept Note and add the
    entity-creditworthiness + instrument + pooling layer; don't invent a new schema.
@@ -178,11 +197,20 @@ flowchart TB
 
 ## 7. What's real today vs. to-build
 
-- **Real now:** CityCatalyst inventory/HIAP/CCRA; CAPAG (5,570 munis); SINIM/FCM (Chile);
-  Preparator readiness + Concept Note; justagiraffe profile-driven engine; Navigator 7-step
-  flow + handoff.
-- **To build (v2.1+):** Fiscal Data Adapter interface (CAPAG + SINIM); shared readiness
-  package; Concept-Note-as-dossier; converged funder catalog; the two explicit entry paths.
+- **Built (Navigator v2.2):** the 6-stage city-facing flow — Explore (map + **state/region vs
+  city** view + data-source toggle) → City context (inventory + CCRA + HIAP + plan) → **Choose
+  instrument** → Readiness pathways (assess + route) → **Portfolio (intra-city vs cross-city
+  pool)** → Funder intake (dossier). **Fiscal Data Adapters** for **CAPAG (Brazil)** and
+  **SINIM (Chile)** with the readiness map; the profile-driven readiness engine; the **dossier**
+  handoff to a funder-pipeline view; a simulated **CityCatalyst context + agent** seam. Two
+  worked cities/pathways: **Valdivia** (Ready → portfolio → IDB SFP) and **Canoas** (CAPAG C →
+  capacity-building). Control Tower copy upgrade (orientation banner, glosses, M&E explicit).
+- **Real data:** CAPAG (5,570 munis), SINIM/FCM (Chile), CityCatalyst inventory/HIAP/CCRA
+  (live in CityCatalyst; simulated in the Navigator pending embed).
+- **To build:** live CityCatalyst embed (OAuth/MCP, real inventory/HIAP); the **funder
+  navigator** drill-down (funder → program → instrument) + converged **funder sourcing service**
+  (§4.3); shared `@oef/readiness` package (de-dupe Navigator/Control Tower); real Navigator↔
+  Control Tower wiring (dossier writes into Intake & Triage); the Preparator handoff (Path A).
 
 ## 8. Open decisions (for the review)
 
