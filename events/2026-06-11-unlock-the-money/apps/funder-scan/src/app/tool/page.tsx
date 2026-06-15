@@ -2,10 +2,10 @@ import Link from "next/link";
 import { ToolNav } from "@/components/tool/ToolNav";
 
 const STATS = [
-  { icon: "ti-building-community", color: "var(--green)", stat: "314", label: "Chile comunas in the engine" },
-  { icon: "ti-cash", color: "var(--green-mid)", stat: "78", label: "Funding instruments catalogued", statColor: "var(--green-dark)" },
+  { icon: "ti-building-community", color: "var(--green)", stat: "314", label: "Chile comunas in the engine", statColor: "var(--green-dark)" },
+  { icon: "ti-cash", color: "var(--green-mid)", stat: "22", label: "Municipal instruments in catalog", statColor: "var(--green-dark)" },
   { icon: "ti-arrows-shuffle", color: "var(--amber)", stat: "2-sided", label: "City wizard & funder browse", statColor: "#633806" },
-  { icon: "ti-stack-2", color: "var(--green)", stat: "Pools", label: "Gap comunas bundled into deals" },
+  { icon: "ti-stack-2", color: "var(--green)", stat: "Pools", label: "Gap comunas bundled into deals", statColor: "var(--green-dark)" },
 ] as const;
 
 export default function ToolLandingPage() {
@@ -43,7 +43,7 @@ export default function ToolLandingPage() {
           {STATS.map((c) => (
             <div key={c.label} className="card tool-stat-card">
               <i className={`ti ${c.icon}`} style={{ fontSize: 36, color: c.color }} />
-              <div className="tool-stat-value" style={{ color: c.statColor ?? "var(--green-dark)" }}>
+              <div className="tool-stat-value" style={{ color: c.statColor }}>
                 {c.stat}
               </div>
               <div className="tool-stat-label">{c.label}</div>
@@ -67,7 +67,7 @@ export default function ToolLandingPage() {
               <i className="ti ti-currency-dollar" />
             </div>
             <h3>For funders</h3>
-            <p>Set your mandate, browse city profiles, and send an expression of interest.</p>
+            <p>Set your mandate, browse Chilean comunas, and express interest in pool-ready deals.</p>
             <span className="tool-path-cta">
               Browse cities <i className="ti ti-arrow-right" />
             </span>

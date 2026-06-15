@@ -41,6 +41,8 @@ export interface WizardState {
   sectors: string[];
   urgency: string;
   country: string;
+  comuna: string;
+  locode: string;
   population: string;
   fiscal: string;
   borrowing: string;
@@ -57,6 +59,8 @@ export const defaultWizardState: WizardState = {
   sectors: ["Waste", "Energy"],
   urgency: "Actively seeking funding now",
   country: "Chile",
+  comuna: "Valdivia",
+  locode: "CL ZAL",
   population: "Medium (100k–1M)",
   fiscal: "B — Moderate",
   borrowing: "Yes",
@@ -67,3 +71,45 @@ export const defaultWizardState: WizardState = {
   cofinance: "10–30%",
   mrv: ["GHG baseline established"],
 };
+
+export interface ChileComuna {
+  name: string;
+  locode: string;
+  region: string;
+  population: number | null;
+  populationBand: string;
+  fcmDependencyPct: number | null;
+  cofinanceScore: number | null;
+  anchorScore: number | null;
+  compositeScore: number | null;
+  fiscalBand: string;
+  capacityBand: string;
+  poolStatus?: string;
+  unitId?: string;
+  isAnchor?: boolean;
+  salientSectors: string[];
+}
+
+export interface ChileFund {
+  id: string;
+  program: string;
+  family: string;
+  funder: string;
+  instrumentType: string;
+  eligibleActor: string;
+  gpcSectors: string[];
+  status: string;
+  recurrence: string;
+  amountClp: number | null;
+}
+
+export interface ValdiviaInstrument {
+  program: string;
+  funder: string;
+  sector: string;
+  gpcSectors: string[];
+  score: number;
+  actionCount: number;
+  topAction: string;
+  instrumentType: string;
+}

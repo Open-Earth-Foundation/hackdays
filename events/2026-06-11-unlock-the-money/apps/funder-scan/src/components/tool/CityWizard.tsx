@@ -2,9 +2,11 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { ComunaPicker } from "@/components/tool/ComunaPicker";
 import { NavBack, ToolNav } from "@/components/tool/ToolNav";
 import { WizardMobileProgress, WizardSidebar } from "@/components/tool/WizardSidebar";
 import { useTool } from "@/lib/tool/tool-context";
+import type { ChileComuna } from "@/lib/tool/types";
 
 const READINESS_HINTS: Record<string, string> = {
   Idea: "An idea is a broad intention with no defined scope or cost estimates.",
@@ -102,6 +104,17 @@ export function CityWizard({ step }: { step: 1 | 2 | 3 }) {
     patchWizard({ mrv: next });
   };
 
+  const applyComuna = (c: ChileComuna) => {
+    patchWizard({
+      country: "Chile",
+      comuna: c.name,
+      locode: c.locode,
+      population: c.populationBand,
+      fiscal: c.fiscalBand,
+      capacity: c.capacityBand,
+    });
+  };
+
   return (
     <>
       <ToolNav
@@ -188,10 +201,14 @@ export function CityWizard({ step }: { step: 1 | 2 | 3 }) {
               <>
                 <div className="wizard-section">
                   <div className="wizard-section-label">Location &amp; size</div>
-                  <div className="form-row wizard-form-row">
+                  <ComunaPicker locode={wizard.locode} comuna={wizard.comuna} onSelect={applyComuna} />
+                  <div className="form-row wizard-form-row wizard-form-row-spaced">
                     <div className="form-group">
                       <label>Country / region</label>
-                      <select value={wizard.country} onChange={(e) => patchWizard({ country: e.target.value })}>
+                      <select
+                        value={wizard.country}
+                        onChange={(e) => patchWizard({ country: e.target.value })}
+                      >
                         <option value="">Choose option...</option>
                         {COUNTRIES.map((c) => (
                           <option key={c}>{c}</option>
@@ -200,12 +217,18 @@ export function CityWizard({ step }: { step: 1 | 2 | 3 }) {
                     </div>
                     <div className="form-group">
                       <label>Population band</label>
-                      <select value={wizard.population} onChange={(e) => patchWizard({ population: e.target.value })}>
+                      <select
+                        value={wizard.population}
+                        onChange={(e) => patchWizard({ population: e.target.value })}
+                      >
                         <option value="">Choose option...</option>
                         {POP_OPTS.map((p) => (
                           <option key={p}>{p}</option>
                         ))}
                       </select>
+                      {wizard.comuna && (
+                        <p className="wizard-hint">Auto-filled from comuna data — adjust if needed.</p>
+                      )}
                     </div>
                   </div>
                 </div>

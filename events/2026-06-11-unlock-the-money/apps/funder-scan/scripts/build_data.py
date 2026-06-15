@@ -4,7 +4,7 @@
 Run from apps/funder-scan/:  python3 scripts/build_data.py
 Re-runnable; outputs land in public/data/.
 """
-import csv, json, re
+import ast, csv, json, re
 from pathlib import Path
 from collections import Counter, defaultdict
 from shapely.geometry import shape, mapping
@@ -12,7 +12,8 @@ from shapely.geometry import shape, mapping
 APP = Path(__file__).resolve().parents[1]
 DATA = APP.parents[1] / "city–funder-matching" / "data"
 DERIVED = DATA / "derived"
-GEOJSON = DATA / "input" / "raw_data_cl_ocha_ab.geojson"
+INPUT = DATA / "input"
+GEOJSON = INPUT / "raw_data_cl_ocha_ab.geojson"
 OUT = APP / "public" / "data"
 OUT.mkdir(parents=True, exist_ok=True)
 
@@ -22,12 +23,56 @@ def read_csv(name):
 
 units    = read_csv("coordination_units.csv")
 caps     = read_csv("comuna_capacity_scores.csv")
+prior    = read_csv("comuna_action_priority.csv")
 funders  = read_csv("valdivia_funders_open.csv")
 matches  = read_csv("valdivia_action_matches.csv")
 tiers    = read_csv("action_coordination.csv")
 bundles  = read_csv("unit_bundle_candidates.csv")
 
+def read_input_csv(name):
+    with open(INPUT / name, encoding="utf-8") as f:
+        return list(csv.DictReader(f))
+
+def parse_sectors(raw):
+    if not raw:
+        return []
+    try:
+        return [s.lower() for s in ast.literal_eval(raw)]
+    except (ValueError, SyntaxError):
+        return []
+
+def pop_band(pop):
+    if pop is None:
+        return "Medium (100k–1M)"
+    if pop < 100_000:
+        return "Small (<100k)"
+    if pop < 1_000_000:
+        return "Medium (100k–1M)"
+    if pop < 5_000_000:
+        return "Large (1M–5M)"
+    return "Megacity (>5M)"
+
+def fiscal_band(cofinance, anchor):
+    score = max(cofinance or 0, anchor or 0)
+    if score >= 40:
+        return "A — Strong"
+    if score >= 22:
+        return "B — Moderate"
+    return "C — Limited"
+
+def capacity_band(prof_pct, staff_per_1k):
+    prof = prof_pct or 0
+    staff = staff_per_1k or 0
+    if prof >= 45 or staff >= 12:
+        return "High — Dedicated team"
+    if prof >= 30 or staff >= 8:
+        return "Medium — Some capacity"
+    return "Low — Limited dedicated staff"
+
 LOS_RIOS = "Región de Los Ríos"
+
+def write_json(path, obj):
+    path.write_text(json.dumps(obj, ensure_ascii=False), encoding="utf-8")
 fnum = lambda v: float(v) if v not in (None, "", "n/a") else None
 
 # ---------- per-comuna pool status (drives the national choropleth) ----------
@@ -97,7 +142,7 @@ national = {
     "flagship": flagship,
     "comunas": list(by_locode.values()),
 }
-(OUT / "national.json").write_text(json.dumps(national, ensure_ascii=False))
+write_json(OUT / "national.json", national)
 
 # ---------- Valdivia (beats 3-5) ----------
 role_order = ["applicant", "facilitator", "referrer"]
@@ -148,10 +193,10 @@ valdivia = {
     },
     "pool": pool_rows,
 }
-(OUT / "valdivia.json").write_text(json.dumps(valdivia, ensure_ascii=False))
+write_json(OUT / "valdivia.json", valdivia)
 
 # ---------- geometry: simplify + join, national + Los Ríos ----------
-geo = json.loads(GEOJSON.read_text())
+geo = json.loads(GEOJSON.read_text(encoding="utf-8"))
 
 def round_geom(obj, nd=4):
     if isinstance(obj, (list, tuple)):
@@ -191,12 +236,115 @@ for f in geo["features"]:
         )
         lr_feats.append(lr)
 
-(OUT / "comunas.geojson").write_text(json.dumps({"type": "FeatureCollection", "features": nat_feats}, ensure_ascii=False))
-(OUT / "losrios.geojson").write_text(json.dumps({"type": "FeatureCollection", "features": lr_feats}, ensure_ascii=False))
+write_json(OUT / "comunas.geojson", {"type": "FeatureCollection", "features": nat_feats})
+write_json(OUT / "losrios.geojson", {"type": "FeatureCollection", "features": lr_feats})
+
+# ---------- matcher: comuna index ----------
+prio_by_locode = {p["locode"]: p for p in prior if p.get("locode")}
+sal_cols = {
+    "stationary_energy": "sal_StationaryEnergy",
+    "transportation": "sal_Transportation",
+    "waste": "sal_Waste",
+    "afolu": "sal_AFOLU",
+    "ippu": "sal_IPPU",
+}
+comunas_index = []
+for c in caps:
+    loc = c.get("locode")
+    if not loc:
+        continue
+    unit = by_locode.get(loc, {})
+    p = prio_by_locode.get(loc, {})
+    pop = int(float(c["population"])) if c.get("population") else None
+    cof = fnum(c.get("cofinance_score"))
+    anc = fnum(c.get("anchor_score"))
+    salient = [k for k, col in sal_cols.items() if p.get(col) == "1"]
+    comunas_index.append({
+        "name": c["city_name"],
+        "locode": loc,
+        "region": c.get("region_name") or unit.get("region"),
+        "population": pop,
+        "populationBand": pop_band(pop),
+        "fcmDependencyPct": fnum(c.get("fcm_dependency_pct")),
+        "cofinanceScore": cof,
+        "anchorScore": anc,
+        "compositeScore": fnum(c.get("composite_score")),
+        "professionalizationPct": fnum(c.get("professionalization_pct_2023")),
+        "staffPer1000": fnum(c.get("staff_per_1000_2023")),
+        "fiscalBand": fiscal_band(cof, anc),
+        "capacityBand": capacity_band(
+            fnum(c.get("professionalization_pct_2023")),
+            fnum(c.get("staff_per_1000_2023")),
+        ),
+        "poolStatus": unit.get("pool_status"),
+        "unitId": unit.get("unit_id"),
+        "isAnchor": unit.get("is_anchor", False),
+        "salientSectors": salient,
+    })
+comunas_index.sort(key=lambda x: (-(x["population"] or 0), x["name"]))
+write_json(OUT / "chile-comunas.json", comunas_index)
+
+chile_regions = sorted({c["region"] for c in comunas_index if c.get("region")})
+write_json(OUT / "chile-regions.json", chile_regions)
+
+# ---------- matcher: national fund catalog (municipality-applicable) ----------
+fund_rows = read_input_csv("chile_funders_detail.csv")
+chile_funds = []
+seen = set()
+for i, row in enumerate(fund_rows):
+    actor = (row.get("eligible_actor") or "").lower()
+    if "municipality" not in actor:
+        continue
+    key = row.get("program_name") or str(i)
+    if key in seen:
+        continue
+    seen.add(key)
+    sectors = parse_sectors(row.get("gpc_sectors"))
+    inst = (row.get("instrument_type") or "grant").lower()
+    chile_funds.append({
+        "id": f"cl-{i}",
+        "program": row.get("program_name", ""),
+        "family": row.get("program_family", ""),
+        "funder": row.get("funder_institution", ""),
+        "instrumentType": inst,
+        "eligibleActor": row.get("eligible_actor", ""),
+        "gpcSectors": sectors,
+        "status": row.get("status", ""),
+        "recurrence": row.get("recurrence", ""),
+        "amountClp": fnum(row.get("amount_clp")),
+    })
+write_json(OUT / "chile-funds.json", chile_funds)
+
+# ---------- matcher: Valdivia pre-computed instruments ----------
+prog_to_inst = {f["program"]: f["instrumentType"] for f in chile_funds}
+prog_to_sectors = {f["program"]: f["gpcSectors"] for f in chile_funds}
+applicant_matches = [m for m in matches if m["role"] == "applicant" and "match" in m["verdict"]]
+by_program = defaultdict(list)
+for m in applicant_matches:
+    by_program[m["best_funder"]].append(m)
+valdivia_instruments = []
+for prog, rows in by_program.items():
+    best = max(rows, key=lambda r: float(r["combined"]))
+    sector = best["sector"]
+    valdivia_instruments.append({
+        "program": prog,
+        "funder": best["best_funder_inst"],
+        "sector": sector,
+        "gpcSectors": prog_to_sectors.get(prog, [sector]),
+        "score": round(float(best["combined"]) * 100),
+        "actionCount": len(rows),
+        "topAction": best["action"][:120],
+        "instrumentType": prog_to_inst.get(prog, "grant"),
+    })
+valdivia_instruments.sort(key=lambda x: (-x["score"], -x["actionCount"]))
+write_json(OUT / "valdivia-instruments.json", valdivia_instruments[:12])
 
 # ---------- report ----------
 print("WROTE public/data/:")
-for fn in ["national.json", "valdivia.json", "comunas.geojson", "losrios.geojson"]:
+for fn in [
+    "national.json", "valdivia.json", "comunas.geojson", "losrios.geojson",
+    "chile-comunas.json", "chile-funds.json", "valdivia-instruments.json", "chile-regions.json",
+]:
     print(f"  {fn:18} {(OUT/fn).stat().st_size/1024:7.1f} KB")
 print("\nKPIs:", national["kpis"])
 print("bundle_table:", bundle_table)
@@ -204,3 +352,5 @@ print("Valdivia funders:", valdivia["funders_count"], "| actions:", valdivia["ac
 print("transport:", valdivia["transport"]["n_actions"], "actions, best af", valdivia["transport"]["best_af"])
 print("pool rows:", [(r["comuna"], r["cofinance_score"]) for r in pool_rows])
 print("national feats:", len(nat_feats), "| los rios feats:", len(lr_feats))
+print("matcher:", len(comunas_index), "comunas |", len(chile_funds), "funds |",
+      len(valdivia_instruments), "valdivia instruments |", len(chile_regions), "regions")

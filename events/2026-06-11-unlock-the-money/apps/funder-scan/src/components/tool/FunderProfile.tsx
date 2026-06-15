@@ -1,27 +1,24 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavBack, ToolNav } from "@/components/tool/ToolNav";
+import { loadChileRegions } from "@/lib/tool/chile-regions";
 import { useTool } from "@/lib/tool/tool-context";
 
 const ORG_TYPES = [
-  { title: "Multilateral Development Bank", sub: "World Bank, IDB, ADB, EBRD, AfDB" },
+  { title: "Chilean ministry / agency", sub: "MMA, MINVU, SUBDERE, AgenciaSE" },
+  { title: "Multilateral Development Bank", sub: "World Bank, IDB, CAF" },
   { title: "Global Climate Fund", sub: "GCF, GEF, Adaptation Fund" },
-  { title: "Bilateral Agency", sub: "USAID, JICA, GIZ, AFD, FCDO" },
-  { title: "Philanthropy", sub: "Bloomberg, Bezos Earth Fund, foundations" },
-  { title: "Project Prep. Facility", sub: "C40, CCFLA, ICLEI, AECOM" },
-  { title: "Commercial Finance", sub: "Banks, PE, infrastructure funds" },
-  { title: "Impact Finance", sub: "Green bonds, blended finance" },
+  { title: "Bilateral Agency", sub: "GIZ, AFD, JICA, USAID" },
+  { title: "Philanthropy", sub: "Bloomberg, foundations" },
+  { title: "Project Prep. Facility", sub: "C40, ICLEI, climate PPFs" },
+  { title: "Commercial / impact finance", sub: "Banks, green bonds, blended" },
 ];
 
 const SECTOR_PILLS = [
   "Transport & mobility", "Energy transition", "Waste management", "Water & sanitation",
   "Urban resilience", "Nature-based solutions", "Buildings & housing", "Air quality",
-];
-
-const REGION_PILLS = [
-  "Latin America", "Sub-Saharan Africa", "South & Southeast Asia", "MENA", "Eastern Europe", "Global",
 ];
 
 export function FunderProfile() {
@@ -30,6 +27,11 @@ export function FunderProfile() {
   const [orgType, setOrgType] = useState("");
   const [sectors, setSectors] = useState<string[]>([]);
   const [regions, setRegions] = useState<string[]>([]);
+  const [chileRegions, setChileRegions] = useState<string[]>([]);
+
+  useEffect(() => {
+    loadChileRegions().then(setChileRegions).catch(() => {});
+  }, []);
 
   const toggle = (list: string[], item: string, set: (v: string[]) => void) => {
     set(list.includes(item) ? list.filter((x) => x !== item) : [...list, item]);
@@ -40,7 +42,9 @@ export function FunderProfile() {
       <ToolNav right={<NavBack href="/tool/role" />} />
       <div className="container-sm" style={{ paddingTop: 48, paddingBottom: 60 }}>
         <h1 style={{ fontSize: 26, fontWeight: 700, marginBottom: 6 }}>Set up your funder profile</h1>
-        <p style={{ color: "var(--text-muted)", marginBottom: 32 }}>This helps us match you with cities that fit your mandate.</p>
+        <p style={{ color: "var(--text-muted)", marginBottom: 32 }}>
+          This prototype matches funders with Chilean comunas scored in the coordination engine.
+        </p>
 
         <div className="steps" style={{ marginBottom: 32 }}>
           <div className={`step${funderStep >= 1 ? " active" : ""}`}>
@@ -53,9 +57,9 @@ export function FunderProfile() {
             <div className="step-label">Investment criteria</div>
           </div>
           <div className="step-line" />
-          <div className="step">
+          <div className={`step${funderStep >= 2 ? " active" : ""}`}>
             <div className="step-num">3</div>
-            <div className="step-label">Done</div>
+            <div className="step-label">Browse comunas</div>
           </div>
         </div>
 
@@ -80,7 +84,7 @@ export function FunderProfile() {
               </div>
               <div className="form-group">
                 <label>Organization name</label>
-                <input type="text" placeholder="e.g. European Investment Bank" />
+                <input type="text" placeholder="e.g. SUBDERE / GCF accredited entity" />
               </div>
               <div className="form-group">
                 <label>Your name &amp; title</label>
@@ -121,9 +125,12 @@ export function FunderProfile() {
                 </div>
               </div>
               <div className="form-group">
-                <label>Preferred regions</label>
+                <label>Preferred Chile regions</label>
+                <p style={{ fontSize: 13, color: "var(--text-muted)", margin: "0 0 10px" }}>
+                  Administrative regions — all 314 comunas are in scope.
+                </p>
                 <div className="pill-select">
-                  {REGION_PILLS.map((r) => (
+                  {chileRegions.map((r) => (
                     <button
                       key={r}
                       type="button"
@@ -137,12 +144,12 @@ export function FunderProfile() {
               </div>
               <div className="form-row">
                 <div className="form-group" style={{ marginBottom: 0 }}>
-                  <label>Ticket size (min USD)</label>
-                  <input type="text" placeholder="e.g. $1,000,000" />
+                  <label>Ticket size (min CLP)</label>
+                  <input type="text" placeholder="e.g. $50,000,000" />
                 </div>
                 <div className="form-group" style={{ marginBottom: 0 }}>
-                  <label>Ticket size (max USD)</label>
-                  <input type="text" placeholder="e.g. $50,000,000" />
+                  <label>Ticket size (max CLP)</label>
+                  <input type="text" placeholder="e.g. $2,000,000,000" />
                 </div>
               </div>
               <div className="form-group" style={{ marginTop: 20, marginBottom: 0 }}>
@@ -160,7 +167,7 @@ export function FunderProfile() {
                 <i className="ti ti-arrow-left" /> Back
               </button>
               <button type="button" className="btn btn-primary btn-lg" onClick={() => router.push("/tool/funder/search")}>
-                Find cities <i className="ti ti-search" />
+                Browse Chile comunas <i className="ti ti-search" />
               </button>
             </div>
           </>

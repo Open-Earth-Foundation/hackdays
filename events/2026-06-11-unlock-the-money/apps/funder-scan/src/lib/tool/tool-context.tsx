@@ -37,7 +37,8 @@ export function ToolProvider({ children }: { children: ReactNode }) {
     const pop = wizard.population ? wizard.population.split(" ")[0] : "Medium";
     const fiscal = wizard.fiscal ? wizard.fiscal.charAt(0) : "B";
     const cap = wizard.capacity ? wizard.capacity.split("—")[0].trim() : "Med";
-    return `${wizard.country || "City"} · ${pop} · Fiscal ${fiscal} · ${cap} capacity`;
+    const place = wizard.comuna ? `${wizard.comuna}, Chile` : wizard.country || "City";
+    return `${place} · ${pop} · Fiscal ${fiscal} · ${cap} capacity`;
   }, [wizard]);
 
   return (
