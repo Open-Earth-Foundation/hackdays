@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { ToolNav } from "@/components/tool/ToolNav";
 import { instrumentMatches, readinessGaps } from "@/lib/tool/mock-data";
 import { useTool } from "@/lib/tool/tool-context";
@@ -21,9 +20,8 @@ function effortClass(e: string) {
 }
 
 export function CityResults() {
-  const router = useRouter();
   const { wizard, selectedInstrument, setSelectedInstrument, step2Summary } = useTool();
-  const top = instrumentMatches[selectedInstrument];
+  const selected = instrumentMatches[selectedInstrument];
 
   const chips = [
     `${wizard.country || "Chile"} · ${wizard.population.split(" ")[0] || "Medium"}`,
@@ -47,7 +45,7 @@ export function CityResults() {
           <div className="results-main">
             <div className="results-title">Your matched instruments</div>
             <div className="results-subtitle">
-              {instrumentMatches.length} instruments match your profile. Select one to see your next steps and concept note.
+              {instrumentMatches.length} instruments match your profile. Select one to see readiness gaps.
             </div>
             <div className="profile-chips">
               {chips.map((c) => (
@@ -83,32 +81,16 @@ export function CityResults() {
                   <div className="fit-fill" style={{ width: `${inst.score}%` }} />
                 </div>
                 <div className="why-box">{inst.why}</div>
-                <div className="instrument-footer">
-                  <span className="score-link">
-                    <i className="ti ti-chevron-down" /> See full score breakdown
-                  </span>
-                  <button
-                    type="button"
-                    className="btn btn-primary"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setSelectedInstrument(i);
-                      router.push("/tool/city/instrument");
-                    }}
-                  >
-                    Pursue this instrument <i className="ti ti-arrow-right" />
-                  </button>
-                </div>
               </div>
             ))}
           </div>
 
           <div className="results-sidebar">
             <div className="readiness-label">Readiness gap</div>
-            <div className="readiness-title">{top.name}</div>
-            <div className="readiness-sub">What you still need to qualify for your top match</div>
+            <div className="readiness-title">{selected.name}</div>
+            <div className="readiness-sub">What you still need to qualify for this match</div>
             <div className="top-match-badge">
-              <i className="ti ti-star" style={{ fontSize: 14, color: "var(--amber)" }} /> Top match · Score {top.score}
+              <i className="ti ti-star" style={{ fontSize: 14, color: "var(--amber)" }} /> Score {selected.score}
             </div>
             {readinessGaps.map((g, i) => (
               <div key={g.title} className="gap-item" style={i === readinessGaps.length - 1 ? { borderBottom: "none" } : undefined}>

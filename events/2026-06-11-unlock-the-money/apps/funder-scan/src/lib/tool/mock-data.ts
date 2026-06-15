@@ -46,13 +46,3 @@ export const readinessGaps: ReadinessGap[] = [
   { title: "Co-financing confirmed (>10%)", effort: "high", done: false },
   { title: "Procurement plan in place", effort: "high", done: false },
 ];
-
-export const nextSteps = [
-  { title: "Confirm political commitment", desc: "Letter from mayor's office or equivalent endorsement on record.", effort: "done" as const, done: true },
-  { title: "Complete GHG inventory", desc: "GHGI completed and available as evidence for baseline.", effort: "done" as const, done: true },
-  { title: "Name a dedicated city team", desc: "At least one named project lead with cross-department coordination authority.", effort: "med" as const, done: false },
-  { title: "Draft an MRV plan", desc: "Baseline methodology and monitoring indicators aligned to project outputs.", effort: "med" as const, done: false },
-  { title: "Commission a pre-feasibility study", desc: "Cost estimates, risk identification, and a realistic implementation timeline.", effort: "high" as const, done: false },
-  { title: "Secure co-financing commitment (>10%)", desc: "National government endorsement or own-budget contribution with letter of intent.", effort: "high" as const, done: false },
-  { title: "Submit expression of interest to C40 CFF", desc: "Via C40 city network portal or direct contact with C40 regional team.", effort: "low" as const, done: false },
-];

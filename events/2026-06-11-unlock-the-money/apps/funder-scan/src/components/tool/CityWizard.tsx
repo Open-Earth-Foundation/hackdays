@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { NavBack, ToolNav } from "@/components/tool/ToolNav";
-import { WizardSidebar } from "@/components/tool/WizardSidebar";
+import { WizardMobileProgress, WizardSidebar } from "@/components/tool/WizardSidebar";
 import { useTool } from "@/lib/tool/tool-context";
 
 const READINESS_HINTS: Record<string, string> = {
@@ -14,6 +14,36 @@ const READINESS_HINTS: Record<string, string> = {
     "Pre-feasibility includes initial cost estimates and a risk identification. Most concessional instruments accept this stage.",
   Feasibility:
     "A full feasibility study unlocks the widest range of instruments, including concessional loans and blended finance.",
+};
+
+const STEP_META: Record<
+  1 | 2 | 3,
+  { backHref: string; backLabel: string; eyebrow: string; title: string; subtitle: string }
+> = {
+  1: {
+    backHref: "/tool/role",
+    backLabel: "Change role",
+    eyebrow: "City path · Step 1 of 3",
+    title: "What funding do you need?",
+    subtitle:
+      "Filter instruments by funding type, sector, and urgency — before you build your full city profile.",
+  },
+  2: {
+    backHref: "/tool/city/wizard/1",
+    backLabel: "Back to step 1",
+    eyebrow: "City path · Step 2 of 3",
+    title: "Tell us about your city",
+    subtitle:
+      "Fiscal health, institutional capacity, and climate data determine which instruments you can realistically pursue.",
+  },
+  3: {
+    backHref: "/tool/city/wizard/2",
+    backLabel: "Back to step 2",
+    eyebrow: "City path · Step 3 of 3",
+    title: "Describe your project",
+    subtitle:
+      "Project type and readiness stage drive finance model fit — grants and TA vs. concessional or blended instruments.",
+  },
 };
 
 const FUNDING_OPTS = ["Grant", "Technical assistance", "Concessional loan", "Blended finance", "Not sure yet"];
@@ -28,10 +58,26 @@ const FISCAL_OPTS = ["A — Strong", "B — Moderate", "C — Limited", "Unknown
 const BORROW_OPTS = ["Yes", "No", "Unknown"];
 const CAP_OPTS = ["Low — Limited dedicated staff", "Medium — Some capacity", "High — Dedicated team"];
 const CLIMATE_OPTS = ["GHG Inventory (GHGI)", "Climate Risk Assessment", "Climate action list or plan exists"];
-const PROJ_OPTS = ["Grant-like", "Savings-based", "Revenue-generating"];
+const PROJ_OPTS: { label: string; desc: string }[] = [
+  { label: "Grant-like", desc: "Public benefit, no income stream. Suited to grants and TA." },
+  { label: "Savings-based", desc: "Reduces costs — energy efficiency, waste reduction, etc." },
+  { label: "Revenue-generating", desc: "Income via tariffs, fees, or offtake agreements." },
+];
 const READY_OPTS = ["Idea", "Concept", "Pre-feasibility", "Feasibility"];
 const COFIN_OPTS = ["None", "1–10%", "10–30%", ">30%"];
 const MRV_OPTS = ["GHG baseline established", "Monitoring plan drafted", "Third-party verification ready"];
+
+function WizardHeader({ step }: { step: 1 | 2 | 3 }) {
+  const meta = STEP_META[step];
+  return (
+    <header className="wizard-header">
+      <NavBack href={meta.backHref} label={meta.backLabel} />
+      <p className="wizard-eyebrow">{meta.eyebrow}</p>
+      <h1 className="wizard-title">{meta.title}</h1>
+      <p className="wizard-subtitle">{meta.subtitle}</p>
+    </header>
+  );
+}
 
 export function CityWizard({ step }: { step: 1 | 2 | 3 }) {
   const router = useRouter();
@@ -60,26 +106,22 @@ export function CityWizard({ step }: { step: 1 | 2 | 3 }) {
     <>
       <ToolNav
         right={
-          <Link href="/tool/role" className="btn btn-sm btn-secondary" style={{ textDecoration: "none" }}>
-            Switch role
-          </Link>
+          <div className="wizard-nav-right">
+            <Link href="/tool/role" className="btn btn-sm btn-secondary wizard-nav-switch">
+              Switch role
+            </Link>
+          </div>
         }
       />
       <div className="flow-wrapper">
         <div className="wizard-layout">
           <WizardSidebar current={step} />
           <div className="wizard-main">
+            <WizardMobileProgress current={step} />
+            <WizardHeader step={step} />
+
             {step === 1 && (
               <>
-                <NavBack href="/tool/role" />
-                <div className="wizard-step-label-top" style={{ marginTop: 32 }}>
-                  Step 1 of 3
-                </div>
-                <div className="wizard-title">What are you looking for?</div>
-                <div className="wizard-subtitle">
-                  This helps us filter the right funding instruments for your city before you fill in your full profile.
-                </div>
-
                 <div className="wizard-section">
                   <div className="wizard-q">What type of funding are you seeking?</div>
                   <div className="wizard-q-sub">Select one</div>
@@ -136,7 +178,7 @@ export function CityWizard({ step }: { step: 1 | 2 | 3 }) {
                     Continue <i className="ti ti-arrow-right" />
                   </button>
                   <button type="button" className="wizard-skip" onClick={() => router.push("/tool/city/results")}>
-                    Skip to instruments
+                    Skip to instrument matches
                   </button>
                 </div>
               </>
@@ -144,19 +186,10 @@ export function CityWizard({ step }: { step: 1 | 2 | 3 }) {
 
             {step === 2 && (
               <>
-                <NavBack href="/tool/city/wizard/1" />
-                <div className="wizard-step-label-top" style={{ marginTop: 32 }}>
-                  Step 2 of 3
-                </div>
-                <div className="wizard-title">City profile</div>
-                <div className="wizard-subtitle">
-                  Tell us about your city. This determines which instruments are eligible and how your profile is scored.
-                </div>
-
                 <div className="wizard-section">
                   <div className="wizard-section-label">Location &amp; size</div>
-                  <div className="form-row" style={{ marginBottom: 0 }}>
-                    <div className="form-group" style={{ marginBottom: 0 }}>
+                  <div className="form-row wizard-form-row">
+                    <div className="form-group">
                       <label>Country / region</label>
                       <select value={wizard.country} onChange={(e) => patchWizard({ country: e.target.value })}>
                         <option value="">Choose option...</option>
@@ -165,7 +198,7 @@ export function CityWizard({ step }: { step: 1 | 2 | 3 }) {
                         ))}
                       </select>
                     </div>
-                    <div className="form-group" style={{ marginBottom: 0 }}>
+                    <div className="form-group">
                       <label>Population band</label>
                       <select value={wizard.population} onChange={(e) => patchWizard({ population: e.target.value })}>
                         <option value="">Choose option...</option>
@@ -179,9 +212,9 @@ export function CityWizard({ step }: { step: 1 | 2 | 3 }) {
 
                 <div className="wizard-section">
                   <div className="wizard-section-label">Fiscal health</div>
-                  <div className="form-row" style={{ marginBottom: 0 }}>
+                  <div className="form-row wizard-form-row">
                     <div>
-                      <label style={{ marginBottom: 10 }}>Fiscal tier</label>
+                      <label className="wizard-field-label">Fiscal tier</label>
                       <div className="tier-grid">
                         {FISCAL_OPTS.map((o) => (
                           <button
@@ -197,7 +230,7 @@ export function CityWizard({ step }: { step: 1 | 2 | 3 }) {
                       </div>
                     </div>
                     <div>
-                      <label style={{ marginBottom: 10 }}>Borrowing authority</label>
+                      <label className="wizard-field-label">Borrowing authority</label>
                       <div className="tier-grid">
                         {BORROW_OPTS.map((o) => (
                           <button
@@ -218,7 +251,7 @@ export function CityWizard({ step }: { step: 1 | 2 | 3 }) {
                 <div className="wizard-section">
                   <div className="wizard-section-label">Institutional capacity</div>
                   <div className="wizard-q">Technical capacity</div>
-                  <div className="tier-grid" style={{ gridTemplateColumns: "repeat(3,1fr)" }}>
+                  <div className="tier-grid tier-grid-3">
                     {CAP_OPTS.map((o) => (
                       <button
                         key={o}
@@ -240,14 +273,11 @@ export function CityWizard({ step }: { step: 1 | 2 | 3 }) {
                       <button
                         key={c}
                         type="button"
-                        className={`check-card${wizard.climateChecks.includes(c) ? " sel" : ""}`}
+                        className={`check-card check-card-btn${wizard.climateChecks.includes(c) ? " sel" : ""}`}
                         onClick={() => toggleClimate(c)}
-                        style={{ border: "1.5px solid var(--border)", textAlign: "left", width: "100%" }}
                       >
                         <div className="check-box" />
-                        <div>
-                          <div className="check-card-label">{c}</div>
-                        </div>
+                        <div className="check-card-label">{c}</div>
                       </button>
                     ))}
                   </div>
@@ -266,33 +296,19 @@ export function CityWizard({ step }: { step: 1 | 2 | 3 }) {
 
             {step === 3 && (
               <>
-                <NavBack href="/tool/city/wizard/2" />
-                <div className="wizard-step-label-top" style={{ marginTop: 32 }}>
-                  Step 3 of 3
-                </div>
-                <div className="wizard-title">Project details</div>
-                <div className="wizard-subtitle">
-                  Tell us about the specific project you want to fund. This determines finance model fit and eligibility for debt instruments.
-                </div>
-
                 <div className="wizard-section">
                   <div className="wizard-section-label">Project type</div>
                   <div className="radio-cards">
                     {PROJ_OPTS.map((o) => (
                       <button
-                        key={o}
+                        key={o.label}
                         type="button"
-                        className={`radio-card${wizard.projectType === o ? " sel" : ""}`}
-                        onClick={() => patchWizard({ projectType: o })}
-                        style={{ border: "1.5px solid var(--border)", textAlign: "left" }}
+                        className={`radio-card radio-card-btn${wizard.projectType === o.label ? " sel" : ""}`}
+                        onClick={() => patchWizard({ projectType: o.label })}
                       >
                         <div className="rc-dot" />
-                        <div className="rc-title">{o}</div>
-                        <div className="rc-desc">
-                          {o === "Grant-like" && "Public benefit, no income stream. Suited to grants and TA."}
-                          {o === "Savings-based" && "Reduces costs — energy efficiency, waste reduction, etc."}
-                          {o === "Revenue-generating" && "Income via tariffs, fees, or offtake agreements."}
-                        </div>
+                        <div className="rc-title">{o.label}</div>
+                        <div className="rc-desc">{o.desc}</div>
                       </button>
                     ))}
                   </div>
@@ -312,16 +328,14 @@ export function CityWizard({ step }: { step: 1 | 2 | 3 }) {
                       </button>
                     ))}
                   </div>
-                  <p style={{ fontSize: 13, color: "var(--text-muted)", marginTop: 10 }}>
-                    {READINESS_HINTS[wizard.readiness] ?? ""}
-                  </p>
+                  <p className="wizard-hint">{READINESS_HINTS[wizard.readiness] ?? ""}</p>
                 </div>
 
                 <div className="wizard-section">
                   <div className="wizard-section-label">Finance readiness</div>
-                  <div className="form-row" style={{ marginBottom: 0 }}>
+                  <div className="form-row wizard-form-row">
                     <div>
-                      <label style={{ marginBottom: 10 }}>Co-financing available</label>
+                      <label className="wizard-field-label">Co-financing available</label>
                       <div className="seg-ctrl">
                         {COFIN_OPTS.map((o) => (
                           <button
@@ -334,17 +348,17 @@ export function CityWizard({ step }: { step: 1 | 2 | 3 }) {
                           </button>
                         ))}
                       </div>
+                      <p className="wizard-hint">Most instruments expect 10–30% co-financing.</p>
                     </div>
                     <div>
-                      <label style={{ marginBottom: 10 }}>MRV and data status</label>
-                      <div className="check-cards" style={{ gridTemplateColumns: "1fr" }}>
+                      <label className="wizard-field-label">MRV and data status</label>
+                      <div className="check-cards check-cards-stack">
                         {MRV_OPTS.map((m) => (
                           <button
                             key={m}
                             type="button"
-                            className={`check-card${wizard.mrv.includes(m) ? " sel" : ""}`}
+                            className={`check-card check-card-btn check-card-compact${wizard.mrv.includes(m) ? " sel" : ""}`}
                             onClick={() => toggleMrv(m)}
-                            style={{ padding: "12px 14px", border: "1.5px solid var(--border)", textAlign: "left", width: "100%" }}
                           >
                             <div className="check-box" />
                             <div className="check-card-label">{m}</div>

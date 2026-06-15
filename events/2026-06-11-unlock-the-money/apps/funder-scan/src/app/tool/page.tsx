@@ -1,74 +1,82 @@
 import Link from "next/link";
 import { ToolNav } from "@/components/tool/ToolNav";
 
+const STATS = [
+  { icon: "ti-building-community", color: "var(--green)", stat: "314", label: "Chile comunas in the engine" },
+  { icon: "ti-cash", color: "var(--green-mid)", stat: "78", label: "Funding instruments catalogued", statColor: "var(--green-dark)" },
+  { icon: "ti-arrows-shuffle", color: "var(--amber)", stat: "2-sided", label: "City wizard & funder browse", statColor: "#633806" },
+  { icon: "ti-stack-2", color: "var(--green)", stat: "Pools", label: "Gap comunas bundled into deals" },
+] as const;
+
 export default function ToolLandingPage() {
   return (
     <>
       <ToolNav />
       <div className="hero">
-        <div className="container">
+        <div className="container hero-inner">
+          <p className="hero-eyebrow">OpenEarth · Unlock the Money · Chile prototype</p>
           <h1>
-            Connect cities with
+            Find the right instrument.
             <br />
-            climate finance
+            Or the right city.
           </h1>
-          <p>A platform linking cities ready for climate action with the funders ready to back them.</p>
-          <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-            <Link
-              href="/tool/role"
-              className="btn btn-lg"
-              style={{ background: "white", color: "var(--green-dark)", fontWeight: 600, textDecoration: "none" }}
-            >
-              Get started <i className="ti ti-arrow-right" />
+          <p className="hero-lead">
+            A two-sided matcher for municipal climate finance — walk through as a city seeking instruments,
+            or a funder browsing credible projects. Built on the same engine that pools gaps into deals.
+          </p>
+          <div className="hero-actions">
+            <Link href="/tool/role" className="btn btn-lg btn-hero-primary">
+              Choose your role <i className="ti ti-arrow-right" />
+            </Link>
+            <Link href="/tool/city/wizard/1" className="btn btn-lg btn-hero-secondary">
+              <i className="ti ti-building-skyscraper" /> City path
+            </Link>
+            <Link href="/tool/funder/search" className="btn btn-lg btn-hero-secondary">
+              <i className="ti ti-search" /> Funder path
             </Link>
           </div>
         </div>
       </div>
 
-      <div className="container" style={{ paddingTop: 60, paddingBottom: 60 }}>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))",
-            gap: 24,
-            marginBottom: 60,
-          }}
-        >
-          {[
-            { icon: "ti-building-community", color: "var(--green)", stat: "142", label: "Cities seeking funding" },
-            { icon: "ti-cash", color: "var(--blue)", stat: "$4.2B", label: "Available funding", statColor: "var(--blue-dark)" },
-            { icon: "ti-building-bank", color: "var(--amber)", stat: "38", label: "Funders active", statColor: "#633806" },
-            { icon: "ti-plant-2", color: "var(--green)", stat: "67Mt", label: "CO₂ reduction potential" },
-          ].map((c) => (
-            <div key={c.label} className="card" style={{ textAlign: "center", padding: "32px 20px" }}>
-              <i className={`ti ${c.icon}`} style={{ fontSize: 36, color: c.color, display: "block", marginBottom: 12 }} />
-              <div style={{ fontSize: 28, fontWeight: 700, color: c.statColor ?? "var(--green-dark)" }}>{c.stat}</div>
-              <div style={{ color: "var(--text-muted)", fontSize: 14 }}>{c.label}</div>
+      <div className="container tool-landing-body">
+        <div className="tool-stats-grid">
+          {STATS.map((c) => (
+            <div key={c.label} className="card tool-stat-card">
+              <i className={`ti ${c.icon}`} style={{ fontSize: 36, color: c.color }} />
+              <div className="tool-stat-value" style={{ color: c.statColor ?? "var(--green-dark)" }}>
+                {c.stat}
+              </div>
+              <div className="tool-stat-label">{c.label}</div>
             </div>
           ))}
         </div>
-        <div style={{ textAlign: "center" }}>
-          <p style={{ color: "var(--text-muted)", fontSize: 14, marginBottom: 24 }}>TRUSTED BY LEADING ORGANIZATIONS</p>
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 24,
-              justifyContent: "center",
-              alignItems: "center",
-              opacity: 0.5,
-            }}
-          >
-            {["C40 Cities", "World Bank", "GCF", "EBRD", "Bloomberg Philanthropies"].map((n) => (
-              <span key={n} style={{ fontWeight: 600, fontSize: 15 }}>
-                {n}
-              </span>
-            ))}
-          </div>
+
+        <div className="tool-path-cards">
+          <Link href="/tool/city/wizard/1" className="tool-path-card">
+            <div className="tool-path-icon city">
+              <i className="ti ti-building-skyscraper" />
+            </div>
+            <h3>For cities</h3>
+            <p>Three-step profile → matched instruments → readiness gaps.</p>
+            <span className="tool-path-cta">
+              Start city wizard <i className="ti ti-arrow-right" />
+            </span>
+          </Link>
+          <Link href="/tool/funder/search" className="tool-path-card">
+            <div className="tool-path-icon funder">
+              <i className="ti ti-currency-dollar" />
+            </div>
+            <h3>For funders</h3>
+            <p>Set your mandate, browse city profiles, and send an expression of interest.</p>
+            <span className="tool-path-cta">
+              Browse cities <i className="ti ti-arrow-right" />
+            </span>
+          </Link>
         </div>
-        <p style={{ textAlign: "center", marginTop: 40, fontSize: 14 }}>
-          <Link href="/" style={{ color: "var(--green)" }}>
-            ← Back to Chile engine demo
+
+        <p className="tool-back-link">
+          <Link href="/">
+            <i className="ti ti-arrow-left" /> Back to Chile engine demo
           </Link>
         </p>
       </div>
