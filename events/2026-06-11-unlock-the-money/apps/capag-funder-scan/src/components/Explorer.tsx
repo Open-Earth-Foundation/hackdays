@@ -522,23 +522,27 @@ export default function Explorer({
                 </NativeSelect.Field>
                 <NativeSelect.Indicator />
               </NativeSelect.Root>
-              <Flex gap="2" align="center">
-                <Button
-                  size="xs"
-                  flex="1"
-                  variant="outline"
-                  fontWeight={highLevOnly ? "700" : "400"}
-                  bg={highLevOnly ? "content.alternative" : "background.default"}
-                  color={highLevOnly ? "base.light" : "content.secondary"}
-                  borderColor={
-                    highLevOnly ? "content.alternative" : "border.neutral"
-                  }
-                  onClick={() => setHighLevOnly((v) => !v)}
-                >
-                  <Icon as={MdBolt} boxSize="3.5" />
-                  {t("filters.highLeverage")}
-                </Button>
+              <Button
+                size="xs"
+                w="full"
+                variant="outline"
+                justifyContent="flex-start"
+                fontWeight={highLevOnly ? "700" : "400"}
+                bg={highLevOnly ? "content.alternative" : "background.default"}
+                color={highLevOnly ? "base.light" : "content.secondary"}
+                borderColor={highLevOnly ? "content.alternative" : "border.neutral"}
+                onClick={() => setHighLevOnly((v) => !v)}
+                mb="2"
+              >
+                <Icon as={MdBolt} boxSize="3.5" />
+                {t("filters.highLeverage")}
+              </Button>
+              <Flex align="center" gap="2">
+                <Text fontSize="2xs" color="content.tertiary" flexShrink={0}>
+                  {t("filters.sortBy")}
+                </Text>
                 <Flex
+                  flex="1"
                   borderWidth="1px"
                   borderColor="border.neutral"
                   borderRadius="md"
@@ -547,8 +551,15 @@ export default function Explorer({
                   {(["match", "leverage"] as const).map((s) => (
                     <Button
                       key={s}
+                      flex="1"
                       size="xs"
+                      h="auto"
+                      py="1.5"
+                      px="1"
                       borderRadius="0"
+                      whiteSpace="normal"
+                      lineHeight="1.2"
+                      fontSize="2xs"
                       fontWeight={sort === s ? "700" : "400"}
                       bg={sort === s ? "content.alternative" : "background.default"}
                       color={sort === s ? "base.light" : "content.secondary"}
@@ -830,7 +841,13 @@ export default function Explorer({
                     <Table.Cell>{r.debt}</Table.Cell>
                     <Table.Cell>{r.savings}</Table.Cell>
                     <Table.Cell>{r.liquidity}</Table.Cell>
-                    <Table.Cell color="content.tertiary">{r.icf}</Table.Cell>
+                    <Table.Cell
+                      color="content.tertiary"
+                      cursor={r.icf !== "—" ? "help" : undefined}
+                      title={r.icf !== "—" ? t(`icf.tip.${r.icf}`) : undefined}
+                    >
+                      {r.icf}
+                    </Table.Cell>
                     <Table.Cell>
                       {r.leverage ? (
                         <Box

@@ -60,6 +60,13 @@
   "sort.match": "Melhor correspondência",
   "sort.leverage": "Alavancagem",
   "filters.highLeverage": "Só alta alavancagem",
+  "filters.sortBy": "Ordenar",
+
+  "icf.tip.Aicf": "ICF Aicf — melhor qualidade contábil no ranking do Siconfi. Garante o upgrade '+' (A→A+); menor custo de transação, estruturação mais rápida.",
+  "icf.tip.Bicf": "ICF Bicf — boa qualidade contábil (ranking Siconfi). Due diligence padrão.",
+  "icf.tip.Cicf": "ICF Cicf — qualidade contábil moderada (ranking Siconfi).",
+  "icf.tip.Dicf": "ICF Dicf — baixa qualidade contábil. Inelegível a crédito com garantia da União, independentemente da saúde fiscal, até corrigir a prestação de contas no Siconfi.",
+  "icf.tip.Eicf": "ICF Eicf — qualidade contábil muito baixa. Inelegível a crédito com garantia da União, independentemente da saúde fiscal, até corrigir a prestação de contas no Siconfi.",
 
   "lev.graduation": "Graduação",
   "lev.nd_fix": "Correção de dados",
@@ -96,7 +103,7 @@
   "intro.graduation.body": "Algumas cidades CAPAG-C já têm dívida saudável (nota A) — estão bloqueadas apenas pela poupança ou liquidez. Uma correção focada de gestão fiscal as gradua rumo à CAPAG B e destrava crédito garantido. O uso de maior alavancagem do capital catalítico.",
   "intro.gates.kicker": "Travas corrigíveis",
   "intro.gates.title": "Sem nota e travadas por ICF, mas corrigíveis",
-  "intro.gates.body": "Cidades n.d. são invisíveis ao crédito por uma falha específica de prestação de contas no Siconfi — uma correção contábil as torna visíveis. Cidades Dicf/Eicf são inelegíveis só pela qualidade contábil, independentemente da saúde fiscal. Ambas são baratas de corrigir.",
+  "intro.gates.body": "Cidades n.d. são invisíveis ao crédito por uma falha específica de prestação de contas no Siconfi — uma correção contábil as torna visíveis. O ICF é o ranking de qualidade contábil do Siconfi, de Aicf (melhor) a Eicf (pior): Aicf garante o upgrade '+' (A→A+), enquanto Dicf/Eicf ficam inelegíveis a crédito garantido só pela qualidade contábil, independentemente da saúde fiscal. Ambas as travas são baratas de corrigir — passe o mouse sobre qualquer valor de ICF na tabela para ver o significado.",
   "intro.use.kicker": "Como usar",
   "intro.use.title": "Monte um mandato → pipeline mobilizável",
   "intro.use.body": "Informe seu instrumento, região e foco climático. A ferramenta devolve as cidades que você pode financiar, ordenadas por alavancagem catalítica. 'Mobilizável' é margem real de crédito em R$ (1,2× RCL − dívida). Agrupe um conjunto numa facility e exporte a lista.",

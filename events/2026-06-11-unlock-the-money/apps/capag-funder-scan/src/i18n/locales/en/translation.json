@@ -60,6 +60,13 @@
   "sort.match": "Best match",
   "sort.leverage": "Leverage",
   "filters.highLeverage": "High-leverage only",
+  "filters.sortBy": "Sort",
+
+  "icf.tip.Aicf": "ICF Aicf — top accounting quality in Siconfi's ranking. Earns the '+' upgrade (A→A+); lowest transaction cost, fastest to structure.",
+  "icf.tip.Bicf": "ICF Bicf — good accounting quality (Siconfi ranking). Standard due diligence.",
+  "icf.tip.Cicf": "ICF Cicf — moderate accounting quality (Siconfi ranking).",
+  "icf.tip.Dicf": "ICF Dicf — low accounting quality. Ineligible for Union-guaranteed credit regardless of fiscal health until Siconfi reporting is fixed.",
+  "icf.tip.Eicf": "ICF Eicf — very low accounting quality. Ineligible for Union-guaranteed credit regardless of fiscal health until Siconfi reporting is fixed.",
 
   "lev.graduation": "Graduation",
   "lev.nd_fix": "Data fix",
@@ -96,7 +103,7 @@
   "intro.graduation.body": "Some CAPAG-C cities already have healthy, grade-A debt — they're blocked only by savings or liquidity. A focused fiscal-management fix graduates them toward CAPAG B and unlocks guaranteed credit. The highest-leverage use of catalytic capital.",
   "intro.gates.kicker": "Fixable gates",
   "intro.gates.title": "Unrated & ICF-gated, but fixable",
-  "intro.gates.body": "n.d. cities are invisible to credit because of a specific Siconfi reporting gap — one accounting fix makes them visible. Dicf/Eicf cities are ineligible on accounting quality alone, regardless of fiscal health. Both are cheap to fix.",
+  "intro.gates.body": "n.d. cities are invisible to credit because of a specific Siconfi reporting gap — one accounting fix makes them visible. ICF is Siconfi's accounting-quality ranking, Aicf (best) → Eicf (worst): Aicf earns the '+' upgrade (A→A+), while Dicf/Eicf are ineligible for guaranteed credit on accounting quality alone, regardless of fiscal health. Both gates are cheap to fix — hover any ICF value in the table to see what it means.",
   "intro.use.kicker": "How to use it",
   "intro.use.title": "Build a mandate → deployable pipeline",
   "intro.use.body": "Tell the tool your instrument, region and climate focus. It returns the cities you can fund, ranked by catalytic leverage. 'Deployable' is real R$ credit headroom (1.2× RCL − debt). Bundle a cohort into one facility, then export the list.",
