@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Unlock the Money — the Readiness Layer · justagiraffe</title>
+<style>
+  :root{
+    --bg:#0d1117; --panel:#161b22; --panel2:#12161c; --line:#30363d;
+    --text:#e6edf3; --muted:#8b949e; --dim:#6e7681;
+    --cc:#8957e5;   /* CityCatalyst */
+    --prep:#388bfd; /* Preparator   */
+    --nav:#2dd4bf;  /* Navigator    */
+    --svc:#6e7681;  /* services/funders */
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--bg);color:var(--text);
+    font-family:Inter,-apple-system,"Segoe UI",Roboto,sans-serif;overflow:hidden}
+  .stage{position:fixed;inset:0}
+  .slide{position:absolute;inset:0;display:none;flex-direction:column;
+    justify-content:center;padding:5.5vh 7vw 9vh;opacity:0;
+    transition:opacity .35s ease}
+  .slide.active{display:flex;opacity:1}
+  .kicker{font-size:.95rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--muted);font-weight:700;margin-bottom:1.1rem}
+  h1{font-size:clamp(2.6rem,6.4vw,5rem);line-height:1.02;margin:.2rem 0;font-weight:800;letter-spacing:-.02em}
+  h2{font-size:clamp(1.7rem,3.7vw,3rem);line-height:1.1;margin:0 0 1.4rem;font-weight:800;letter-spacing:-.01em;max-width:20ch}
+  .sub{font-size:clamp(1.05rem,1.9vw,1.5rem);color:var(--muted);max-width:46ch;line-height:1.45}
+  .lead{font-size:clamp(1.05rem,1.7vw,1.35rem);color:var(--text);max-width:60ch;line-height:1.5}
+  .small{font-size:1rem;color:var(--muted)}
+  b,strong{color:#fff}
+  .cc{color:var(--cc)} .prep{color:var(--prep)} .nav{color:var(--nav)} .svc{color:var(--dim)}
+
+  /* title */
+  .lockup{display:flex;gap:.7rem;margin-top:2.2rem;flex-wrap:wrap}
+  .pill{padding:.55rem 1rem;border-radius:999px;border:1.5px solid var(--line);
+    background:var(--panel);font-weight:600;font-size:1rem}
+  .pill.t{border-color:var(--nav);color:#d7fbf4}
+  .pill.g{border-color:var(--svc);color:#cdd3da}
+  .byline{position:absolute;left:7vw;bottom:7vh;color:var(--muted);font-size:1rem}
+
+  /* generic cards */
+  .row{display:flex;gap:1.4rem;flex-wrap:wrap;margin-top:.4rem}
+  .card{background:var(--panel2);border:1px solid var(--line);border-radius:14px;
+    padding:1.4rem 1.5rem;flex:1 1 0;min-width:240px}
+  .card.lcc{border-left:4px solid var(--cc)}
+  .card.lprep{border-left:4px solid var(--prep)}
+  .card.lnav{border-left:4px solid var(--nav)}
+  .card.lsvc{border-left:4px solid var(--svc)}
+  .card h3{margin:0 0 .5rem;font-size:1.3rem}
+  .card p{margin:.25rem 0;color:var(--muted);line-height:1.45;font-size:1.02rem}
+  .card .give{color:var(--nav)} .card .get{color:var(--prep)}
+  ul.clean{list-style:none;padding:0;margin:.6rem 0 0}
+  ul.clean li{padding:.28rem 0 .28rem 1.5rem;position:relative;color:var(--muted);font-size:1.05rem;line-height:1.4}
+  ul.clean li::before{content:"";position:absolute;left:0;top:.78em;width:8px;height:8px;border-radius:2px;background:var(--dim)}
+  ul.clean.tnav li::before{background:var(--nav)}
+  ul.clean.tsvc li::before{background:var(--svc)}
+
+  /* two big questions */
+  .qs{display:flex;gap:1.6rem;margin-top:.6rem}
+  .q{flex:1;background:var(--panel2);border:1px solid var(--line);border-radius:16px;padding:2rem}
+  .q .n{font-size:.9rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700}
+  .q h3{font-size:clamp(1.4rem,2.4vw,2rem);margin:.6rem 0 .4rem;line-height:1.12}
+  .q.bank{border-top:4px solid var(--prep)}
+  .q.credit{border-top:4px solid var(--nav)}
+
+  /* dossier flow */
+  .flow{display:flex;align-items:stretch;gap:0;margin-top:1rem;flex-wrap:wrap}
+  .beat{flex:1;min-width:220px;background:var(--panel2);border:1px solid var(--line);
+    border-radius:14px;padding:1.3rem 1.4rem}
+  .beat.n1{border-left:4px solid var(--nav)}
+  .beat.n2{border-left:4px solid var(--dim)}
+  .beat.n3{border-left:4px solid var(--svc)}
+  .beat h3{margin:0 0 .5rem;font-size:1.2rem}
+  .beat p{margin:0;color:var(--muted);line-height:1.45;font-size:1.02rem}
+  .arrow{display:flex;align-items:center;justify-content:center;color:var(--dim);
+    font-size:1.8rem;padding:0 .8rem;flex:0 0 auto}
+  .chip{display:inline-block;background:#0c2b28;border:1px solid var(--nav);color:#d7fbf4;
+    border-radius:8px;padding:.3rem .6rem;margin:.2rem .3rem .2rem 0;font-size:.92rem}
+
+  /* diagrams */
+  .diagram{width:auto;height:auto;max-width:100%;max-height:73vh;display:block;margin:.4rem auto 0}
+  .diagwrap{display:flex;justify-content:center;align-items:center;flex:1;min-height:0}
+
+  /* grid for other projects */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:.5rem}
+  .grid .card{min-width:0}
+  .grid .card p{font-size:.96rem}
+
+  /* points */
+  .points{display:flex;gap:1.6rem;margin-top:.4rem}
+  .point{flex:1;background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:1.5rem}
+  .point h3{margin:0 0 .5rem;font-size:1.35rem}
+  .point p{margin:0;color:var(--muted);line-height:1.5}
+  .repeat{margin-top:1.6rem;font-size:clamp(1.1rem,1.9vw,1.5rem);line-height:1.4}
+
+  /* chrome */
+  #bar{position:fixed;left:0;top:0;height:3px;background:linear-gradient(90deg,var(--cc),var(--nav));width:0;transition:width .35s ease;z-index:20}
+  .hud{position:fixed;right:1.4rem;bottom:1.1rem;display:flex;gap:.5rem;align-items:center;z-index:20}
+  .hud button{background:var(--panel);border:1px solid var(--line);color:var(--muted);
+    border-radius:8px;padding:.4rem .6rem;font-size:.85rem;cursor:pointer;font-family:inherit}
+  .hud button:hover{color:#fff;border-color:var(--dim)}
+  #counter{position:fixed;left:1.6rem;bottom:1.2rem;color:var(--dim);font-size:.9rem;z-index:20;font-variant-numeric:tabular-nums}
+  .brandmark{position:fixed;right:1.5rem;top:1.1rem;color:var(--dim);font-size:.85rem;letter-spacing:.08em;z-index:20}
+
+  /* speaker notes */
+  .note{display:none}
+  body.notes .note{display:block;position:fixed;left:0;right:0;bottom:0;
+    background:#05070a;border-top:1px solid var(--line);padding:1rem 7vw 1.2rem;
+    color:#c9d1d9;font-size:1.02rem;line-height:1.5;z-index:15;max-height:34vh;overflow:auto}
+  body.notes .note .t{color:var(--nav);font-weight:700;margin-right:.6rem}
+  @media (max-width:760px){.qs,.points,.flow{flex-direction:column}.grid{grid-template-columns:1fr 1fr}.arrow{transform:rotate(90deg)}}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div class="brandmark">🦒 justagiraffe</div>
+<div class="stage">
+
+  <!-- 1 · TITLE -->
+  <section class="slide active">
+    <div class="kicker">Hackday Q2 2026 · Unlock the Money</div>
+    <h1>Unlock the<br>Money</h1>
+    <div class="sub">The <b>readiness layer</b> that gets subnational climate finance actually flowing — from a city's plan to a funder's pipeline.</div>
+    <div class="lockup">
+      <span class="pill t">City Readiness Navigator · city-facing</span>
+      <span class="pill g">SFP Control Tower · IDB-facing</span>
+    </div>
+    <div class="byline">Team justagiraffe · Ana · Sean · Mirco</div>
+    <div class="note"><span class="t">0:20</span> One sentence: "We built the trust layer between a city's climate plan and the money that funds it — two apps, one shared readiness model." Don't explain the apps yet.</div>
+  </section>
+
+  <!-- 2 · PROBLEM -->
+  <section class="slide">
+    <div class="kicker">The problem</div>
+    <h2>If funders can't trust cities, the money doesn't move.</h2>
+    <div class="qs">
+      <div class="q bank"><div class="n">Question 1</div><h3>Is the <span class="prep">project</span> bankable?</h3><p class="small">Is this specific investment fundable, and by whom?</p></div>
+      <div class="q credit"><div class="n">Question 2</div><h3>Is the <span class="nav">entity</span> creditworthy?</h3><p class="small">Can this city — or a pool of them — take on this instrument?</p></div>
+    </div>
+    <p class="lead" style="margin-top:1.6rem">Two different questions, answered by different actors today — and <b>never assembled in one place</b> a funder can act on.</p>
+    <div class="note"><span class="t">0:45</span> These two questions gate every deal. They're independent: a great project in a city that can't borrow goes nowhere; a creditworthy city with no bankable project goes nowhere. Keeping them separate is the core insight.</div>
+  </section>
+
+  <!-- 3 · TWO APPS -->
+  <section class="slide">
+    <div class="kicker">What we built · two sides of the table</div>
+    <h2>Two apps, one shared readiness model.</h2>
+    <div class="row">
+      <div class="card lnav">
+        <h3 class="nav">City Readiness Navigator</h3>
+        <p><i>The city's view:</i> "What money can my plan reach, and exactly what must I fix?"</p>
+        <ul class="clean tnav">
+          <li>Match actions → reachable funders</li>
+          <li>Readiness pathways: diagnose & coach to the funder's bar</li>
+          <li>Pool into a financeable portfolio (if sub-scale)</li>
+          <li>Submit a dossier</li>
+        </ul>
+      </div>
+      <div class="card lsvc">
+        <h3 class="svc">SFP Control Tower</h3>
+        <p><i>The IDB's view:</i> "Which candidates are ready, and why?"</p>
+        <ul class="clean tsvc">
+          <li>Intake &amp; Triage — where each candidate sits</li>
+          <li>Readiness Scoring — the creditworthiness gate</li>
+          <li>M&amp;E &amp; Board — proving the pilot works</li>
+        </ul>
+      </div>
+    </div>
+    <p class="lead" style="margin-top:1.4rem">One <b>dossier</b> crosses the boundary between them — same readiness engine scores both sides.</p>
+    <div class="note"><span class="t">0:50</span> Navigator = the front door for cities (lots of hand-holding). Control Tower = the screening room for the funder (expert, dense). Same scoring model under both, so a city is judged on the exact criteria the funder uses.</div>
+  </section>
+
+  <!-- 4 · DOSSIER HANDOFF -->
+  <section class="slide">
+    <div class="kicker">How they interact</div>
+    <h2>The handoff is a single dossier.</h2>
+    <div class="flow">
+      <div class="beat n1"><h3 class="nav">1 · Navigator assembles</h3><p>The city app builds a defensible candidate package.</p></div>
+      <div class="arrow">→</div>
+      <div class="beat n2"><h3>2 · Crosses the boundary</h3><p>City-facing → funder-facing. No re-keying, no email.</p></div>
+      <div class="arrow">→</div>
+      <div class="beat n3"><h3 class="svc">3 · Control Tower intake</h3><p>Lands as a scored candidate in Intake &amp; Triage.</p></div>
+    </div>
+    <p class="lead" style="margin-top:1.6rem">Dossier =
+      <span class="chip">Concept Note</span>
+      <span class="chip">creditworthiness</span>
+      <span class="chip">instrument</span>
+      <span class="chip">pool</span>
+    </p>
+    <p class="small" style="margin-top:.8rem">The city app produces a <b>defensible candidate</b> — not an approval. The funder still does due diligence.</p>
+    <div class="note"><span class="t">0:45</span> Key point: the dossier reuses the Project Preparator's Concept Note format and extends it. We didn't invent a new schema. That's what makes the handoff real instead of a slide.</div>
+  </section>
+
+  <!-- 5 · ARCHITECTURE SVG -->
+  <section class="slide">
+    <div class="kicker">The integrated architecture</div>
+    <div class="diagwrap">
+<svg viewBox="0 0 680 612" role="img" class="diagram" xmlns="http://www.w3.org/2000/svg">
+<title>Revised 5a integrated architecture</title>
+<desc>CityCatalyst as host infrastructure; Project Preparator and City Readiness Navigator as peer modules; the Navigator is a three-step vertical; capacity building is a standalone support track; funder pipelines at the bottom.</desc>
+<defs>
+<marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b949e"/></marker>
+</defs>
+<rect x="0" y="0" width="680" height="612" rx="12" fill="#0d1117"/>
+<text x="24" y="28" font-family="Inter,Segoe UI,sans-serif" font-size="13" font-weight="700" fill="#c9d1d9">Integrated architecture — 5a (City Readiness Navigator)</text>
+<rect x="24" y="42" width="632" height="68" rx="8" fill="#13111c" stroke="#8957e5" stroke-width="1.3"/>
+<text x="36" y="60" font-family="Inter,sans-serif" font-size="11.5" font-weight="700" fill="#b794f4">CityCatalyst — host &amp; shared context (infrastructure)</text>
+<rect x="36" y="72" width="196" height="30" rx="6" fill="#1b2230" stroke="#30363d"/><text x="134" y="91" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#c9d1d9">HIAP prioritized actions</text>
+<rect x="244" y="72" width="190" height="30" rx="6" fill="#1b2230" stroke="#30363d"/><text x="339" y="91" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#c9d1d9">GHG inventory · CCRA risk</text>
+<rect x="446" y="72" width="198" height="30" rx="6" fill="#1b2230" stroke="#30363d"/><text x="545" y="91" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#c9d1d9">AI agents · MCP (shared)</text>
+<rect x="24" y="140" width="300" height="92" rx="8" fill="#12161c" stroke="#388bfd" stroke-width="1.3"/>
+<text x="36" y="158" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#79c0ff">Project Preparator — module on CityCatalyst</text>
+<rect x="36" y="166" width="276" height="56" rx="6" fill="#11233b" stroke="#1f6feb"/>
+<text x="174" y="190" text-anchor="middle" font-family="Inter,sans-serif" font-size="11.5" font-weight="600" fill="#e6edf3">Project bankability (Tech/Fin/Pol)</text>
+<text x="174" y="208" text-anchor="middle" font-family="Inter,sans-serif" font-size="10.5" fill="#9fb6cf">→ Concept Note</text>
+<rect x="24" y="248" width="300" height="44" rx="6" fill="#161b22" stroke="#6e7681"/><text x="174" y="274" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#c9d1d9">Fiscal Data Adapters · CAPAG / SINIM + map</text>
+<rect x="24" y="302" width="300" height="44" rx="6" fill="#161b22" stroke="#6e7681" stroke-dasharray="4 3"/><text x="174" y="328" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#c9d1d9">Matching &amp; Pooling — core service</text>
+<rect x="24" y="376" width="300" height="58" rx="8" fill="#161b22" stroke="#6e7681" stroke-dasharray="5 3"/>
+<text x="174" y="400" text-anchor="middle" font-family="Inter,sans-serif" font-size="11.5" font-weight="700" fill="#c9d1d9">Capacity building / PPF</text>
+<text x="174" y="418" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#8b949e">standalone support · entity or project</text>
+<rect x="356" y="140" width="300" height="294" rx="8" fill="#0f1a19" stroke="#2dd4bf" stroke-width="1.3"/>
+<text x="368" y="158" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#5eead4">City Readiness Navigator — entity / portfolio (one vertical)</text>
+<rect x="368" y="166" width="276" height="62" rx="6" fill="#0c2b28" stroke="#2dd4bf"/>
+<text x="506" y="190" text-anchor="middle" font-family="Inter,sans-serif" font-size="11.5" font-weight="700" fill="#d7fbf4">① Entity creditworthiness</text>
+<text x="506" y="208" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#8fd9cf">diagnose for chosen instrument</text>
+<rect x="368" y="240" width="276" height="68" rx="6" fill="#0c2b28" stroke="#2dd4bf"/>
+<text x="506" y="263" text-anchor="middle" font-family="Inter,sans-serif" font-size="11.5" font-weight="700" fill="#d7fbf4">② Readiness pathways</text>
+<text x="506" y="280" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#8fd9cf">close the gap · coach to funder reqs</text>
+<text x="506" y="295" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#8fd9cf">(IDB SFP first)</text>
+<rect x="368" y="320" width="276" height="68" rx="6" fill="#0c2b28" stroke="#2dd4bf"/>
+<text x="506" y="343" text-anchor="middle" font-family="Inter,sans-serif" font-size="11.5" font-weight="700" fill="#d7fbf4">③ Portfolio &amp; pooling → submit</text>
+<text x="506" y="360" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#8fd9cf">pool only if sub-scale</text>
+<text x="506" y="375" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#8fd9cf">→ dossier</text>
+<path d="M506 228 L506 240" stroke="#2dd4bf" stroke-width="1.4" marker-end="url(#ah)"/>
+<path d="M506 308 L506 320" stroke="#2dd4bf" stroke-width="1.4" marker-end="url(#ah)"/>
+<rect x="24" y="468" width="632" height="78" rx="8" fill="#12161c" stroke="#6e7681" stroke-width="1.3"/>
+<text x="36" y="487" font-family="Inter,sans-serif" font-size="11.5" font-weight="700" fill="#c9d1d9">Funder pipelines</text>
+<rect x="36" y="496" width="392" height="42" rx="6" fill="#1b2230" stroke="#30363d"/><text x="232" y="521" text-anchor="middle" font-family="Inter,sans-serif" font-size="10.5" fill="#c9d1d9">IDB Control Tower · Intake &amp; Triage · Readiness Scoring · M&amp;E &amp; Board</text>
+<rect x="440" y="496" width="196" height="42" rx="6" fill="#1b2230" stroke="#30363d"/><text x="538" y="521" text-anchor="middle" font-family="Inter,sans-serif" font-size="10.5" fill="#c9d1d9">Other funders · BNDES / CCFLA</text>
+<path d="M134 102 L134 140" stroke="#8b949e" stroke-width="1.3" marker-end="url(#ah)"/>
+<path d="M324 195 L362 348" stroke="#8b949e" stroke-width="1.3" marker-end="url(#ah)"/>
+<text x="300" y="250" font-family="Inter,sans-serif" font-size="9.5" fill="#9fb6cf" transform="rotate(76 300 250)">Concept Note · Path A</text>
+<path d="M324 268 L362 200" stroke="#8b949e" stroke-width="1.3" marker-end="url(#ah)"/>
+<text x="332" y="232" font-family="Inter,sans-serif" font-size="9.5" fill="#8fd9cf" transform="rotate(-60 332 232)">Path B · entity-first</text>
+<path d="M324 322 L362 278" stroke="#8b949e" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#ah)"/>
+<path d="M368 290 L326 392" stroke="#8b949e" stroke-width="1.2" marker-end="url(#ah)"/>
+<text x="300" y="345" font-family="Inter,sans-serif" font-size="9.5" fill="#e3a08d" transform="rotate(67 300 345)">not ready → gap</text>
+<path d="M506 388 L300 496" stroke="#8b949e" stroke-width="1.4" marker-end="url(#ah)"/>
+<text x="430" y="436" font-family="Inter,sans-serif" font-size="9.5" fill="#c9d1d9" transform="rotate(28 430 436)">dossier</text>
+<path d="M560 102 L520 166" stroke="#8957e5" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#ah)"/>
+<rect x="24" y="566" width="12" height="12" rx="2" fill="#8957e5"/><text x="42" y="576" font-family="Inter,sans-serif" font-size="10" fill="#8b949e">CityCatalyst (host)</text>
+<rect x="166" y="566" width="12" height="12" rx="2" fill="#388bfd"/><text x="184" y="576" font-family="Inter,sans-serif" font-size="10" fill="#8b949e">Preparator</text>
+<rect x="280" y="566" width="12" height="12" rx="2" fill="#2dd4bf"/><text x="298" y="576" font-family="Inter,sans-serif" font-size="10" fill="#8b949e">Navigator</text>
+<rect x="392" y="566" width="12" height="12" rx="2" fill="#6e7681"/><text x="410" y="576" font-family="Inter,sans-serif" font-size="10" fill="#8b949e">services / funders</text>
+</svg>
+    </div>
+    <div class="note"><span class="t">1:00</span> CityCatalyst is the host (inventory, HIAP actions, climate risk, AI agents). Preparator and our Navigator are peer modules on top. Navigator is one vertical: creditworthiness → readiness pathways → portfolio → submit. Capacity building is a standalone track. Everything ends in the funder pipelines.</div>
+  </section>
+
+  <!-- 6 · PROCESS TIMELINE SVG -->
+  <section class="slide">
+    <div class="kicker">The pipeline, end to end</div>
+    <div class="diagwrap">
+<svg viewBox="0 0 680 520" role="img" class="diagram" xmlns="http://www.w3.org/2000/svg">
+<title>Process timeline — readiness pipeline and shared services</title>
+<desc>A top-to-bottom process (Source, Readiness pathways, Portfolio, Funder intake) running through CityCatalyst, the Navigator's readiness pathways with Path A and Path B, portfolio and pooling, and the IDB Control Tower — with AI agents, Matching+Pooling, and Fiscal adapters as shared services on the right.</desc>
+<defs>
+<marker id="a2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b949e"/></marker>
+</defs>
+<rect x="0" y="0" width="680" height="520" rx="12" fill="#0d1117"/>
+<text x="24" y="40" font-family="Inter,Segoe UI,sans-serif" font-size="11" font-weight="700" letter-spacing="1" fill="#6e7681">PROCESS</text>
+<text x="656" y="40" text-anchor="end" font-family="Inter,sans-serif" font-size="11" font-weight="700" letter-spacing="1" fill="#6e7681">SHARED SERVICES</text>
+<line x1="44" y1="99" x2="44" y2="425" stroke="#30363d" stroke-width="2"/>
+<circle cx="44" cy="99" r="5" fill="#3fb950"/><text x="58" y="103" font-family="Inter,sans-serif" font-size="11" fill="#c9d1d9">Source</text>
+<circle cx="44" cy="212" r="5" fill="#3fb950"/><text x="58" y="216" font-family="Inter,sans-serif" font-size="11" fill="#c9d1d9">Readiness pathways</text>
+<circle cx="44" cy="329" r="5" fill="#3fb950"/><text x="58" y="333" font-family="Inter,sans-serif" font-size="11" fill="#c9d1d9">Portfolio</text>
+<circle cx="44" cy="425" r="5" fill="#3fb950"/><text x="58" y="429" font-family="Inter,sans-serif" font-size="11" fill="#c9d1d9">Funder intake</text>
+<rect x="170" y="70" width="340" height="58" rx="8" fill="#4338ca"/>
+<text x="184" y="94" font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="#ffffff">CityCatalyst</text>
+<text x="184" y="113" font-family="Inter,sans-serif" font-size="10.5" fill="#c7d2fe">GHG inventory · HIAP actions · CCRA risk</text>
+<rect x="170" y="160" width="340" height="104" rx="8" fill="#21262d" stroke="#30363d"/>
+<text x="184" y="183" font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="#e6edf3">Readiness pathways</text>
+<text x="184" y="200" font-family="Inter,sans-serif" font-size="10" fill="#8b949e">assess, then route → ready · capacity-building · pool</text>
+<rect x="182" y="208" width="316" height="22" rx="4" fill="#1d4ed8"/><text x="192" y="223" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#dbe6ff">Project bankability  ·  Preparator → Portfolio  ·  Path A</text>
+<rect x="182" y="234" width="316" height="22" rx="4" fill="#0d9488"/><text x="192" y="249" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#d7fbf4">① Entity creditworthiness  ·  CAPAG · SINIM · map  ·  Path B</text>
+<rect x="170" y="300" width="340" height="58" rx="8" fill="#0f766e"/>
+<text x="184" y="324" font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="#ffffff">② Portfolio &amp; pooling → submit</text>
+<text x="184" y="343" font-family="Inter,sans-serif" font-size="10.5" fill="#a7f3d0">pool to reach the instrument's ticket size</text>
+<rect x="170" y="396" width="340" height="58" rx="8" fill="#21262d" stroke="#30363d"/>
+<text x="184" y="420" font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="#e6edf3">IDB Control Tower</text>
+<text x="184" y="439" font-family="Inter,sans-serif" font-size="10.5" fill="#8b949e">Intake &amp; Triage · Readiness Scoring · M&amp;E &amp; Board</text>
+<rect x="524" y="160" width="132" height="46" rx="6" fill="#21262d" stroke="#30363d"/>
+<text x="590" y="180" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#e6edf3">AI agents</text>
+<text x="590" y="196" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="#8b949e">shared context (MCP)</text>
+<rect x="524" y="214" width="132" height="46" rx="6" fill="#21262d" stroke="#30363d"/>
+<text x="590" y="234" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#e6edf3">Matching + Pooling</text>
+<text x="590" y="250" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="#8b949e">core service</text>
+<rect x="524" y="300" width="132" height="46" rx="6" fill="#21262d" stroke="#30363d"/>
+<text x="590" y="320" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#e6edf3">Fiscal adapters</text>
+<text x="590" y="336" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="#8b949e">CAPAG · SINIM · map</text>
+<path d="M340 128 L340 160" stroke="#8b949e" stroke-width="1.5" marker-end="url(#a2)"/>
+<path d="M340 264 L340 300" stroke="#8b949e" stroke-width="1.5" marker-end="url(#a2)"/>
+<path d="M340 358 L340 396" stroke="#8b949e" stroke-width="1.5" marker-end="url(#a2)"/>
+<text x="348" y="381" font-family="Inter,sans-serif" font-size="10" fill="#c9d1d9">dossier</text>
+<path d="M510 188 L524 183" stroke="#6e7681" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#a2)"/>
+<path d="M510 220 L524 237" stroke="#6e7681" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#a2)"/>
+<path d="M510 326 L524 323" stroke="#6e7681" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#a2)"/>
+<rect x="170" y="485" width="12" height="12" rx="2" fill="#4338ca"/><text x="188" y="495" font-family="Inter,sans-serif" font-size="10" fill="#8b949e">CityCatalyst</text>
+<rect x="288" y="485" width="12" height="12" rx="2" fill="#1d4ed8"/><text x="306" y="495" font-family="Inter,sans-serif" font-size="10" fill="#8b949e">Preparator</text>
+<rect x="392" y="485" width="12" height="12" rx="2" fill="#0f766e"/><text x="410" y="495" font-family="Inter,sans-serif" font-size="10" fill="#8b949e">Navigator</text>
+<rect x="492" y="485" width="12" height="12" rx="2" fill="#21262d" stroke="#30363d"/><text x="510" y="495" font-family="Inter,sans-serif" font-size="10" fill="#8b949e">funders / services</text>
+</svg>
+    </div>
+    <div class="note"><span class="t">0:50</span> Read it top to bottom: Source (CityCatalyst) → Readiness pathways → Portfolio → Funder intake. Two ways in: Path A (project-first, via the Preparator) and Path B (entity-first, via fiscal data). The right rail is the shared services every step calls.</div>
+  </section>
+
+  <!-- 7 · OTHER PROJECTS -->
+  <section class="slide">
+    <div class="kicker">We didn't build in a silo</div>
+    <h2>Our two apps plug into the rest of the room.</h2>
+    <div class="grid">
+      <div class="card lcc"><h3 class="cc">CityCatalyst</h3><p><span class="get">we get →</span> GHG inventory · HIAP actions · CCRA risk · AI-agent context</p></div>
+      <div class="card lprep"><h3 class="prep">Project Preparator</h3><p><span class="get">we get →</span> a bankable project as a Concept Note (Path A)</p></div>
+      <div class="card lsvc"><h3 class="svc">Matching Engine</h3><p><span class="get">we get →</span> action→funder matching + pooling (Chile / SINIM)</p></div>
+      <div class="card lsvc"><h3 class="svc">CAPAG Funder Scan</h3><p><span class="get">we get →</span> Brazil Treasury creditworthiness (the fiscal adapter)</p></div>
+      <div class="card lsvc"><h3 class="svc">Political-will signal</h3><p><span class="get">we get →</span> an LLM governance / political-will sub-score</p></div>
+      <div class="card lnav"><h3 class="nav">…and we give back →</h3><p><span class="give">a dossier</span> the IDB Control Tower (and any MDB) can act on</p></div>
+    </div>
+    <div class="note"><span class="t">1:00</span> This is the "ecosystem" slide. Every other team's project is an input or an output to our chain. CAPAG and the Matching Engine feed our readiness; the Preparator feeds our portfolio; we feed the Control Tower. One stack, many hands.</div>
+  </section>
+
+  <!-- 8 · WHY IT MATTERS -->
+  <section class="slide">
+    <div class="kicker">Why it matters · the revenue angle</div>
+    <h2>A premium capability for cities, a de-risked pipeline for any MDB.</h2>
+    <div class="points">
+      <div class="point"><h3 class="nav">For cities</h3><p>A premium CityCatalyst capability: turn a climate plan into a fundable, submitted candidate.</p></div>
+      <div class="point"><h3 class="svc">For funders</h3><p>A pre-screened, de-risked deal pipeline — candidates arrive already scored on your criteria.</p></div>
+    </div>
+    <p class="repeat">Repeatable: swap the <b>readiness profile</b> → <span class="cc">CAF</span> · <span class="prep">World Bank</span> · <span class="nav">GCF</span>. <b>Same app, new MDB — no rebuild.</b></p>
+    <div class="note"><span class="t">0:40</span> Hackday required a revenue angle — this is it. The profile-driven engine means the second MDB is a config file, not a new product. That's the scaling story.</div>
+  </section>
+
+  <!-- 9 · CLOSE -->
+  <section class="slide">
+    <div class="kicker">What we'll show</div>
+    <h2>Two real cities, two outcomes.</h2>
+    <p class="lead"><b class="nav">Valdivia (Chile)</b> — Ready → builds a portfolio → dossier submitted to <b>IDB SFP</b>.<br>
+    <b class="prep">Canoas (Brazil, CAPAG C)</b> — not yet creditworthy → routed to a <b>funded capacity-building path</b>.</p>
+    <p class="small" style="margin-top:1rem">Real fiscal data in (SINIM + CAPAG); a defensible dossier out. Both branches of "readiness pathways," live.</p>
+    <div class="lockup" style="margin-top:2rem">
+      <span class="pill t">City Readiness Navigator</span>
+      <span class="pill g">SFP Control Tower</span>
+    </div>
+    <p class="small" style="margin-top:1.8rem"><code>Open-Earth-Foundation/hackdays</code> · branch <code>justagiraffe</code> · thank you 🦒</p>
+    <div class="note"><span class="t">0:30</span> End on the demo promise + thanks. If you're tight on time, you can jump straight from slide 7 to here.</div>
+  </section>
+
+</div>
+
+<div id="counter">1 / 9</div>
+<div class="hud">
+  <button onclick="go(i-1);event.stopPropagation()">‹ Prev</button>
+  <button onclick="go(i+1);event.stopPropagation()">Next ›</button>
+  <button onclick="document.body.classList.toggle('notes');event.stopPropagation()" title="Speaker notes (n)">Notes</button>
+  <button onclick="fs();event.stopPropagation()" title="Fullscreen (f)">⛶</button>
+</div>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  let i=0;
+  function go(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+    counter.textContent=(i+1)+' / '+slides.length;
+    bar.style.width=((i+1)/slides.length*100)+'%';
+    location.hash=i+1;
+  }
+  function fs(){ if(!document.fullscreenElement){document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();} else {document.exitFullscreen&&document.exitFullscreen();} }
+  addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){go(i+1);e.preventDefault();}
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){go(i-1);e.preventDefault();}
+    else if(e.key==='Home'){go(0);} else if(e.key==='End'){go(slides.length-1);}
+    else if(e.key==='f'||e.key==='F'){fs();}
+    else if(e.key==='n'||e.key==='N'){document.body.classList.toggle('notes');}
+  });
+  addEventListener('click',e=>{ if(e.target.closest('.hud,a,button,code'))return; go(i+1); });
+  const startHash=parseInt(location.hash.replace('#',''))||1;
+  go(startHash-1);
+</script>
+</body>
+</html>
