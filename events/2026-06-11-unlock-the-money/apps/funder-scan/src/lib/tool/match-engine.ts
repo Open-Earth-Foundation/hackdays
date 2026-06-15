@@ -6,6 +6,17 @@ import type {
   ValdiviaInstrument,
   WizardState,
 } from "./types";
+import { defaultWizardState } from "./types";
+
+const GPC_TO_WIZARD: Record<string, string> = {
+  waste: "Waste",
+  transportation: "Transport",
+  stationary_energy: "Energy",
+  afolu: "AFOLU",
+  ippu: "IPPU",
+  water: "Nature-based solutions",
+  cross_sector: "Cross-cutting",
+};
 
 const WIZARD_TO_GPC: Record<string, string[]> = {
   Waste: ["waste"],
@@ -186,6 +197,34 @@ export function matchCity(
     if (out.length >= 8) break;
   }
   return out;
+}
+
+export function wizardFromComuna(comuna: ChileComuna): WizardState {
+  const sectors =
+    comuna.salientSectors
+      .map((s) => GPC_TO_WIZARD[s])
+      .filter((s): s is string => !!s)
+      .slice(0, 3) || defaultWizardState.sectors;
+
+  return {
+    ...defaultWizardState,
+    comuna: comuna.name,
+    locode: comuna.locode,
+    country: "Chile",
+    population: comuna.populationBand,
+    fiscal: comuna.fiscalBand,
+    capacity: comuna.capacityBand,
+    sectors: sectors.length ? sectors : defaultWizardState.sectors,
+  };
+}
+
+export function matchComunaForBrowse(
+  comuna: ChileComuna,
+  funds: ChileFund[],
+  valdivia: ValdiviaInstrument[],
+  limit = 6,
+): InstrumentMatch[] {
+  return matchCity(wizardFromComuna(comuna), comuna, funds, valdivia).slice(0, limit);
 }
 
 export function buildReadinessGaps(wizard: WizardState, comuna?: ChileComuna): ReadinessGap[] {

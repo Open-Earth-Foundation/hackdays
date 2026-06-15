@@ -82,6 +82,8 @@ export interface ChileComuna {
   cofinanceScore: number | null;
   anchorScore: number | null;
   compositeScore: number | null;
+  professionalizationPct?: number | null;
+  staffPer1000?: number | null;
   fiscalBand: string;
   capacityBand: string;
   poolStatus?: string;
@@ -112,4 +114,29 @@ export interface ValdiviaInstrument {
   actionCount: number;
   topAction: string;
   instrumentType: string;
+}
+
+export interface ValdiviaDetail {
+  profile: {
+    name: string;
+    region: string;
+    population: number;
+    fcm_dependency_pct: number;
+    unit_id: string;
+  };
+  funders_count: { applicant: number; facilitator: number; referrer: number };
+  actions: { total: number; match: number; referrer: number };
+  transport: {
+    n_actions: number;
+    best_af: number;
+    best_funder: string;
+    best_inst: string;
+  };
+  pool: {
+    comuna: string;
+    population: number | null;
+    fcm_dependency_pct: number | null;
+    cofinance_score: number | null;
+    is_anchor: boolean;
+  }[];
 }

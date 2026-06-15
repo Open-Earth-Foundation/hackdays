@@ -1,8 +1,9 @@
-import type { ChileComuna, ChileFund, ValdiviaInstrument } from "./types";
+import type { ChileComuna, ChileFund, ValdiviaDetail, ValdiviaInstrument } from "./types";
 
 let comunasCache: ChileComuna[] | null = null;
 let fundsCache: ChileFund[] | null = null;
 let valdiviaCache: ValdiviaInstrument[] | null = null;
+let valdiviaDetailCache: ValdiviaDetail | null = null;
 
 async function fetchJson<T>(path: string): Promise<T> {
   const res = await fetch(path);
@@ -23,6 +24,11 @@ export async function loadChileFunds(): Promise<ChileFund[]> {
 export async function loadValdiviaInstruments(): Promise<ValdiviaInstrument[]> {
   if (!valdiviaCache) valdiviaCache = await fetchJson<ValdiviaInstrument[]>("/data/valdivia-instruments.json");
   return valdiviaCache;
+}
+
+export async function loadValdiviaDetail(): Promise<ValdiviaDetail> {
+  if (!valdiviaDetailCache) valdiviaDetailCache = await fetchJson<ValdiviaDetail>("/data/valdivia.json");
+  return valdiviaDetailCache;
 }
 
 export async function loadMatcherData() {
