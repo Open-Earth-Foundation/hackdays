@@ -10,10 +10,11 @@ import { getCityContext, agentAssist } from "@/lib/context";
 import { assembleDossier } from "@/lib/dossier";
 
 const STAGES: StageDef[] = [
-  { key: "explore", title: "Explore", sub: "Map & scope" },
-  { key: "context", title: "City context", sub: "Source: inventory + plan" },
+  { key: "explore", title: "Explore", sub: "Region & data" },
+  { key: "context", title: "City context", sub: "From CityCatalyst" },
+  { key: "instrument", title: "Choose instrument", sub: "Readiness for whom" },
   { key: "readiness", title: "Readiness pathways", sub: "Assess & route" },
-  { key: "portfolio", title: "Portfolio", sub: "Instrument · pool · prepare" },
+  { key: "portfolio", title: "Portfolio", sub: "Reach the ticket" },
   { key: "intake", title: "Funder intake", sub: "Dossier & submit" },
 ];
 
@@ -48,8 +49,11 @@ function pathwayOf(s: Scored): "instrument" | "pool" | "capacity-building" {
 
 export default function Page() {
   const [scopeId, setScopeId] = useState("cl-losrios");
+  const [viewLevel, setViewLevel] = useState<"cities" | "state">("cities");
   const [cityId, setCityId] = useState<string | null>(null);
   const [entry, setEntry] = useState<"entity" | "project">("entity");
+  const [instrument, setInstrument] = useState<string | null>(null);
+  const [portfolioMode, setPortfolioMode] = useState<"intra" | "cross">("intra");
   const [stage, setStage] = useState(0);
   const [maxReached, setMaxReached] = useState(0);
   const [submitState, setSubmitState] = useState<{ id: string } | null>(null);
@@ -62,25 +66,36 @@ export default function Page() {
   const scored = cityId ? journeyCity(cityId) : null;
   const ctx = cityId ? getCityContext(cityId) : null;
   const pathway = scored ? pathwayOf(scored) : null;
+
+  // Cross-city pool (Chile) and intra-city portfolio (the city's own projects).
   const pool = scopeId === "cl-losrios" ? DATA.cl.pool : null;
   const poolScored = scored && pool ? SM.scoreSNG({ ...(scored as any), proposal: pool.pooledProposal }) : null;
+  const intraTotal = ctx ? ctx.projects.reduce((a, p) => a + p.askUSDm, 0) : 0;
+  const intraScored = scored && ctx ? SM.scoreSNG({ ...(scored as any), proposal: { title: `${scored.name} climate portfolio`, sector: "multi-sector", askUSDm: intraTotal, stage: "Structuring", cofinance: true } }) : null;
 
   function goto(i: number) { setStage(i); setMaxReached((m) => Math.max(m, i)); }
-  function pickCity(id: string) { setCityId(id); setSubmitState(null); goto(1); }
+  function pickCity(id: string) { setCityId(id); setSubmitState(null); setInstrument(null); goto(1); }
+
+  // Region-level summary (the "state layer").
+  const regionSummary = useMemo(() => {
+    const counts: Record<string, number> = {};
+    for (const p of points) counts[p.tier] = (counts[p.tier] || 0) + 1;
+    return counts;
+  }, [points]);
 
   async function submit() {
     if (!scored || !pathway) return;
     setSubmitting(true);
     let opts: any;
-    if (pathway === "pool" && pool) {
+    if (pathway === "capacity-building") {
+      opts = { scored, kind: "city", pathway: "capacity-building", instrumentName: "Capacity-building / PPF + blended finance", pool: null, proposal: scored.proposal };
+    } else if (portfolioMode === "cross" && pool) {
       opts = { scored: poolScored, kind: "pool", pathway: "pool",
         pool: { anchor: scored.name, members: pool.members.map((m: any) => ({ name: m.name, role: m.isAnchor ? "anchor" : "member", cofinance: m.cofinanceScore })) },
         proposal: pool.pooledProposal };
-    } else if (pathway === "capacity-building") {
-      opts = { scored, kind: "city", pathway: "capacity-building", instrumentName: "Capacity-building / PPF + blended finance",
-        pool: null, proposal: scored.proposal };
     } else {
-      opts = { scored, kind: "city", pathway: "instrument", pool: null, proposal: scored.proposal };
+      opts = { scored: intraScored, kind: "city", pathway: "instrument", pool: null,
+        proposal: { title: `${scored.name} climate portfolio (${ctx!.projects.length} projects)`, sector: "multi-sector", askUSDm: intraTotal, cofinance: true } };
     }
     const dossier = assembleDossier(opts);
     const res = await fetch("/api/submissions", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(dossier) });
@@ -93,13 +108,14 @@ export default function Page() {
     <div className="app-shell">
       <Sidebar stages={STAGES} active={stage} maxReached={maxReached} onSelect={goto} />
       <main className="main">
-        <div className="crumbs">{scope.country} · {scope.region} · adapter: {scope.adapter}</div>
+        <div className="crumbs">{scope.country} · {scope.region} · adapter: {scope.adapter}{scored ? ` · ${scored.name}` : ""}</div>
 
         {/* 0 — EXPLORE */}
         {stage === 0 && (
           <>
             <div className="h-stage">Explore financial readiness</div>
-            <p className="h-sub">A geographic view of readiness across a scope, from real national fiscal data. Pick a highlighted city to open its readiness journey.</p>
+            <p className="h-sub">Identity &amp; context for a city come from <b>CityCatalyst</b> (inventory, CCRA, HIAP, plan). Here — for the demo — pick a region and a city to open its readiness journey.</p>
+
             <div className="scopebar">
               {SCOPES.map((s) => (
                 <button key={s.id} className={`scopebtn ${s.id === scopeId ? "active" : ""}`} onClick={() => { setScopeId(s.id); setCityId(null); }}>
@@ -107,21 +123,47 @@ export default function Page() {
                 </button>
               ))}
             </div>
+
+            <div style={{ display: "flex", gap: 16, flexWrap: "wrap", alignItems: "center", marginBottom: 12 }}>
+              <div className="entrytoggle" style={{ marginBottom: 0 }}>
+                <button className={viewLevel === "state" ? "active" : ""} onClick={() => setViewLevel("state")}>State / region</button>
+                <button className={viewLevel === "cities" ? "active" : ""} onClick={() => setViewLevel("cities")}>Cities</button>
+              </div>
+              <label className="muted" style={{ fontSize: 12 }}>
+                Data source:{" "}
+                <select defaultValue="src" style={{ font: "inherit", fontSize: 12, padding: "4px 8px", borderRadius: 7, border: "1px solid var(--line)" }}>
+                  <option value="src">{scope.adapter}</option>
+                  <option value="import" disabled>Import data…</option>
+                </select>
+              </label>
+            </div>
+
             <MapView scopeId={scopeId} points={points} center={scope.center} zoom={scope.zoom} onSelect={pickCity} />
             <div className="maplegend">
               {legend.map((l) => <span key={l.cls}><i className={`dot-${l.cls}`} />{l.label}</span>)}
-              <span className="muted">· data: {scope.adapter}</span>
             </div>
-            <div className="card" style={{ marginTop: 16 }}>
-              <h2>Open a city</h2>
-              <p className="sub">Cities with a full readiness profile in this scope:</p>
-              {points.filter((p) => p.journeyable).map((p) => (
-                <div className="actionrow" key={p.id}>
-                  <span><b>{p.name}</b> <span className="muted">· {p.capag ? `CAPAG ${p.capag}` : p.tier}</span></span>
-                  <button className="btn" style={{ padding: "6px 14px" }} onClick={() => pickCity(p.id)}>Open →</button>
-                </div>
-              ))}
-            </div>
+
+            {viewLevel === "state" ? (
+              <div className="card" style={{ marginTop: 16 }}>
+                <h2>{scope.region} — region readiness summary</h2>
+                <p className="sub">Aggregate across the region (from {scope.adapter}). Useful for a GORE / state / development bank scanning where to act.</p>
+                {Object.entries(regionSummary).map(([t, n]) => (
+                  <div className="kv" key={t}><span><i className={`dot-${t}`} style={{ display: "inline-block", width: 10, height: 10, borderRadius: 3, marginRight: 6 }} />{t}</span><span>{n} {n === 1 ? "city" : "cities"}</span></div>
+                ))}
+                <div className="note" style={{ marginTop: 12 }}>Switch to <b>Cities</b> to open an individual city&apos;s readiness journey.</div>
+              </div>
+            ) : (
+              <div className="card" style={{ marginTop: 16 }}>
+                <h2>Open a city</h2>
+                <p className="sub">Cities with a full readiness profile in this region:</p>
+                {points.filter((p) => p.journeyable).map((p) => (
+                  <div className="actionrow" key={p.id}>
+                    <span><b>{p.name}</b> <span className="muted">· {p.capag ? `CAPAG ${p.capag}` : p.tier}</span></span>
+                    <button className="btn" style={{ padding: "6px 14px" }} onClick={() => pickCity(p.id)}>Open →</button>
+                  </div>
+                ))}
+              </div>
+            )}
           </>
         )}
 
@@ -129,39 +171,68 @@ export default function Page() {
         {stage === 1 && scored && ctx && (
           <>
             <div className="h-stage">{scored.name}</div>
-            <p className="h-sub">Loaded from {scored.name}&apos;s CityCatalyst context — GHG inventory and HIAP-prioritized actions. <span className="muted">(Live CityCatalyst MCP wiring is the seam; here it&apos;s simulated context.)</span></p>
+            <p className="h-sub">Loaded from {scored.name}&apos;s CityCatalyst context. <span className="muted">(Live CityCatalyst MCP wiring is the seam; here it&apos;s simulated.)</span></p>
             <div className="entrytoggle">
-              <button className={entry === "entity" ? "active" : ""} onClick={() => setEntry("entity")}>Entity-first</button>
-              <button className={entry === "project" ? "active" : ""} onClick={() => setEntry("project")}>Project-first (import)</button>
+              <button className={entry === "entity" ? "active" : ""} onClick={() => setEntry("entity")}>Entity-first (a loan for the city)</button>
+              <button className={entry === "project" ? "active" : ""} onClick={() => setEntry("project")}>Project-first (fund a project)</button>
             </div>
             <div className="grid2">
               <div className="card">
                 <h2>GHG inventory</h2>
                 <p className="sub">{ctx.inventory.source} · {ctx.inventory.year}</p>
-                {ctx.inventory.topSectors.map((s) => (
-                  <div className="kv" key={s.sector}><span>{s.sector}</span><span>{s.sharePct}%</span></div>
-                ))}
+                {ctx.inventory.topSectors.map((s) => <div className="kv" key={s.sector}><span>{s.sector}</span><span>{s.sharePct}%</span></div>)}
+              </div>
+              <div className="card">
+                <h2>CCRA — climate risk</h2>
+                <p className="sub">{ctx.ccra.source}</p>
+                {ctx.ccra.hazards.map((h) => <div className="kv" key={h.hazard}><span>{h.hazard}</span><span className={`tier ${h.risk === "high" ? "Early" : h.risk === "medium" ? "Developing" : "Ready"}`}>{h.risk}</span></div>)}
               </div>
               <div className="card">
                 <h2>HIAP priorities</h2>
                 <p className="sub">Top prioritized climate actions</p>
-                {ctx.hiap.map((a) => (
-                  <div className="actionrow" key={a.actionId}>
-                    <span>{a.rank}. {a.name}</span>
-                    <span className={`atype ${a.type}`}>{a.type}</span>
-                  </div>
-                ))}
+                {ctx.hiap.map((a) => <div className="actionrow" key={a.actionId}><span>{a.rank}. {a.name}</span><span className={`atype ${a.type}`}>{a.type}</span></div>)}
+              </div>
+              <div className="card">
+                <h2>Climate plan</h2>
+                <p className="sub">{ctx.plan.status}</p>
+                <div className="kv"><span>Plan</span><span>{ctx.plan.name}</span></div>
+                <div className="kv"><span>Actions</span><span>{ctx.plan.actionsCount}</span></div>
+                <div className="kv"><span>Own project pipeline</span><span>{ctx.projects.length} projects</span></div>
               </div>
             </div>
             {entry === "project" && (
-              <div className="note">Project-first: import a prepared project (a <b>Concept Note</b> from the Project Preparator) — it enters at the Portfolio step (②). For this demo the entity-first path is wired; project import is the interop seam.</div>
+              <div className="note">Project-first: <b>import a prepared project</b> (a Concept Note from the <b>Project Preparator</b>) — it enters at the Portfolio step. <button className="btn secondary" style={{ marginLeft: 10, padding: "5px 12px" }} disabled>Import project from Preparator (mock)</button></div>
             )}
-            <div className="btn-row"><button className="btn" onClick={() => goto(2)}>Assess readiness →</button></div>
+            <div className="btn-row"><button className="btn" onClick={() => goto(2)}>Choose a financing instrument →</button></div>
           </>
         )}
 
-        {/* 2 — READINESS PATHWAYS */}
+        {/* 2 — CHOOSE INSTRUMENT */}
         {stage === 2 && scored && (
+          <>
+            <div className="h-stage">Readiness against which instrument?</div>
+            <p className="h-sub">Readiness is instrument-specific — it depends on the <b>funder</b>, their institutional requirements, and the nature of the financial product. {entry === "entity" ? "Entity-first: a direct line for the city." : "Project-first: instruments that fund a specific project."}</p>
+            <div className={`card pathcard ${instrument === "idb-sfp" ? "ok" : ""}`} style={{ borderColor: instrument === "idb-sfp" ? "var(--cc-blue)" : undefined, cursor: "pointer" }} onClick={() => { setInstrument("idb-sfp"); SM.setActiveProfile("idb-sfp"); }}>
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <h2>Inter-American Development Bank — Sub-Sovereign Finance Program (SFP)</h2>
+                {instrument === "idb-sfp" && <span className="pill-tag">selected</span>}
+              </div>
+              <p className="sub" style={{ marginBottom: 8 }}>Direct lending to subnational governments without a sovereign guarantee.</p>
+              <div className="note">You may be eligible for a <b>direct line from the IDB</b>. Assess readiness against this instrument and program line.</div>
+            </div>
+            <div className="card" style={{ opacity: 0.6 }}>
+              <h2 className="muted">CAF · World Bank · GCF <span className="pill-tag">template</span></h2>
+              <p className="sub">Other MDBs plug in their own readiness profile — same engine, different criteria. (Illustrative for now.)</p>
+            </div>
+            {entry === "project" && (
+              <div className="note">Project-first also surfaces <b>grants &amp; project-preparation facilities (PPFs)</b> via the matching service / Project Preparator — for actions that aren&apos;t loan-shaped.</div>
+            )}
+            <div className="btn-row"><button className="btn" disabled={!instrument} onClick={() => goto(3)}>Assess readiness against {instrument ? "IDB SFP" : "an instrument"} →</button></div>
+          </>
+        )}
+
+        {/* 3 — READINESS PATHWAYS */}
+        {stage === 3 && scored && (
           <>
             <div className="h-stage">Readiness pathways</div>
             <p className="h-sub">The early creditworthiness assessment for the <b>{SM.activeProfile().instrument}</b>, scored on real fiscal data. The diagnosis routes the next step.</p>
@@ -183,20 +254,20 @@ export default function Page() {
                 </div>
                 <div className={`card pathcard ${pathway === "instrument" ? "ok" : pathway === "pool" ? "warn" : "block"}`}>
                   <h2>Recommended pathway</h2>
-                  {pathway === "instrument" && <p className="sub">Ready and eligible — proceed directly to the instrument.</p>}
-                  {pathway === "pool" && <p className="sub"><b>Ready, but sub-scale.</b> {scored.name} clears creditworthiness, but its project is below the instrument&apos;s ticket size. Route → <b>portfolio / pooling</b>.</p>}
-                  {pathway === "capacity-building" && <p className="sub"><b>Not yet eligible.</b> Route → <b>capacity-building</b>: targeted TC / PPF before the instrument. Not a debt problem — see the signals.</p>}
+                  {pathway === "instrument" && <p className="sub">Ready and eligible — proceed to the instrument.</p>}
+                  {pathway === "pool" && <p className="sub"><b>Ready, but a single project is sub-scale.</b> Reach the ticket size via a <b>portfolio</b> — the city&apos;s own projects, or pooling with neighbours.</p>}
+                  {pathway === "capacity-building" && <p className="sub"><b>Not yet eligible.</b> Route → <b>capacity-building</b> before the instrument. Not a debt problem — see the signals.</p>}
                 </div>
               </div>
             </div>
             {(() => { const a = agentAssist({ cityName: scored.name, tier: scored.tier, cleared: scored.canEnterProjectReview, pathway: pathway! });
               return <div className="agent"><div className="who">CityCatalyst agent <span className="sim">simulated</span></div>{a.text}</div>; })()}
-            <div className="btn-row"><button className="btn" onClick={() => goto(3)}>{pathway === "capacity-building" ? "See capacity-building track →" : "Build the portfolio →"}</button></div>
+            <div className="btn-row"><button className="btn" onClick={() => goto(4)}>{pathway === "capacity-building" ? "See capacity-building track →" : "Build the portfolio →"}</button></div>
           </>
         )}
 
-        {/* 3 — PORTFOLIO / CAPACITY */}
-        {stage === 3 && scored && (
+        {/* 4 — PORTFOLIO / CAPACITY */}
+        {stage === 4 && scored && ctx && (
           <>
             {pathway === "capacity-building" ? (
               <>
@@ -219,54 +290,63 @@ export default function Page() {
                   <div className="actionrow"><span>Grant / blended finance for adaptation now</span><span className="muted">CCFLA / blended</span></div>
                 </div>
                 <div className="note">Once the city re-rates (CAPAG B/A), it re-enters the instrument path. Submitting here registers a <b>capacity-building referral</b>, not a loan.</div>
-                <div className="btn-row"><button className="btn" onClick={() => goto(4)}>Prepare referral →</button></div>
-              </>
-            ) : pathway === "pool" && pool ? (
-              <>
-                <div className="h-stage">Build a financeable portfolio</div>
-                <p className="h-sub">The gap between {scored.name}&apos;s project and the instrument&apos;s ticket size is closed by pooling neighbours into one package — portfolio design.</p>
-                <div className="note" style={{ marginBottom: 14 }}>Transport: <b>{DATA.cl.transportGap.nActions} actions</b>, best single-city fit {DATA.cl.transportGap.bestFit} — no instrument fits {scored.name} alone.</div>
-                <div className="card">
-                  <table className="tablelike">
-                    <thead><tr><th>Comuna</th><th>Co-finance index</th><th>Readiness</th><th>Role</th></tr></thead>
-                    <tbody>
-                      {(DATA.cl.comunas as Comuna[]).map((c) => {
-                        const cs = SM.scoreSNG(c);
-                        return <tr key={c.id} className={c.isAnchor ? "anchor-row" : ""}><td>{c.name}</td><td>{c.cofinanceScore ?? "—"}<span className="muted"> /100</span></td><td><span className={`tier ${cs.tier}`}>{cs.tier}</span></td><td>{c.isAnchor ? <b>Anchor</b> : <span className="muted">Member</span>}</td></tr>;
-                      })}
-                    </tbody>
-                  </table>
-                  <div className="grid2" style={{ marginTop: 14 }}>
-                    <div className="kv"><span>Pooled ask</span><span>US${pool.pooledProposal.askUSDm}M</span></div>
-                    <div className="kv"><span>Pool readiness</span><span><span className={`tier ${poolScored!.tier}`}>{poolScored!.tier}</span> · {poolScored!.eligibility.eligible ? "eligible ✓" : "not eligible"}</span></div>
-                  </div>
-                </div>
-                <div className="btn-row"><button className="btn" onClick={() => goto(4)}>Assemble dossier →</button></div>
+                <div className="btn-row"><button className="btn" onClick={() => goto(5)}>Prepare referral →</button></div>
               </>
             ) : (
               <>
-                <div className="h-stage">Instrument</div>
-                <p className="h-sub">{scored.name} is ready and eligible — proceed to the instrument.</p>
-                <div className="card"><div className="kv"><span>Instrument</span><span>{SM.activeProfile().instrument}</span></div><div className="kv"><span>Ask</span><span>US${scored.proposal.askUSDm}M</span></div></div>
-                <div className="btn-row"><button className="btn" onClick={() => goto(4)}>Assemble dossier →</button></div>
+                <div className="h-stage">Build a financeable portfolio</div>
+                <p className="h-sub">A single project is below the {SM.activeProfile().funder} ticket size. Two ways to reach it:</p>
+                <div className="entrytoggle">
+                  <button className={portfolioMode === "intra" ? "active" : ""} onClick={() => setPortfolioMode("intra")}>Intra-city portfolio</button>
+                  <button className={portfolioMode === "cross" ? "active" : ""} onClick={() => setPortfolioMode("cross")}>Cross-city pool</button>
+                </div>
+
+                {portfolioMode === "intra" ? (
+                  <div className="card">
+                    <h2>{scored.name}&apos;s own projects</h2>
+                    <p className="sub">Bundle the city&apos;s own pipeline into one financeable portfolio — a single creditworthy borrower.</p>
+                    <table className="tablelike">
+                      <thead><tr><th>Project</th><th>Sector</th><th>Ask</th></tr></thead>
+                      <tbody>{ctx.projects.map((p) => <tr key={p.title}><td>{p.title}</td><td className="muted">{p.sector}</td><td>US${p.askUSDm}M</td></tr>)}</tbody>
+                    </table>
+                    <div className="grid2" style={{ marginTop: 14 }}>
+                      <div className="kv"><span>Portfolio ask</span><span>US${intraTotal}M</span></div>
+                      <div className="kv"><span>Readiness</span><span><span className={`tier ${intraScored!.tier}`}>{intraScored!.tier}</span> · {intraScored!.eligibility.eligible ? "eligible ✓" : "not eligible"}</span></div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="card">
+                    <h2>Pool with neighbouring cities</h2>
+                    <p className="sub">Pool credit lines across cities — {scored.name} anchors; small comunas ride the anchor. Other cities&apos; readiness shown.</p>
+                    <table className="tablelike">
+                      <thead><tr><th>City</th><th>Co-finance</th><th>Readiness</th><th>Role</th></tr></thead>
+                      <tbody>{(DATA.cl.comunas as Comuna[]).map((c) => { const cs = SM.scoreSNG(c); return <tr key={c.id} className={c.isAnchor ? "anchor-row" : ""}><td>{c.name}</td><td>{c.cofinanceScore ?? "—"}<span className="muted"> /100</span></td><td><span className={`tier ${cs.tier}`}>{cs.tier}</span></td><td>{c.isAnchor ? <b>Anchor</b> : <span className="muted">Member</span>}</td></tr>; })}</tbody>
+                    </table>
+                    <div className="grid2" style={{ marginTop: 14 }}>
+                      <div className="kv"><span>Pooled ask</span><span>US${pool!.pooledProposal.askUSDm}M</span></div>
+                      <div className="kv"><span>Pool readiness</span><span><span className={`tier ${poolScored!.tier}`}>{poolScored!.tier}</span> · {poolScored!.eligibility.eligible ? "eligible ✓" : "not eligible"}</span></div>
+                    </div>
+                  </div>
+                )}
+                <div className="note">{portfolioMode === "intra" ? "Intra-city: one ready city, its own projects — cleanest path to the ticket." : "Cross-city: a pooled pipeline for a region / development bank — the deal that no single small city could reach alone."}</div>
+                <div className="btn-row"><button className="btn" onClick={() => goto(5)}>Assemble dossier →</button></div>
               </>
             )}
           </>
         )}
 
-        {/* 4 — FUNDER INTAKE */}
-        {stage === 4 && scored && pathway && (
+        {/* 5 — FUNDER INTAKE */}
+        {stage === 5 && scored && pathway && (
           <>
             <div className="h-stage">Funder intake</div>
             {!submitState ? (
               <>
-                <p className="h-sub">Assemble the machine-readable <b>candidate dossier</b> (Concept Note + creditworthiness + instrument + pool) and submit it to the funder&apos;s pipeline.</p>
+                <p className="h-sub">Assemble the machine-readable <b>candidate dossier</b> (Concept Note + creditworthiness + portfolio) and submit it to the funder&apos;s pipeline.</p>
                 <div className="card">
-                  <div className="kv"><span>Candidate</span><span>{pathway === "pool" ? `${scored.name} pool (6 comunas)` : scored.name}</span></div>
-                  <div className="kv"><span>Pathway</span><span>{pathway}</span></div>
+                  <div className="kv"><span>Candidate</span><span>{pathway === "capacity-building" ? scored.name : portfolioMode === "cross" ? `${scored.name} pool (6 cities)` : `${scored.name} portfolio (${ctx!.projects.length} projects)`}</span></div>
+                  <div className="kv"><span>Pathway</span><span>{pathway === "capacity-building" ? "capacity-building" : portfolioMode === "cross" ? "cross-city pool" : "intra-city portfolio"}</span></div>
                   <div className="kv"><span>Target</span><span>{pathway === "capacity-building" ? "Capacity-building / PPF" : SM.activeProfile().instrument}</span></div>
-                  <div className="kv"><span>Readiness</span><span>{(pathway === "pool" ? poolScored! : scored).compositeReadiness} · {(pathway === "pool" ? poolScored! : scored).tier}</span></div>
-                  <div className="kv"><span>Ask</span><span>US${pathway === "pool" ? pool.pooledProposal.askUSDm : scored.proposal.askUSDm}M</span></div>
+                  <div className="kv"><span>Ask</span><span>US${pathway === "capacity-building" ? scored.proposal.askUSDm : portfolioMode === "cross" ? pool!.pooledProposal.askUSDm : intraTotal}M</span></div>
                 </div>
                 <div className="btn-row">
                   <button className="btn" onClick={submit} disabled={submitting}>{submitting ? "Submitting…" : pathway === "capacity-building" ? "Submit capacity-building referral" : "Submit to funder pipeline"}</button>
@@ -275,7 +355,7 @@ export default function Page() {
             ) : (
               <>
                 <p className="h-sub">Submitted — the dossier is now on the funder&apos;s side of the screen.</p>
-                <div className="note"><b>{submitState.id}</b> — {scored.name} ({pathway}) is in the funder pipeline.</div>
+                <div className="note"><b>{submitState.id}</b> — {scored.name} is in the funder pipeline.</div>
                 <div className="btn-row"><Link href="/pipeline" className="btn">See it in the funder pipeline →</Link></div>
               </>
             )}
