@@ -103,8 +103,9 @@ a:hover {
 
 @media (max-width: 760px) {
   .explorer-top,
-  .lab-grid {
-    grid-template-columns: 1fr;
+  .lab-grid,
+  .funder-where {
+    grid-template-columns: 1fr !important;
   }
 }
 

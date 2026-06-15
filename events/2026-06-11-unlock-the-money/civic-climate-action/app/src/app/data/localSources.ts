@@ -7,7 +7,7 @@
 import type { LocalSource } from "./localEngagement";
 import { portoAlegreEngagementRecommendations } from "./localEngagement";
 
-// Flatten + dedupe POA sources by id (same logic as LocalEngagementPanel).
+// Flatten + dedupe POA sources by id.
 const poaSources: LocalSource[] = Array.from(
   new Map(
     portoAlegreEngagementRecommendations.flatMap((r) => r.sources).map((s) => [s.id, s])

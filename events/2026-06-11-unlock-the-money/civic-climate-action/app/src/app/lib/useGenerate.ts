@@ -6,6 +6,8 @@ import { useCarbon } from "./carbonContext";
 
 export type GenTask =
   | "next_steps"
+  | "local_message"
+  | "civic_guide"
   | "draft_proposal"
   | "evidence"
   | "pathways"

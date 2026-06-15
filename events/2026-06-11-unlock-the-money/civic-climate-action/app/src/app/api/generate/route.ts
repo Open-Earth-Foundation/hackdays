@@ -65,6 +65,20 @@ function fallbackContent(b: Body): string {
   const lang = b.language;
   const T = (en: string, es: string, pt: string) => (lang === "es" ? es : lang === "pt" ? pt : en);
 
+  if (b.task === "civic_guide") {
+    return T(
+      `**Start with one small step.**\n\n1. **What:** the easiest entry here is **${channel}**.\n2. **How:** open ${channel}, describe your street or spot in a line or two (a photo helps), and send.\n3. **Why:** documented, located voices are what move this up the city's priority list.\n\nWant help with what to say, or how to bring a few neighbours in?`,
+      `**Empieza con un primer paso pequeño.**\n\n1. **Qué:** la vía más fácil aquí es **${channel}**.\n2. **Cómo:** abre ${channel}, describe tu calle o el punto en una o dos líneas (una foto ayuda) y envíalo.\n3. **Por qué:** las voces concretas y localizadas son las que suben esto en la lista de prioridades de la ciudad.\n\n¿Quieres ayuda con qué decir o cómo sumar a tus vecinos?`,
+      `**Comece com um primeiro passo pequeno.**\n\n1. **O quê:** o caminho mais fácil aqui é o **${channel}**.\n2. **Como:** abra o ${channel}, descreva sua rua ou o ponto em uma ou duas linhas (uma foto ajuda) e envie.\n3. **Por quê:** vozes concretas e localizadas são o que faz isso subir na lista de prioridades da cidade.\n\nQuer ajuda com o que dizer ou como envolver alguns vizinhos?`
+    );
+  }
+  if (b.task === "local_message") {
+    return T(
+      `Hello ${channel},\n\nI'm a resident and I'd like to ask for your help to: ${a.toLowerCase()}. It's a practical, local response to a real concern in our neighbourhood, and it would make the area safer and healthier. Could we talk about a first step?\n\nThank you, [Your name], [Neighbourhood]`,
+      `Hola ${channel}:\n\nSoy vecino y quisiera pedir su ayuda para: ${a.toLowerCase()}. Es una respuesta local y práctica a una preocupación real de nuestro barrio, y haría la zona más segura y saludable. ¿Podríamos hablar de un primer paso?\n\nGracias, [Tu nombre], [Barrio]`,
+      `Olá, ${channel},\n\nSou morador e gostaria de pedir apoio para: ${a.toLowerCase()}. É uma resposta local e prática a uma preocupação real do nosso bairro, e tornaria a região mais segura e saudável. Podemos conversar sobre um primeiro passo?\n\nObrigado(a), [Seu nome], [Bairro]`
+    );
+  }
   if (b.task === "future_vision") {
     return T(
       `## Where today's trends point\nOn its current path, ${c.name} faces growing climate pressure. Without sustained action, those pressures compound.\n\n## A plausible future history (to ~2050)\nLooking back from 2050, "${a.toLowerCase()}" started small — pushed by residents through ${channel} — then scaled as results showed and held.\n\n## Two futures, side by side\n- **If little changes (probable):** the same risks, unevenly felt.\n- **If this action takes hold (preferable):** a more resilient, livable city, with gains in health and cost of living.\n\n_What it asks of us now: a modest, shared effort today for a city future generations inherit._`,
@@ -102,10 +116,10 @@ function fallbackContent(b: Body): string {
     );
     return (b.prior || "_(nothing to refine yet)_") + note;
   }
-  // next_steps
+  // next_steps — concrete next steps + a ready-to-send message
   return T(
-    `1. Find a neighborhood group in ${c.name} already working on this.\n2. Bring **${a}** to **${channel}** as a proposal or public comment.\n3. Back it with your city's own climate data.\n4. Invite three neighbors to join and share progress.`,
-    `1. Busca un grupo vecinal en ${c.name} que ya trabaje en esto.\n2. Lleva **${a}** a **${channel}** como propuesta o comentario público.\n3. Respáldalo con los datos climáticos de tu ciudad.\n4. Invita a tres vecinos a sumarse y comparte el avance.`,
-    `1. Procure um grupo de bairro em ${c.name} que já atue nisso.\n2. Leve **${a}** ao **${channel}** como proposta ou comentário público.\n3. Embase com os dados climáticos da sua cidade.\n4. Convide três vizinhos e compartilhe o progresso.`
+    `## Next steps\n1. Find a neighborhood group in ${c.name} already working on this.\n2. Bring **${a}** to **${channel}** as a proposal or public comment.\n3. Back it with your city's own climate data.\n4. Invite three neighbors to join and share progress.\n\n## Ready-to-send message\nHello, I'm a resident writing to ask **${channel}** to support **${a.toLowerCase()}** in our neighborhood. It's a practical, local response to our city's top climate concerns and would make our area safer and healthier. Could we discuss a small first step? Thank you, [Your name], [Neighborhood]`,
+    `## Próximos pasos\n1. Busca un grupo vecinal en ${c.name} que ya trabaje en esto.\n2. Lleva **${a}** a **${channel}** como propuesta o comentario público.\n3. Respáldalo con los datos climáticos de tu ciudad.\n4. Invita a tres vecinos a sumarse y comparte el avance.\n\n## Mensaje listo para enviar\nHola, soy un vecino y escribo para pedir a **${channel}** que apoye **${a.toLowerCase()}** en nuestro barrio. Es una respuesta local y práctica a las principales preocupaciones climáticas de la ciudad, y haría nuestra zona más segura y saludable. ¿Podríamos hablar de un primer paso? Gracias, [Tu nombre], [Barrio]`,
+    `## Próximos passos\n1. Procure um grupo de bairro em ${c.name} que já atue nisso.\n2. Leve **${a}** ao **${channel}** como proposta ou comentário público.\n3. Embase com os dados climáticos da sua cidade.\n4. Convide três vizinhos e compartilhe o progresso.\n\n## Mensagem pronta para enviar\nOlá, sou morador e escrevo para pedir ao **${channel}** que apoie **${a.toLowerCase()}** no nosso bairro. É uma resposta local e prática às principais preocupações climáticas da cidade e tornaria nossa região mais segura e saudável. Podemos conversar sobre um primeiro passo? Obrigado, [Seu nome], [Bairro]`
   );
 }

@@ -32,6 +32,8 @@ _LANG_NAME = {"en": "English", "es": "Spanish", "pt": "Brazilian Portuguese"}
 # Per-task completion budgets (the future vision is one short paragraph).
 _MAX_TOKENS = {
     "next_steps": 500,
+    "local_message": 400,
+    "civic_guide": 550,
     "draft_proposal": 800,
     "evidence": 700,
     "pathways": 800,
@@ -101,11 +103,43 @@ _GUARDRAILS = (
 
 _SYSTEMS = {
     "next_steps": (
-        "You are a civic-engagement assistant for city residents. Produce a short plan of 4-6 "
-        "concrete next steps an ordinary resident can take over the coming weeks to push this "
-        "action forward (join a group, attend a meeting, submit a public comment, start something "
-        "small). Each step: one imperative sentence; where a step involves government or a group, "
-        "name a real local channel from the context. Return ONLY a numbered Markdown list."
+        "You are a civic-engagement assistant for city residents. Help a resident act on this "
+        "climate action. Output Markdown in exactly two sections, in this order and nothing else:\n"
+        "## Next steps\nA numbered list of 4-6 concrete moves an ordinary resident can make over the "
+        "coming weeks (join a group, attend a meeting, submit a public comment, start something "
+        "small). Each step is one imperative sentence; where a step involves government or a group, "
+        "name a real local channel from the context.\n"
+        "## Ready-to-send message\nA short (~120-word) copy-pasteable message the resident can send "
+        "to the single best-fitting local channel — greeting, one-line ask naming the action, 1-2 "
+        "sentences of why it matters here (quoting the provided facts closely, no new numbers), and "
+        "a sign-off with [Your name], [Neighborhood]. Name the channel in the message."
+    ),
+    "local_message": (
+        "You are helping a city resident write a SHORT, ready-to-send message to a specific local "
+        "channel (named in the context as the first local source). The resident's goal is given as "
+        "the action name/description. Write ONLY the message itself — copy-pasteable, ~70-110 words, "
+        "warm but direct. Structure: a one-line greeting to the named channel; one or two sentences "
+        "stating the concrete ask (the action) and, where relevant, briefly where/what; a closing "
+        "line. End with the placeholders [Seu nome] and [Bairro] (or [Your name] and [Neighbourhood] "
+        "in English). If the channel is a community group, make it a friendly introduction asking how "
+        "to get involved. "
+        "IMPORTANT — write only what the resident is asking for. Do NOT explain to the recipient why "
+        "reporting or engaging matters, do NOT reference budgets, 'investment lists', awareness, "
+        "prioritization, or use phrases like 'as you know' or 'let me know if you need more details'. "
+        "No meta-commentary or filler. "
+        "Do NOT invent addresses, dates, statistics, or other channels. Output plain text or minimal "
+        "Markdown — no headings, no preamble like 'here is your message'."
+    ),
+    "civic_guide": (
+        "You are a warm, practical civic-action coach for a city resident who wants to act on a "
+        "local climate issue. Using ONLY the actions, channels, and organizations in the context, "
+        "help them actually do it. Answer their question concretely and encouragingly, covering — "
+        "where useful — WHAT to do, HOW to do it (clear steps), and WHY it works. Keep replies SHORT "
+        "and skimmable: a few sentences or a short numbered/bulleted list, never an essay. Name the "
+        "real channels and organizations from the context when relevant. NEVER invent contacts, "
+        "links, phone numbers, statistics, dates, or events beyond those provided. If the resident "
+        "seems unsure or overwhelmed, give the single smallest first step they can take today, then "
+        "offer to go deeper. Speak directly to the resident ('you'). No preamble, no sign-off."
     ),
     "draft_proposal": (
         "You are helping a resident draft a first proposal letter to their town hall or council "
@@ -230,6 +264,14 @@ def _user(req: GenerateRequest, task: str) -> str:
             f"INSTRUCTION: {req.instruction or 'Improve clarity and concreteness.'}\n\n"
             "Return the revised content only."
         )
+    if task == "civic_guide":
+        convo = (req.prior or "")[:3000]
+        question = req.instruction or "Help me get started."
+        parts = [_context_block(req)]
+        if convo:
+            parts.append(f"CONVERSATION SO FAR:\n{convo}")
+        parts.append(f"RESIDENT'S MESSAGE: {question}\n\nReply as their civic-action coach.")
+        return "\n\n".join(parts)
     return f"{_context_block(req)}\n\nNow produce the requested output."
 
 
@@ -241,6 +283,22 @@ def mock_content(req: GenerateRequest, task: str) -> str:
     a = req.action.name
     channel = c.localSources[0] if c.localSources else "your city council"
     hazard = c.topHazards[0] if c.topHazards else "local climate risk"
+    if task == "civic_guide":
+        return (
+            f"**Start with one small step.**\n\n"
+            f"1. **What:** {a.lower()} — the easiest entry is through **{channel}**.\n"
+            f"2. **How:** open {channel}, describe your street or spot in a line or two (a photo helps), and send.\n"
+            f"3. **Why:** documented, located voices are what move {a.lower()} up the city's priority list.\n\n"
+            f"Want help with what to say, or how to bring a few neighbours in?"
+        )
+    if task == "local_message":
+        return (
+            f"Olá, {channel},\n\n"
+            f"Sou morador de Porto Alegre e gostaria de pedir apoio para: {a.lower()}. "
+            f"{hazard} é uma preocupação real no nosso bairro, e uma ação local como esta tornaria "
+            f"a região mais segura e saudável. Poderíamos conversar sobre um primeiro passo?\n\n"
+            f"Obrigado(a), [Seu nome], [Bairro]"
+        )
     if task == "future_vision":
         return (
             f"## Where today's trends point\n"
@@ -294,8 +352,14 @@ def mock_content(req: GenerateRequest, task: str) -> str:
         return req.prior or "_(nothing to refine yet)_"
     # next_steps
     return (
+        f"## Next steps\n"
         f"1. Find a neighborhood group in {c.name} already working on this.\n"
         f"2. Bring **{a}** to **{channel}** as a proposal or public comment.\n"
-        f"3. Back it with your city's own climate data.\n"
-        f"4. Invite three neighbors to join and share progress."
+        f"3. Back it with your city's own climate data on {hazard.lower()}.\n"
+        f"4. Invite three neighbors to join and share progress.\n\n"
+        f"## Ready-to-send message\n"
+        f"Hello, I'm a resident writing to ask {channel} to support **{a.lower()}** in our "
+        f"neighborhood. {hazard} is a real concern here, and this is a practical, local response "
+        f"that would make our area safer and healthier. Could we discuss a small first step? "
+        f"Thank you, [Your name], [Neighborhood]"
     )

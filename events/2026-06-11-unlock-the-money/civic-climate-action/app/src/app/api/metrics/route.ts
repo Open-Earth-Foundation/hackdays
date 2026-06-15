@@ -1,10 +1,14 @@
-// Per-city pledge counts for the live engagement tally + readiness score.
+// Per-city commitment aggregates (total signed · reported sent · responded) for
+// the live engagement signal.
 
 import { NextResponse } from "next/server";
-import { getCounts } from "../../lib/pledgeStore";
+import { getCityAggregate } from "../../lib/pledgeStore";
 
 export const runtime = "nodejs";
 
+const CITIES = ["porto-alegre"];
+
 export async function GET() {
-  return NextResponse.json({ counts: getCounts() });
+  const cities = Object.fromEntries(CITIES.map((id) => [id, getCityAggregate(id)]));
+  return NextResponse.json({ cities });
 }
