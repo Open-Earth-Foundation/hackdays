@@ -3,6 +3,7 @@ import path from "node:path";
 import Explorer, { type Row } from "../components/Explorer";
 import type { Project } from "../lib/matchProjects";
 import { computeLeverage } from "../lib/leverage";
+import { headroom, unlock } from "../lib/headroom";
 
 export const dynamic = "force-static";
 
@@ -18,6 +19,11 @@ export default function Home() {
   const centroids: Record<string, [number, number]> = JSON.parse(
     fs.readFileSync(path.join(process.cwd(), "data", "centroids.json"), "utf-8")
   );
+  let fiscal: Record<string, { rcl: number; dc: number; year: number }> = {};
+  const fiscalPath = path.join(process.cwd(), "data", "fiscal.json");
+  if (fs.existsSync(fiscalPath)) {
+    fiscal = JSON.parse(fs.readFileSync(fiscalPath, "utf-8")).cities;
+  }
   const rows: Row[] = raw.records.map((r: Record<string, unknown>) => {
     const capag = r.capag == null ? "n.d." : String(r.capag);
     const debt = r.nota1 == null ? "—" : String(r.nota1);
@@ -33,6 +39,10 @@ export default function Home() {
       dcbNeg: !!r.dcb_zerada_negativa,
       ofNeg: !!r.of_negativa,
     });
+    const fin = fiscal[String(r.cod_ibge)];
+    const rcl = fin?.rcl ?? null;
+    const headroomBrl = headroom(rcl, fin?.dc ?? null);
+    const unlockBrl = unlock(capag, leverage, headroomBrl);
     return {
       risks: risks[String(r.locode)] ?? null,
       lat: centroids[String(r.cod_ibge)]?.[0] ?? null,
@@ -47,6 +57,9 @@ export default function Home() {
       icf,
       locode: String(r.locode),
       leverage,
+      rcl,
+      headroomBrl,
+      unlockBrl,
     };
   });
   const projects: Project[] = JSON.parse(

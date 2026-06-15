@@ -36,6 +36,7 @@ import type { CityData } from "../lib/cityData";
 import type { Project } from "../lib/matchProjects";
 import type { Leverage } from "../lib/leverage";
 import { instrumentGroup, INSTRUMENT_LABEL_KEY, type InstrumentGroup } from "../lib/instrument";
+import { fmtBrl } from "../lib/headroom";
 
 const CityMap = dynamic(() => import("./CityMap"), {
   ssr: false,
@@ -56,6 +57,9 @@ export type Row = {
   lat: number | null;
   lng: number | null;
   leverage: Leverage | null;
+  rcl: number | null;
+  headroomBrl: number | null;
+  unlockBrl: number;
 };
 
 const TIERS = ["A+", "A", "B+", "B", "C", "D", "n.d.", "n.e."] as const;
@@ -126,6 +130,9 @@ function exportCsv(rows: Row[]) {
     "icf",
     "leverage",
     "leverage_blockers",
+    "rcl_brl",
+    "headroom_brl",
+    "unlock_brl",
     "locode",
     ...hazardCols.map((h) => `risk_${h}`),
   ];
@@ -146,6 +153,9 @@ function exportCsv(rows: Row[]) {
         r.icf,
         r.leverage?.kind ?? "",
         r.leverage ? esc(r.leverage.blockers.join("|")) : "",
+        r.rcl ?? "",
+        r.headroomBrl ?? "",
+        r.unlockBrl || "",
         r.locode,
         ...hazardCols.map((h) =>
           r.risks?.[h] != null ? (r.risks[h] * 100).toFixed(0) : "",
@@ -265,7 +275,11 @@ export default function Explorer({
           Array.from(hazards).some((h) => (r.risks?.[h] ?? 0) >= HIGH_RISK)),
     );
     if (sort === "leverage") {
-      out.sort((a, b) => (b.leverage?.rank ?? 0) - (a.leverage?.rank ?? 0));
+      out.sort(
+        (a, b) =>
+          (b.leverage?.rank ?? 0) - (a.leverage?.rank ?? 0) ||
+          b.unlockBrl - a.unlockBrl,
+      );
     } else if (hazards.size > 0) {
       const sel = (r: Row) =>
         Math.max(...Array.from(hazards).map((h) => r.risks?.[h] ?? 0));
@@ -283,6 +297,22 @@ export default function Explorer({
     () => new Set(filtered.map((r) => r.ibge)),
     [filtered],
   );
+  const totalUnlock = useMemo(
+    () => filtered.reduce((s, r) => s + r.unlockBrl, 0),
+    [filtered],
+  );
+  // aggregation cue: dominant instrument group among matches → bundle into one facility
+  const bundle = useMemo(() => {
+    const cnt: Record<string, number> = {};
+    for (const r of filtered) {
+      const g = instrumentGroup(r.capag);
+      cnt[g] = (cnt[g] ?? 0) + 1;
+    }
+    let top: string | null = null;
+    let n = 0;
+    for (const k in cnt) if (cnt[k] > n) ((n = cnt[k]), (top = k));
+    return top && n >= 3 ? { group: top as InstrumentGroup, n } : null;
+  }, [filtered]);
   const activeFilters =
     tiers.size +
     hazards.size +
@@ -649,11 +679,15 @@ export default function Explorer({
             </NativeSelect.Field>
             <NativeSelect.Indicator />
           </NativeSelect.Root>
-          <Flex align="center" gap="1" flexShrink={0}>
+          <Flex align="center" gap="2" flexShrink={0}>
             <Text fontSize="sm" color="content.tertiary">
               {t("search.matches", { count: filtered.length })}
-              {hazards.size > 0 ? t("search.sortedByRisk") : ""}
             </Text>
+            {totalUnlock > 0 && (
+              <Text fontSize="sm" fontWeight="700" color="content.link" title={t("pipeline.deployableHint")}>
+                {t("pipeline.deployable", { value: fmtBrl(totalUnlock) })}
+              </Text>
+            )}
           </Flex>
           <Button
             size="sm"
@@ -698,6 +732,26 @@ export default function Explorer({
               <Icon as={MdNavigateNext} />
             </IconButton>
           </HStack>
+        )}
+
+        {bundle && (
+          <Flex
+            align="center"
+            gap="2"
+            mb="3"
+            bg="background.neutral"
+            borderRadius="md"
+            px="3"
+            py="2.5"
+          >
+            <Icon as={MdOutlineAutoAwesome} boxSize="4" color="content.link" />
+            <Text fontSize="sm" color="content.secondary">
+              {t("pipeline.bundle", {
+                count: bundle.n,
+                instrument: t(INSTRUMENT_LABEL_KEY[bundle.group]),
+              })}
+            </Text>
+          </Flex>
         )}
 
         <Box
@@ -756,19 +810,25 @@ export default function Explorer({
                     <Table.Cell color="content.tertiary">{r.icf}</Table.Cell>
                     <Table.Cell>
                       {r.leverage ? (
-                        <Flex
-                          align="center"
-                          gap="1"
-                          fontSize="2xs"
-                          fontWeight="700"
-                          color="content.link"
+                        <Box
                           title={r.leverage.blockers
                             .map((b) => t(`lev.blocker.${b}`))
                             .join(", ")}
                         >
-                          <Icon as={MdBolt} boxSize="3.5" />
-                          {t(`lev.${r.leverage.kind}`)}
-                        </Flex>
+                          <Flex align="center" gap="1" fontSize="2xs" fontWeight="700" color="content.link">
+                            <Icon as={MdBolt} boxSize="3.5" />
+                            {t(`lev.${r.leverage.kind}`)}
+                          </Flex>
+                          {r.unlockBrl > 0 && (
+                            <Text fontSize="2xs" color="content.tertiary" mt="0.5">
+                              {t("lev.unlocks", { value: fmtBrl(r.unlockBrl) })}
+                            </Text>
+                          )}
+                        </Box>
+                      ) : r.headroomBrl != null && r.headroomBrl > 0 && instrumentGroup(r.capag) === "credit" ? (
+                        <Text fontSize="2xs" color="content.tertiary" title={t("lev.headroomHint")}>
+                          {t("lev.headroom", { value: fmtBrl(r.headroomBrl) })}
+                        </Text>
                       ) : (
                         <Text fontSize="xs" color="content.tertiary">
                           —

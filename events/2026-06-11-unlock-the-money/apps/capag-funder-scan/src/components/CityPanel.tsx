@@ -16,6 +16,7 @@ import { MdOpenInNew } from "react-icons/md";
 import { recommend } from "../lib/recommend";
 import { matchProjects, type Project } from "../lib/matchProjects";
 import { HAZARD_BY_KEY, SECTORS } from "../lib/display";
+import { fmtBrl } from "../lib/headroom";
 import { useTranslation } from "../i18n/client";
 import type { CityData } from "../lib/cityData";
 import type { Row } from "./Explorer";
@@ -241,11 +242,28 @@ export default function CityPanel({
               fontSize="xs"
               color="content.tertiary"
               lineHeight="1.5"
-              mb="8"
+              mb={row.rcl != null ? "3" : "8"}
               dangerouslySetInnerHTML={{
                 __html: t("panel.icf", { icf: row.icf }),
               }}
             />
+            {row.rcl != null && (
+              <Box bg="background.neutral" borderRadius="md" p="3" mb="8">
+                <Flex justify="space-between" fontSize="xs" mb="1">
+                  <Text color="content.tertiary">{t("panel.rcl")}</Text>
+                  <Text color="content.primary" fontWeight="600">{fmtBrl(row.rcl)}</Text>
+                </Flex>
+                {row.headroomBrl != null && (
+                  <Flex justify="space-between" fontSize="xs">
+                    <Text color="content.tertiary">{t("panel.headroom")}</Text>
+                    <Text color="content.link" fontWeight="700">{fmtBrl(row.headroomBrl)}</Text>
+                  </Flex>
+                )}
+                <Text fontSize="2xs" color="content.tertiary" mt="1.5" lineHeight="1.4">
+                  {t("panel.headroomNote")}
+                </Text>
+              </Box>
+            )}
 
             {/* Emissions */}
             <Heading size="sm" color="content.secondary" mb="3">
