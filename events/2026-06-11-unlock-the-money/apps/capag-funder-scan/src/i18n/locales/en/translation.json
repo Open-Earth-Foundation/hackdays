@@ -82,6 +82,8 @@
   "sort.leverage": "Leverage",
   "filters.highLeverage": "High-leverage only",
   "filters.sortBy": "Sort",
+  "filters.activeLabel": "Filtered view",
+  "filters.clearAll": "Clear all",
 
   "icf.tip.Aicf": "ICF Aicf — top accounting quality in Siconfi's ranking. Earns the '+' upgrade (A→A+); lowest transaction cost, fastest to structure.",
   "icf.tip.Bicf": "ICF Bicf — good accounting quality (Siconfi ranking). Standard due diligence.",

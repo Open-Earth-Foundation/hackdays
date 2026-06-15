@@ -82,6 +82,8 @@
   "sort.leverage": "Alavancagem",
   "filters.highLeverage": "Só alta alavancagem",
   "filters.sortBy": "Ordenar",
+  "filters.activeLabel": "Visão filtrada",
+  "filters.clearAll": "Limpar tudo",
 
   "icf.tip.Aicf": "ICF Aicf — melhor qualidade contábil no ranking do Siconfi. Garante o upgrade '+' (A→A+); menor custo de transação, estruturação mais rápida.",
   "icf.tip.Bicf": "ICF Bicf — boa qualidade contábil (ranking Siconfi). Due diligence padrão.",

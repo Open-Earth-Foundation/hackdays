@@ -21,10 +21,12 @@ import {
 import dynamic from "next/dynamic";
 import {
   MdBolt,
+  MdClose,
   MdNavigateBefore,
   MdNavigateNext,
   MdOutlineAutoAwesome,
   MdOutlineFileDownload,
+  MdOutlineFilterAlt,
   MdOutlineFilterAltOff,
   MdOutlineInfo,
   MdOutlineSlideshow,
@@ -365,6 +367,23 @@ export default function Explorer({
     setWizardOpen(false);
   };
 
+  // active-filter chips for the Explore banner (so every applied filter is visible + removable)
+  const filterChips: { key: string; label: string; remove: () => void }[] = [];
+  if (instrument !== "any")
+    filterChips.push({ key: "inst", label: t(INSTRUMENT_LABEL_KEY[instrument]), remove: () => setInstrument("any") });
+  if (band !== "all")
+    filterChips.push({ key: "band", label: t(`portfolio.band.${band}`), remove: () => setBand("all") });
+  Array.from(tiers).forEach((tr) =>
+    filterChips.push({ key: `tier-${tr}`, label: `CAPAG ${tr}`, remove: () => setTiers(toggle(tiers, tr)) }),
+  );
+  Array.from(hazards).forEach((h) =>
+    filterChips.push({ key: `haz-${h}`, label: t(`hazard.${h}`), remove: () => setHazards(toggle(hazards, h)) }),
+  );
+  if (uf) filterChips.push({ key: "uf", label: uf, remove: () => setUf("") });
+  if (highLevOnly)
+    filterChips.push({ key: "lev", label: t("filters.highLeverage"), remove: () => setHighLevOnly(false) });
+  if (q.trim()) filterChips.push({ key: "q", label: `"${q.trim()}"`, remove: () => setQ("") });
+
   // drill from a portfolio matrix cell into the filtered Explore pipeline
   const drillFromMatrix = (group: InstrumentGroup, b: RiskBand) => {
     setInstrument(group);
@@ -454,9 +473,52 @@ export default function Explorer({
 
         {view === "explore" && (
           <>
-        <Text color="content.tertiary" fontSize="sm" mb="5">
+        <Text color="content.tertiary" fontSize="sm" mb={filterChips.length ? "3" : "5"}>
           {t("app.intro", { count: rows.length })}
         </Text>
+
+        {/* active-filters banner — shows exactly what's filtered + one-click removal */}
+        {filterChips.length > 0 && (
+          <Flex
+            align="center"
+            gap="2"
+            wrap="wrap"
+            mb="5"
+            bg="background.overlay"
+            borderRadius="md"
+            px="3"
+            py="2.5"
+          >
+            <Icon as={MdOutlineFilterAlt} boxSize="4" color="content.alternative" />
+            <Text fontSize="xs" fontWeight="700" color="content.alternative" mr="1">
+              {t("filters.activeLabel")}
+            </Text>
+            {filterChips.map((c) => (
+              <Flex
+                key={c.key}
+                as="button"
+                onClick={c.remove}
+                align="center"
+                gap="1"
+                bg="background.default"
+                borderWidth="1px"
+                borderColor="border.neutral"
+                borderRadius="full"
+                px="2.5"
+                py="1"
+                fontSize="xs"
+                color="content.secondary"
+                _hover={{ borderColor: "content.alternative", color: "content.alternative" }}
+              >
+                {c.label}
+                <Icon as={MdClose} boxSize="3.5" />
+              </Flex>
+            ))}
+            <Button size="xs" variant="ghost" color="content.link" onClick={clearAll}>
+              {t("filters.clearAll")}
+            </Button>
+          </Flex>
+        )}
 
         {/* map left · filters right */}
         <Flex
