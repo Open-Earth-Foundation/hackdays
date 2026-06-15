@@ -25,11 +25,13 @@ import {
   MdOutlineAutoAwesome,
   MdOutlineFileDownload,
   MdOutlineFilterAltOff,
+  MdOutlineInfo,
   MdOutlineZoomInMap,
 } from "react-icons/md";
 import CityPanel from "./CityPanel";
 import LanguageToggle from "./LanguageToggle";
 import MandateWizard, { type Mandate } from "./MandateWizard";
+import OnboardingCarousel from "./OnboardingCarousel";
 import { HAZARDS, HAZARD_BY_KEY, TIER_HEX } from "../lib/display";
 import { useTranslation } from "../i18n/client";
 import type { CityData } from "../lib/cityData";
@@ -187,7 +189,17 @@ export default function Explorer({
   const [highLevOnly, setHighLevOnly] = useState(false);
   const [sort, setSort] = useState<"match" | "leverage">("match");
   const [wizardOpen, setWizardOpen] = useState(false);
+  const [introOpen, setIntroOpen] = useState(false);
   const [selected, setSelected] = useState<Row | null>(null);
+
+  // show the onboarding carousel once per browser
+  useEffect(() => {
+    if (!window.localStorage.getItem("capag-seen-intro")) setIntroOpen(true);
+  }, []);
+  const closeIntro = () => {
+    window.localStorage.setItem("capag-seen-intro", "1");
+    setIntroOpen(false);
+  };
   const [cityData, setCityData] = useState<CityData | null>(null);
   const [cityFailed, setCityFailed] = useState(false);
   const [fitSignal, setFitSignal] = useState(0);
@@ -360,6 +372,17 @@ export default function Explorer({
               {t("app.subtitle")}
             </Text>
             <Box flex="1" />
+            <Box
+              as="button"
+              onClick={() => setIntroOpen(true)}
+              color="background.overlay"
+              _hover={{ color: "base.light" }}
+              title={t("intro.openTitle")}
+              display="flex"
+              alignItems="center"
+            >
+              <Icon as={MdOutlineInfo} boxSize="5" />
+            </Box>
             <Button
               size="sm"
               bg="base.light"
@@ -901,6 +924,7 @@ export default function Explorer({
             onClose={() => setWizardOpen(false)}
           />
         )}
+        {introOpen && <OnboardingCarousel onClose={closeIntro} />}
       </Container>
     </>
   );
