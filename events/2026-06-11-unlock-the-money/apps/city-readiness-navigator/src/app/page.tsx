@@ -2,328 +2,292 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import TopBar from "@/components/TopBar";
-import data from "@/data/valdivia.json";
-import { SM, Profiles, PILLAR_ORDER, provenanceKind, type Comuna, type Scored } from "@/lib/engine";
+import Sidebar, { type StageDef } from "@/components/Sidebar";
+import MapView from "@/components/MapView";
+import { SCOPES, mapPoints, scopeLegend, journeyCity, DATA } from "@/lib/adapters";
+import { SM, provenanceKind, type Scored, type Comuna } from "@/lib/engine";
+import { getCityContext, agentAssist } from "@/lib/context";
+import { assembleDossier } from "@/lib/dossier";
 
-const STEPS = [
-  { n: 1, key: "enter", title: "Enter", sub: "Your city" },
-  { n: 2, key: "discover", title: "Discover", sub: "Funders open" },
-  { n: 3, key: "target", title: "Pick target", sub: "Choose a path" },
-  { n: 4, key: "diagnose", title: "Diagnose", sub: "Readiness" },
-  { n: 5, key: "prepare", title: "Prepare", sub: "Close the gap" },
-  { n: 6, key: "pool", title: "Pool", sub: "If too small" },
-  { n: 7, key: "submit", title: "Submit", sub: "To the funder" },
+const STAGES: StageDef[] = [
+  { key: "explore", title: "Explore", sub: "Map & scope" },
+  { key: "context", title: "City context", sub: "Source: inventory + plan" },
+  { key: "readiness", title: "Readiness pathways", sub: "Assess & route" },
+  { key: "portfolio", title: "Portfolio", sub: "Instrument · pool · prepare" },
+  { key: "intake", title: "Funder intake", sub: "Dossier & submit" },
 ];
-
-const comunas = (data as any).comunas as Comuna[];
-const hero = comunas.find((c) => c.isAnchor)!;
 
 function ProvBadge({ prov }: { prov: string }) {
   const kind = provenanceKind(prov);
-  const label = kind === "real" ? "real" : kind === "intake" ? "intake" : "estimated";
-  return <span className={`badge ${kind}`} title={prov}>{label}</span>;
+  return <span className={`badge ${kind}`} title={prov}>{kind}</span>;
 }
 
 function Pillars({ city }: { city: Comuna }) {
   const expl = SM.explainScore(city.readiness);
   return (
     <div>
-      {PILLAR_ORDER.map((k) => {
-        const e = expl.find((x) => x.key === k)!;
-        return (
-          <div className="pillar" key={k}>
-            <div className="top">
-              <span>{SM.PILLAR_LABELS[k]} <ProvBadge prov={city.provenance[k]} /></span>
-              <span>{city.readiness[k]}</span>
-            </div>
-            <div className="bar"><i style={{ width: `${city.readiness[k]}%` }} /></div>
-            <div className="meta">contributes {e.points} pts ({Math.round(e.weight * 100)}% weight)</div>
+      {expl.map((e) => (
+        <div className="pillar" key={e.key}>
+          <div className="top">
+            <span>{e.label} <ProvBadge prov={(city.provenance as any)[e.key]} /></span>
+            <span>{city.readiness[e.key as keyof typeof city.readiness]}</span>
           </div>
-        );
-      })}
-    </div>
-  );
-}
-
-function Gate({ scored }: { scored: Scored }) {
-  const elig = scored.eligibility;
-  const profile = SM.activeProfile();
-  const labels: Record<string, string> = {};
-  profile.projectEligibility.forEach((c: any) => (labels[c.key] = c.label));
-  return (
-    <div>
-      {Object.entries(elig).filter(([k]) => k !== "eligible").map(([k, v]) => (
-        <div className="gate" key={k}>
-          <span className={`dot ${v ? "pass" : "fail"}`} />
-          <span>{labels[k] || k}</span>
+          <div className="bar"><i style={{ width: `${city.readiness[e.key as keyof typeof city.readiness]}%` }} /></div>
+          <div className="meta">{e.points} pts · {Math.round(e.weight * 100)}% weight</div>
         </div>
       ))}
     </div>
   );
 }
 
+function pathwayOf(s: Scored): "instrument" | "pool" | "capacity-building" {
+  if (!s.canEnterProjectReview) return "capacity-building";
+  if (s.eligibility.eligible) return "instrument";
+  return "pool";
+}
+
 export default function Page() {
-  const [step, setStep] = useState(1);
-  const [target, setTarget] = useState<string | null>(null);
-  const [pooled, setPooled] = useState(false);
+  const [scopeId, setScopeId] = useState("cl-losrios");
+  const [cityId, setCityId] = useState<string | null>(null);
+  const [entry, setEntry] = useState<"entity" | "project">("entity");
+  const [stage, setStage] = useState(0);
+  const [maxReached, setMaxReached] = useState(0);
   const [submitState, setSubmitState] = useState<{ id: string } | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
-  const heroScored = useMemo(() => SM.scoreSNG(hero), []);
-  const poolScored = useMemo(() => SM.scoreSNG({ ...hero, proposal: (data as any).pool.pooledProposal }), []);
-  const profiles = Profiles.listProfiles();
+  const scope = SCOPES.find((s) => s.id === scopeId)!;
+  const points = useMemo(() => mapPoints(scopeId), [scopeId]);
+  const legend = scopeLegend(scopeId);
 
-  const max = STEPS.length;
-  const go = (n: number) => setStep(Math.min(max, Math.max(1, n)));
+  const scored = cityId ? journeyCity(cityId) : null;
+  const ctx = cityId ? getCityContext(cityId) : null;
+  const pathway = scored ? pathwayOf(scored) : null;
+  const pool = scopeId === "cl-losrios" ? DATA.cl.pool : null;
+  const poolScored = scored && pool ? SM.scoreSNG({ ...(scored as any), proposal: pool.pooledProposal }) : null;
+
+  function goto(i: number) { setStage(i); setMaxReached((m) => Math.max(m, i)); }
+  function pickCity(id: string) { setCityId(id); setSubmitState(null); goto(1); }
 
   async function submit() {
+    if (!scored || !pathway) return;
     setSubmitting(true);
-    const handoff = {
-      candidateId: pooled ? "POOL-LosRios-U11" : hero.id,
-      kind: pooled ? "pool" : "city",
-      name: pooled ? (data as any).pool.bundle?.sector ? "Los Ríos unit 11 (transport bundle)" : "Los Ríos pool" : hero.name,
-      locode: hero.locode,
-      cityId: hero.cityId,
-      anchorLocode: (data as any).pool.anchorLocode,
-      members: pooled ? (data as any).pool.members.map((m: any) => m.locode).filter(Boolean) : [hero.locode],
-      targetProfileId: SM.activeProfile().id,
-      compositeReadiness: (pooled ? poolScored : heroScored).compositeReadiness,
-      tier: (pooled ? poolScored : heroScored).tier,
-      clearancePassed: (pooled ? poolScored : heroScored).canEnterProjectReview,
-      proposal: pooled
-        ? { title: (data as any).pool.pooledProposal.title, askUSDm: (data as any).pool.pooledProposal.askUSDm, sector: "transport" }
-        : { title: hero.proposal.title, askUSDm: hero.proposal.askUSDm, sector: hero.proposal.sector },
-      provenance: hero.provenance,
-    };
-    const res = await fetch("/api/submissions", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(handoff) });
+    let opts: any;
+    if (pathway === "pool" && pool) {
+      opts = { scored: poolScored, kind: "pool", pathway: "pool",
+        pool: { anchor: scored.name, members: pool.members.map((m: any) => ({ name: m.name, role: m.isAnchor ? "anchor" : "member", cofinance: m.cofinanceScore })) },
+        proposal: pool.pooledProposal };
+    } else if (pathway === "capacity-building") {
+      opts = { scored, kind: "city", pathway: "capacity-building", instrumentName: "Capacity-building / PPF + blended finance",
+        pool: null, proposal: scored.proposal };
+    } else {
+      opts = { scored, kind: "city", pathway: "instrument", pool: null, proposal: scored.proposal };
+    }
+    const dossier = assembleDossier(opts);
+    const res = await fetch("/api/submissions", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(dossier) });
     const rec = await res.json();
     setSubmitState({ id: rec.id });
     setSubmitting(false);
   }
 
   return (
-    <>
-      <TopBar active="city" />
-      <div className="wrap">
-        <div className="hero">
-          <h1>Unlock financing for {hero.name}&apos;s climate plan</h1>
-          <p>
-            See which funders your plan can reach, how ready you are for the <b>IDB Sub-Sovereign Finance Program</b>,
-            and what to do next — then submit. Real fiscal signals from the City-Funder Matching Engine, scored live by
-            the Readiness Engine.
-          </p>
-        </div>
+    <div className="app-shell">
+      <Sidebar stages={STAGES} active={stage} maxReached={maxReached} onSelect={goto} />
+      <main className="main">
+        <div className="crumbs">{scope.country} · {scope.region} · adapter: {scope.adapter}</div>
 
-        <div className="stepper">
-          {STEPS.map((s) => (
-            <button key={s.n} className={`step ${step === s.n ? "active" : ""} ${step > s.n ? "done" : ""}`} onClick={() => go(s.n)}>
-              <b>{s.title}</b>
-              <small>{s.sub}</small>
-            </button>
-          ))}
-        </div>
-
-        {/* STEP 1 — ENTER */}
-        {step === 1 && (
-          <div className="card">
-            <h2>1 · Your city</h2>
-            <p className="sub">Loaded from your CityCatalyst profile. <span className="muted">(Live CityCatalyst city-context wiring is Phase 4; here it&apos;s the locode-keyed record.)</span></p>
-            <div className="grid2">
-              <div>
-                <div className="kv"><span>City</span><span>{hero.name}</span></div>
-                <div className="kv"><span>UN/LOCODE</span><span>{hero.locode}</span></div>
-                <div className="kv"><span>Region</span><span>Región de Los Ríos</span></div>
-              </div>
-              <div>
-                <div className="kv"><span>Population</span><span>{hero.population?.toLocaleString()}</span></div>
-                <div className="kv"><span>Country</span><span>Chile (IDB member)</span></div>
-                <div className="kv"><span>CityCatalyst id</span><span className="muted" style={{ fontSize: 12 }}>{hero.cityId?.slice(0, 12)}…</span></div>
-              </div>
+        {/* 0 — EXPLORE */}
+        {stage === 0 && (
+          <>
+            <div className="h-stage">Explore financial readiness</div>
+            <p className="h-sub">A geographic view of readiness across a scope, from real national fiscal data. Pick a highlighted city to open its readiness journey.</p>
+            <div className="scopebar">
+              {SCOPES.map((s) => (
+                <button key={s.id} className={`scopebtn ${s.id === scopeId ? "active" : ""}`} onClick={() => { setScopeId(s.id); setCityId(null); }}>
+                  {s.country} · {s.region}
+                </button>
+              ))}
             </div>
-          </div>
+            <MapView scopeId={scopeId} points={points} center={scope.center} zoom={scope.zoom} onSelect={pickCity} />
+            <div className="maplegend">
+              {legend.map((l) => <span key={l.cls}><i className={`dot-${l.cls}`} />{l.label}</span>)}
+              <span className="muted">· data: {scope.adapter}</span>
+            </div>
+            <div className="card" style={{ marginTop: 16 }}>
+              <h2>Open a city</h2>
+              <p className="sub">Cities with a full readiness profile in this scope:</p>
+              {points.filter((p) => p.journeyable).map((p) => (
+                <div className="actionrow" key={p.id}>
+                  <span><b>{p.name}</b> <span className="muted">· {p.capag ? `CAPAG ${p.capag}` : p.tier}</span></span>
+                  <button className="btn" style={{ padding: "6px 14px" }} onClick={() => pickCity(p.id)}>Open →</button>
+                </div>
+              ))}
+            </div>
+          </>
         )}
 
-        {/* STEP 2 — DISCOVER */}
-        {step === 2 && (
-          <div className="card">
-            <h2>2 · Funders your plan can reach</h2>
-            <p className="sub">From the City-Funder Matching Engine — instruments matched to {hero.name}&apos;s prioritized actions, tagged by the role you can play.</p>
-            <div className="grid2" style={{ marginBottom: 16 }}>
-              <div className="note"><b>{(data as any).funders.counts.applicant}</b> funds you can apply to directly · <b>{(data as any).funders.counts.facilitator}</b> facilitator · <b>{(data as any).funders.counts.referrer}</b> referrer-only · <b>{(data as any).funders.counts.total}</b> reachable in total</div>
-              <div className="note">IDB SFP appears as a <b>structural debt</b> path for your transport plan — explored in steps 3–6.</div>
+        {/* 1 — CITY CONTEXT */}
+        {stage === 1 && scored && ctx && (
+          <>
+            <div className="h-stage">{scored.name}</div>
+            <p className="h-sub">Loaded from {scored.name}&apos;s CityCatalyst context — GHG inventory and HIAP-prioritized actions. <span className="muted">(Live CityCatalyst MCP wiring is the seam; here it&apos;s simulated context.)</span></p>
+            <div className="entrytoggle">
+              <button className={entry === "entity" ? "active" : ""} onClick={() => setEntry("entity")}>Entity-first</button>
+              <button className={entry === "project" ? "active" : ""} onClick={() => setEntry("project")}>Project-first (import)</button>
             </div>
-            <table className="tablelike">
-              <thead><tr><th>Program</th><th>Funder</th><th>Role</th></tr></thead>
-              <tbody>
-                {(data as any).funders.sample.slice(0, 10).map((f: any, i: number) => (
-                  <tr key={i}>
-                    <td>{f.program}</td>
-                    <td className="muted">{f.funder}</td>
-                    <td><span className={`badge role-${f.role}`}>{f.role}</span></td>
-                  </tr>
+            <div className="grid2">
+              <div className="card">
+                <h2>GHG inventory</h2>
+                <p className="sub">{ctx.inventory.source} · {ctx.inventory.year}</p>
+                {ctx.inventory.topSectors.map((s) => (
+                  <div className="kv" key={s.sector}><span>{s.sector}</span><span>{s.sharePct}%</span></div>
                 ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-
-        {/* STEP 3 — PICK TARGET */}
-        {step === 3 && (
-          <div className="card">
-            <h2>3 · Pick a financing path</h2>
-            <p className="sub">Each path has its own <b>readiness profile</b> — the criteria you&apos;re assessed against. Readiness is target-specific.</p>
-            {profiles.map((p: any) => {
-              const prof = Profiles.getProfile(p.id);
-              const selected = (target || "idb-sfp") === p.id;
-              return (
-                <div key={p.id} className="card" style={{ borderColor: selected ? "var(--cc-blue)" : undefined, background: selected ? "var(--cc-blue-tint)" : undefined, cursor: p.illustrative ? "not-allowed" : "pointer", opacity: p.illustrative ? 0.6 : 1 }}
-                  onClick={() => { if (!p.illustrative) { setTarget(p.id); SM.setActiveProfile(p.id); } }}>
-                  <div style={{ display: "flex", justifyContent: "space-between" }}>
-                    <h3>{prof.funder}{p.illustrative && <span className="muted"> (template)</span>}</h3>
-                    {selected && !p.illustrative && <span className="pill-tag">selected</span>}
+              </div>
+              <div className="card">
+                <h2>HIAP priorities</h2>
+                <p className="sub">Top prioritized climate actions</p>
+                {ctx.hiap.map((a) => (
+                  <div className="actionrow" key={a.actionId}>
+                    <span>{a.rank}. {a.name}</span>
+                    <span className={`atype ${a.type}`}>{a.type}</span>
                   </div>
-                  <p className="sub" style={{ marginBottom: 8 }}>{prof.instrument} — {prof.summary}</p>
-                  {!p.illustrative && (
-                    <div className="muted" style={{ fontSize: 13 }}>
-                      Pillars: {prof.pillars.map((pl: any) => `${pl.label} ${Math.round(pl.weight * 100)}%`).join(" · ")}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-            <div className="note">Same engine, different profile. Other MDBs (CAF, World Bank, GCF) plug in their own criteria — the city app doesn&apos;t change.</div>
-          </div>
+                ))}
+              </div>
+            </div>
+            {entry === "project" && (
+              <div className="note">Project-first: import a prepared project (a <b>Concept Note</b> from the Project Preparator) — it enters at the Portfolio step (②). For this demo the entity-first path is wired; project import is the interop seam.</div>
+            )}
+            <div className="btn-row"><button className="btn" onClick={() => goto(2)}>Assess readiness →</button></div>
+          </>
         )}
 
-        {/* STEP 4 — DIAGNOSE */}
-        {step === 4 && (
-          <div className="card">
-            <h2>4 · Readiness for IDB SFP</h2>
-            <p className="sub">Scored live by the Readiness Engine against the IDB profile. Badges show real vs. estimated signals.</p>
+        {/* 2 — READINESS PATHWAYS */}
+        {stage === 2 && scored && (
+          <>
+            <div className="h-stage">Readiness pathways</div>
+            <p className="h-sub">The early creditworthiness assessment for the <b>{SM.activeProfile().instrument}</b>, scored on real fiscal data. The diagnosis routes the next step.</p>
             <div className="grid2">
-              <div>
+              <div className="card">
                 <div style={{ display: "flex", alignItems: "baseline", gap: 14, marginBottom: 14 }}>
-                  <span className="scorebig">{heroScored.compositeReadiness}<small>/100</small></span>
-                  <span className={`tier ${heroScored.tier}`}>{heroScored.tier}</span>
+                  <span className="scorebig">{scored.compositeReadiness}<small>/100</small></span>
+                  <span className={`tier ${scored.tier}`}>{scored.tier}</span>
                 </div>
-                <Pillars city={hero} />
+                <Pillars city={scored} />
               </div>
               <div>
-                <h3 style={{ fontSize: 15, marginBottom: 8 }}>IDB project-eligibility gate</h3>
-                <Gate scored={heroScored} />
-                <div className="note" style={{ marginTop: 12 }}>
-                  {hero.name} is <b>{heroScored.tier}</b> and cleared on creditworthiness — but its transport project <b>alone</b> is below the US$15M high-impact threshold, so it isn&apos;t project-eligible on its own. That gap is solved in step 6.
+                <div className="card">
+                  <h2>Eligibility gate</h2>
+                  {Object.entries(scored.eligibility).filter(([k]) => k !== "eligible").map(([k, v]) => {
+                    const lbl = (SM.activeProfile().projectEligibility.find((c: any) => c.key === k) || {}).label || k;
+                    return <div className="gate" key={k}><span className={`dot ${v ? "pass" : "fail"}`} />{lbl}</div>;
+                  })}
+                </div>
+                <div className={`card pathcard ${pathway === "instrument" ? "ok" : pathway === "pool" ? "warn" : "block"}`}>
+                  <h2>Recommended pathway</h2>
+                  {pathway === "instrument" && <p className="sub">Ready and eligible — proceed directly to the instrument.</p>}
+                  {pathway === "pool" && <p className="sub"><b>Ready, but sub-scale.</b> {scored.name} clears creditworthiness, but its project is below the instrument&apos;s ticket size. Route → <b>portfolio / pooling</b>.</p>}
+                  {pathway === "capacity-building" && <p className="sub"><b>Not yet eligible.</b> Route → <b>capacity-building</b>: targeted TC / PPF before the instrument. Not a debt problem — see the signals.</p>}
                 </div>
               </div>
             </div>
-          </div>
+            {(() => { const a = agentAssist({ cityName: scored.name, tier: scored.tier, cleared: scored.canEnterProjectReview, pathway: pathway! });
+              return <div className="agent"><div className="who">CityCatalyst agent <span className="sim">simulated</span></div>{a.text}</div>; })()}
+            <div className="btn-row"><button className="btn" onClick={() => goto(3)}>{pathway === "capacity-building" ? "See capacity-building track →" : "Build the portfolio →"}</button></div>
+          </>
         )}
 
-        {/* STEP 5 — PREPARE */}
-        {step === 5 && (
-          <div className="card">
-            <h2>5 · Close the gap</h2>
-            <p className="sub">What each readiness level is routed to — the funded path to becoming loan-ready (IDB Subprogram 2 TC, ~US$13M envelope).</p>
-            <table className="tablelike">
-              <thead><tr><th>Comuna</th><th>Tier</th><th>Recommended action</th></tr></thead>
-              <tbody>
-                {comunas.map((c) => {
-                  const s = SM.scoreSNG(c);
-                  return (
-                    <tr key={c.id} className={c.isAnchor ? "anchor-row" : ""}>
-                      <td>{c.name}{c.isAnchor && <span className="muted"> (you)</span>}</td>
-                      <td><span className={`tier ${s.tier}`}>{s.tier}</span></td>
-                      <td className="muted">{s.readinessAction}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-            <div className="note" style={{ marginTop: 14 }}>
-              {hero.name}&apos;s gap isn&apos;t readiness — it&apos;s <b>scale</b>. Its neighbours aren&apos;t ready to borrow alone. Pooling (next step) fixes both at once.
-            </div>
-          </div>
+        {/* 3 — PORTFOLIO / CAPACITY */}
+        {stage === 3 && scored && (
+          <>
+            {pathway === "capacity-building" ? (
+              <>
+                <div className="h-stage">Capacity-building track</div>
+                <p className="h-sub">{scored.name} routes here instead of the loan instrument — what to fix to become eligible, and the funded routes to do it.</p>
+                {(scored as any).capag && (
+                  <div className="card">
+                    <h2>Why — the CAPAG signals</h2>
+                    <p className="sub">Real Tesouro Nacional indicators. The gap is not debt.</p>
+                    <div className="kv"><span>Debt / RCL (endividamento)</span><span>grade {(scored as any).capag.nota1} ✓</span></div>
+                    <div className="kv"><span>Current savings (poupança)</span><span>grade {(scored as any).capag.nota2}</span></div>
+                    <div className="kv"><span>Liquidity (liquidez)</span><span>grade {(scored as any).capag.nota3}</span></div>
+                    <div className="kv"><span>Accounting quality (ICF)</span><span>{(scored as any).capag.icf}</span></div>
+                  </div>
+                )}
+                <div className="card">
+                  <h2>Funded routes to readiness</h2>
+                  <div className="actionrow"><span>Accounting / fiscal management TA → lift the ICF rating</span><span className="muted">PPF · regular TC</span></div>
+                  <div className="actionrow"><span>Build cash reserves &amp; current savings</span><span className="muted">reform + TC</span></div>
+                  <div className="actionrow"><span>Grant / blended finance for adaptation now</span><span className="muted">CCFLA / blended</span></div>
+                </div>
+                <div className="note">Once the city re-rates (CAPAG B/A), it re-enters the instrument path. Submitting here registers a <b>capacity-building referral</b>, not a loan.</div>
+                <div className="btn-row"><button className="btn" onClick={() => goto(4)}>Prepare referral →</button></div>
+              </>
+            ) : pathway === "pool" && pool ? (
+              <>
+                <div className="h-stage">Build a financeable portfolio</div>
+                <p className="h-sub">The gap between {scored.name}&apos;s project and the instrument&apos;s ticket size is closed by pooling neighbours into one package — portfolio design.</p>
+                <div className="note" style={{ marginBottom: 14 }}>Transport: <b>{DATA.cl.transportGap.nActions} actions</b>, best single-city fit {DATA.cl.transportGap.bestFit} — no instrument fits {scored.name} alone.</div>
+                <div className="card">
+                  <table className="tablelike">
+                    <thead><tr><th>Comuna</th><th>Co-finance index</th><th>Readiness</th><th>Role</th></tr></thead>
+                    <tbody>
+                      {(DATA.cl.comunas as Comuna[]).map((c) => {
+                        const cs = SM.scoreSNG(c);
+                        return <tr key={c.id} className={c.isAnchor ? "anchor-row" : ""}><td>{c.name}</td><td>{c.cofinanceScore ?? "—"}<span className="muted"> /100</span></td><td><span className={`tier ${cs.tier}`}>{cs.tier}</span></td><td>{c.isAnchor ? <b>Anchor</b> : <span className="muted">Member</span>}</td></tr>;
+                      })}
+                    </tbody>
+                  </table>
+                  <div className="grid2" style={{ marginTop: 14 }}>
+                    <div className="kv"><span>Pooled ask</span><span>US${pool.pooledProposal.askUSDm}M</span></div>
+                    <div className="kv"><span>Pool readiness</span><span><span className={`tier ${poolScored!.tier}`}>{poolScored!.tier}</span> · {poolScored!.eligibility.eligible ? "eligible ✓" : "not eligible"}</span></div>
+                  </div>
+                </div>
+                <div className="btn-row"><button className="btn" onClick={() => goto(4)}>Assemble dossier →</button></div>
+              </>
+            ) : (
+              <>
+                <div className="h-stage">Instrument</div>
+                <p className="h-sub">{scored.name} is ready and eligible — proceed to the instrument.</p>
+                <div className="card"><div className="kv"><span>Instrument</span><span>{SM.activeProfile().instrument}</span></div><div className="kv"><span>Ask</span><span>US${scored.proposal.askUSDm}M</span></div></div>
+                <div className="btn-row"><button className="btn" onClick={() => goto(4)}>Assemble dossier →</button></div>
+              </>
+            )}
+          </>
         )}
 
-        {/* STEP 6 — POOL */}
-        {step === 6 && (
-          <div className="card">
-            <h2>6 · The gap becomes the deal</h2>
-            <p className="sub">Your transport actions have no instrument that fits {hero.name} alone — so the engine pools the unit into one financeable package.</p>
-            <div className="note" style={{ marginBottom: 14 }}>
-              Transport: <b>{(data as any).transportGap.nActions} actions</b>, best single-city fit <b>{(data as any).transportGap.bestFit}</b> ({(data as any).transportGap.bestFunder}) — no dedicated instrument. For one city, a dead end.
-            </div>
-            <table className="tablelike">
-              <thead><tr><th>Comuna</th><th>Co-finance</th><th>Readiness</th><th>Role</th></tr></thead>
-              <tbody>
-                {comunas.map((c) => {
-                  const s = SM.scoreSNG(c);
-                  return (
-                    <tr key={c.id} className={c.isAnchor ? "anchor-row" : ""}>
-                      <td>{c.name}</td>
-                      <td>{c.cofinanceScore ?? "—"}</td>
-                      <td><span className={`tier ${s.tier}`}>{s.tier}</span></td>
-                      <td>{c.isAnchor ? <b>Anchor</b> : <span className="muted">Member</span>}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-            <div className="grid2" style={{ marginTop: 16 }}>
-              <div className="kv"><span>Pooled ask</span><span>US${(data as any).pool.pooledProposal.askUSDm}M</span></div>
-              <div className="kv"><span>Pool readiness (anchor-led)</span><span><span className={`tier ${poolScored.tier}`}>{poolScored.tier}</span> · {poolScored.eligibility.eligible ? "eligible ✓" : "not eligible"}</span></div>
-            </div>
-            <div className="btn-row">
-              <button className="btn" onClick={() => { setPooled(true); go(7); }}>Use the pooled package →</button>
-            </div>
-          </div>
-        )}
-
-        {/* STEP 7 — SUBMIT */}
-        {step === 7 && (
-          <div className="card">
-            <h2>7 · Submit to IDB</h2>
+        {/* 4 — FUNDER INTAKE */}
+        {stage === 4 && scored && pathway && (
+          <>
+            <div className="h-stage">Funder intake</div>
             {!submitState ? (
               <>
-                <p className="sub">This sends a pre-scored candidate to the IDB-side pipeline (the Control Tower), with your CityCatalyst data attached.</p>
-                <div className="grid2">
-                  <div>
-                    <div className="kv"><span>Submitting</span><span>{pooled ? "Pooled package (6 comunas)" : `${hero.name} (city)`}</span></div>
-                    <div className="kv"><span>Anchor</span><span>{hero.name}</span></div>
-                    <div className="kv"><span>Target</span><span>IDB SFP</span></div>
-                  </div>
-                  <div>
-                    <div className="kv"><span>Readiness</span><span>{(pooled ? poolScored : heroScored).compositeReadiness} · {(pooled ? poolScored : heroScored).tier}</span></div>
-                    <div className="kv"><span>Ask</span><span>US${pooled ? (data as any).pool.pooledProposal.askUSDm : hero.proposal.askUSDm}M</span></div>
-                    <div className="kv"><span>Eligible</span><span>{(pooled ? poolScored : heroScored).eligibility.eligible ? "Yes ✓" : "No"}</span></div>
-                  </div>
+                <p className="h-sub">Assemble the machine-readable <b>candidate dossier</b> (Concept Note + creditworthiness + instrument + pool) and submit it to the funder&apos;s pipeline.</p>
+                <div className="card">
+                  <div className="kv"><span>Candidate</span><span>{pathway === "pool" ? `${scored.name} pool (6 comunas)` : scored.name}</span></div>
+                  <div className="kv"><span>Pathway</span><span>{pathway}</span></div>
+                  <div className="kv"><span>Target</span><span>{pathway === "capacity-building" ? "Capacity-building / PPF" : SM.activeProfile().instrument}</span></div>
+                  <div className="kv"><span>Readiness</span><span>{(pathway === "pool" ? poolScored! : scored).compositeReadiness} · {(pathway === "pool" ? poolScored! : scored).tier}</span></div>
+                  <div className="kv"><span>Ask</span><span>US${pathway === "pool" ? pool.pooledProposal.askUSDm : scored.proposal.askUSDm}M</span></div>
                 </div>
-                {!pooled && <div className="note" style={{ marginTop: 12 }}>Tip: go back to step 6 and use the pooled package — {hero.name} alone isn&apos;t project-eligible (sub-scale).</div>}
                 <div className="btn-row">
-                  <button className="btn" onClick={submit} disabled={submitting || !(pooled ? poolScored : heroScored).eligibility.eligible}>
-                    {submitting ? "Submitting…" : "Submit to IDB pipeline"}
-                  </button>
+                  <button className="btn" onClick={submit} disabled={submitting}>{submitting ? "Submitting…" : pathway === "capacity-building" ? "Submit capacity-building referral" : "Submit to funder pipeline"}</button>
                 </div>
               </>
             ) : (
               <>
-                <p className="sub">Submitted. The candidate is now on the funder&apos;s side of the screen.</p>
-                <div className="note"><b>{submitState.id}</b> — {pooled ? "Los Ríos transport pool" : hero.name} is in the IDB pipeline.</div>
-                <div className="btn-row">
-                  <Link href="/pipeline" className="btn">See it in the funder pipeline →</Link>
-                </div>
+                <p className="h-sub">Submitted — the dossier is now on the funder&apos;s side of the screen.</p>
+                <div className="note"><b>{submitState.id}</b> — {scored.name} ({pathway}) is in the funder pipeline.</div>
+                <div className="btn-row"><Link href="/pipeline" className="btn">See it in the funder pipeline →</Link></div>
               </>
             )}
-          </div>
+          </>
         )}
 
-        {/* Nav */}
-        <div className="btn-row">
-          {step > 1 && <button className="btn secondary" onClick={() => go(step - 1)}>← Back</button>}
-          {step < max && <button className="btn" onClick={() => go(step + 1)}>Next →</button>}
-        </div>
-      </div>
-    </>
+        {stage > 0 && (
+          <div className="btn-row">
+            <button className="btn secondary" onClick={() => goto(stage - 1)}>← Back</button>
+          </div>
+        )}
+      </main>
+    </div>
   );
 }

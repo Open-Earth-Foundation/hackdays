@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "build:data": "node scripts/build-data.mjs"
+    "build:data": "node scripts/build-data.mjs",
+    "build:brazil": "node scripts/build-brazil.mjs"
   },
   "dependencies": {
     "next": "^15",
