@@ -34,6 +34,40 @@ profile #1; other MDBs add their own).
 a de-risked deal pipeline for any MDB. Repeatable to CAF, World Bank, EIB, GCF by
 adding a readiness profile — no new app.
 
+### 1a. The model (v2.1 reframe — read before §4)
+
+After reviewing the **Project Preparator** POC, **CAPAG** (Brazil), and the Matching
+Engine, the product sharpened from "one app" to **two readiness layers on a shared
+spine** (full rationale in [`INTEGRATED-ARCHITECTURE.md`](INTEGRATED-ARCHITECTURE.md)):
+
+- **Project bankability** ("is *this project* fundable?") — owned by the **Project
+  Preparator** (Tech/Fin/Pol → Concept Note). The Navigator **consumes** these; it does
+  **not** rebuild project preparation.
+- **Entity creditworthiness** ("can *this city/pool* take on *this instrument*?") — this
+  app. The Navigator is the **entity / instrument / portfolio** layer.
+
+What this changes in the spec below:
+1. **Navigator = one vertical, three steps:** ① diagnose entity creditworthiness for the
+   chosen instrument → ② **readiness pathways** (assess-and-route: ready → proceed;
+   not-ready → close the gap / coach to the funder's requirements, or a funded
+   capacity-building/PPF track; sub-scale → pool) → ③ portfolio & pooling → submit.
+   Pooling is **conditional** — a large-enough city skips it.
+2. **Dual entry.** *Project-first* (Path A): a prepared Concept Note enters at step ③.
+   *Entity-first* (Path B): a city asking "can I access IDB SFP?" enters at step ①. Offer
+   **import** at entry (pull a Concept Note from the Preparator, pull a fiscal profile from
+   an adapter) rather than re-entry. ("Capacity-first" is *not* an entry path — capacity
+   building is a support track off the readiness diagnosis.)
+3. **Matching + Pooling is a shared core service** (action→instrument and
+   entity/pool→instruments), not Chile-only data. SINIM is its current data instance.
+4. **Fiscal Data Adapters** (`locode → {pillars, provenance}`) feed creditworthiness:
+   **CAPAG** (Brazil), **SINIM/FCM** (Chile); a **map view** badges readiness by geography.
+5. **The handoff is the dossier = Concept Note + creditworthiness + instrument + pool.**
+6. **Shell is a left-hand process menu** (Source · Readiness pathways · Portfolio · Funder
+   intake), not a horizontal stepper — the flow reads as a pipeline.
+
+The 7-step journey in §4 remains the functional spec; the names below reflect this reframe
+(e.g. "Pick a target" → "Choose the instrument"; "Prepare" → "Readiness pathways").
+
 ## 2. Goals / non-goals
 
 **Goals**
@@ -74,14 +108,18 @@ acceptance behavior.
 |---|------|--------------------|--------|
 | 1 | **Enter** | The city's existing profile (name, locode, population, region, GPC emissions, HIAP priorities) auto-loaded — no re-entry. | CityCatalyst app `/api/v1` (OAuth) + Global API city context |
 | 2 | **Discover** | "Funders your plan can reach" — instruments matched to the city's prioritized actions, each tagged applicant / facilitator / referrer, with gaps named. IDB SFP appears when eligible. | Matching Engine outputs (`valdivia_funders_open.csv`, `*_action_matches.csv`); HIAP for priorities |
-| 3 | **Pick a target** | The user selects a financing path (default IDB SFP). The app loads that target's **readiness profile**. | `readiness-profiles.js` registry |
+| 3 | **Choose the instrument** | The user selects a financing instrument (default IDB SFP). The app loads that instrument's **readiness profile**. (formerly "Pick a target") | `readiness-profiles.js` registry |
 | 4 | **Diagnose** | Readiness score (composite + four pillars), tier (Ready/Developing/Early), "why this score" per-pillar contribution, the eligibility gate pass/fail, and the documentary checklist — all for the chosen target. Real-vs-estimated badges per signal. | `scoring.js` (active profile) over CityCatalyst + Matching Engine capacity data |
-| 5 | **Prepare** | For each gap: the concrete fix and the funded route. For IDB that's **Subprogram 2 TC** (~US$13M envelope: regular + contingent-recovery). Turns "rejected" into "here's funded help." | Profile `preparation` track + checklist gaps |
+| 5 | **Readiness pathways** | Assess-and-route, not just "prepare." For each gap: the concrete fix and its route — self-serve coaching to the funder's requirements, or a funded capacity-building/PPF track (for IDB, **Subprogram 2 TC**, ~US$13M envelope: regular + contingent-recovery). Turns "rejected" into "here's the path." (formerly "Prepare") | Profile `preparation` track + checklist gaps |
 | 6 | **Pool (if needed)** | If the city is below the target's ticket size, the engine pools it with neighbours into one financeable bundle, names the anchor, flags TA-needed members. Readiness then evaluates the anchor/pool. | Matching Engine `coordination_units.csv`, `unit_bundle_candidates.csv` |
-| 7 | **Submit** | When readiness for the target is met (score ≥ tier + clearance gates pass), "Submit to IDB" emits the handoff object; the city/pool appears in the Control Tower's Project Review. | Handoff contract (§6) |
+| 7 | **Submit** | When readiness for the instrument is met (score ≥ tier + clearance gates pass), "Submit to IDB" emits the **dossier** (= Concept Note + creditworthiness + instrument + pool); the city/pool appears in the Control Tower's Project Review. | Handoff contract (§6) |
 
 Steps 1–6 are city-facing (inside CityCatalyst); step 7 crosses the boundary to
-the funder-facing Control Tower.
+the funder-facing Control Tower. **Dual entry** (see §1a): *entity-first* (Path B) starts
+at step 1; *project-first* (Path A) imports a Concept Note and enters at step 6/7. **Step 6
+(Pool) is conditional** — a city at or above the instrument's ticket size proceeds straight
+to Submit. Present the flow as a **left-hand process menu** (Source · Readiness pathways ·
+Portfolio · Funder intake), not a horizontal stepper.
 
 ## 5. Integration architecture (CityCatalyst)
 

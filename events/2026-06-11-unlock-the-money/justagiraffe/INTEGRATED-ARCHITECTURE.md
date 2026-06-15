@@ -110,25 +110,28 @@ CityCatalyst:  GHG inventory ──┐         ┌── CCRA climate risk
 
 ```mermaid
 flowchart TB
-  subgraph CC["CityCatalyst — host & shared context"]
+  subgraph CC["CityCatalyst — host & shared context (infrastructure)"]
     HIAP["HIAP prioritized actions"]
     INV["GHG inventory · CCRA risk"]
     AGENT(["AI agents / MCP — shared context across modules"])
+  end
+
+  subgraph PREPM["Project Preparator — module on CityCatalyst"]
+    PREP["Project bankability (Tech/Fin/Pol)<br/>→ Concept Note"]
   end
 
   DATA["Fiscal Data Adapters (locode-keyed) + map view<br/>CAPAG · Brazil &nbsp;|&nbsp; SINIM/FCM · Chile"]
 
   MATCH(["Matching &amp; Pooling — core service<br/>action→instrument &nbsp;|&nbsp; entity/pool→instruments + pooling"])
 
-  PREP["Project Preparator<br/>project bankability (Tech/Fin/Pol)<br/>→ Concept Note"]
-
   subgraph NAV["City Readiness Navigator — entity / portfolio (one vertical)"]
-    N1["① Entity creditworthiness"]
-    N2["② Portfolio &amp; pooling → submit"]
-    N1 --> N2
+    N1["① Entity creditworthiness<br/>diagnose for chosen instrument"]
+    N2["② Readiness pathways<br/>close the gap · coach to funder requirements (IDB SFP first)"]
+    N3["③ Portfolio &amp; pooling → submit<br/>pool only if sub-scale"]
+    N1 --> N2 --> N3
   end
 
-  CAP["Capacity building / PPF<br/>(entity or project, when not ready)"]
+  CAP["Capacity building / PPF<br/>standalone support · entity or project, when not ready"]
 
   subgraph FUND["Funder pipelines"]
     IDB["IDB Control Tower<br/>Intake &amp; Triage · Readiness Scoring · M&amp;E &amp; Board"]
@@ -136,21 +139,34 @@ flowchart TB
   end
 
   HIAP --> PREP
-  PREP -- "Concept Note (Path A)" --> N2
+  PREP -- "Concept Note (Path A)" --> N3
   DATA -- "Path B · entity-first" --> N1
-  N1 -- "not ready" --> CAP
-  CAP -.-> PREP
+  N2 -- "not ready → gap" --> CAP
   MATCH -.-> PREP
   MATCH -.-> NAV
-  N2 -- "dossier = Concept Note + creditworthiness" --> IDB
-  AGENT -.-> PREP
+  N3 -- "dossier = Concept Note + creditworthiness" --> IDB
+  AGENT -.-> PREPM
   AGENT -.-> NAV
   AGENT -.-> IDB
 ```
 
+> **Module hierarchy:** Preparator and Navigator are drawn as **peer modules on the
+> CityCatalyst host** (intended end-state — the Preparator is a separate-repo POC today,
+> `joaquinOEF/NBS-Project-Preparation`). **Navigator = one vertical, three steps:**
+> ① diagnose entity creditworthiness → ② readiness pathways (close the gap / coach to the
+> funder's requirements, IDB SFP first) → ③ portfolio & pooling (pool only if sub-scale) →
+> submit. **Capacity building / PPF is a standalone support track** reached from a "not
+> ready" diagnosis — not wired into the Preparator. Path A (a Concept Note) enters at ③;
+> Path B (entity-first) enters at ①.
+
 > Refinements behind this diagram (matching-as-core-service, entity-first naming,
 > capacity-building as a branch, single-vertical Navigator, AI-agent context) are detailed in
 > [`ITERATION-2.1-PLAN.md` §F–G](ITERATION-2.1-PLAN.md).
+
+> **Polished renders for presenting** (open & screenshot): the module-boundary view
+> [`diagrams/5a-integrated-architecture.svg`](diagrams/5a-integrated-architecture.svg) and the
+> pipeline view [`diagrams/process-timeline.svg`](diagrams/process-timeline.svg). See
+> [`diagrams/README.md`](diagrams/README.md). The mermaid above remains the source of truth.
 
 ## 6. Module boundaries & contracts (to agree)
 
