@@ -182,6 +182,25 @@
   .live-summary b{color:var(--ink2)}
   .live-summary .ok{font-weight:700}
   .live-summary .no{font-weight:700}
+  /* intake */
+  .intake-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;align-items:start}
+  .intake-col{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:10px;min-height:140px}
+  .intake-col h3{font-size:12.5px;margin:2px 2px 10px;color:var(--ink2);display:flex;justify-content:space-between;align-items:center}
+  .intake-col h3 .n{background:var(--chip);border-radius:20px;padding:1px 8px;font-size:11px}
+  .intake-card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px 11px;margin-bottom:9px;box-shadow:var(--shadow)}
+  .intake-card .top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+  .intake-card .name{font-weight:700;font-size:13px;color:var(--ink2)}
+  .intake-card .meta{color:var(--muted);font-size:11.5px;margin-top:4px;line-height:1.45}
+  .intake-card .actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+  .intake-status{display:inline-block;border-radius:20px;padding:2px 8px;font-size:10.5px;font-weight:750;text-transform:uppercase;letter-spacing:.3px}
+  .intake-status.pending{background:#FBF1DC;color:#9A6B14}
+  .intake-status.approved{background:#E2F2E9;color:#2A7A4F}
+  .intake-status.declined{background:#F9E5E3;color:#A33730}
+  .btn.small{font-size:11.5px;padding:5px 9px}
+  .btn.bad{background:var(--red)}
+  .btn.bad:hover{background:#A33730}
+  .btn.good{background:var(--green)}
+  .btn.good:hover{background:#2A7A4F}
 </style>
 </head>
 <body>
@@ -195,20 +214,22 @@
   <div class="brandtag">Data trust layer powered by <b>OpenEarth · CityCatalyst</b><br/>Demo build — all figures fictional unless marked<br/><span id="apiStatus" class="api-status loading">CityCatalyst API: checking...</span></div>
 </header>
 <nav>
-  <button data-tab="readiness" class="active">Readiness Scoring</button>
+  <button data-tab="intake" class="active">Intake</button>
+  <button data-tab="readiness">Readiness Scoring</button>
   <button data-tab="pipeline">Project Review</button>
   <button data-tab="me">Monitoring &amp; Evaluation (M&amp;E) &amp; Board</button>
 </nav>
 <div style="background:#f4f7f8;border-bottom:1px solid #e2e8f0;padding:11px 20px;font-size:12.5px;color:#5b6b72;line-height:1.55">
-  <b style="color:#0b2b3c">What this is —</b> a screening room for the IDB <b>Sub-Sovereign Finance Program (SFP)</b>: a 5-year pilot that lends directly to subnational governments <b>without a sovereign guarantee</b>. One candidate record, three lenses — <b>Readiness Scoring</b> (is this SNG creditworthy?) · <b>Project Review</b> (where is its proposal in the IDB process, and what's blocking it?) · <b>Monitoring &amp; Evaluation (M&amp;E) &amp; Board</b> (is the pilot proving itself to the Board and OVE?).
+  <b style="color:#0b2b3c">What this is —</b> a screening room for the IDB <b>Sub-Sovereign Finance Program (SFP)</b>: a 5-year pilot that lends directly to subnational governments <b>without a sovereign guarantee</b>. One candidate record, four lenses — <b>Intake</b> (which Navigator dossiers has IDB accepted?) · <b>Readiness Scoring</b> (is this SNG creditworthy?) · <b>Project Review</b> (where is its proposal in the IDB process, and what's blocking it?) · <b>Monitoring &amp; Evaluation (M&amp;E) &amp; Board</b> (is the pilot proving itself to the Board and OVE?).
   <div style="margin-top:6px;font-size:11.5px;color:#7a8a90">
     <b>SNG</b> subnational government (city / state / region) · <b>sovereign guarantee</b> the national government backing the loan · <b>non-accrual</b> already behind on IDB payments · <b>OVE</b> IDB's independent evaluation office · <b>TC</b> technical cooperation · <b>Subprogram 1 / 2</b> the US$1B investment envelope / the ~US$13M readiness-TC envelope
   </div>
 </div>
 <main>
   <div class="kpis" id="kpis"></div>
+  <div id="tab-intake"></div>
   <div id="tab-pipeline" style="display:none"></div>
-  <div id="tab-readiness"></div>
+  <div id="tab-readiness" style="display:none"></div>
   <div id="tab-me" style="display:none"></div>
 </main>
 
@@ -319,12 +340,89 @@ const LIVE_DATA = {
     error: "",
   }
 };
+const NAVIGATOR_INTAKE_URL = "/api/navigator-submissions";
+const INTAKE_STATUS_KEY = "sfp-control-tower-intake-status-v1";
+let navigatorDossiers = [];
+let intakeLoad = { status: "idle", error: "", source: "" };
+
+function esc(v) {
+  return String(v ?? "").replace(/[&<>"']/g, ch => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;",
+  }[ch]));
+}
+function loadIntakeStatuses() {
+  try { return JSON.parse(localStorage.getItem(INTAKE_STATUS_KEY) || "{}"); }
+  catch { return {}; }
+}
+function saveIntakeStatuses(statuses) {
+  localStorage.setItem(INTAKE_STATUS_KEY, JSON.stringify(statuses));
+}
+function intakeStatusFor(id) {
+  return (loadIntakeStatuses()[id] && loadIntakeStatuses()[id].status) || "pending";
+}
+function dueDiligenceDone(dossier, pattern) {
+  return (dossier.dueDiligence || []).some(item => pattern.test(item.label || "") && item.done);
+}
+function dossierToSNG(dossier) {
+  const pillarScores = {};
+  (dossier.readiness && dossier.readiness.pillars || []).forEach(p => pillarScores[p.key] = Number(p.score) || 0);
+  const readiness = {
+    creditworthiness: pillarScores.creditworthiness ?? Math.round(dossier.readiness?.composite || 50),
+    fiscalHealth: pillarScores.fiscalHealth ?? Math.round(dossier.readiness?.composite || 50),
+    legalCapacity: pillarScores.legalCapacity ?? Math.round(dossier.readiness?.composite || 50),
+    governance: pillarScores.governance ?? Math.round(dossier.readiness?.composite || 50),
+  };
+  const askUSDm = Number(dossier.financials?.askUSDm ?? dossier.conceptNote?.askUSDm ?? 0);
+  return SM.scoreSNG({
+    id: `NAV-${dossier.id}`,
+    _fromNavigator: true,
+    _dossierId: dossier.id,
+    _candidateId: dossier.candidateId,
+    _intakeStatus: "approved",
+    _targetProfileId: dossier.targetProfileId,
+    name: dossier.name || "Navigator dossier",
+    country: dossier.country || "Unknown",
+    iso: ISO[dossier.country] || "??",
+    type: dossier.kind === "pool" ? "Regional pool" : "City",
+    population: 0,
+    locode: dossier.locode || null,
+    cityId: dossier.cityId || null,
+    proposal: {
+      title: dossier.conceptNote?.title || "Navigator candidate dossier",
+      askUSDm,
+      stage: "Proposal Intake",
+      submitted: (dossier.submittedAt || DATA.generated).slice(0, 10),
+      cofinance: !!dossier.financials?.cofinance,
+    },
+    readiness,
+    signals: {
+      capagRating: null,
+      ownSourceRevenuePct: null,
+      debtServiceRatioPct: null,
+      currentBalancePct: null,
+      independentAudit: dueDiligenceDone(dossier, /audit|financial statement/i),
+      canBorrowWithoutSovereignGuarantee: !!dossier.readiness?.cleared || dueDiligenceDone(dossier, /sovereign|borrow|legal/i),
+    },
+  });
+}
+function applyApprovedIntakes() {
+  const statuses = loadIntakeStatuses();
+  const approved = navigatorDossiers.filter(d => statuses[d.id]?.status === "approved");
+  DATA.sngs = DATA.sngs.filter(s => !s._fromNavigator);
+  approved.map(dossierToSNG).forEach(sng => {
+    if (!DATA.sngs.some(existing => existing.id === sng.id)) DATA.sngs.unshift(sng);
+  });
+}
 
 function normalizeSNG(sng) {
   const stage = LEGACY_STAGE_MAP[sng.proposal.stage] || sng.proposal.stage || "Proposal Intake";
   let next = {
     ...sng,
-    locode: CITYCATALYST_LOCODES[sng.name] ?? null,
+    locode: sng.locode ?? CITYCATALYST_LOCODES[sng.name] ?? null,
     proposal: {
       ...sng.proposal,
       stage,
@@ -496,7 +594,88 @@ function methodologyGuide(compact){
     </div>`;
 }
 
-function renderAll(){ renderKPIs(); renderPipeline(); renderReadiness(false); renderME(); }
+function renderAll(){ renderKPIs(); renderIntake(); renderPipeline(); renderReadiness(false); renderME(); }
+
+/* ---------- Intake ---------- */
+async function loadNavigatorIntakes() {
+  intakeLoad = { status: "loading", error: "", source: "" };
+  renderIntake();
+  try {
+    const res = await fetch(NAVIGATOR_INTAKE_URL, { cache: "no-store" });
+    const payload = await res.json();
+    if (!res.ok) throw new Error(payload.error || `HTTP ${res.status}`);
+    navigatorDossiers = payload.submissions || [];
+    intakeLoad = { status: "ok", error: "", source: payload.source || "" };
+    applyApprovedIntakes();
+  } catch (error) {
+    intakeLoad = { status: "error", error: error.message || "Navigator unavailable", source: "" };
+  }
+  renderAll();
+}
+function setIntakeStatus(dossierId, status) {
+  const statuses = loadIntakeStatuses();
+  statuses[dossierId] = { status, decidedAt: new Date().toISOString() };
+  saveIntakeStatuses(statuses);
+  applyApprovedIntakes();
+  renderAll();
+}
+function openApprovedIntake(dossierId) {
+  const sng = DATA.sngs.find(s => s._dossierId === dossierId);
+  if (sng) openDrawer(sng.id, "readiness");
+}
+function renderIntakeCard(dossier) {
+  const status = intakeStatusFor(dossier.id);
+  const ask = dossier.financials?.askUSDm ?? dossier.conceptNote?.askUSDm ?? 0;
+  const submitted = dossier.submittedAt ? new Date(dossier.submittedAt).toLocaleString() : "not submitted";
+  const openButton = status === "approved"
+    ? `<button class="btn small ghost" onclick="openApprovedIntake('${esc(dossier.id)}')">Open in Readiness Scoring</button>`
+    : "";
+  return `<div class="intake-card">
+    <div class="top">
+      <div>
+        <div class="name">${esc(dossier.name)} <span class="badge">${esc(dossier.kind || "city")}</span></div>
+        <div class="meta">${esc(dossier.country)} · ${esc(dossier.pathway)} · ${esc(dossier.instrument?.funder || "funder")} / ${esc(dossier.instrument?.name || "instrument")}</div>
+      </div>
+      <span class="intake-status ${status}">${status}</span>
+    </div>
+    <div class="meta" style="margin-top:8px">
+      <b>${esc(dossier.conceptNote?.title || "Candidate dossier")}</b><br/>
+      Ask: <b>US$${Number(ask).toFixed(1)}M</b> · Readiness: <b>${esc(dossier.readiness?.tier || "—")} ${esc(dossier.readiness?.composite ?? "")}</b><br/>
+      Dossier: <code>${esc(dossier.id)}</code> · received ${esc(submitted)}
+    </div>
+    <div class="actions">
+      <button class="btn small good" onclick="setIntakeStatus('${esc(dossier.id)}','approved')">Approve</button>
+      <button class="btn small bad" onclick="setIntakeStatus('${esc(dossier.id)}','declined')">Decline</button>
+      ${openButton}
+    </div>
+  </div>`;
+}
+function renderIntake() {
+  const statuses = ["pending", "approved", "declined"];
+  const grouped = Object.fromEntries(statuses.map(s => [s, []]));
+  navigatorDossiers.forEach(d => grouped[intakeStatusFor(d.id)].push(d));
+  const statusText = intakeLoad.status === "loading"
+    ? "loading Navigator submissions..."
+    : intakeLoad.status === "ok"
+      ? `${navigatorDossiers.length} dossier${navigatorDossiers.length === 1 ? "" : "s"} loaded from ${intakeLoad.source || "Navigator"}`
+      : intakeLoad.status === "error"
+        ? `Navigator unavailable: ${intakeLoad.error}`
+        : "Navigator submissions not loaded yet";
+  const cols = statuses.map(status => `<div class="intake-col">
+    <h3>${status[0].toUpperCase() + status.slice(1)}<span class="n">${grouped[status].length}</span></h3>
+    ${grouped[status].length ? grouped[status].map(renderIntakeCard).join("") : `<div class="helpnote">No ${status} dossiers.</div>`}
+  </div>`).join("");
+  document.getElementById("tab-intake").innerHTML = `
+    <div class="section-title">Intake & Triage — Navigator dossiers</div>
+    <p class="section-sub">CityCatalyst · Climate-Finance Readiness submits machine-readable dossiers here first. Approving an intake keeps it in this tab as approved and also adds the candidate to Readiness Scoring and Project Review at <b>Proposal Intake</b>. Declined intakes stay here only.</p>
+    <div class="controls">
+      <button class="btn" onclick="loadNavigatorIntakes()">Refresh Navigator submissions</button>
+      <span class="${intakeLoad.status === "error" ? "no" : intakeLoad.status === "ok" ? "ok" : ""}" style="font-size:12px">${esc(statusText)}</span>
+      <div style="flex:1"></div>
+      <span style="color:var(--muted);font-size:12px">Decisions are stored locally in this browser for the demo.</span>
+    </div>
+    <div class="intake-grid">${cols}</div>`;
+}
 
 /* ---------- KPIs ---------- */
 function renderKPIs(){
@@ -538,7 +717,7 @@ function renderPipeline(){
       const blocked=!s.canEnterProjectReview;
       return `
       <div class="card" onclick="openDrawer('${s.id}','project')">
-        <div class="nm"><span class="dot bg-${s.tier}" title="${s.tier} · ${s.compositeReadiness} pts"></span>${s.name}</div>
+        <div class="nm"><span class="dot bg-${s.tier}" title="${s.tier} · ${s.compositeReadiness} pts"></span>${s.name}${s._fromNavigator?'<span class="badge real">Navigator intake</span>':""}</div>
         <div class="meta"><span>${s.country} · ${s.type}</span><span>$${s.proposal.askUSDm}M</span></div>
         <div class="meta"><span>${s.proposal.title}</span></div>
         <div class="chips">
@@ -627,6 +806,8 @@ function renderReadiness(skipWeights){
     const cityBadge=cityContextBadge(s);
     const prov=hasLiveCityContext(s)
       ? `<span class="${cityBadge.className}" title="${cityBadge.title}">${cityBadge.label}</span>`
+      : s._fromNavigator
+        ? `<span class="badge real" title="Imported from CityCatalyst · Climate-Finance Readiness intake">Navigator intake</span>`
       : s.signals.capagRating
         ? `<span class="badge real" title="Anchored to Brazil Treasury CAPAG open data">CAPAG ${s.signals.capagRating}</span>`
         : `<span class="badge" title="Mock value — live CityCatalyst city context not available for this record">mock</span>`;
@@ -974,11 +1155,12 @@ function submitIntake(){
 document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{
   document.querySelectorAll("nav button").forEach(x=>x.classList.remove("active"));
   b.classList.add("active");
-  ["pipeline","readiness","me"].forEach(t=>document.getElementById("tab-"+t).style.display="none");
+  ["intake","pipeline","readiness","me"].forEach(t=>document.getElementById("tab-"+t).style.display="none");
   document.getElementById("tab-"+b.dataset.tab).style.display="block";
 });
 
 renderAll();
+loadNavigatorIntakes();
 loadCityContextData();
 </script>
 </body>

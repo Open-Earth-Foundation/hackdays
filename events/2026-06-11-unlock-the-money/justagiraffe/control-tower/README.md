@@ -1,31 +1,64 @@
 # Sub-Sovereign Finance Program (SFP) Control Tower
 
-A runnable control room for the IDB Sub-Sovereign Finance Program pilot, in IDB branding. **One candidate record, three lenses** over 63 mock cities/regions across 8 LAC countries:
+A runnable control room for the IDB Sub-Sovereign Finance Program pilot, in IDB branding. **One candidate record, four lenses** over 63 mock cities/regions across 8 LAC countries plus approved City Readiness Navigator intakes:
 
-1. **Readiness Scoring** — the city / SNG gate: transparent weighted model (credit · fiscal · legal · governance) with **live weight sliders**. It answers the first question, "is this city actually ready?", and assigns each record to `Ready`, `Developing`, or `Early` with a recommended next action.
-2. **Project Review** — the ready-city workflow: only cities that pass the readiness gate can actively move through the proposal stages (`Proposal Intake` → `Project Screening` → `Structuring` → `Quality & Risk Review` → `Board Pipeline`). Non-ready cities can still have project concepts, but they are shown as blocked concepts rather than active pipeline items.
-3. **M&E & Board** — the OVE evaluation spine: Board milestone timeline plus the full two-stage funnel, showing both readiness-building and project advancement. It keeps Subprogram 1 (investment finance) and Subprogram 2 (TC readiness support) visible in the same control room.
+1. **Intake** — imports submitted City Readiness Navigator dossiers, lets the IDB reviewer approve or decline them, and keeps the decision visible.
+2. **Readiness Scoring** — the city / SNG gate: transparent weighted model (credit · fiscal · legal · governance) with **live weight sliders**. It answers the first question, "is this city actually ready?", and assigns each record to `Ready`, `Developing`, or `Early` with a recommended next action.
+3. **Project Review** — the ready-city workflow: only cities that pass the readiness gate can actively move through the proposal stages (`Proposal Intake` → `Project Screening` → `Structuring` → `Quality & Risk Review` → `Board Pipeline`). Non-ready cities can still have project concepts, but they are shown as blocked concepts rather than active pipeline items.
+4. **M&E & Board** — the OVE evaluation spine: Board milestone timeline plus the full two-stage funnel, showing both readiness-building and project advancement. It keeps Subprogram 1 (investment finance) and Subprogram 2 (TC readiness support) visible in the same control room.
 
 > All figures are **fictional mock data** for the hackday demo.
 
 ## Run it
 
-No build step. Just open `index.html` in a browser (double-click). Data loads from `data/sngs.js` via a `<script>` tag, so it works straight from `file://` — no server needed.
+### Integrated demo (Navigator → Control Tower)
 
-If your browser blocks local scripts, serve the folder:
+Use **two terminals**. Start the Navigator first.
+
+**Terminal 1 — City Readiness Navigator**
+
 ```bash
-cd control-tower && python3 -m http.server 8000   # then open http://localhost:8000
+cd events/2026-06-11-unlock-the-money/justagiraffe/city-readiness-navigator
+npm install
+npm run dev
 ```
+
+Open http://localhost:3000, walk the Valdivia story, and **Submit to funder pipeline**.
+
+**Terminal 2 — SFP Control Tower**
+
+```bash
+cd events/2026-06-11-unlock-the-money/justagiraffe/control-tower
+npm run dev
+```
+
+Open http://localhost:8000. The **Intake** tab auto-loads Navigator submissions. Click
+**Approve** — the dossier stays in Intake as approved and also appears in **Readiness Scoring**
+and **Project Review** at `Proposal Intake`.
+
+| What | Detail |
+|---|---|
+| Control Tower URL | http://localhost:8000 |
+| Navigator URL | http://localhost:3000 (or `3001` if `3000` is busy) |
+| Proxy endpoint | `/api/navigator-submissions` → Navigator `/api/submissions` |
+| Submissions store | In-memory on Navigator (resets on dev server restart) |
+| Intake decisions | Browser `localStorage` (persists across Control Tower reloads) |
+
+### Standalone mock portfolio
+
+You can still open `index.html` directly for the 63-city mock portfolio only, but **Navigator
+intake import requires `npm run dev`** (the local server avoids CORS issues and provides the proxy).
 
 ## Files
 
 | File | What it is | Owner |
 |---|---|---|
 | `index.html` | Whole dashboard (HTML + CSS + JS, single file) | Ana / shared |
+| `server.mjs` | Tiny local static server + Navigator submissions proxy for the demo | shared |
 | `scoring.js` | Readiness scoring model — weights, tiers, eligibility. Runs in browser **and** Node. | Sean |
 | `data/sngs.js` | 63 mock SNGs + M&E indicators + Board milestones (`window.CONTROL_TOWER_DATA`) | Mirco |
 
-The dashboard **re-scores every candidate live** through `scoring.js` on load — so editing the weights in one file changes every score on screen. That's the "the pipeline is real" proof.
+The dashboard **re-scores every candidate live** through `scoring.js` on load — so editing the weights in one file changes every score on screen. Approved Navigator intakes are mapped into the same SNG record shape, then enter Readiness Scoring and Project Review at `Proposal Intake`.
 
 ## The scoring model (grounded in the IDB SFP doc)
 

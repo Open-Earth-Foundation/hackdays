@@ -59,7 +59,7 @@ city app (the user is an expert) — but it currently assumes too much. Upgrade 
 
 1. **One-line orientation banner** (who/what): *"Screening room for the IDB Sub-Sovereign
    Finance Program (SFP) — a 5-year pilot lending directly to subnational governments (SNGs)
-   without a sovereign guarantee. Each candidate is one record seen through three lenses."*
+   without a sovereign guarantee. Each candidate is one record seen through four lenses."*
 2. **Define acronyms once, inline, on first use** (hover or a small glossary chip): SFP, SNG,
    sovereign guarantee, non-accrual, OVE, Ordinary Capital, TC, Subprogram 1/2. Don't strip
    them (IDB uses them) — just gloss them once.
@@ -67,10 +67,11 @@ city app (the user is an expert) — but it currently assumes too much. Upgrade 
    understood at IDB, and the team has built real M&E content, so spell it out rather than
    hide it. Add a one-line subhead: *"How the pilot proves itself — indicators vs. targets
    for the year-3 and year-5 Board / OVE reviews."* (Expand the acronym once on first use.)
-4. **Tab subheads** — each of the three tabs gets a one-line "what this answers":
-   - Intake & Triage → "Where each candidate sits in the IDB review process, and what's blocking it."
-   - Readiness Scoring → "The early creditworthiness assessment — is this SNG ready, and why."
-   - Results & Board Reporting → as above.
+4. **Tab subheads** — each of the four tabs gets a one-line "what this answers":
+   - **Intake** → "Which Navigator dossiers has IDB accepted into the program?"
+   - **Readiness Scoring** → "The early creditworthiness assessment — is this SNG ready, and why."
+   - **Project Review** → "Where each cleared candidate sits in the IDB review process, and what's blocking it."
+   - **Monitoring & Evaluation (M&E) & Board** → "How the pilot proves itself — indicators vs. targets for Board / OVE reviews."
 5. **Geography** — show candidate country/region (a small map or country chips), so IDB sees
    the portfolio's geography.
 6. **The dossier view** — render the incoming candidate dossier (WS-7) as an expandable
@@ -155,10 +156,26 @@ its interface*:
 4. **Matching core service (§F-1):** wire discovery + pooling as calls to one matching service.
 5. **Dual entry + import (§F-4):** project-first (import a Concept Note → step ②) and
    entity-first (→ step ①).
-6. **Dossier = Concept Note (WS-7):** assemble + write into the Control Tower Intake.
+6. **Dossier = Concept Note (WS-7):** assemble + write into the Control Tower Intake. *(demo wired: Navigator `POST /api/submissions` → Control Tower **Intake** tab → approve → Readiness Scoring + Project Review)*
 7. **AI-agent context (§G):** read/write city context through the CityCatalyst MCP/agent layer.
-8. **Control Tower language upgrade (§C):** thin IDB-facing copy incl. **M&E** kept explicit.
+8. **Control Tower language upgrade (§C):** thin IDB-facing copy incl. **M&E** kept explicit. *(done)*
 9. **Copy/polish (WS-8):** kill marketing titles, disable the dev indicator.
 
 Recommended build order: **1 → 2 → 3 → 5 → 4 → 6 → 8 → 7 → 9** (UI shell first so the
 architecture is legible as it fills in; AI-agent wiring after the data contracts are stable).
+
+## I. Run locally (e2e demo)
+
+See [`README.md`](README.md) for the canonical walkthrough. Short version:
+
+```bash
+# Terminal 1
+cd events/2026-06-11-unlock-the-money/justagiraffe/city-readiness-navigator
+npm install && npm run dev
+
+# Terminal 2
+cd events/2026-06-11-unlock-the-money/justagiraffe/control-tower
+npm run dev
+```
+
+Submit from http://localhost:3000 → approve in Control Tower **Intake** at http://localhost:8000.

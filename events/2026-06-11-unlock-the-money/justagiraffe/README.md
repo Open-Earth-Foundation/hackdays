@@ -11,14 +11,52 @@ hackday modules) together.
 
 ## The two apps
 
-| App | Faces | Lives in | Run |
+| App | Faces | Lives in | URL |
 |---|---|---|---|
-| **City Readiness Navigator** | the **city** — match → readiness pathways → portfolio → submit | [`city-readiness-navigator/`](city-readiness-navigator/) | Next.js (`npm i && npm run dev`) |
-| **SFP Control Tower** | the **IDB** — Intake & Triage · Readiness Scoring · M&E & Board | [`control-tower/`](control-tower/) | static — open `index.html` |
+| **City Readiness Navigator** | the **city** — match → readiness pathways → portfolio → submit | [`city-readiness-navigator/`](city-readiness-navigator/) | http://localhost:3000 |
+| **SFP Control Tower** | the **IDB** — Intake · Readiness Scoring · Project Review · M&E & Board | [`control-tower/`](control-tower/) | http://localhost:8000 |
 
 They share a **readiness engine** (`readiness-profiles.js` + `scoring.js`). It currently
 exists in **both** apps (`control-tower/` and `…/navigator/src/lib/readiness/`) — extracting
 one shared `@oef/readiness` package is an open decision (architecture §8).
+
+## Run both apps (integrated demo)
+
+Use **two terminals**. Start the Navigator first, then the Control Tower.
+
+**Terminal 1 — City Readiness Navigator**
+
+```bash
+cd events/2026-06-11-unlock-the-money/justagiraffe/city-readiness-navigator
+npm install
+npm run dev
+```
+
+Open http://localhost:3000. Walk the Valdivia story and **Submit to funder pipeline** at the end.
+
+**Terminal 2 — SFP Control Tower**
+
+```bash
+cd events/2026-06-11-unlock-the-money/justagiraffe/control-tower
+npm run dev
+```
+
+Open http://localhost:8000. The **Intake** tab loads Navigator submissions automatically.
+Click **Approve** on a dossier — it stays in Intake as approved and also appears in
+**Readiness Scoring** and **Project Review** (at `Proposal Intake`).
+
+| Step | Where | What happens |
+|---|---|---|
+| 1 | Navigator `/` | City builds readiness and submits a dossier |
+| 2 | Navigator `/pipeline` | Quick in-app preview (“funder received it”) |
+| 3 | Control Tower **Intake** | IDB reviewer sees pending dossiers, approves or declines |
+| 4 | Control Tower **Readiness Scoring** / **Project Review** | Approved candidates join the main pipeline |
+
+**Demo caveats (intentional for the hackday):**
+- Navigator submissions are **in-memory** — they reset when that dev server restarts.
+- Control Tower approve/decline decisions are stored in **browser `localStorage`**.
+- Control Tower proxies Navigator via `/api/navigator-submissions` (tries ports `3000` and `3001`).
+- Control Tower can still be opened as static `index.html` for the 63-city mock portfolio, but **Navigator intake import requires `npm run dev`**.
 
 ## Folder layout
 
@@ -30,7 +68,7 @@ justagiraffe/                         everything the team builds lives here
 ├── ITERATION-2.1-PLAN.md             canonical · current execution plan
 ├── diagrams/                         polished SVGs for presenting
 ├── city-readiness-navigator/         the city-facing app (Next.js)
-├── control-tower/                    the IDB-facing app (code + its own docs + M&E)
+├── control-tower/                    the IDB-facing app (index.html + server.mjs + docs + M&E)
 ├── archive/                          superseded / historical (not current)
 └── reference/                        source material (IDB PDF, notes, team)
 ```
@@ -68,5 +106,6 @@ either side; the Navigator adds creditworthiness + pooling and hands a **dossier
 Control Tower. Full rationale in [`INTEGRATED-ARCHITECTURE.md`](INTEGRATED-ARCHITECTURE.md).
 
 ---
-*Status (15 Jun 2026): both apps run locally; architecture + PRD reflect the v2.1 two-layer
-reframe; Mirco's M&E framework folded into `control-tower/`; iteration 2.1 build in progress.*
+*Status (15 Jun 2026): both apps run locally with an end-to-end demo bridge (Navigator submit →
+Control Tower Intake approve → Readiness Scoring / Project Review); architecture + PRD reflect
+the v2.2 two-layer reframe; Mirco's M&E framework folded into `control-tower/`.*

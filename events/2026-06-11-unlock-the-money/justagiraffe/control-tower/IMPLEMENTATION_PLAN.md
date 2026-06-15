@@ -1,5 +1,10 @@
 # Implementation Plan: Split City Readiness From Project Review
 
+> **Current state (15 Jun 2026):** implemented as four tabs — **Intake** (Navigator dossier
+> approve/decline), **Readiness Scoring**, **Project Review**, **M&E & Board**. The original
+> `Intake & Triage` kanban was renamed/split per this plan; Navigator handoff lands in the
+> new **Intake** tab first. Run both apps per [`README.md`](README.md).
+
 ## Summary
 
 The current prototype has three tabs: `Intake & Triage`, `Readiness Scoring`, and `M&E & Board`. The transcript points to a real information architecture issue already flagged in `SPEC.md`: the current `Intake & Triage` pipeline and `Readiness Scoring` table overlap too much.

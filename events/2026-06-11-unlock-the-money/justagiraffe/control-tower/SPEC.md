@@ -24,11 +24,12 @@ Please **propose your recommendation with reasoning** (and trade-offs) before co
 
 A single "control room" for the program team running the **IDB Sub-Sovereign Finance Program (SFP)** — a 5-year pilot to lend directly to subnational governments (cities, states, regions) *without* a sovereign guarantee. The team must receive incoming projects, screen ~63 candidate SNGs across 8 Latin American & Caribbean countries for readiness and creditworthiness, and track early-outcome indicators against Board reporting milestones — today done across scattered spreadsheets.
 
-The app replaces those spreadsheets with one dashboard that does three things:
+The app replaces those spreadsheets with one dashboard that does four things:
 
-1. **Intake & Triage** — receive and move subnational project proposals through a pipeline.
+1. **Intake** — receive Navigator dossiers; IDB reviewer approves or declines before candidates enter the main pipeline.
 2. **Readiness Scoring** — score each candidate on creditworthiness, fiscal health, legal capacity, and governance, and apply the IDB eligibility gate.
-3. **M&E & Board** — watch the pilot's monitoring indicators against Board reporting milestones.
+3. **Project Review** — move cleared candidates through the proposal workflow.
+4. **M&E & Board** — watch the pilot's monitoring indicators against Board reporting milestones.
 
 **The OEF angle (keep this central in any redesign):** OpenEarth / CityCatalyst is the *trust layer* underneath. CityCatalyst's city-level data feeds the readiness and pipeline screening, turning a funder's hardest question — *"is this city actually ready?"* — into something visible at a glance. **Revenue model:** funder tool / data service, repeatable to any MDB running sub-sovereign or urban-finance pilots.
 
@@ -62,19 +63,35 @@ Distilled from the IDB proposal PDF. The improving model should read the full PD
 
 ## 3. Architecture & files (current)
 
-Zero-build, runs by opening `index.html`. No framework, no server required (data is loaded via `<script>` tags so it works from `file://`).
+Runs as a small local app (`npm run dev` → http://localhost:8000). `server.mjs` serves the
+static files and proxies `/api/navigator-submissions` to the City Readiness Navigator's
+`/api/submissions` endpoint (tries ports `3000` and `3001`).
 
 ```
 control-tower/
-├── index.html        # entire UI: HTML + CSS + vanilla JS (3 tabs + KPI bar + candidate drawer)
-├── scoring.js        # readiness scoring model; runs in browser AND Node (module.exports + window.ScoringModel)
+├── index.html           # entire UI: HTML + CSS + vanilla JS (4 tabs + KPI bar + candidate drawer)
+├── server.mjs           # local static server + Navigator submissions proxy
+├── package.json         # npm run dev
+├── scoring.js           # readiness scoring model; runs in browser AND Node
+├── readiness-profiles.js
 └── data/
-    └── sngs.js       # window.CONTROL_TOWER_DATA = { weights, sngs[63], meIndicators[8], boardMilestones[4] }
+    └── sngs.js          # window.CONTROL_TOWER_DATA = { weights, sngs[63], meIndicators[8], boardMilestones[4] }
 ```
 
-**Data flow.** On load, `index.html` reads `window.CONTROL_TOWER_DATA`, then **re-scores every candidate live** through `ScoringModel.scoreSNG()`. That means editing weights/thresholds in `scoring.js` instantly changes every score on screen — this "the pipeline is live" property must be preserved in any refactor.
+**Tabs (current):** **Intake** (Navigator dossier approve/decline) · **Readiness Scoring** ·
+**Project Review** · **Monitoring & Evaluation (M&E) & Board**.
 
-**Note for the rebuild:** the hackday repo template (`apps/_template`) is a **Next.js / TypeScript** app. The current scaffold is intentionally a single static HTML file (fastest demo path). The model may either (a) keep enhancing the static file, or (b) port it into the Next.js template — if porting, preserve the data schema and the live-rescore behavior, and keep the three-feature structure.
+**Data flow.** On load, `index.html` reads `window.CONTROL_TOWER_DATA`, imports approved
+Navigator dossiers into the same SNG record shape, then **re-scores every candidate live**
+through `ScoringModel.scoreSNG()`. That means editing weights/thresholds in `scoring.js`
+instantly changes every score on screen — this "the pipeline is live" property must be
+preserved in any refactor.
+
+**Note for the rebuild:** the hackday repo template (`apps/_template`) is a **Next.js / TypeScript**
+app. The current scaffold is intentionally a single static HTML file served locally for the
+demo (fastest path, no build step). The model may either (a) keep enhancing the static file, or
+(b) port it into the Next.js template — if porting, preserve the data schema, the live-rescore
+behavior, and the four-tab structure including Navigator intake.
 
 ---
 

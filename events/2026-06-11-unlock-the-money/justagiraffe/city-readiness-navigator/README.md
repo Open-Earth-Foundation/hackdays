@@ -16,13 +16,26 @@ embed (OAuth, live city context, HIAP) is Phase 4.
 cd events/2026-06-11-unlock-the-money/justagiraffe/city-readiness-navigator
 npm install
 npm run dev
-# open http://localhost:3000
 ```
 
-- **City journey** (`/`) — the 7 steps: enter → discover → pick target → diagnose
-  readiness → prepare → pool → submit.
-- **Funder pipeline** (`/pipeline`) — the IDB side, receiving submitted candidates
-  (stands in for the Control Tower).
+Open http://localhost:3000.
+
+- **City journey** (`/`) — enter → discover → pick target → diagnose readiness → prepare → pool → submit.
+- **Funder pipeline** (`/pipeline`) — quick in-app preview of the Control Tower handoff.
+
+### Full cross-app demo
+
+In a **second terminal**, run the Control Tower:
+
+```bash
+cd events/2026-06-11-unlock-the-money/justagiraffe/control-tower
+npm run dev
+```
+
+Open http://localhost:8000 → **Intake** tab → **Approve** the submitted dossier. Approved
+candidates also appear in Control Tower **Readiness Scoring** and **Project Review**.
+
+See [`../README.md`](../README.md) for the full walkthrough.
 
 > The submission store is in-memory (resets when the dev server restarts).
 
@@ -54,7 +67,9 @@ src/lib/readiness/  ◀── vendored from control-tower ──────┤ 
                                                           ▼
                   src/app/page.tsx (city journey) ──POST──▶ /api/submissions
                                                           ▼
-                              src/app/pipeline/page.tsx (funder side)
+                              src/app/pipeline/page.tsx (preview)
+                                                          │
+                              control-tower Intake tab ◀──┘
 ```
 
 Regenerate the data: `npm run build:data`.

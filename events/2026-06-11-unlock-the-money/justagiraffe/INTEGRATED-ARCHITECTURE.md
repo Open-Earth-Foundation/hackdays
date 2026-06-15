@@ -3,8 +3,9 @@
 **Purpose:** define how the hackday modules fit into one coherent system, so the
 city-facing app (City Readiness Navigator) is built against the right boundaries.
 **Status:** reflects the **v2.2 build** (12–15 Jun 2026) — the Navigator is built through
-the city-facing flow below; CityCatalyst embed (OAuth/MCP) remains. Pairs with
-[`ITERATION-2.1-PLAN.md`](ITERATION-2.1-PLAN.md).
+the city-facing flow below; Control Tower has a wired **Intake** demo (Navigator dossier
+approve/decline → Readiness Scoring / Project Review); CityCatalyst embed (OAuth/MCP) remains.
+Pairs with [`ITERATION-2.1-PLAN.md`](ITERATION-2.1-PLAN.md).
 
 > **Naming.** "Readiness" alone is too broad — this stack assesses **finance readiness**
 > (specifically **climate-finance readiness**): is a city/pool ready to access a *specific
@@ -39,7 +40,7 @@ projects and adds creditworthiness + pooling + the funder handoff.
 |---|---|---|---|
 | **CityCatalyst** | `Open-Earth-Foundation/CityCatalyst` | Host: GHG inventory, **HIAP** (prioritized actions), CCRA risk, Journey Navigator module catalog, OAuth, Global API | Production |
 | **Project Preparator** | `joaquinOEF/NBS-Project-Preparation` | Project bankability (Tech/Fin/Pol), project-funder matching, Concept Note | POC |
-| **justagiraffe Control Tower** | hackdays `justagiraffe/control-tower` | IDB-facing: Intake & Triage, Readiness Scoring (profile-driven engine), Results/Board | Hackday |
+| **justagiraffe Control Tower** | hackdays `justagiraffe/control-tower` | IDB-facing: **Intake** (Navigator dossier approve/decline), Readiness Scoring (profile-driven engine), Project Review, M&E & Board | Hackday (e2e demo wired) |
 | **City Readiness Navigator** | hackdays `justagiraffe/city-readiness-navigator` | City-facing: 6-stage finance-readiness journey; entity creditworthiness + intra/cross-city portfolio + dossier handoff | Hackday (built, v2.2) |
 | **City-Funder Matching Engine** | hackdays `city–funder-matching` + `apps/funder-scan` | **Chile** capacity (SINIM/FCM), action→funder matching, **pooling/aggregation** | Hackday |
 | **CAPAG Funder Scan** | hackdays `apps/capag-funder-scan` | **Brazil** creditworthiness (Treasury CAPAG A/B/C/D for 5,570 munis) | Hackday |
@@ -153,7 +154,7 @@ flowchart TB
   CAP["Capacity building / PPF<br/>standalone support · entity or project, when not ready"]
 
   subgraph FUND["Funder pipelines"]
-    IDB["IDB Control Tower<br/>Intake &amp; Triage · Readiness Scoring · M&amp;E &amp; Board"]
+    IDB["IDB Control Tower<br/>Intake · Readiness Scoring · Project Review · M&amp;E &amp; Board"]
     OTHER["Other funders · BNDES / CCFLA"]
   end
 
@@ -193,7 +194,7 @@ flowchart TB
 - **Fiscal Data Adapter → Readiness Engine:** `locode → {creditworthiness, fiscalHealth, legalCapacity, governance, provenance}` (CAPAG & SINIM implementations).
 - **Preparator → Navigator:** a prepared project / Concept Note object.
 - **Matching Engine → Navigator:** funders-open per action + pool/aggregation candidates.
-- **Navigator → Control Tower:** the candidate **dossier** (Concept Note + creditworthiness + instrument + pool), written into Intake & Triage.
+- **Navigator → Control Tower:** the candidate **dossier** (Concept Note + creditworthiness + instrument + pool), written into **Intake** for IDB approve/decline, then promoted into Readiness Scoring and Project Review on approval.
 
 ## 7. What's real today vs. to-build
 
@@ -205,12 +206,36 @@ flowchart TB
   handoff to a funder-pipeline view; a simulated **CityCatalyst context + agent** seam. Two
   worked cities/pathways: **Valdivia** (Ready → portfolio → IDB SFP) and **Canoas** (CAPAG C →
   capacity-building). Control Tower copy upgrade (orientation banner, glosses, M&E explicit).
+- **Built (Control Tower e2e demo):** a dedicated **Intake** tab that imports Navigator
+  dossiers (`GET /api/submissions` via Control Tower's local proxy), lets the IDB reviewer
+  **approve or decline**, and on approval maps the dossier into the shared SNG record shape
+  for **Readiness Scoring** and **Project Review**. Navigator `/pipeline` remains a quick
+  in-app preview of the handoff.
 - **Real data:** CAPAG (5,570 munis), SINIM/FCM (Chile), CityCatalyst inventory/HIAP/CCRA
   (live in CityCatalyst; simulated in the Navigator pending embed).
 - **To build:** live CityCatalyst embed (OAuth/MCP, real inventory/HIAP); the **funder
   navigator** drill-down (funder → program → instrument) + converged **funder sourcing service**
-  (§4.3); shared `@oef/readiness` package (de-dupe Navigator/Control Tower); real Navigator↔
-  Control Tower wiring (dossier writes into Intake & Triage); the Preparator handoff (Path A).
+  (§4.3); shared `@oef/readiness` package (de-dupe Navigator/Control Tower); **persistent**
+  shared intake store (replace in-memory submissions + browser `localStorage`); the Preparator
+  handoff (Path A).
+
+## 7a. Run locally (integrated demo)
+
+From the hackdays repo root, in **two terminals**:
+
+```bash
+# Terminal 1 — city side
+cd events/2026-06-11-unlock-the-money/justagiraffe/city-readiness-navigator
+npm install && npm run dev
+# → http://localhost:3000
+
+# Terminal 2 — IDB side
+cd events/2026-06-11-unlock-the-money/justagiraffe/control-tower
+npm run dev
+# → http://localhost:8000
+```
+
+Submit from the Navigator, then approve in Control Tower **Intake**. See [`README.md`](README.md) for the full demo walkthrough.
 
 ## 8. Open decisions (for the review)
 

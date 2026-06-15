@@ -17,10 +17,24 @@
 **state/region ↔ city** toggle + a data-source toggle) → **City context** (inventory + CCRA +
 HIAP + climate plan, from the CityCatalyst seam) → **Choose instrument** → **Readiness
 pathways** (assess + route) → **Portfolio** (**intra-city** vs **cross-city pool**) → **Funder
-intake** (dossier → pipeline). Real fiscal data via **CAPAG (Brazil)** and **SINIM (Chile)**
+intake** (dossier → submit). Real fiscal data via **CAPAG (Brazil)** and **SINIM (Chile)**
 adapters; two worked cities — **Valdivia** (Ready → portfolio → IDB SFP) and **Canoas** (CAPAG
 C → capacity-building). The 7-step spec in §4 is the origin; the built structure is the 6 stages
 above (left-hand process menu).
+
+**Cross-app handoff (demo):** submitting a dossier from the Navigator lands in Control Tower
+**Intake** for IDB approve/decline; approved candidates join Readiness Scoring and Project
+Review. Navigator `/pipeline` is a quick in-app preview only. Run both apps per
+[`README.md`](README.md).
+
+**Run locally:**
+
+```bash
+cd events/2026-06-11-unlock-the-money/justagiraffe/city-readiness-navigator
+npm install
+npm run dev
+# → http://localhost:3000
+```
 
 **Naming.** "Readiness" is too broad — this is **finance readiness** / **climate-finance
 readiness**. Keep the app's subtitle ("Climate-finance readiness for cities & regions") front
@@ -42,8 +56,8 @@ is embedded in CityCatalyst:
 
 - **justagiraffe / Control Tower** — an IDB-facing console with a *readiness engine*
   (now profile-driven; see `control-tower/READINESS-PROFILES.md`). It answers "is
-  this borrower ready?" but has no city-facing front door and no way for candidates
-  to arrive.
+  this borrower ready?" and now receives Navigator dossiers through an **Intake** tab
+  (approve/decline before candidates enter the main pipeline).
 - **City-Funder Matching Engine** — matches a city's climate actions to funding
   instruments and pools small cities into financeable bundles. It answers "which
   funder fits?" but has no readiness depth.
