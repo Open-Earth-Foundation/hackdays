@@ -9,15 +9,15 @@ import "leaflet/dist/leaflet.css";
 type Mode = "national" | "losrios";
 
 const NATIONAL_COLORS: Record<string, string> = {
-  anchor: "#001ea7",
-  "in viable pool": "#4f75e0",
+  anchor: "#085041",
+  "in viable pool": "#1d9e75",
   "needs TA": "#e08a3c",
-  "not scored": "#d7d8fa",
+  "not scored": "#d4ede4",
 };
 const LOSRIOS_COLORS: Record<string, string> = {
-  anchor: "#001ea7",
-  "pool member": "#4f75e0",
-  other: "#d7d8fa",
+  anchor: "#085041",
+  "pool member": "#1d9e75",
+  other: "#d4ede4",
 };
 
 function FitBounds({ data }: { data: FeatureCollection }) {
@@ -54,8 +54,8 @@ export default function ChoroplethMap({
 
   const colorFor = (f?: Feature<Geometry>) => {
     const p = (f?.properties ?? {}) as Record<string, string>;
-    if (mode === "national") return NATIONAL_COLORS[p.pool_status] ?? "#d7d8fa";
-    return LOSRIOS_COLORS[p.pool_role] ?? "#d7d8fa";
+    if (mode === "national") return NATIONAL_COLORS[p.pool_status] ?? "#d4ede4";
+    return LOSRIOS_COLORS[p.pool_role] ?? "#d4ede4";
   };
 
   if (!data) {

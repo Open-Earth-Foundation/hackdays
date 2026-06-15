@@ -62,10 +62,10 @@ export default function Home() {
             <div>
               <MapPanel url="/data/comunas.geojson" mode="national" height={680} />
               <div className="legend">
-                <span><i className="dot" style={{ background: "#001ea7" }} /> anchor (can lead a deal)</span>
-                <span><i className="dot" style={{ background: "#4f75e0" }} /> in a viable pool</span>
-                <span><i className="dot" style={{ background: "#e08a3c" }} /> needs TA (no anchor)</span>
-                <span><i className="dot" style={{ background: "#d7d8fa" }} /> not scored</span>
+                <span><i className="dot" style={{ background: "var(--anchor)" }} /> anchor (can lead a deal)</span>
+                <span><i className="dot" style={{ background: "var(--pooled)" }} /> in a viable pool</span>
+                <span><i className="dot" style={{ background: "var(--needs-ta)" }} /> needs TA (no anchor)</span>
+                <span><i className="dot" style={{ background: "var(--unscored)" }} /> not scored</span>
               </div>
             </div>
 
@@ -188,7 +188,7 @@ export default function Home() {
               <div key={i} className="action-line">
                 <span>{a.action}</span>
                 <div className="bar-track">
-                  <div className="bar-fill" style={{ width: `${a.af * 100}%`, background: a.af < 0.65 ? "#e08a3c" : "#4f75e0" }} />
+                  <div className="bar-fill" style={{ width: `${a.af * 100}%`, background: a.af < 0.65 ? "var(--needs-ta)" : "var(--pooled)" }} />
                 </div>
                 <span className="num-cell" style={{ fontVariantNumeric: "tabular-nums" }}>{a.af.toFixed(2)}</span>
               </div>
@@ -262,7 +262,7 @@ function RoleCard({ role, count, label }: { role: "applicant" | "facilitator" | 
   return (
     <div className="panel">
       <div className="role-head">
-        <span className={`count`} style={{ color: "var(--content-alternative)" }}>{count}</span>
+        <span className="count">{count}</span>
         <span className={`chip chip-${role}`}>{role}</span>
       </div>
       <div className="muted" style={{ fontSize: 15 }}>{label}</div>

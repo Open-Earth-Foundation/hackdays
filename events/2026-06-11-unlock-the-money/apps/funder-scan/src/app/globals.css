@@ -1,24 +1,24 @@
 :root {
-  /* CityCatalyst blue_theme tokens (see .cursor/rules/citycatalyst-style.mdc) */
-  --content-alternative: #001ea7;
-  --content-link: #2351dc;
-  --content-primary: #00001f;
-  --content-secondary: #232640;
-  --content-tertiary: #7a7b9a;
+  /* Green theme — aligned with /tool Unlock Funding palette */
+  --content-alternative: #085041;
+  --content-link: #0f6e56;
+  --content-primary: #0a1f1a;
+  --content-secondary: #1e3d34;
+  --content-tertiary: #5f7a72;
   --background-default: #ffffff;
-  --background-neutral: #e8eafb;
-  --background-overlay: #c5cbf5;
-  --border-neutral: #d7d8fa;
+  --background-neutral: #e1f5ee;
+  --background-overlay: #b8e4d4;
+  --border-neutral: #c5e6d8;
 
   /* fonts (loaded via <link> in layout; graceful system fallback) */
   --font-poppins: "Poppins", system-ui, sans-serif;
   --font-opensans: "Open Sans", system-ui, sans-serif;
 
   /* pool / tier semantic colors */
-  --anchor: #001ea7;
-  --pooled: #4f75e0;
+  --anchor: #085041;
+  --pooled: #1d9e75;
   --needs-ta: #e08a3c;
-  --unscored: #d7d8fa;
+  --unscored: #d4ede4;
   --tier-green: #1f9d6b;
   --tier-amber: #e0a13c;
   --tier-red: #d2607a;
@@ -105,7 +105,7 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0
   width: 34px;
   height: 34px;
   border-radius: 9px;
-  background: linear-gradient(135deg, #2351dc, #001ea7);
+  background: linear-gradient(135deg, #1d9e75, #085041);
   color: #fff;
   display: flex;
   align-items: center;
@@ -246,7 +246,7 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0
 
 /* ---------- hero ---------- */
 .hero {
-  background: radial-gradient(1200px 480px at 70% -10%, #1b3bd6 0%, #001ea7 55%, #000c4d 100%);
+  background: radial-gradient(1200px 480px at 70% -10%, #1d9e75 0%, #0f6e56 55%, #054035 100%);
   color: #fff;
   padding: 84px 0 72px;
 }
@@ -257,11 +257,11 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0
   letter-spacing: -0.01em;
   max-width: 880px;
 }
-.hero p { font-size: 21px; color: #d7ddff; max-width: 720px; margin-top: 20px; }
+.hero p { font-size: 21px; color: #c8ece0; max-width: 720px; margin-top: 20px; }
 .hero .eyebrow {
   font-family: var(--font-poppins);
   font-size: 13px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
-  color: #aab6ff; margin-bottom: 20px;
+  color: #8ec9b5; margin-bottom: 20px;
 }
 
 /* ---------- KPI cards ---------- */
@@ -273,7 +273,7 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0
   padding: 24px 22px;
 }
 .kpi .num { font-family: var(--font-poppins); font-size: 44px; font-weight: 700; color: #fff; line-height: 1; }
-.kpi .label { color: #c3ccff; margin-top: 10px; font-size: 15px; }
+.kpi .label { color: #a8d9c8; margin-top: 10px; font-size: 15px; }
 .kpi--light { background: var(--background-neutral); border-color: var(--border-neutral); }
 .kpi--light .num { color: var(--content-alternative); }
 .kpi--light .label { color: var(--content-secondary); }
@@ -330,7 +330,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 15px; }
 /* ---------- funders open ---------- */
 .role-block { margin-top: 8px; }
 .role-head { display: flex; align-items: baseline; gap: 10px; margin: 18px 0 8px; }
-.role-head .count { font-family: var(--font-poppins); font-weight: 700; font-size: 22px; }
+.role-head .count { font-family: var(--font-poppins); font-weight: 700; font-size: 22px; color: var(--content-alternative); }
 .fund-item {
   display: flex; justify-content: space-between; gap: 12px;
   padding: 9px 0; border-bottom: 1px solid var(--background-neutral); font-size: 14.5px;
@@ -346,7 +346,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 15px; }
 
 /* ---------- map ---------- */
 .map-shell { border: 1px solid var(--border-neutral); border-radius: 16px; overflow: hidden; }
-.leaflet-container { background: #f3f4fd !important; font-family: var(--font-opensans) !important; }
+.leaflet-container { background: #f0f9f5 !important; font-family: var(--font-opensans) !important; }
 .legend { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 14px; font-size: 14px; color: var(--content-secondary); }
 .legend span { display: inline-flex; align-items: center; gap: 7px; }
 
@@ -358,10 +358,10 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 15px; }
   color: var(--content-secondary);
 }
 .closing {
-  background: linear-gradient(120deg, #001ea7, #2351dc);
+  background: linear-gradient(120deg, #085041, #1d9e75);
   color: #fff; border-radius: 18px; padding: 40px; font-family: var(--font-poppins);
   font-size: 26px; font-weight: 600; line-height: 1.35;
 }
-.closing em { color: #cdd6ff; font-style: normal; }
+.closing em { color: #b8e8d8; font-style: normal; }
 
 footer { padding: 48px 0 80px; color: var(--content-tertiary); font-size: 14px; }
