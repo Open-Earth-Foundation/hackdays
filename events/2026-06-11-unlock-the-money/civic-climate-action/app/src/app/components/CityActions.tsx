@@ -6,8 +6,9 @@ import type { Lang } from "../data/climateActions";
 import { climateActions } from "../data/climateActions";
 import { prioritizeActions } from "../lib/prioritize";
 import { localSourcesByCity, localSourceNamesByCity } from "../data/localSources";
+import { cityFacts } from "../lib/cityFacts";
 import ActionRow from "./ActionRow";
-import AiDevelopPanel from "./AiDevelopPanel";
+import AiWorkspace from "./AiWorkspace";
 
 const LANGS: { key: Lang; label: string }[] = [
   { key: "en", label: "EN" },
@@ -24,9 +25,9 @@ const defaultLang = (country: string): Lang => {
 const copy = {
   heading: { en: "Develop an action for", es: "Desarrolla una acción para", pt: "Desenvolva uma ação para" },
   intro: {
-    en: "Priorities from CityCatalyst's HIAP library, ranked for this city. Pick one and build a concrete, local plan.",
-    es: "Prioridades de la biblioteca HIAP de CityCatalyst, ordenadas para esta ciudad. Elige una y crea un plan local concreto.",
-    pt: "Prioridades da biblioteca HIAP do CityCatalyst, ordenadas para esta cidade. Escolha uma e crie um plano local concreto.",
+    en: "Recommended climate actions for this city, from CityCatalyst. Pick one and build a concrete, local plan.",
+    es: "Acciones climáticas recomendadas para esta ciudad, según CityCatalyst. Elige una y crea un plan local concreto.",
+    pt: "Ações climáticas recomendadas para esta cidade, segundo o CityCatalyst. Escolha uma e crie um plano local concreto.",
   },
 };
 
@@ -40,11 +41,14 @@ export default function CityActions({ city }: { city: City }) {
 
   const cityContext = {
     country: city.country,
-    topHazards: (city.risk?.topHazards ?? []).map((h) => h.hazard),
+    topHazards: (city.risk?.topHazards ?? []).map(
+      (h) => `${h.hazard} (${h.level})`
+    ),
     topSectors:
-      city.emissions?.sectors?.map((s) => s.sector) ??
+      city.emissions?.sectors?.map((s) => `${s.sector} (${Math.round(s.sharePct)}%)`) ??
       (city.emissions?.topSector ? [city.emissions.topSector] : []),
     localSources: localSourceNamesByCity[city.id] ?? [],
+    facts: cityFacts(city, lang),
   };
   const localSources = localSourcesByCity[city.id] ?? [];
 
@@ -96,8 +100,8 @@ export default function CityActions({ city }: { city: City }) {
           ))}
         </div>
 
-        <AiDevelopPanel
-          key={selected.action.actionId}
+        <AiWorkspace
+          key={`${selected.action.actionId}-${lang}`}
           ranked={selected}
           cityName={city.name}
           cityContext={cityContext}

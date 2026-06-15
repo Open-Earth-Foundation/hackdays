@@ -4,7 +4,16 @@ import { useCallback, useState } from "react";
 import type { Lang } from "../data/climateActions";
 import { useCarbon } from "./carbonContext";
 
-export type LocalizeRequest = {
+export type GenTask =
+  | "next_steps"
+  | "draft_proposal"
+  | "evidence"
+  | "pathways"
+  | "future_vision"
+  | "refine";
+
+export type GenerateRequest = {
+  task: GenTask;
   action: { name: string; description: string; type: "mitigation" | "adaptation" };
   cityContext: {
     name: string;
@@ -12,12 +21,15 @@ export type LocalizeRequest = {
     topHazards: string[];
     topSectors: string[];
     localSources: string[];
+    facts: string[];
   };
   language: Lang;
+  prior?: string;
+  instruction?: string;
 };
 
-export type LocalizeResult = {
-  localizedSteps: string[];
+export type GenResult = {
+  content: string;
   energyWh: number;
   gCO2e: number;
   model: string;
@@ -25,27 +37,26 @@ export type LocalizeResult = {
   mock: boolean;
 };
 
-export function useLocalize() {
+export function useGenerate() {
   const { addUsage } = useCarbon();
   const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<LocalizeResult | null>(null);
-  const [error, setError] = useState<string | null>(null);
 
   const run = useCallback(
-    async (req: LocalizeRequest) => {
+    async (req: GenerateRequest): Promise<GenResult | null> => {
       setLoading(true);
-      setError(null);
       try {
-        const res = await fetch("/api/localize", {
+        const res = await fetch("/api/generate", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(req),
         });
-        const data: LocalizeResult = await res.json();
-        setResult(data);
-        addUsage(data.gCO2e, data.energyWh);
-      } catch (e) {
-        setError(String(e));
+        if (!res.ok) return null;
+        const data: GenResult = await res.json();
+        if (typeof data?.content !== "string") return null;
+        addUsage(data.gCO2e ?? 0, data.energyWh ?? 0);
+        return data;
+      } catch {
+        return null;
       } finally {
         setLoading(false);
       }
@@ -53,5 +64,5 @@ export function useLocalize() {
     [addUsage]
   );
 
-  return { run, loading, result, error };
+  return { run, loading };
 }

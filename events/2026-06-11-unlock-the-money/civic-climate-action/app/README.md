@@ -71,18 +71,19 @@ To refresh the baked HIAP action library: `npm run data:actions`.
 
 1. **The gap** — CityCatalyst is powerful but government-only. Citizens are locked out of
    their own city's climate plan.
-2. **How it works** — the diagram: city planning data → plain language → *Understand, Connect,
-   Act*. No dashboards to decode.
-3. **Explore** — search a city, or click the map. Pick Medellín / Bogotá / a Brazilian city
-   and read, in everyday language, what residents there did and what you could do.
-4. **Prioritized actions** — pick a Brazilian hero city (São Paulo): real CityCatalyst **HIAP**
-   actions, ranked for *this* city's hazards and emitting sectors, each with a "why this matters
-   here" trace. Switch EN/ES/PT. Hit **"Make this concrete for my city"** → a cheap, green
-   open-weight LLM rewrites the action into localized next steps, and the **CO₂ counter** (bottom
-   right) shows the call's EcoLogits footprint.
-5. **The "aha"** — the Inspiration gallery: real, sourced stories of citizens who cooled their
-   streets, bought their power grid, rewrote climate law. Filter by action type; every claim
-   links to its source.
+2. **Explore** — search a city, or click the map. Pick a pilot city (São Paulo / Porto Alegre):
+   a one-line plain-language profile (top risks + where emissions come from), then recommended
+   climate actions ranked for *this* city, each with a "why this matters here" trace.
+3. **The workspace** — pick an action and open the AI workspace. It's not one suggestion: tabs for
+   **Next steps · Draft a proposal · Back it with data · Pathways (short→long) · Examples · Future
+   vision**. A cheap, green open-weight model (Mistral Small on a low-carbon EU grid) drafts each,
+   grounded in the city's real numbers and real local channels (Orçamento Participativo, CADES…).
+   **Refine** any output ("shorter", "more formal", "focus on flooding"), **Copy** the draft. The
+   **CO₂ counter** (bottom right) shows each call's EcoLogits footprint.
+4. **Future vision** — the Futures-Design lens paints a short, hopeful "day in the life" of the
+   city once the action takes hold — vision, not just guides.
+5. **Inspiration** — real, sourced stories of citizens who cooled their streets, bought their
+   power grid, rewrote climate law. Every claim links to its source.
 6. **Who pays** — civic engagement is a co-benefit funders already score; this makes it
    visible and measurable. B2G, IDB, philanthropy.
 
@@ -93,12 +94,16 @@ To refresh the baked HIAP action library: `npm run data:actions`.
 - [Leaflet](https://leafletjs.com/) + react-leaflet, with free OpenStreetMap / CARTO basemap tiles
 - Cities keyed by **UN/LOCODE** — the same key the
   [CityCatalyst Global API](https://github.com/Open-Earth-Foundation/CityCatalyst/tree/develop/global-api)
-  uses — so they connect to live GHGI / CCRA / HIAP data (`api.citycatalyst.io`)
-- **HIAP action library** baked from `GET /api/v0/climate_actions` (155 actions, EN/ES/PT),
+  uses — so they connect to live emissions-inventory, climate-risk, and recommended-action data
+  (`api.citycatalyst.io`)
+- **Recommended climate actions** baked from `GET /api/v0/climate_actions` (155 actions, EN/ES/PT),
   prioritized per city in `src/app/lib/prioritize.ts`
-- **Green LLM localizer**: a Python/FastAPI sidecar (`../llm-service`) calling an open-weight
-  model via an OpenAI-compatible API on a low-carbon EU provider, instrumented with
-  [EcoLogits](https://ecologits.ai/) for per-call carbon; model/provider is an env-only swap
+- **AI workspace**: a Python/FastAPI sidecar (`../llm-service`) with a `/generate` task API
+  (next-steps · draft proposal · evidence · pathways · future vision · refine), calling an
+  open-weight model (Mistral Small) via an OpenAI-compatible API on a low-carbon EU provider
+  (Scaleway), instrumented with [EcoLogits](https://ecologits.ai/) for per-call carbon. Model and
+  provider are an env-only swap. The "Future vision" lens uses an Experiential-Futures prompt.
+- AI output rendered with `react-markdown` (no raw HTML — safe by default)
 
 ## Data & Sources
 

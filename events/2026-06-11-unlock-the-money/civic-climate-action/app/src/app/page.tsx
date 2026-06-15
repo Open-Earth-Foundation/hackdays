@@ -1,4 +1,3 @@
-import FlowDiagram from "./components/FlowDiagram";
 import CityExplorer from "./components/CityExplorer";
 import StoriesGallery from "./components/StoriesGallery";
 import TakeAction from "./components/TakeAction";
@@ -26,22 +25,6 @@ export default function Home() {
           </p>
         </div>
       </header>
-
-      {/* How it works */}
-      <section className="section">
-        <div className="wrap">
-          <div className="eyebrow">How it works</div>
-          <h2 style={{ fontSize: "1.8rem", margin: "0.75rem 0 0.75rem", maxWidth: 640 }}>
-            From city data to things you can actually do
-          </h2>
-          <p className="muted" style={{ maxWidth: 640, marginBottom: "2.5rem" }}>
-            We take the same data cities use to plan — their emissions inventory, climate-risk
-            assessment, and prioritized actions — and translate it into plain language and concrete
-            next steps. No jargon, no dashboards to decode.
-          </p>
-          <FlowDiagram />
-        </div>
-      </section>
 
       {/* Explore cities */}
       <section className="section" id="explore">
@@ -101,11 +84,10 @@ export default function Home() {
             </p>
           </div>
           <p style={{ fontSize: "0.82rem", color: "var(--ink-faint)", maxWidth: 720, margin: 0 }}>
-            Built for OEF Hackday 26Q2. Brazilian cities pull live emissions and climate-risk data
-            from the CityCatalyst Global API (SEEG inventory · CCRA risk); other cities use the
-            latest verified inventories and risk profiles from official sources. Every figure and
-            success story links to its source — look for the &ldquo;CityCatalyst live&rdquo; vs
-            &ldquo;External source&rdquo; badge.
+            Built for OEF Hackday 26Q2. Brazilian cities pull live emissions-inventory and
+            climate-risk data from CityCatalyst; other cities use the latest verified inventories
+            and risk assessments from official sources. Every figure and success story links to its
+            source — look for the &ldquo;CityCatalyst live&rdquo; vs &ldquo;External source&rdquo; badge.
           </p>
         </div>
       </footer>

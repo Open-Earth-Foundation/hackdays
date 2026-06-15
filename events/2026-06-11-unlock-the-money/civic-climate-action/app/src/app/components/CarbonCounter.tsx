@@ -9,7 +9,7 @@ export default function CarbonCounter() {
 
   return (
     <div
-      title="Estimated carbon footprint of the AI localizer this session (EcoLogits)"
+      title="Estimated AI carbon this session — a token-based estimate (EcoLogits where the model is supported; otherwise a token model, since the Scaleway model isn't in EcoLogits' registry)."
       style={{
         position: "fixed",
         bottom: 16,
@@ -28,8 +28,8 @@ export default function CarbonCounter() {
       }}
     >
       <span style={{ width: 8, height: 8, borderRadius: 999, background: "var(--accent)" }} />
-      <strong style={{ color: "var(--ink)" }}>{totalGramsCO2e.toFixed(2)} g CO₂e</strong>
-      <span style={{ color: "var(--ink-faint)" }}>· {callCount} AI {callCount === 1 ? "call" : "calls"}</span>
+      <strong style={{ color: "var(--ink)" }}>~{totalGramsCO2e.toFixed(2)} g CO₂e</strong>
+      <span style={{ color: "var(--ink-faint)" }}>(est.) · {callCount} AI {callCount === 1 ? "call" : "calls"}</span>
     </div>
   );
 }
