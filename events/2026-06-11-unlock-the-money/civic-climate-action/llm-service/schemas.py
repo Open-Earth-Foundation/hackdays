@@ -15,6 +15,7 @@ class CityContext(BaseModel):
     topSectors: list[str] = Field(default_factory=list)  # e.g. "Transportation (81%)"
     localSources: list[str] = Field(default_factory=list)  # real civic channel names
     facts: list[str] = Field(default_factory=list)  # plain factual lines from city data
+    dataCaveat: str = ""  # e.g. "partial inventory — share overstated"
 
 
 # task: next_steps | draft_proposal | evidence | pathways | future_vision | refine

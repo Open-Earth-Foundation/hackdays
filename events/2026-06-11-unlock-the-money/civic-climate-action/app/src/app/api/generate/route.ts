@@ -19,6 +19,7 @@ type Body = {
     topSectors: string[];
     localSources: string[];
     facts: string[];
+    dataCaveat?: string;
   };
   language: Lang;
   prior?: string;

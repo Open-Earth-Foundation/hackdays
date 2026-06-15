@@ -78,9 +78,11 @@ export default function Home() {
             <div className="eyebrow">Why it pays</div>
             <p style={{ maxWidth: 720, marginTop: "0.6rem", color: "var(--ink-soft)" }}>
               Civic participation is a co-benefit funders (MDBs, the IDB, philanthropy) already
-              score. This module operationalizes it — turning &ldquo;is this city engaged?&rdquo;
-              into something visible and measurable that de-risks city climate projects and helps
-              capital flow.
+              score. This module operationalizes it: each city carries a transparent{" "}
+              <strong style={{ color: "var(--ink)" }}>Civic Engagement Readiness</strong> score —
+              built from resident commitments, the actions&rsquo; engagement co-benefit, local civic
+              channels, and proven precedent — that you can read at a glance and export as a funder
+              brief. &ldquo;Is this city engaged?&rdquo; becomes visible, sourced, and exportable.
             </p>
           </div>
           <p style={{ fontSize: "0.82rem", color: "var(--ink-faint)", maxWidth: 720, margin: 0 }}>

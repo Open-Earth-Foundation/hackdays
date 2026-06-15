@@ -6,6 +6,7 @@ import type { City, Story } from "../data/types";
 import { categoryMeta } from "../data/types";
 import CitySnapshot from "./CitySnapshot";
 import CityActions from "./CityActions";
+import EngagementReadiness from "./EngagementReadiness";
 import { isPilot } from "../lib/pilots";
 import { profileHeadline } from "../lib/profileHeadline";
 
@@ -161,6 +162,8 @@ export default function CityExplorer({ cities, stories }: { cities: City[]; stor
           </p>
 
           <CitySnapshot city={selected} />
+
+          <EngagementReadiness city={selected} />
 
           {isPilot(selected.id) && <CityActions key={selected.id} city={selected} />}
 

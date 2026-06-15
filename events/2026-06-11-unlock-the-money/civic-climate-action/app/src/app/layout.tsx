@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { CarbonProvider } from "./lib/carbonContext";
+import { PledgeProvider } from "./lib/pledgeContext";
 import CarbonCounter from "./components/CarbonCounter";
 
 export const metadata: Metadata = {
@@ -14,8 +15,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body>
         <CarbonProvider>
-          {children}
-          <CarbonCounter />
+          <PledgeProvider>
+            {children}
+            <CarbonCounter />
+          </PledgeProvider>
         </CarbonProvider>
       </body>
     </html>

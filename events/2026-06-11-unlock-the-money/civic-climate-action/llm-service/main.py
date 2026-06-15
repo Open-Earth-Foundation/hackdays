@@ -213,6 +213,8 @@ def _context_block(req: GenerateRequest) -> str:
     if c.facts:
         lines.append("Key facts about this city (use these exactly; invent no others):")
         lines += [f"- {f}" for f in c.facts[:8]]
+    if c.dataCaveat:
+        lines.append(f"Data caveat (do NOT cite sector shares as precise): {c.dataCaveat}")
     lines.append(f"Local civic channels: {', '.join(c.localSources[:6]) or 'n/a'}")
     lines.append(f"Action ({req.action.type}): {req.action.name}")
     if req.action.description:

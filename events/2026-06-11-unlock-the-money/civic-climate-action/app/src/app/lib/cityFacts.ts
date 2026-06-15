@@ -61,16 +61,25 @@ export function cityFacts(city: City, lang: Lang): string[] {
     else facts.push(`${hz} are rated ${lv} climate risk in ${city.name}.`);
   }
 
-  // Dominant emitting sector by share.
+  // Dominant emitting sector. When the inventory is partial (emissions.note set),
+  // the share is known to be overstated, so we DON'T present it as a precise fact —
+  // we frame it qualitatively and attach the caveat, so the LLM can't cite a bare %.
   const e = city.emissions;
   if (e?.sectors?.length) {
     const top = [...e.sectors].sort((a, b) => b.sharePct - a.sharePct)[0];
     const key = normalizeSector(top.sector);
     const word = key ? SECTOR_WORD[key][lang] : top.sector;
     const pct = Math.round(top.sharePct);
-    if (lang === "es") facts.push(`${word} es cerca del ${pct}% de las emisiones medidas de ${city.name}.`);
-    else if (lang === "pt") facts.push(`${word} é cerca de ${pct}% das emissões medidas de ${city.name}.`);
-    else facts.push(`${word} is about ${pct}% of ${city.name}'s measured emissions.`);
+    if (e.note) {
+      // Partial inventory → qualitative only, no precise share.
+      if (lang === "es") facts.push(`${word} es la mayor fuente de emisiones medidas de ${city.name} (inventario parcial; la proporción está probablemente sobrestimada).`);
+      else if (lang === "pt") facts.push(`${word} é a maior fonte de emissões medidas de ${city.name} (inventário parcial; a proporção está provavelmente superestimada).`);
+      else facts.push(`${word} is the largest measured emissions source in ${city.name} (partial inventory; this share is likely overstated).`);
+    } else {
+      if (lang === "es") facts.push(`${word} es cerca del ${pct}% de las emisiones medidas de ${city.name}.`);
+      else if (lang === "pt") facts.push(`${word} é cerca de ${pct}% das emissões medidas de ${city.name}.`);
+      else facts.push(`${word} is about ${pct}% of ${city.name}'s measured emissions.`);
+    }
   } else if (e?.topSector) {
     const key = normalizeSector(e.topSector);
     const word = key ? SECTOR_WORD[key][lang] : e.topSector;

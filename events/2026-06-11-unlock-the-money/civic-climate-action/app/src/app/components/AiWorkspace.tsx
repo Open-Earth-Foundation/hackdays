@@ -9,6 +9,7 @@ import { stories } from "../data/stories";
 import { matchStories } from "../lib/matchStories";
 import { categoryMeta } from "../data/types";
 import Markdown from "./Markdown";
+import PledgeButton from "./PledgeButton";
 
 type LensKey = GenTask | "examples";
 
@@ -102,6 +103,11 @@ const t = {
   refine: { en: "Refine", es: "Refinar", pt: "Refinar" },
   where: { en: "Where to engage locally", es: "Dónde participar localmente", pt: "Onde participar localmente" },
   estimated: { en: "est.", es: "est.", pt: "est." },
+  disclaimer: {
+    en: "AI-generated draft — check the facts and local details before submitting.",
+    es: "Borrador generado por IA — verifica los datos y detalles locales antes de enviarlo.",
+    pt: "Rascunho gerado por IA — confira os fatos e detalhes locais antes de enviar.",
+  },
   futureLabel: {
     en: "Plausible futures · grounded in this city's data (Futures Design)",
     es: "Futuros plausibles · con base en los datos de la ciudad (Futures Design)",
@@ -114,12 +120,14 @@ const typeColor = { adaptation: "var(--accent)", mitigation: "#d97706" } as cons
 
 export default function AiWorkspace({
   ranked,
+  cityId,
   cityName,
   cityContext,
   localSources,
   lang,
 }: {
   ranked: RankedAction;
+  cityId: string;
   cityName: string;
   cityContext: CityContext;
   localSources: LocalSource[];
@@ -216,7 +224,8 @@ export default function AiWorkspace({
         <span style={{ fontSize: "0.66rem", fontWeight: 700, color: typeColor[action.actionType], textTransform: "uppercase", letterSpacing: "0.04em" }}>
           {action.actionType}
         </span>
-        <h4 style={{ fontSize: "1.12rem", margin: "0.2rem 0 0", lineHeight: 1.25 }}>{action.name[lang]}</h4>
+        <h4 style={{ fontSize: "1.12rem", margin: "0.2rem 0 0.6rem", lineHeight: 1.25 }}>{action.name[lang]}</h4>
+        <PledgeButton cityId={cityId} lang={lang} />
       </div>
 
       {/* Lens tabs */}
@@ -265,6 +274,10 @@ export default function AiWorkspace({
               </div>
             )}
             <Markdown>{result.content}</Markdown>
+
+            <p style={{ fontSize: "0.7rem", color: "var(--ink-faint)", fontStyle: "italic", margin: "0.5rem 0 0" }}>
+              {t.disclaimer[lang]}
+            </p>
 
             {/* Refine bar */}
             <div style={{ display: "flex", gap: 6, marginTop: "1rem" }}>

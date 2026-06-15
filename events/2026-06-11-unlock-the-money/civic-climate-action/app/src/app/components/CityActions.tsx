@@ -39,16 +39,19 @@ export default function CityActions({ city }: { city: City }) {
   if (ranked.length === 0) return null;
   const selected = ranked.find((r) => r.action.actionId === selectedActionId) ?? ranked[0];
 
+  // When the inventory is partial, sector shares are overstated — present them
+  // qualitatively (no precise %) so the model never cites an unreliable number.
+  const partial = Boolean(city.emissions?.note);
   const cityContext = {
     country: city.country,
-    topHazards: (city.risk?.topHazards ?? []).map(
-      (h) => `${h.hazard} (${h.level})`
-    ),
+    topHazards: (city.risk?.topHazards ?? []).map((h) => `${h.hazard} (${h.level})`),
     topSectors:
-      city.emissions?.sectors?.map((s) => `${s.sector} (${Math.round(s.sharePct)}%)`) ??
-      (city.emissions?.topSector ? [city.emissions.topSector] : []),
+      city.emissions?.sectors?.map((s) =>
+        partial ? s.sector : `${s.sector} (${Math.round(s.sharePct)}%)`
+      ) ?? (city.emissions?.topSector ? [city.emissions.topSector] : []),
     localSources: localSourceNamesByCity[city.id] ?? [],
     facts: cityFacts(city, lang),
+    dataCaveat: city.emissions?.note ?? "",
   };
   const localSources = localSourcesByCity[city.id] ?? [];
 
@@ -103,6 +106,7 @@ export default function CityActions({ city }: { city: City }) {
         <AiWorkspace
           key={`${selected.action.actionId}-${lang}`}
           ranked={selected}
+          cityId={city.id}
           cityName={city.name}
           cityContext={cityContext}
           localSources={localSources}
