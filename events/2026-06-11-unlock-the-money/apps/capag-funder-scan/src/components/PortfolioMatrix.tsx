@@ -67,9 +67,26 @@ export default function PortfolioMatrix({
       <Heading size="md" color="content.alternative" mb="1">
         {t("portfolio.title")}
       </Heading>
-      <Text fontSize="sm" color="content.tertiary" mb="5" maxW="46rem">
+      <Text fontSize="sm" color="content.tertiary" mb="3" maxW="46rem">
         {t("portfolio.intro")}
       </Text>
+
+      {/* legend explaining the outlined cells */}
+      <Flex
+        align="center"
+        gap="2"
+        mb="5"
+        bg="background.neutral"
+        borderRadius="md"
+        px="3"
+        py="2"
+        maxW="46rem"
+      >
+        <Box w="4" h="4" borderRadius="sm" borderWidth="2px" borderColor="content.link" flexShrink={0} />
+        <Text fontSize="xs" color="content.secondary">
+          {t("portfolio.legend")}
+        </Text>
+      </Flex>
 
       <Grid templateColumns="200px repeat(3, 1fr)" gap="2" maxW="5xl">
         {/* header row */}
@@ -108,6 +125,7 @@ export default function PortfolioMatrix({
                   key={band}
                   as="button"
                   onClick={() => onCell(grp, band)}
+                  title={invisible ? t("portfolio.cantSeeTip") : t("portfolio.cellTip")}
                   textAlign="left"
                   bg={GROUP_BG[grp]}
                   borderRadius="md"

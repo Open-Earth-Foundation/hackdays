@@ -16,7 +16,10 @@
   "portfolio.group.blended": "Blocked · C",
   "portfolio.group.grant_ta": "Unrated · n.d.",
   "portfolio.group.distressed": "Distressed · D",
-  "portfolio.cantSee": "can't see today",
+  "portfolio.cantSee": "invisible to credit",
+  "portfolio.cantSeeTip": "Climate-urgent cities the federal-guaranteed credit system can't reach — CAPAG C is blocked from that credit and n.d. cities aren't rated, so funders have no pipeline to them today. This is the blended-finance & technical-assistance market. Click to load it.",
+  "portfolio.cellTip": "Click to load these cities as a deployable pipeline.",
+  "portfolio.legend": "Outlined cells = invisible to the credit system: climate-urgent municipalities that being CAPAG C (blocked) or n.d. (unrated) keeps off funders' radar — the blended-finance & TA market.",
 
   "footer.sources": "Real data: CAPAG ratings + sub-indicators and RGF (RCL, Dívida Consolidada) — Tesouro Nacional, Nov-2025, ODbL · SEEG/SINIR/SNIS emissions + CCRA climate risk — CityCatalyst Global API · funded-projects set curated by OEF. Indicative screening signal — the definitive CAPAG is computed by STN when a municipality applies for guaranteed credit. Not a credit decision.",
   "footer.prototype": "Open the standalone prototype (shareable)",

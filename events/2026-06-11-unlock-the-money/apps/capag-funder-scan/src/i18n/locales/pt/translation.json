@@ -16,7 +16,10 @@
   "portfolio.group.blended": "Bloqueado · C",
   "portfolio.group.grant_ta": "Sem nota · n.d.",
   "portfolio.group.distressed": "Crítico · D",
-  "portfolio.cantSee": "invisível hoje",
+  "portfolio.cantSee": "invisível ao crédito",
+  "portfolio.cantSeeTip": "Cidades com urgência climática que o crédito com garantia federal não alcança — a CAPAG C fica bloqueada desse crédito e as cidades n.d. não têm nota, então os financiadores não têm pipeline para elas hoje. É o mercado de financiamento combinado e de AT. Clique para carregar.",
+  "portfolio.cellTip": "Clique para carregar estas cidades como um pipeline mobilizável.",
+  "portfolio.legend": "Células destacadas = invisíveis ao sistema de crédito: municípios com urgência climática que, por serem CAPAG C (bloqueados) ou n.d. (sem nota), ficam fora do radar dos financiadores — o mercado de financiamento combinado e de AT.",
 
   "footer.sources": "Dados reais: notas CAPAG + sub-indicadores e RGF (RCL, Dívida Consolidada) — Tesouro Nacional, nov/2025, ODbL · emissões SEEG/SINIR/SNIS + risco climático CCRA — CityCatalyst Global API · base de projetos financiados curada pela OEF. Sinal indicativo de triagem — a CAPAG definitiva é calculada pela STN quando o município solicita crédito garantido. Não é uma decisão de crédito.",
   "footer.prototype": "Abrir o protótipo independente (compartilhável)",
