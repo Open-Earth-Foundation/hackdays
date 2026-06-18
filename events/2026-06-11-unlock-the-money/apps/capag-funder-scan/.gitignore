@@ -1,0 +1,4 @@
+node_modules/
+.next/
+data/capag-latest.xlsx
+data/risks.jsonl

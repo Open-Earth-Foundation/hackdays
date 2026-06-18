@@ -1,0 +1,290 @@
+[
+ {
+  "municipio": "Cacoal",
+  "uf": "RO",
+  "capag": "A+",
+  "locode": "BR CCL",
+  "seeg": true,
+  "ccra": true,
+  "ccra_hazards": 15
+ },
+ {
+  "municipio": "Cerejeiras",
+  "uf": "RO",
+  "capag": "A+",
+  "locode": "BR CJS",
+  "seeg": true,
+  "ccra": true,
+  "ccra_hazards": 15
+ },
+ {
+  "municipio": "Jaru",
+  "uf": "RO",
+  "capag": "A+",
+  "locode": "BR JAR",
+  "seeg": true,
+  "ccra": true,
+  "ccra_hazards": 15
+ },
+ {
+  "municipio": "Porto Velho",
+  "uf": "RO",
+  "capag": "A+",
+  "locode": "BR PVH",
+  "seeg": true,
+  "ccra": true,
+  "ccra_hazards": 15
+ },
+ {
+  "municipio": "Cabixi",
+  "uf": "RO",
+  "capag": "A",
+  "locode": "BR CXI",
+  "seeg": true,
+  "ccra": true,
+  "ccra_hazards": 15
+ },
+ {
+  "municipio": "Corumbiara",
+  "uf": "RO",
+  "capag": "A",
+  "locode": "BR KMB",
+  "seeg": true,
+  "ccra": true,
+  "ccra_hazards": 15
+ },
+ {
+  "municipio": "Espigão D'Oeste",
+  "uf": "RO",
+  "capag": "A",
+  "locode": "BR EOT",
+  "seeg": true,
+  "ccra": true,
+  "ccra_hazards": 15
+ },
+ {
+  "municipio": "Guajará-Mirim",
+  "uf": "RO",
+  "capag": "A",
+  "locode": "BR GJM",
+  "seeg": true,
+  "ccra": true,
+  "ccra_hazards": 15
+ },
+ {
+  "municipio": "Ariquemes",
+  "uf": "RO",
+  "capag": "B+",
+  "locode": "BR AQM",
+  "seeg": true,
+  "ccra": true,
+  "ccra_hazards": 15
+ },
+ {
+  "municipio": "Ji-Paraná",
+  "uf": "RO",
+  "capag": "B+",
+  "locode": "BR JPR",
+  "seeg": true,
+  "ccra": true,
+  "ccra_hazards": 15
+ },
+ {
+  "municipio": "Alto Paraíso",
+  "uf": "RO",
+  "capag": "B+",
+  "locode": "BR ATP",
+  "seeg": true,
+  "ccra": true,
+  "ccra_hazards": 15
+ },
+ {
+  "municipio": "Manaus",
+  "uf": "AM",
+  "capag": "B+",
+  "locode": "BR MAO",
+  "seeg": true,
+  "ccra": true,
+  "ccra_hazards": 15
+ },
+ {
+  "municipio": "Machadinho D'Oeste",
+  "uf": "RO",
+  "capag": "B",
+  "locode": "BR MDW",
+  "seeg": true,
+  "ccra": true,
+  "ccra_hazards": 15
+ },
+ {
+  "municipio": "Pimenta Bueno",
+  "uf": "RO",
+  "capag": "B",
+  "locode": "BR PBN",
+  "seeg": true,
+  "ccra": true,
+  "ccra_hazards": 15
+ },
+ {
+  "municipio": "Rolim de Moura",
+  "uf": "RO",
+  "capag": "B",
+  "locode": "BR RMU",
+  "seeg": true,
+  "ccra": true,
+  "ccra_hazards": 15
+ },
+ {
+  "municipio": "Santa Luzia D'Oeste",
+  "uf": "RO",
+  "capag": "B",
+  "locode": "BR ZIA",
+  "seeg": true,
+  "ccra": true,
+  "ccra_hazards": 15
+ },
+ {
+  "municipio": "Alta Floresta D'Oeste",
+  "uf": "RO",
+  "capag": "C",
+  "locode": "BR AFO",
+  "seeg": true,
+  "ccra": true,
+  "ccra_hazards": 15
+ },
+ {
+  "municipio": "Colorado do Oeste",
+  "uf": "RO",
+  "capag": "C",
+  "locode": "BR CLW",
+  "seeg": true,
+  "ccra": true,
+  "ccra_hazards": 15
+ },
+ {
+  "municipio": "Costa Marques",
+  "uf": "RO",
+  "capag": "C",
+  "locode": "BR CQS",
+  "seeg": true,
+  "ccra": true,
+  "ccra_hazards": 15
+ },
+ {
+  "municipio": "Nova Mamoré",
+  "uf": "RO",
+  "capag": "C",
+  "locode": "BR NME",
+  "seeg": true,
+  "ccra": true,
+  "ccra_hazards": 15
+ },
+ {
+  "municipio": "Ipixuna do Pará",
+  "uf": "PA",
+  "capag": "D",
+  "locode": "BR IXP",
+  "seeg": true,
+  "ccra": true,
+  "ccra_hazards": 15
+ },
+ {
+  "municipio": "Santarém Novo",
+  "uf": "PA",
+  "capag": "D",
+  "locode": "BR REM",
+  "seeg": true,
+  "ccra": true,
+  "ccra_hazards": 15
+ },
+ {
+  "municipio": "Bayeux",
+  "uf": "PB",
+  "capag": "D",
+  "locode": "BR BAY",
+  "seeg": true,
+  "ccra": true,
+  "ccra_hazards": 15
+ },
+ {
+  "municipio": "Japaratuba",
+  "uf": "SE",
+  "capag": "D",
+  "locode": "BR JAB",
+  "seeg": true,
+  "ccra": true,
+  "ccra_hazards": 15
+ },
+ {
+  "municipio": "Novo Horizonte do Oeste",
+  "uf": "RO",
+  "capag": "n.d.",
+  "locode": "BR NIO",
+  "seeg": true,
+  "ccra": true,
+  "ccra_hazards": 15
+ },
+ {
+  "municipio": "Parecis",
+  "uf": "RO",
+  "capag": "n.d.",
+  "locode": "BR ECI",
+  "seeg": true,
+  "ccra": true,
+  "ccra_hazards": 15
+ },
+ {
+  "municipio": "Bujari",
+  "uf": "AC",
+  "capag": "n.d.",
+  "locode": "BR BUJ",
+  "seeg": true,
+  "ccra": true,
+  "ccra_hazards": 15
+ },
+ {
+  "municipio": "Capixaba",
+  "uf": "AC",
+  "capag": "n.d.",
+  "locode": "BR CPX",
+  "seeg": true,
+  "ccra": true,
+  "ccra_hazards": 15
+ },
+ {
+  "municipio": "São Paulo de Olivença",
+  "uf": "AM",
+  "capag": "n.e.",
+  "locode": "BR SPV",
+  "seeg": true,
+  "ccra": true,
+  "ccra_hazards": 15
+ },
+ {
+  "municipio": "Aveiro",
+  "uf": "PA",
+  "capag": "n.e.",
+  "locode": "BR AVO",
+  "seeg": true,
+  "ccra": true,
+  "ccra_hazards": 15
+ },
+ {
+  "municipio": "Chaves",
+  "uf": "PA",
+  "capag": "n.e.",
+  "locode": "BR CHE",
+  "seeg": true,
+  "ccra": true,
+  "ccra_hazards": 15
+ },
+ {
+  "municipio": "Concórdia do Pará",
+  "uf": "PA",
+  "capag": "n.e.",
+  "locode": "BR CIP",
+  "seeg": true,
+  "ccra": true,
+  "ccra_hazards": 15
+ }
+]
