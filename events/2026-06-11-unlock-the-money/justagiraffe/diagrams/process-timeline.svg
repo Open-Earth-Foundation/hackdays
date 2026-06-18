@@ -1,0 +1,65 @@
+<svg width="680" height="520" viewBox="0 0 680 520" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Process timeline — readiness pipeline and shared services</title>
+<desc>A top-to-bottom process (Source, Readiness pathways, Portfolio, Funder intake) running through CityCatalyst, the Navigator's readiness pathways with Path A (Preparator) and Path B (entity creditworthiness), portfolio and pooling, and the IDB Control Tower — with AI agents, Matching+Pooling, and Fiscal adapters as shared services on the right.</desc>
+<defs>
+<marker id="a2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8b949e"/></marker>
+</defs>
+<rect x="0" y="0" width="680" height="520" rx="12" fill="#0d1117"/>
+
+<text x="24" y="40" font-family="Inter,Segoe UI,sans-serif" font-size="11" font-weight="700" letter-spacing="1" fill="#6e7681">PROCESS</text>
+<text x="656" y="40" text-anchor="end" font-family="Inter,sans-serif" font-size="11" font-weight="700" letter-spacing="1" fill="#6e7681">SHARED SERVICES</text>
+
+<!-- left timeline -->
+<line x1="44" y1="99" x2="44" y2="425" stroke="#30363d" stroke-width="2"/>
+<circle cx="44" cy="99" r="5" fill="#3fb950"/><text x="58" y="103" font-family="Inter,sans-serif" font-size="11" fill="#c9d1d9">Source</text>
+<circle cx="44" cy="212" r="5" fill="#3fb950"/><text x="58" y="216" font-family="Inter,sans-serif" font-size="11" fill="#c9d1d9">Readiness pathways</text>
+<circle cx="44" cy="329" r="5" fill="#3fb950"/><text x="58" y="333" font-family="Inter,sans-serif" font-size="11" fill="#c9d1d9">Portfolio</text>
+<circle cx="44" cy="425" r="5" fill="#3fb950"/><text x="58" y="429" font-family="Inter,sans-serif" font-size="11" fill="#c9d1d9">Funder intake</text>
+
+<!-- center column -->
+<rect x="170" y="70" width="340" height="58" rx="8" fill="#4338ca"/>
+<text x="184" y="94" font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="#ffffff">CityCatalyst</text>
+<text x="184" y="113" font-family="Inter,sans-serif" font-size="10.5" fill="#c7d2fe">GHG inventory · HIAP actions · CCRA risk</text>
+
+<rect x="170" y="160" width="340" height="104" rx="8" fill="#21262d" stroke="#30363d"/>
+<text x="184" y="183" font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="#e6edf3">Readiness pathways</text>
+<text x="184" y="200" font-family="Inter,sans-serif" font-size="10" fill="#8b949e">assess, then route → ready · capacity-building · pool</text>
+<rect x="182" y="208" width="316" height="22" rx="4" fill="#1d4ed8"/><text x="192" y="223" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#dbe6ff">Project bankability  ·  Preparator → Portfolio  ·  Path A</text>
+<rect x="182" y="234" width="316" height="22" rx="4" fill="#0d9488"/><text x="192" y="249" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#d7fbf4">① Entity creditworthiness  ·  CAPAG · SINIM · map  ·  Path B</text>
+
+<rect x="170" y="300" width="340" height="58" rx="8" fill="#0f766e"/>
+<text x="184" y="324" font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="#ffffff">② Portfolio &amp; pooling → submit</text>
+<text x="184" y="343" font-family="Inter,sans-serif" font-size="10.5" fill="#a7f3d0">pool to reach the instrument's ticket size</text>
+
+<rect x="170" y="396" width="340" height="58" rx="8" fill="#21262d" stroke="#30363d"/>
+<text x="184" y="420" font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="#e6edf3">IDB Control Tower</text>
+<text x="184" y="439" font-family="Inter,sans-serif" font-size="10.5" fill="#8b949e">Intake &amp; Triage · Readiness Scoring · M&amp;E &amp; Board</text>
+
+<!-- right shared services -->
+<rect x="524" y="160" width="132" height="46" rx="6" fill="#21262d" stroke="#30363d"/>
+<text x="590" y="180" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#e6edf3">AI agents</text>
+<text x="590" y="196" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="#8b949e">shared context (MCP)</text>
+<rect x="524" y="214" width="132" height="46" rx="6" fill="#21262d" stroke="#30363d"/>
+<text x="590" y="234" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#e6edf3">Matching + Pooling</text>
+<text x="590" y="250" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="#8b949e">core service</text>
+<rect x="524" y="300" width="132" height="46" rx="6" fill="#21262d" stroke="#30363d"/>
+<text x="590" y="320" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#e6edf3">Fiscal adapters</text>
+<text x="590" y="336" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="#8b949e">CAPAG · SINIM · map</text>
+
+<!-- center arrows -->
+<path d="M340 128 L340 160" stroke="#8b949e" stroke-width="1.5" marker-end="url(#a2)"/>
+<path d="M340 264 L340 300" stroke="#8b949e" stroke-width="1.5" marker-end="url(#a2)"/>
+<path d="M340 358 L340 396" stroke="#8b949e" stroke-width="1.5" marker-end="url(#a2)"/>
+<text x="348" y="381" font-family="Inter,sans-serif" font-size="10" fill="#c9d1d9">dossier</text>
+
+<!-- dashed to shared services -->
+<path d="M510 188 L524 183" stroke="#6e7681" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#a2)"/>
+<path d="M510 220 L524 237" stroke="#6e7681" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#a2)"/>
+<path d="M510 326 L524 323" stroke="#6e7681" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#a2)"/>
+
+<!-- legend -->
+<rect x="170" y="485" width="12" height="12" rx="2" fill="#4338ca"/><text x="188" y="495" font-family="Inter,sans-serif" font-size="10" fill="#8b949e">CityCatalyst</text>
+<rect x="288" y="485" width="12" height="12" rx="2" fill="#1d4ed8"/><text x="306" y="495" font-family="Inter,sans-serif" font-size="10" fill="#8b949e">Preparator</text>
+<rect x="392" y="485" width="12" height="12" rx="2" fill="#0f766e"/><text x="410" y="495" font-family="Inter,sans-serif" font-size="10" fill="#8b949e">Navigator</text>
+<rect x="492" y="485" width="12" height="12" rx="2" fill="#21262d" stroke="#30363d"/><text x="510" y="495" font-family="Inter,sans-serif" font-size="10" fill="#8b949e">funders / services</text>
+</svg>

@@ -1,0 +1,7 @@
+unit_id,comuna,region,locode,anchor_score,cofinance_score,is_anchor,unit_anchor,unit_anchor_score,unit_size,unit_viable_anchor
+11,Valdivia,Región de Los Ríos,CL ZAL,82.2,65.7,True,Valdivia,82.2,6,True
+11,Paillaco,Región de Los Ríos,CL PAO,63.6,43.5,False,Valdivia,82.2,6,True
+11,Los Lagos,Región de Los Ríos,CL LLG,45.2,42.8,False,Valdivia,82.2,6,True
+11,Corral,Región de Los Ríos,CL CRR,27.9,10.7,False,Valdivia,82.2,6,True
+11,Máfil,Región de Los Ríos,CL MAF,22.5,25.5,False,Valdivia,82.2,6,True
+11,Mariquina,Región de Los Ríos,,,,False,Valdivia,82.2,6,True

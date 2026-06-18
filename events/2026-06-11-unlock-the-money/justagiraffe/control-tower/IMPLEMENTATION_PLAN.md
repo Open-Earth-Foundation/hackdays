@@ -1,5 +1,10 @@
 # Implementation Plan: Split City Readiness From Project Review
 
+> **Current state (15 Jun 2026):** implemented as four tabs — **Intake** (Navigator dossier
+> approve/decline), **Readiness Scoring**, **Project Review**, **M&E & Board**. The original
+> `Intake & Triage` kanban was renamed/split per this plan; Navigator handoff lands in the
+> new **Intake** tab first. Run both apps per [`README.md`](README.md).
+
 ## Summary
 
 The current prototype has three tabs: `Intake & Triage`, `Readiness Scoring`, and `M&E & Board`. The transcript points to a real information architecture issue already flagged in `SPEC.md`: the current `Intake & Triage` pipeline and `Readiness Scoring` table overlap too much.
@@ -15,7 +20,7 @@ This turns readiness into the first filter and moves project-level proposal deta
 
 ### Current Issue
 
-Today, `control-tower/index.html` defines proposal stages as:
+Today, `index.html` defines proposal stages as:
 
 ```js
 const STAGES = ["Intake","Screening","Readiness Review","Structuring","Board Pipeline"];
@@ -164,7 +169,7 @@ Future production model should support multiple proposals per SNG, because one c
 
 ### 1. Make Readiness Scoring the First Tab
 
-Change navigation order in `control-tower/index.html`:
+Change navigation order in `index.html`:
 
 Current:
 
@@ -406,7 +411,7 @@ This makes the Board story clearer: the pilot is not only tracking projects, it 
 ### Phase 4: Demo Story and Docs
 
 - Update `SPEC.md` to reflect the two-stage model.
-- Update `ROADMAP.md` demo script:
+- Update `../archive/ROADMAP.md` demo script:
   1. Readiness Scoring: "Which cities are ready?"
   2. Project Review: "For ready cities, which projects advance?"
   3. M&E & Board: "Is the pilot proving itself?"

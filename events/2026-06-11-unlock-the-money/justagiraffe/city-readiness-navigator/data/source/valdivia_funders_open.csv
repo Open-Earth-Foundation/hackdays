@@ -1,0 +1,79 @@
+program,funder,role,cf_score,eligible_actor
+FPR 2026 - Fondo para el Reciclaje,Ministerio del Medio Ambiente (MMA),applicant,1.0,municipality
+FPR 2025 – Fondo para el Reciclaje 2025,Ministerio del Medio Ambiente (MMA),applicant,1.0,municipality
+FPR 2024 – Fondo para el Reciclaje 2024,Ministerio del Medio Ambiente (MMA),applicant,1.0,municipality
+FPR 2023 – Fondo para el Reciclaje,Ministerio del Medio Ambiente (MMA),applicant,1.0,municipality
+FPR 2022 Exequiel Estay – Recicladores de Base,Ministerio del Medio Ambiente (MMA),applicant,1.0,municipality
+FPR 2021 Exequiel Estay – Recicladores de Base,Ministerio del Medio Ambiente (MMA),applicant,1.0,municipality
+FPR 2020 – Promoviendo la economía circular en municipios a través del reciclaje,Ministerio del Medio Ambiente (MMA),applicant,1.0,municipality
+FPR 2020 Exequiel Estay – Recicladores de Base,Ministerio del Medio Ambiente (MMA),applicant,1.0,municipality
+FPR 2020 – Fondo para el Reciclaje Chiloé 2020,Ministerio del Medio Ambiente (MMA),applicant,1.0,municipality
+Asistencia Técnica para Municipios en Gestión Energética Local,"Ministerio de Energía / Agencia de Sostenibilidad Energética (AgenciaSE, fundación de derecho privado)",applicant,1.0,municipality
+Parque Solar Comunitario,"Ministerio de Energía / Agencia de Sostenibilidad Energética (AgenciaSE, fundación de derecho privado)",applicant,1.0,municipality + community (joint ownership)
+Mejor Escuela (energías renovables / acond. térmico escuelas),"Ministerio de Energía / Agencia de Sostenibilidad Energética (AgenciaSE, fundación de derecho privado)",applicant,1.0,school sostenedor (often municipal)
+Programa de Mejoramiento Urbano y Equipamiento Comunal (PMU),SUBDERE (Subsecretaría de Desarrollo Regional y Administrativo),applicant,1.0,municipality
+Programa de Mejoramiento de Barrios (PMB),SUBDERE,applicant,1.0,municipality + municipal associations
+Programa de Prevención y Mitigación de Riesgos (PMR),SUBDERE,applicant,1.0,municipality
+Fondo de Recuperación de Ciudades (FRC),SUBDERE,applicant,1.0,municipality / regional
+Programa Concursable de Espacios Públicos,MINVU (Ministerio de Vivienda y Urbanismo),applicant,1.0,municipality (alcalde presents; community/SEREMI may originate)
+Parques Urbanos (construcción y conservación),MINVU,applicant,1.0,municipality (SEREMI prioritises construction)
+Pavimentación Participativa,MINVU,applicant,1.0,municipality + comités de pavimentación
+Programa de Recuperación de Barrios (Quiero Mi Barrio),MINVU,applicant,1.0,municipality (with community)
+FNDR — Inversión Regional (Glosa 03 / SNI),Gobiernos Regionales (16) + SUBDERE / Min. Interior,applicant,1.0,municipality / regional government / public services (projects via SNI-BIP)
+FRIL — Fondo Regional de Iniciativa Local,Gobiernos Regionales,applicant,1.0,municipality
+FPA 2025 – TSEJ comuna de Tocopilla,Ministerio del Medio Ambiente (MMA),applicant,0.8,unspecified
+FPA 2025 – TSEJ comuna de Mejillones,Ministerio del Medio Ambiente (MMA),applicant,0.8,unspecified
+FPA 2025 – Conservando y protegiendo la fauna silvestre (Centros de Rehabilitación o Rescate),Ministerio del Medio Ambiente (MMA),applicant,0.8,unspecified
+FPA 2024 – Conservación del Pudú en la provincia de Chiloé,Ministerio del Medio Ambiente (MMA),applicant,0.8,unspecified
+"FPA 2024 – Iniciativas Ciudadanas TSEJ, comuna de Huasco",Ministerio del Medio Ambiente (MMA),applicant,0.8,unspecified
+"FPA 2024 – Iniciativas Ciudadanas TSEJ, Concón, Quintero y Puchuncaví",Ministerio del Medio Ambiente (MMA),applicant,0.8,unspecified
+"FPA 2024 – Iniciativas Ciudadanas TSEJ, comuna de Coronel",Ministerio del Medio Ambiente (MMA),applicant,0.8,unspecified
+FPA 2024 – Fortalecimiento de Centros de Rehabilitación o Rescate de Fauna Silvestre,Ministerio del Medio Ambiente (MMA),applicant,0.8,unspecified
+FPA 2024 – Educación Ambiental para la Prevención de Incendios Forestales y Protección de la Biodiversidad,Ministerio del Medio Ambiente (MMA),applicant,0.8,unspecified
+FPA 2024 – Fortalecimiento para recicladores de base,Ministerio del Medio Ambiente (MMA),applicant,0.8,unspecified
+FPA 2024 – Programa Modelo para la Formación de Líderes Ambientales Comunitarios,Ministerio del Medio Ambiente (MMA),applicant,0.8,unspecified
+FPA 2024 – Chiloé Reduce en tu Establecimiento Educacional,Ministerio del Medio Ambiente (MMA),applicant,0.8,unspecified
+FPA 2023 – Concurso EcoDesafíos,Ministerio del Medio Ambiente (MMA),applicant,0.8,unspecified
+FPA 2023 – Emprendimientos Circulares para Comunidades Chilotas,Ministerio del Medio Ambiente (MMA),applicant,0.8,unspecified
+FPA 2023 – Proyectos Sustentables en Establecimientos Educacionales,Ministerio del Medio Ambiente (MMA),applicant,0.8,unspecified
+FPA 2023 – Proyectos Sustentables Ciudadanos,Ministerio del Medio Ambiente (MMA),applicant,0.8,unspecified
+FPA 2022 – Rapa Nui Sustentable,Ministerio del Medio Ambiente (MMA),applicant,0.8,unspecified
+FPA 2022 – Conservación de Humedales Urbanos,Ministerio del Medio Ambiente (MMA),applicant,0.8,unspecified
+FPA 2022 – Iniciativas Sustentables en Establecimientos Educacionales,Ministerio del Medio Ambiente (MMA),applicant,0.8,unspecified
+FPA 2022 – Iniciativas Sustentables Ciudadanas,Ministerio del Medio Ambiente (MMA),applicant,0.8,unspecified
+FPA 2021 – Iniciativas Sustentables en Establecimientos Educacionales,Ministerio del Medio Ambiente (MMA),applicant,0.8,unspecified
+FPA 2021 – Conservación de Humedales Urbanos,Ministerio del Medio Ambiente (MMA),applicant,0.8,unspecified
+FPA 2021 – Iniciativas Sustentables Ciudadanas,Ministerio del Medio Ambiente (MMA),applicant,0.8,unspecified
+FPA 2021 – 2º Concurso FPA Rapa Nui Sustentable,Ministerio del Medio Ambiente (MMA),applicant,0.8,unspecified
+FPA 2020 – Iniciativas Sustentables en Establecimientos Educacionales,Ministerio del Medio Ambiente (MMA),applicant,0.8,unspecified
+FPA 2020 – Iniciativas Sustentables Ciudadanas,Ministerio del Medio Ambiente (MMA),applicant,0.8,unspecified
+FPA 2020 – Conservación Áreas Marinas Protegidas,Ministerio del Medio Ambiente (MMA),applicant,0.8,unspecified
+FPA 2020 – Educación Ambiental al Aire Libre en la Región Metropolitana,Ministerio del Medio Ambiente (MMA),applicant,0.8,unspecified
+FPA 2020 – Rapa Nui Sustentable,Ministerio del Medio Ambiente (MMA),applicant,0.8,unspecified
+Comuna Energética,"Ministerio de Energía / Agencia de Sostenibilidad Energética (AgenciaSE, fundación de derecho privado)",applicant,0.8,municipality
+Casa Solar,"Ministerio de Energía / Agencia de Sostenibilidad Energética (AgenciaSE, fundación de derecho privado)",facilitator,0.56,household (municipally facilitated)
+FPA 2026 - Proyectos Sustentables Ciudadanos,Ministerio del Medio Ambiente (MMA),referrer,0.3,community/citizen org
+FPA 2026 - Proyectos Sustentables en Establecimientos Educacionales,Ministerio del Medio Ambiente (MMA),referrer,0.3,community/citizen org
+FPA 2026 - Proyectos Sustentables para Pueblos Indígenas,Ministerio del Medio Ambiente (MMA),referrer,0.3,indigenous community
+FPA Extraordinario Rapa Nui 2026,Ministerio del Medio Ambiente (MMA),referrer,0.3,indigenous community
+FPA 2025 - Alto del Carmen: Ecosistemas Altoandinos – Humedales y Criósfera,Ministerio del Medio Ambiente (MMA),referrer,0.3,research/university + ngo
+FPA 2025 - Alto del Carmen: Ecosistemas Altoandinos – Biodiversidad,Ministerio del Medio Ambiente (MMA),referrer,0.3,research/university + ngo
+FPA 2023 – Proyectos Sustentables para Pueblos Indígenas,Ministerio del Medio Ambiente (MMA),referrer,0.3,indigenous community
+FPA 2022 – Emprendimientos Verdes para Comunidades Indígenas,Ministerio del Medio Ambiente (MMA),referrer,0.3,indigenous community
+FPA 2022 – Áreas Verdes Comunitarias,Ministerio del Medio Ambiente (MMA),referrer,0.3,community/citizen org
+FPA 2022 – Iniciativas Sustentables para Fundaciones y Corporaciones,Ministerio del Medio Ambiente (MMA),referrer,0.3,community/citizen org
+FPA 2022 – Iniciativas Sustentables para Pueblos Indígenas,Ministerio del Medio Ambiente (MMA),referrer,0.3,indigenous community
+FPA 2021 – Iniciativas Sustentables Fundaciones y Corporaciones,Ministerio del Medio Ambiente (MMA),referrer,0.3,community/citizen org
+FPA 2021 – Áreas Verdes Comunitarias,Ministerio del Medio Ambiente (MMA),referrer,0.3,community/citizen org
+FPA 2021 – Iniciativas Sustentables para Pueblos Indígenas,Ministerio del Medio Ambiente (MMA),referrer,0.3,indigenous community
+FPA 2020 – Iniciativas en Áreas Verdes Comunitarias,Ministerio del Medio Ambiente (MMA),referrer,0.3,community/citizen org
+FPA 2020 – Iniciativas Sustentables Pueblos Indígenas,Ministerio del Medio Ambiente (MMA),referrer,0.3,indigenous community
+"Recambio de Calefactores (programa permanente, comunas con PDA)",Ministerio del Medio Ambiente (MMA),referrer,0.3,household
+Fondo de Acceso a la Energía (FAE),"Ministerio de Energía / Agencia de Sostenibilidad Energética (AgenciaSE, fundación de derecho privado)",referrer,0.3,community/citizen org (rol público comunitario >5 yrs; not municipalities directly)
+FNDR 8% — Subvención a actividades (línea Medio Ambiente y educación ambiental),Gobiernos Regionales,referrer,0.3,non-profit organisations (legal status >=2 yrs; NOT municipalities)
+FRPD — Fondo Regional para la Productividad y el Desarrollo,Gobiernos Regionales,referrer,0.3,legal persons / firms / institutions (productive investment; varies by region)
+Crédito Verde,Corporación de Fomento de la Producción (CORFO),referrer,0.3,private firm (any size; no annual-sales cap)
+Programa Expande,Corporación de Fomento de la Producción (CORFO),referrer,0.3,private firm / growth-stage venture
+Garantías / Coberturas CORFO (e.g. FOGAIN),Corporación de Fomento de la Producción (CORFO),referrer,0.3,private firm / SME
+Financiamiento Hidrógeno Verde (facilidades / Fondo H2V),Corporación de Fomento de la Producción (CORFO),referrer,0.3,green-hydrogen project developers / firms
+Innova Chile — I+D e innovación (clean-tech),Corporación de Fomento de la Producción (CORFO),referrer,0.3,private firm / entrepreneur

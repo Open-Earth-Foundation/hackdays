@@ -14,7 +14,7 @@ One control room for the IDB Subnational Finance Pilot: **intake** subnational p
 
 A working single-page dashboard over 63 mock candidate SNGs across 8 LAC countries with three connected views — **Intake & Triage** (pipeline kanban), **Readiness Scoring** (transparent weighted model + per-candidate file), and **M&E & Board** (indicators vs. milestone timeline). Ugly-but-real beats a slide.
 
-> A runnable scaffold already exists in `control-tower/` — open `index.html`. The plan below is about turning that skeleton into a confident 5-minute demo, not starting from zero.
+> A runnable scaffold already exists in `../control-tower/` — open `index.html`. The plan below is about turning that skeleton into a confident 5-minute demo, not starting from zero.
 
 ---
 

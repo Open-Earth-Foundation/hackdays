@@ -1,0 +1,4551 @@
+{
+  "generated": "2026-06-14",
+  "source": "CAPAG — Tesouro Nacional (ODbL), via the CAPAG Funder Scan hackday team (Joaquin van Peborgh, Carole Viaene). Screening signal, not a credit decision.",
+  "scope": {
+    "country": "Brazil",
+    "region": "Rio Grande do Sul (RS)",
+    "note": "state hit by the catastrophic 2024 floods"
+  },
+  "hero": {
+    "id": "SNG-BR-4304606",
+    "name": "Canoas",
+    "locode": "IBGE 4304606",
+    "cityId": "4304606",
+    "country": "Brazil",
+    "iso": "BR",
+    "type": "City",
+    "population": 347000,
+    "isAnchor": false,
+    "cofinanceScore": null,
+    "anchorScore": null,
+    "readiness": {
+      "creditworthiness": 38,
+      "fiscalHealth": 52,
+      "governance": 50,
+      "legalCapacity": 38
+    },
+    "provenance": {
+      "creditworthiness": "real:CAPAG rating C (Tesouro Nacional)",
+      "fiscalHealth": "real:CAPAG indicators (debt A · savings C · liquidity C)",
+      "governance": "real:CAPAG ICF Cicf + transparency (RGF/RREO)",
+      "legalCapacity": "real:CAPAG C — blocked from Union-guaranteed credit"
+    },
+    "signals": {
+      "capagRating": "C",
+      "ownSourceRevenuePct": null,
+      "debtServiceRatioPct": null,
+      "currentBalancePct": null,
+      "independentAudit": false,
+      "canBorrowWithoutSovereignGuarantee": false
+    },
+    "capag": {
+      "rating": "C",
+      "ind1": 0.1932645582,
+      "nota1": "A",
+      "ind2": 0.9855266178,
+      "nota2": "C",
+      "ind3": -0.0234503149,
+      "nota3": "C",
+      "icf": "Cicf"
+    },
+    "proposal": {
+      "title": "Flood resilience & drainage program (post-2024)",
+      "sector": "water / resilience",
+      "askUSDm": 45,
+      "stage": "Readiness Review",
+      "cofinance": false
+    }
+  },
+  "stateMap": [
+    {
+      "name": "Aceguá",
+      "codIbge": "4300034",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -31.8665,
+      "lon": -54.1615,
+      "isHero": false
+    },
+    {
+      "name": "Água Santa",
+      "codIbge": "4300059",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -28.1672,
+      "lon": -52.031,
+      "isHero": false
+    },
+    {
+      "name": "Agudo",
+      "codIbge": "4300109",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -29.6447,
+      "lon": -53.2515,
+      "isHero": false
+    },
+    {
+      "name": "Ajuricaba",
+      "codIbge": "4300208",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -28.2342,
+      "lon": -53.7757,
+      "isHero": false
+    },
+    {
+      "name": "Alecrim",
+      "codIbge": "4300307",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -27.6579,
+      "lon": -54.7649,
+      "isHero": false
+    },
+    {
+      "name": "Alegrete",
+      "codIbge": "4300406",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.7902,
+      "lon": -55.7949,
+      "isHero": false
+    },
+    {
+      "name": "Alegria",
+      "codIbge": "4300455",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.8345,
+      "lon": -54.0557,
+      "isHero": false
+    },
+    {
+      "name": "Almirante Tamandaré do Sul",
+      "codIbge": "4300471",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -28.1149,
+      "lon": -52.9142,
+      "isHero": false
+    },
+    {
+      "name": "Alpestre",
+      "codIbge": "4300505",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.2502,
+      "lon": -53.0341,
+      "isHero": false
+    },
+    {
+      "name": "Alto Alegre",
+      "codIbge": "4300554",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.7769,
+      "lon": -52.9893,
+      "isHero": false
+    },
+    {
+      "name": "Alto Feliz",
+      "codIbge": "4300570",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.3919,
+      "lon": -51.3123,
+      "isHero": false
+    },
+    {
+      "name": "Alvorada",
+      "codIbge": "4300604",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.9914,
+      "lon": -51.0809,
+      "isHero": false
+    },
+    {
+      "name": "Amaral Ferrador",
+      "codIbge": "4300638",
+      "capag": "B+",
+      "tier": "bankable",
+      "lat": -30.8756,
+      "lon": -52.2509,
+      "isHero": false
+    },
+    {
+      "name": "Ametista do Sul",
+      "codIbge": "4300646",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -27.3607,
+      "lon": -53.183,
+      "isHero": false
+    },
+    {
+      "name": "André da Rocha",
+      "codIbge": "4300661",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.6283,
+      "lon": -51.5797,
+      "isHero": false
+    },
+    {
+      "name": "Anta Gorda",
+      "codIbge": "4300703",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.9698,
+      "lon": -52.0102,
+      "isHero": false
+    },
+    {
+      "name": "Antônio Prado",
+      "codIbge": "4300802",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -28.8565,
+      "lon": -51.2883,
+      "isHero": false
+    },
+    {
+      "name": "Arambaré",
+      "codIbge": "4300851",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -30.9092,
+      "lon": -51.5046,
+      "isHero": false
+    },
+    {
+      "name": "Araricá",
+      "codIbge": "4300877",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -29.6168,
+      "lon": -50.9291,
+      "isHero": false
+    },
+    {
+      "name": "Aratiba",
+      "codIbge": "4300901",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -27.3978,
+      "lon": -52.2975,
+      "isHero": false
+    },
+    {
+      "name": "Arroio do Meio",
+      "codIbge": "4301008",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -29.4014,
+      "lon": -51.9557,
+      "isHero": false
+    },
+    {
+      "name": "Arroio do Sal",
+      "codIbge": "4301057",
+      "capag": "B+",
+      "tier": "bankable",
+      "lat": -29.5439,
+      "lon": -49.8895,
+      "isHero": false
+    },
+    {
+      "name": "Arroio do Padre",
+      "codIbge": "4301073",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -31.4389,
+      "lon": -52.4246,
+      "isHero": false
+    },
+    {
+      "name": "Arroio dos Ratos",
+      "codIbge": "4301107",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -30.0875,
+      "lon": -51.7275,
+      "isHero": false
+    },
+    {
+      "name": "Arroio do Tigre",
+      "codIbge": "4301206",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -29.3348,
+      "lon": -53.0966,
+      "isHero": false
+    },
+    {
+      "name": "Arroio Grande",
+      "codIbge": "4301305",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -32.2327,
+      "lon": -53.0862,
+      "isHero": false
+    },
+    {
+      "name": "Arvorezinha",
+      "codIbge": "4301404",
+      "capag": "B+",
+      "tier": "bankable",
+      "lat": -28.8737,
+      "lon": -52.1781,
+      "isHero": false
+    },
+    {
+      "name": "Augusto Pestana",
+      "codIbge": "4301503",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -28.5172,
+      "lon": -53.9883,
+      "isHero": false
+    },
+    {
+      "name": "Áurea",
+      "codIbge": "4301552",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -27.6936,
+      "lon": -52.0505,
+      "isHero": false
+    },
+    {
+      "name": "Bagé",
+      "codIbge": "4301602",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -31.3297,
+      "lon": -54.0999,
+      "isHero": false
+    },
+    {
+      "name": "Balneário Pinhal",
+      "codIbge": "4301636",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -30.2419,
+      "lon": -50.2337,
+      "isHero": false
+    },
+    {
+      "name": "Barão",
+      "codIbge": "4301651",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.3725,
+      "lon": -51.4949,
+      "isHero": false
+    },
+    {
+      "name": "Barão de Cotegipe",
+      "codIbge": "4301701",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.6208,
+      "lon": -52.3798,
+      "isHero": false
+    },
+    {
+      "name": "Barão do Triunfo",
+      "codIbge": "4301750",
+      "capag": "n.d.",
+      "tier": "unrated",
+      "lat": -30.3891,
+      "lon": -51.7384,
+      "isHero": false
+    },
+    {
+      "name": "Barracão",
+      "codIbge": "4301800",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -27.6739,
+      "lon": -51.4585,
+      "isHero": false
+    },
+    {
+      "name": "Barra do Guarita",
+      "codIbge": "4301859",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.1927,
+      "lon": -53.7109,
+      "isHero": false
+    },
+    {
+      "name": "Barra do Quaraí",
+      "codIbge": "4301875",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -30.2029,
+      "lon": -57.5497,
+      "isHero": false
+    },
+    {
+      "name": "Barra do Ribeiro",
+      "codIbge": "4301909",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -30.2939,
+      "lon": -51.3014,
+      "isHero": false
+    },
+    {
+      "name": "Barra do Rio Azul",
+      "codIbge": "4301925",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.4069,
+      "lon": -52.4084,
+      "isHero": false
+    },
+    {
+      "name": "Barra Funda",
+      "codIbge": "4301958",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.9205,
+      "lon": -53.0391,
+      "isHero": false
+    },
+    {
+      "name": "Barros Cassal",
+      "codIbge": "4302006",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -29.0947,
+      "lon": -52.5836,
+      "isHero": false
+    },
+    {
+      "name": "Benjamin Constant do Sul",
+      "codIbge": "4302055",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.5086,
+      "lon": -52.5995,
+      "isHero": false
+    },
+    {
+      "name": "Bento Gonçalves",
+      "codIbge": "4302105",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -29.1662,
+      "lon": -51.5165,
+      "isHero": false
+    },
+    {
+      "name": "Boa Vista das Missões",
+      "codIbge": "4302154",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.6671,
+      "lon": -53.3102,
+      "isHero": false
+    },
+    {
+      "name": "Boa Vista do Buricá",
+      "codIbge": "4302204",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.6693,
+      "lon": -54.1082,
+      "isHero": false
+    },
+    {
+      "name": "Boa Vista do Cadeado",
+      "codIbge": "4302220",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.5791,
+      "lon": -53.8108,
+      "isHero": false
+    },
+    {
+      "name": "Boa Vista do Incra",
+      "codIbge": "4302238",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.8185,
+      "lon": -53.391,
+      "isHero": false
+    },
+    {
+      "name": "Boa Vista do Sul",
+      "codIbge": "4302253",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -29.3544,
+      "lon": -51.6687,
+      "isHero": false
+    },
+    {
+      "name": "Bom Jesus",
+      "codIbge": "4302303",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -28.6697,
+      "lon": -50.4295,
+      "isHero": false
+    },
+    {
+      "name": "Bom Princípio",
+      "codIbge": "4302352",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -29.4856,
+      "lon": -51.3548,
+      "isHero": false
+    },
+    {
+      "name": "Bom Progresso",
+      "codIbge": "4302378",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -27.5399,
+      "lon": -53.8716,
+      "isHero": false
+    },
+    {
+      "name": "Bom Retiro do Sul",
+      "codIbge": "4302402",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.6071,
+      "lon": -51.9456,
+      "isHero": false
+    },
+    {
+      "name": "Boqueirão do Leão",
+      "codIbge": "4302451",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -29.3046,
+      "lon": -52.4284,
+      "isHero": false
+    },
+    {
+      "name": "Bossoroca",
+      "codIbge": "4302501",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.7291,
+      "lon": -54.9035,
+      "isHero": false
+    },
+    {
+      "name": "Bozano",
+      "codIbge": "4302584",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -28.3659,
+      "lon": -53.772,
+      "isHero": false
+    },
+    {
+      "name": "Braga",
+      "codIbge": "4302600",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.6173,
+      "lon": -53.7405,
+      "isHero": false
+    },
+    {
+      "name": "Brochier",
+      "codIbge": "4302659",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.5501,
+      "lon": -51.5945,
+      "isHero": false
+    },
+    {
+      "name": "Butiá",
+      "codIbge": "4302709",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -30.1179,
+      "lon": -51.9601,
+      "isHero": false
+    },
+    {
+      "name": "Caçapava do Sul",
+      "codIbge": "4302808",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -30.5144,
+      "lon": -53.4827,
+      "isHero": false
+    },
+    {
+      "name": "Cacequi",
+      "codIbge": "4302907",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -29.8883,
+      "lon": -54.822,
+      "isHero": false
+    },
+    {
+      "name": "Cachoeira do Sul",
+      "codIbge": "4303004",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -30.033,
+      "lon": -52.8928,
+      "isHero": false
+    },
+    {
+      "name": "Cachoeirinha",
+      "codIbge": "4303103",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.9472,
+      "lon": -51.1016,
+      "isHero": false
+    },
+    {
+      "name": "Cacique Doble",
+      "codIbge": "4303202",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.767,
+      "lon": -51.6597,
+      "isHero": false
+    },
+    {
+      "name": "Caibaté",
+      "codIbge": "4303301",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -28.2905,
+      "lon": -54.6454,
+      "isHero": false
+    },
+    {
+      "name": "Caiçara",
+      "codIbge": "4303400",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -27.2791,
+      "lon": -53.4257,
+      "isHero": false
+    },
+    {
+      "name": "Camaquã",
+      "codIbge": "4303509",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -30.8489,
+      "lon": -51.8043,
+      "isHero": false
+    },
+    {
+      "name": "Camargo",
+      "codIbge": "4303558",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.588,
+      "lon": -52.2003,
+      "isHero": false
+    },
+    {
+      "name": "Cambará do Sul",
+      "codIbge": "4303608",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -29.0474,
+      "lon": -50.1465,
+      "isHero": false
+    },
+    {
+      "name": "Campestre da Serra",
+      "codIbge": "4303673",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.7926,
+      "lon": -51.0941,
+      "isHero": false
+    },
+    {
+      "name": "Campina das Missões",
+      "codIbge": "4303707",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -27.9888,
+      "lon": -54.8416,
+      "isHero": false
+    },
+    {
+      "name": "Campinas do Sul",
+      "codIbge": "4303806",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -27.7174,
+      "lon": -52.6248,
+      "isHero": false
+    },
+    {
+      "name": "Campo Bom",
+      "codIbge": "4303905",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -29.6747,
+      "lon": -51.0606,
+      "isHero": false
+    },
+    {
+      "name": "Campo Novo",
+      "codIbge": "4304002",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -27.6792,
+      "lon": -53.8052,
+      "isHero": false
+    },
+    {
+      "name": "Campos Borges",
+      "codIbge": "4304101",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.8871,
+      "lon": -53.0008,
+      "isHero": false
+    },
+    {
+      "name": "Candelária",
+      "codIbge": "4304200",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -29.6684,
+      "lon": -52.7895,
+      "isHero": false
+    },
+    {
+      "name": "Cândido Godói",
+      "codIbge": "4304309",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.9515,
+      "lon": -54.7517,
+      "isHero": false
+    },
+    {
+      "name": "Candiota",
+      "codIbge": "4304358",
+      "capag": "n.d.",
+      "tier": "unrated",
+      "lat": -31.5516,
+      "lon": -53.6773,
+      "isHero": false
+    },
+    {
+      "name": "Canela",
+      "codIbge": "4304408",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -29.356,
+      "lon": -50.8119,
+      "isHero": false
+    },
+    {
+      "name": "Canguçu",
+      "codIbge": "4304507",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -31.396,
+      "lon": -52.6783,
+      "isHero": false
+    },
+    {
+      "name": "Canoas",
+      "codIbge": "4304606",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -29.9128,
+      "lon": -51.1857,
+      "isHero": true
+    },
+    {
+      "name": "Canudos do Vale",
+      "codIbge": "4304614",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.3271,
+      "lon": -52.2374,
+      "isHero": false
+    },
+    {
+      "name": "Capão Bonito do Sul",
+      "codIbge": "4304622",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.1254,
+      "lon": -51.3961,
+      "isHero": false
+    },
+    {
+      "name": "Capão da Canoa",
+      "codIbge": "4304630",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.7642,
+      "lon": -50.0282,
+      "isHero": false
+    },
+    {
+      "name": "Capão do Cipó",
+      "codIbge": "4304655",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -28.9312,
+      "lon": -54.5558,
+      "isHero": false
+    },
+    {
+      "name": "Capão do Leão",
+      "codIbge": "4304663",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -31.7565,
+      "lon": -52.4889,
+      "isHero": false
+    },
+    {
+      "name": "Capivari do Sul",
+      "codIbge": "4304671",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -30.1383,
+      "lon": -50.5152,
+      "isHero": false
+    },
+    {
+      "name": "Capela de Santana",
+      "codIbge": "4304689",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -29.6961,
+      "lon": -51.328,
+      "isHero": false
+    },
+    {
+      "name": "Capitão",
+      "codIbge": "4304697",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -29.2674,
+      "lon": -51.9853,
+      "isHero": false
+    },
+    {
+      "name": "Carazinho",
+      "codIbge": "4304705",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.2958,
+      "lon": -52.7933,
+      "isHero": false
+    },
+    {
+      "name": "Caraá",
+      "codIbge": "4304713",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -29.7869,
+      "lon": -50.4316,
+      "isHero": false
+    },
+    {
+      "name": "Carlos Barbosa",
+      "codIbge": "4304804",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.2969,
+      "lon": -51.5028,
+      "isHero": false
+    },
+    {
+      "name": "Carlos Gomes",
+      "codIbge": "4304853",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.7167,
+      "lon": -51.9121,
+      "isHero": false
+    },
+    {
+      "name": "Casca",
+      "codIbge": "4304903",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -28.5605,
+      "lon": -51.9815,
+      "isHero": false
+    },
+    {
+      "name": "Caseiros",
+      "codIbge": "4304952",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.2582,
+      "lon": -51.6861,
+      "isHero": false
+    },
+    {
+      "name": "Catuípe",
+      "codIbge": "4305009",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -28.2554,
+      "lon": -54.0132,
+      "isHero": false
+    },
+    {
+      "name": "Caxias do Sul",
+      "codIbge": "4305108",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -29.1629,
+      "lon": -51.1792,
+      "isHero": false
+    },
+    {
+      "name": "Centenário",
+      "codIbge": "4305116",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.7615,
+      "lon": -51.9984,
+      "isHero": false
+    },
+    {
+      "name": "Cerrito",
+      "codIbge": "4305124",
+      "capag": "B+",
+      "tier": "bankable",
+      "lat": -31.8419,
+      "lon": -52.8004,
+      "isHero": false
+    },
+    {
+      "name": "Cerro Branco",
+      "codIbge": "4305132",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -29.657,
+      "lon": -52.9406,
+      "isHero": false
+    },
+    {
+      "name": "Cerro Grande",
+      "codIbge": "4305157",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -27.6106,
+      "lon": -53.1672,
+      "isHero": false
+    },
+    {
+      "name": "Cerro Grande do Sul",
+      "codIbge": "4305173",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -30.5905,
+      "lon": -51.7418,
+      "isHero": false
+    },
+    {
+      "name": "Cerro Largo",
+      "codIbge": "4305207",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -28.1463,
+      "lon": -54.7428,
+      "isHero": false
+    },
+    {
+      "name": "Chapada",
+      "codIbge": "4305306",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.0559,
+      "lon": -53.0665,
+      "isHero": false
+    },
+    {
+      "name": "Charqueadas",
+      "codIbge": "4305355",
+      "capag": "n.d.",
+      "tier": "unrated",
+      "lat": -29.9625,
+      "lon": -51.6289,
+      "isHero": false
+    },
+    {
+      "name": "Charrua",
+      "codIbge": "4305371",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -27.9493,
+      "lon": -52.015,
+      "isHero": false
+    },
+    {
+      "name": "Chiapetta",
+      "codIbge": "4305405",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -27.923,
+      "lon": -53.9419,
+      "isHero": false
+    },
+    {
+      "name": "Chuí",
+      "codIbge": "4305439",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -33.6866,
+      "lon": -53.4594,
+      "isHero": false
+    },
+    {
+      "name": "Chuvisca",
+      "codIbge": "4305447",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -30.7504,
+      "lon": -51.9737,
+      "isHero": false
+    },
+    {
+      "name": "Cidreira",
+      "codIbge": "4305454",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -30.1604,
+      "lon": -50.2337,
+      "isHero": false
+    },
+    {
+      "name": "Ciríaco",
+      "codIbge": "4305504",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -28.3419,
+      "lon": -51.8741,
+      "isHero": false
+    },
+    {
+      "name": "Colinas",
+      "codIbge": "4305587",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.3948,
+      "lon": -51.8556,
+      "isHero": false
+    },
+    {
+      "name": "Colorado",
+      "codIbge": "4305603",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -28.5258,
+      "lon": -52.9928,
+      "isHero": false
+    },
+    {
+      "name": "Condor",
+      "codIbge": "4305702",
+      "capag": "B+",
+      "tier": "bankable",
+      "lat": -28.2075,
+      "lon": -53.4905,
+      "isHero": false
+    },
+    {
+      "name": "Constantina",
+      "codIbge": "4305801",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.732,
+      "lon": -52.9938,
+      "isHero": false
+    },
+    {
+      "name": "Coqueiro Baixo",
+      "codIbge": "4305835",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.1802,
+      "lon": -52.0942,
+      "isHero": false
+    },
+    {
+      "name": "Coqueiros do Sul",
+      "codIbge": "4305850",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.1194,
+      "lon": -52.7842,
+      "isHero": false
+    },
+    {
+      "name": "Coronel Barros",
+      "codIbge": "4305871",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -28.3921,
+      "lon": -54.0686,
+      "isHero": false
+    },
+    {
+      "name": "Coronel Bicaco",
+      "codIbge": "4305900",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -27.7197,
+      "lon": -53.7022,
+      "isHero": false
+    },
+    {
+      "name": "Coronel Pilar",
+      "codIbge": "4305934",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.2695,
+      "lon": -51.6847,
+      "isHero": false
+    },
+    {
+      "name": "Cotiporã",
+      "codIbge": "4305959",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.9891,
+      "lon": -51.6971,
+      "isHero": false
+    },
+    {
+      "name": "Coxilha",
+      "codIbge": "4305975",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.128,
+      "lon": -52.3023,
+      "isHero": false
+    },
+    {
+      "name": "Crissiumal",
+      "codIbge": "4306007",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -27.4999,
+      "lon": -54.0994,
+      "isHero": false
+    },
+    {
+      "name": "Cristal",
+      "codIbge": "4306056",
+      "capag": "B+",
+      "tier": "bankable",
+      "lat": -31.0046,
+      "lon": -52.0436,
+      "isHero": false
+    },
+    {
+      "name": "Cristal do Sul",
+      "codIbge": "4306072",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.452,
+      "lon": -53.2422,
+      "isHero": false
+    },
+    {
+      "name": "Cruz Alta",
+      "codIbge": "4306106",
+      "capag": "B+",
+      "tier": "bankable",
+      "lat": -28.645,
+      "lon": -53.6048,
+      "isHero": false
+    },
+    {
+      "name": "Cruzaltense",
+      "codIbge": "4306130",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.6672,
+      "lon": -52.6522,
+      "isHero": false
+    },
+    {
+      "name": "Cruzeiro do Sul",
+      "codIbge": "4306205",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -29.5148,
+      "lon": -51.9928,
+      "isHero": false
+    },
+    {
+      "name": "David Canabarro",
+      "codIbge": "4306304",
+      "capag": "B+",
+      "tier": "bankable",
+      "lat": -28.3849,
+      "lon": -51.8482,
+      "isHero": false
+    },
+    {
+      "name": "Derrubadas",
+      "codIbge": "4306320",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.2642,
+      "lon": -53.8645,
+      "isHero": false
+    },
+    {
+      "name": "Dezesseis de Novembro",
+      "codIbge": "4306353",
+      "capag": "n.e.",
+      "tier": "unrated",
+      "lat": -28.219,
+      "lon": -55.0617,
+      "isHero": false
+    },
+    {
+      "name": "Dilermando de Aguiar",
+      "codIbge": "4306379",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.7054,
+      "lon": -54.2122,
+      "isHero": false
+    },
+    {
+      "name": "Dois Irmãos",
+      "codIbge": "4306403",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -29.5836,
+      "lon": -51.0898,
+      "isHero": false
+    },
+    {
+      "name": "Dois Irmãos das Missões",
+      "codIbge": "4306429",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.6621,
+      "lon": -53.5304,
+      "isHero": false
+    },
+    {
+      "name": "Dois Lajeados",
+      "codIbge": "4306452",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.983,
+      "lon": -51.8396,
+      "isHero": false
+    },
+    {
+      "name": "Dom Feliciano",
+      "codIbge": "4306502",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -30.7004,
+      "lon": -52.1026,
+      "isHero": false
+    },
+    {
+      "name": "Dom Pedro de Alcântara",
+      "codIbge": "4306551",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -29.3639,
+      "lon": -49.853,
+      "isHero": false
+    },
+    {
+      "name": "Dom Pedrito",
+      "codIbge": "4306601",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -30.9756,
+      "lon": -54.6694,
+      "isHero": false
+    },
+    {
+      "name": "Dona Francisca",
+      "codIbge": "4306700",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -29.6195,
+      "lon": -53.3617,
+      "isHero": false
+    },
+    {
+      "name": "Doutor Maurício Cardoso",
+      "codIbge": "4306734",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.5103,
+      "lon": -54.3577,
+      "isHero": false
+    },
+    {
+      "name": "Doutor Ricardo",
+      "codIbge": "4306759",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -29.084,
+      "lon": -51.9972,
+      "isHero": false
+    },
+    {
+      "name": "Eldorado do Sul",
+      "codIbge": "4306767",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -30.0847,
+      "lon": -51.6187,
+      "isHero": false
+    },
+    {
+      "name": "Encantado",
+      "codIbge": "4306809",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -29.2351,
+      "lon": -51.8703,
+      "isHero": false
+    },
+    {
+      "name": "Encruzilhada do Sul",
+      "codIbge": "4306908",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -30.543,
+      "lon": -52.5204,
+      "isHero": false
+    },
+    {
+      "name": "Engenho Velho",
+      "codIbge": "4306924",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.706,
+      "lon": -52.9145,
+      "isHero": false
+    },
+    {
+      "name": "Entre-Ijuís",
+      "codIbge": "4306932",
+      "capag": "B+",
+      "tier": "bankable",
+      "lat": -28.3686,
+      "lon": -54.2686,
+      "isHero": false
+    },
+    {
+      "name": "Entre Rios do Sul",
+      "codIbge": "4306957",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -27.5298,
+      "lon": -52.7347,
+      "isHero": false
+    },
+    {
+      "name": "Erebango",
+      "codIbge": "4306973",
+      "capag": "n.e.",
+      "tier": "unrated",
+      "lat": -27.8544,
+      "lon": -52.3005,
+      "isHero": false
+    },
+    {
+      "name": "Erechim",
+      "codIbge": "4307005",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -27.6364,
+      "lon": -52.2697,
+      "isHero": false
+    },
+    {
+      "name": "Ernestina",
+      "codIbge": "4307054",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.4977,
+      "lon": -52.5836,
+      "isHero": false
+    },
+    {
+      "name": "Herval",
+      "codIbge": "4307104",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -32.024,
+      "lon": -53.3944,
+      "isHero": false
+    },
+    {
+      "name": "Erval Grande",
+      "codIbge": "4307203",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -27.3926,
+      "lon": -52.574,
+      "isHero": false
+    },
+    {
+      "name": "Erval Seco",
+      "codIbge": "4307302",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -27.5443,
+      "lon": -53.5005,
+      "isHero": false
+    },
+    {
+      "name": "Esmeralda",
+      "codIbge": "4307401",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -28.0518,
+      "lon": -51.1933,
+      "isHero": false
+    },
+    {
+      "name": "Esperança do Sul",
+      "codIbge": "4307450",
+      "capag": "n.d.",
+      "tier": "unrated",
+      "lat": -27.3603,
+      "lon": -53.9891,
+      "isHero": false
+    },
+    {
+      "name": "Espumoso",
+      "codIbge": "4307500",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -28.7286,
+      "lon": -52.8461,
+      "isHero": false
+    },
+    {
+      "name": "Estação",
+      "codIbge": "4307559",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -27.9135,
+      "lon": -52.2635,
+      "isHero": false
+    },
+    {
+      "name": "Estância Velha",
+      "codIbge": "4307609",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -29.6535,
+      "lon": -51.1843,
+      "isHero": false
+    },
+    {
+      "name": "Esteio",
+      "codIbge": "4307708",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -29.852,
+      "lon": -51.1841,
+      "isHero": false
+    },
+    {
+      "name": "Estrela",
+      "codIbge": "4307807",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.5002,
+      "lon": -51.9495,
+      "isHero": false
+    },
+    {
+      "name": "Estrela Velha",
+      "codIbge": "4307815",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.1713,
+      "lon": -53.1639,
+      "isHero": false
+    },
+    {
+      "name": "Eugênio de Castro",
+      "codIbge": "4307831",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -28.5315,
+      "lon": -54.1506,
+      "isHero": false
+    },
+    {
+      "name": "Fagundes Varela",
+      "codIbge": "4307864",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -28.8794,
+      "lon": -51.7014,
+      "isHero": false
+    },
+    {
+      "name": "Farroupilha",
+      "codIbge": "4307906",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.2227,
+      "lon": -51.3419,
+      "isHero": false
+    },
+    {
+      "name": "Faxinal do Soturno",
+      "codIbge": "4308003",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -29.5788,
+      "lon": -53.4484,
+      "isHero": false
+    },
+    {
+      "name": "Faxinalzinho",
+      "codIbge": "4308052",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -27.4238,
+      "lon": -52.6789,
+      "isHero": false
+    },
+    {
+      "name": "Fazenda Vilanova",
+      "codIbge": "4308078",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.5885,
+      "lon": -51.8217,
+      "isHero": false
+    },
+    {
+      "name": "Feliz",
+      "codIbge": "4308102",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -29.4527,
+      "lon": -51.3032,
+      "isHero": false
+    },
+    {
+      "name": "Flores da Cunha",
+      "codIbge": "4308201",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.0261,
+      "lon": -51.1875,
+      "isHero": false
+    },
+    {
+      "name": "Floriano Peixoto",
+      "codIbge": "4308250",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.8614,
+      "lon": -52.0838,
+      "isHero": false
+    },
+    {
+      "name": "Fontoura Xavier",
+      "codIbge": "4308300",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -28.9817,
+      "lon": -52.3445,
+      "isHero": false
+    },
+    {
+      "name": "Formigueiro",
+      "codIbge": "4308409",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -30.0035,
+      "lon": -53.4959,
+      "isHero": false
+    },
+    {
+      "name": "Forquetinha",
+      "codIbge": "4308433",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.3828,
+      "lon": -52.0981,
+      "isHero": false
+    },
+    {
+      "name": "Fortaleza dos Valos",
+      "codIbge": "4308458",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -28.7986,
+      "lon": -53.2249,
+      "isHero": false
+    },
+    {
+      "name": "Frederico Westphalen",
+      "codIbge": "4308508",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -27.3586,
+      "lon": -53.3958,
+      "isHero": false
+    },
+    {
+      "name": "Garibaldi",
+      "codIbge": "4308607",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.259,
+      "lon": -51.5352,
+      "isHero": false
+    },
+    {
+      "name": "Garruchos",
+      "codIbge": "4308656",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -28.1944,
+      "lon": -55.6383,
+      "isHero": false
+    },
+    {
+      "name": "Gaurama",
+      "codIbge": "4308706",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.5856,
+      "lon": -52.0915,
+      "isHero": false
+    },
+    {
+      "name": "General Câmara",
+      "codIbge": "4308805",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -29.9032,
+      "lon": -51.7612,
+      "isHero": false
+    },
+    {
+      "name": "Gentil",
+      "codIbge": "4308854",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -28.4316,
+      "lon": -52.0337,
+      "isHero": false
+    },
+    {
+      "name": "Getúlio Vargas",
+      "codIbge": "4308904",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.8911,
+      "lon": -52.2294,
+      "isHero": false
+    },
+    {
+      "name": "Giruá",
+      "codIbge": "4309001",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.0297,
+      "lon": -54.3517,
+      "isHero": false
+    },
+    {
+      "name": "Glorinha",
+      "codIbge": "4309050",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -29.8798,
+      "lon": -50.7734,
+      "isHero": false
+    },
+    {
+      "name": "Gramado",
+      "codIbge": "4309100",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -29.3734,
+      "lon": -50.8762,
+      "isHero": false
+    },
+    {
+      "name": "Gramado dos Loureiros",
+      "codIbge": "4309126",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -27.4429,
+      "lon": -52.9149,
+      "isHero": false
+    },
+    {
+      "name": "Gramado Xavier",
+      "codIbge": "4309159",
+      "capag": "B+",
+      "tier": "bankable",
+      "lat": -29.2706,
+      "lon": -52.5795,
+      "isHero": false
+    },
+    {
+      "name": "Gravataí",
+      "codIbge": "4309209",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -29.9413,
+      "lon": -50.9869,
+      "isHero": false
+    },
+    {
+      "name": "Guabiju",
+      "codIbge": "4309258",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.5421,
+      "lon": -51.6948,
+      "isHero": false
+    },
+    {
+      "name": "Guaíba",
+      "codIbge": "4309308",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -30.1086,
+      "lon": -51.3233,
+      "isHero": false
+    },
+    {
+      "name": "Guaporé",
+      "codIbge": "4309407",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.8399,
+      "lon": -51.8895,
+      "isHero": false
+    },
+    {
+      "name": "Guarani das Missões",
+      "codIbge": "4309506",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -28.1491,
+      "lon": -54.5629,
+      "isHero": false
+    },
+    {
+      "name": "Harmonia",
+      "codIbge": "4309555",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.5456,
+      "lon": -51.4185,
+      "isHero": false
+    },
+    {
+      "name": "Herveiras",
+      "codIbge": "4309571",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.4552,
+      "lon": -52.6553,
+      "isHero": false
+    },
+    {
+      "name": "Horizontina",
+      "codIbge": "4309605",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.6282,
+      "lon": -54.3053,
+      "isHero": false
+    },
+    {
+      "name": "Hulha Negra",
+      "codIbge": "4309654",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -31.4067,
+      "lon": -53.8667,
+      "isHero": false
+    },
+    {
+      "name": "Humaitá",
+      "codIbge": "4309704",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -27.5691,
+      "lon": -53.9695,
+      "isHero": false
+    },
+    {
+      "name": "Ibarama",
+      "codIbge": "4309753",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.4203,
+      "lon": -53.1295,
+      "isHero": false
+    },
+    {
+      "name": "Ibiaçá",
+      "codIbge": "4309803",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -28.0566,
+      "lon": -51.8599,
+      "isHero": false
+    },
+    {
+      "name": "Ibiraiaras",
+      "codIbge": "4309902",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -28.3741,
+      "lon": -51.6377,
+      "isHero": false
+    },
+    {
+      "name": "Ibirapuitã",
+      "codIbge": "4309951",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -28.6247,
+      "lon": -52.5158,
+      "isHero": false
+    },
+    {
+      "name": "Ibirubá",
+      "codIbge": "4310009",
+      "capag": "B+",
+      "tier": "bankable",
+      "lat": -28.6302,
+      "lon": -53.0961,
+      "isHero": false
+    },
+    {
+      "name": "Igrejinha",
+      "codIbge": "4310108",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -29.5693,
+      "lon": -50.7919,
+      "isHero": false
+    },
+    {
+      "name": "Ijuí",
+      "codIbge": "4310207",
+      "capag": "B+",
+      "tier": "bankable",
+      "lat": -28.388,
+      "lon": -53.92,
+      "isHero": false
+    },
+    {
+      "name": "Ilópolis",
+      "codIbge": "4310306",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.9282,
+      "lon": -52.1258,
+      "isHero": false
+    },
+    {
+      "name": "Imbé",
+      "codIbge": "4310330",
+      "capag": "B+",
+      "tier": "bankable",
+      "lat": -29.9753,
+      "lon": -50.1281,
+      "isHero": false
+    },
+    {
+      "name": "Imigrante",
+      "codIbge": "4310363",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -29.3508,
+      "lon": -51.7748,
+      "isHero": false
+    },
+    {
+      "name": "Independência",
+      "codIbge": "4310405",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -27.8354,
+      "lon": -54.1886,
+      "isHero": false
+    },
+    {
+      "name": "Inhacorá",
+      "codIbge": "4310413",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -27.8752,
+      "lon": -54.015,
+      "isHero": false
+    },
+    {
+      "name": "Ipê",
+      "codIbge": "4310439",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -28.8171,
+      "lon": -51.2859,
+      "isHero": false
+    },
+    {
+      "name": "Ipiranga do Sul",
+      "codIbge": "4310462",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.9404,
+      "lon": -52.4271,
+      "isHero": false
+    },
+    {
+      "name": "Iraí",
+      "codIbge": "4310504",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -27.1951,
+      "lon": -53.2543,
+      "isHero": false
+    },
+    {
+      "name": "Itaara",
+      "codIbge": "4310538",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -29.6013,
+      "lon": -53.7725,
+      "isHero": false
+    },
+    {
+      "name": "Itacurubi",
+      "codIbge": "4310553",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.7913,
+      "lon": -55.2447,
+      "isHero": false
+    },
+    {
+      "name": "Itapuca",
+      "codIbge": "4310579",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -28.7768,
+      "lon": -52.1693,
+      "isHero": false
+    },
+    {
+      "name": "Itaqui",
+      "codIbge": "4310603",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.1311,
+      "lon": -56.5515,
+      "isHero": false
+    },
+    {
+      "name": "Itati",
+      "codIbge": "4310652",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -29.4974,
+      "lon": -50.1016,
+      "isHero": false
+    },
+    {
+      "name": "Itatiba do Sul",
+      "codIbge": "4310702",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.3846,
+      "lon": -52.4538,
+      "isHero": false
+    },
+    {
+      "name": "Ivorá",
+      "codIbge": "4310751",
+      "capag": "n.d.",
+      "tier": "unrated",
+      "lat": -29.5232,
+      "lon": -53.5842,
+      "isHero": false
+    },
+    {
+      "name": "Ivoti",
+      "codIbge": "4310801",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.5995,
+      "lon": -51.1533,
+      "isHero": false
+    },
+    {
+      "name": "Jaboticaba",
+      "codIbge": "4310850",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.6347,
+      "lon": -53.2762,
+      "isHero": false
+    },
+    {
+      "name": "Jacuizinho",
+      "codIbge": "4310876",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -29.0401,
+      "lon": -53.0657,
+      "isHero": false
+    },
+    {
+      "name": "Jacutinga",
+      "codIbge": "4310900",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -27.7291,
+      "lon": -52.5372,
+      "isHero": false
+    },
+    {
+      "name": "Jaguarão",
+      "codIbge": "4311007",
+      "capag": "B+",
+      "tier": "bankable",
+      "lat": -32.5604,
+      "lon": -53.377,
+      "isHero": false
+    },
+    {
+      "name": "Jaguari",
+      "codIbge": "4311106",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -29.4936,
+      "lon": -54.703,
+      "isHero": false
+    },
+    {
+      "name": "Jaquirana",
+      "codIbge": "4311122",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.8811,
+      "lon": -50.3637,
+      "isHero": false
+    },
+    {
+      "name": "Jari",
+      "codIbge": "4311130",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.2922,
+      "lon": -54.2237,
+      "isHero": false
+    },
+    {
+      "name": "Jóia",
+      "codIbge": "4311155",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -28.6435,
+      "lon": -54.1141,
+      "isHero": false
+    },
+    {
+      "name": "Júlio de Castilhos",
+      "codIbge": "4311205",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -29.2299,
+      "lon": -53.6772,
+      "isHero": false
+    },
+    {
+      "name": "Lagoa Bonita do Sul",
+      "codIbge": "4311239",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.4939,
+      "lon": -53.017,
+      "isHero": false
+    },
+    {
+      "name": "Lagoão",
+      "codIbge": "4311254",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -29.2348,
+      "lon": -52.7997,
+      "isHero": false
+    },
+    {
+      "name": "Lagoa dos Três Cantos",
+      "codIbge": "4311270",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -28.5676,
+      "lon": -52.8618,
+      "isHero": false
+    },
+    {
+      "name": "Lagoa Vermelha",
+      "codIbge": "4311304",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.2093,
+      "lon": -51.5248,
+      "isHero": false
+    },
+    {
+      "name": "Lajeado",
+      "codIbge": "4311403",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -29.4591,
+      "lon": -51.9644,
+      "isHero": false
+    },
+    {
+      "name": "Lajeado do Bugre",
+      "codIbge": "4311429",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -27.6913,
+      "lon": -53.1818,
+      "isHero": false
+    },
+    {
+      "name": "Lavras do Sul",
+      "codIbge": "4311502",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -30.8071,
+      "lon": -53.8931,
+      "isHero": false
+    },
+    {
+      "name": "Liberato Salzano",
+      "codIbge": "4311601",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -27.601,
+      "lon": -53.0753,
+      "isHero": false
+    },
+    {
+      "name": "Lindolfo Collor",
+      "codIbge": "4311627",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.5859,
+      "lon": -51.2141,
+      "isHero": false
+    },
+    {
+      "name": "Linha Nova",
+      "codIbge": "4311643",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.4679,
+      "lon": -51.2003,
+      "isHero": false
+    },
+    {
+      "name": "Machadinho",
+      "codIbge": "4311700",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -27.5667,
+      "lon": -51.6668,
+      "isHero": false
+    },
+    {
+      "name": "Maçambará",
+      "codIbge": "4311718",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.1445,
+      "lon": -56.0674,
+      "isHero": false
+    },
+    {
+      "name": "Mampituba",
+      "codIbge": "4311734",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.2136,
+      "lon": -49.9311,
+      "isHero": false
+    },
+    {
+      "name": "Manoel Viana",
+      "codIbge": "4311759",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.5859,
+      "lon": -55.4841,
+      "isHero": false
+    },
+    {
+      "name": "Maquiné",
+      "codIbge": "4311775",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -29.6798,
+      "lon": -50.2079,
+      "isHero": false
+    },
+    {
+      "name": "Maratá",
+      "codIbge": "4311791",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -29.5457,
+      "lon": -51.5573,
+      "isHero": false
+    },
+    {
+      "name": "Marau",
+      "codIbge": "4311809",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -28.4498,
+      "lon": -52.1986,
+      "isHero": false
+    },
+    {
+      "name": "Marcelino Ramos",
+      "codIbge": "4311908",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.4676,
+      "lon": -51.9095,
+      "isHero": false
+    },
+    {
+      "name": "Mariana Pimentel",
+      "codIbge": "4311981",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -30.353,
+      "lon": -51.5803,
+      "isHero": false
+    },
+    {
+      "name": "Mariano Moro",
+      "codIbge": "4312005",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -27.3568,
+      "lon": -52.1467,
+      "isHero": false
+    },
+    {
+      "name": "Marques de Souza",
+      "codIbge": "4312054",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -29.3311,
+      "lon": -52.0973,
+      "isHero": false
+    },
+    {
+      "name": "Mata",
+      "codIbge": "4312104",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -29.5649,
+      "lon": -54.4641,
+      "isHero": false
+    },
+    {
+      "name": "Mato Castelhano",
+      "codIbge": "4312138",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -28.28,
+      "lon": -52.1932,
+      "isHero": false
+    },
+    {
+      "name": "Mato Leitão",
+      "codIbge": "4312153",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.5285,
+      "lon": -52.1278,
+      "isHero": false
+    },
+    {
+      "name": "Mato Queimado",
+      "codIbge": "4312179",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.252,
+      "lon": -54.6159,
+      "isHero": false
+    },
+    {
+      "name": "Maximiliano de Almeida",
+      "codIbge": "4312203",
+      "capag": "n.d.",
+      "tier": "unrated",
+      "lat": -27.6325,
+      "lon": -51.802,
+      "isHero": false
+    },
+    {
+      "name": "Minas do Leão",
+      "codIbge": "4312252",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -30.1346,
+      "lon": -52.0423,
+      "isHero": false
+    },
+    {
+      "name": "Miraguaí",
+      "codIbge": "4312302",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -27.497,
+      "lon": -53.6891,
+      "isHero": false
+    },
+    {
+      "name": "Montauri",
+      "codIbge": "4312351",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -28.6462,
+      "lon": -52.0767,
+      "isHero": false
+    },
+    {
+      "name": "Monte Alegre dos Campos",
+      "codIbge": "4312377",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.6805,
+      "lon": -50.7834,
+      "isHero": false
+    },
+    {
+      "name": "Monte Belo do Sul",
+      "codIbge": "4312385",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -29.1607,
+      "lon": -51.6333,
+      "isHero": false
+    },
+    {
+      "name": "Montenegro",
+      "codIbge": "4312401",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.6824,
+      "lon": -51.4679,
+      "isHero": false
+    },
+    {
+      "name": "Mormaço",
+      "codIbge": "4312427",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.6968,
+      "lon": -52.6999,
+      "isHero": false
+    },
+    {
+      "name": "Morrinhos do Sul",
+      "codIbge": "4312443",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -29.3578,
+      "lon": -49.9328,
+      "isHero": false
+    },
+    {
+      "name": "Morro Redondo",
+      "codIbge": "4312450",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -31.5887,
+      "lon": -52.6261,
+      "isHero": false
+    },
+    {
+      "name": "Morro Reuter",
+      "codIbge": "4312476",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -29.5379,
+      "lon": -51.0811,
+      "isHero": false
+    },
+    {
+      "name": "Mostardas",
+      "codIbge": "4312500",
+      "capag": "B+",
+      "tier": "bankable",
+      "lat": -31.1054,
+      "lon": -50.9167,
+      "isHero": false
+    },
+    {
+      "name": "Muçum",
+      "codIbge": "4312609",
+      "capag": "n.d.",
+      "tier": "unrated",
+      "lat": -29.163,
+      "lon": -51.8714,
+      "isHero": false
+    },
+    {
+      "name": "Muitos Capões",
+      "codIbge": "4312617",
+      "capag": "n.d.",
+      "tier": "unrated",
+      "lat": -28.3132,
+      "lon": -51.1836,
+      "isHero": false
+    },
+    {
+      "name": "Muliterno",
+      "codIbge": "4312625",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.3253,
+      "lon": -51.7697,
+      "isHero": false
+    },
+    {
+      "name": "Não-Me-Toque",
+      "codIbge": "4312658",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.4548,
+      "lon": -52.8182,
+      "isHero": false
+    },
+    {
+      "name": "Nicolau Vergueiro",
+      "codIbge": "4312674",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.5298,
+      "lon": -52.4676,
+      "isHero": false
+    },
+    {
+      "name": "Nonoai",
+      "codIbge": "4312708",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -27.3689,
+      "lon": -52.7756,
+      "isHero": false
+    },
+    {
+      "name": "Nova Alvorada",
+      "codIbge": "4312757",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -28.6822,
+      "lon": -52.1631,
+      "isHero": false
+    },
+    {
+      "name": "Nova Araçá",
+      "codIbge": "4312807",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.6537,
+      "lon": -51.7458,
+      "isHero": false
+    },
+    {
+      "name": "Nova Bassano",
+      "codIbge": "4312906",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.7291,
+      "lon": -51.7072,
+      "isHero": false
+    },
+    {
+      "name": "Nova Boa Vista",
+      "codIbge": "4312955",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -27.9926,
+      "lon": -52.9784,
+      "isHero": false
+    },
+    {
+      "name": "Nova Bréscia",
+      "codIbge": "4313003",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.2182,
+      "lon": -52.0319,
+      "isHero": false
+    },
+    {
+      "name": "Nova Candelária",
+      "codIbge": "4313011",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -27.6137,
+      "lon": -54.1074,
+      "isHero": false
+    },
+    {
+      "name": "Nova Esperança do Sul",
+      "codIbge": "4313037",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.4066,
+      "lon": -54.8293,
+      "isHero": false
+    },
+    {
+      "name": "Nova Hartz",
+      "codIbge": "4313060",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.5808,
+      "lon": -50.9051,
+      "isHero": false
+    },
+    {
+      "name": "Nova Pádua",
+      "codIbge": "4313086",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.0275,
+      "lon": -51.3098,
+      "isHero": false
+    },
+    {
+      "name": "Nova Palma",
+      "codIbge": "4313102",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -29.471,
+      "lon": -53.4689,
+      "isHero": false
+    },
+    {
+      "name": "Nova Petrópolis",
+      "codIbge": "4313201",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.3741,
+      "lon": -51.1136,
+      "isHero": false
+    },
+    {
+      "name": "Nova Prata",
+      "codIbge": "4313300",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -28.7799,
+      "lon": -51.6113,
+      "isHero": false
+    },
+    {
+      "name": "Nova Ramada",
+      "codIbge": "4313334",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -28.0667,
+      "lon": -53.6992,
+      "isHero": false
+    },
+    {
+      "name": "Nova Roma do Sul",
+      "codIbge": "4313359",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.9882,
+      "lon": -51.4095,
+      "isHero": false
+    },
+    {
+      "name": "Nova Santa Rita",
+      "codIbge": "4313375",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.8525,
+      "lon": -51.2837,
+      "isHero": false
+    },
+    {
+      "name": "Novo Cabrais",
+      "codIbge": "4313391",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -29.7338,
+      "lon": -52.9489,
+      "isHero": false
+    },
+    {
+      "name": "Novo Hamburgo",
+      "codIbge": "4313409",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -29.6875,
+      "lon": -51.1328,
+      "isHero": false
+    },
+    {
+      "name": "Novo Machado",
+      "codIbge": "4313425",
+      "capag": "n.d.",
+      "tier": "unrated",
+      "lat": -27.5765,
+      "lon": -54.5036,
+      "isHero": false
+    },
+    {
+      "name": "Novo Tiradentes",
+      "codIbge": "4313441",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -27.5649,
+      "lon": -53.1837,
+      "isHero": false
+    },
+    {
+      "name": "Novo Xingu",
+      "codIbge": "4313466",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.749,
+      "lon": -53.0639,
+      "isHero": false
+    },
+    {
+      "name": "Novo Barreiro",
+      "codIbge": "4313490",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.9077,
+      "lon": -53.1103,
+      "isHero": false
+    },
+    {
+      "name": "Osório",
+      "codIbge": "4313508",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -29.8881,
+      "lon": -50.2667,
+      "isHero": false
+    },
+    {
+      "name": "Paim Filho",
+      "codIbge": "4313607",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -27.7075,
+      "lon": -51.763,
+      "isHero": false
+    },
+    {
+      "name": "Palmares do Sul",
+      "codIbge": "4313656",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -30.2535,
+      "lon": -50.5103,
+      "isHero": false
+    },
+    {
+      "name": "Palmeira das Missões",
+      "codIbge": "4313706",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.9007,
+      "lon": -53.3134,
+      "isHero": false
+    },
+    {
+      "name": "Palmitinho",
+      "codIbge": "4313805",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -27.3596,
+      "lon": -53.558,
+      "isHero": false
+    },
+    {
+      "name": "Panambi",
+      "codIbge": "4313904",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.2833,
+      "lon": -53.5023,
+      "isHero": false
+    },
+    {
+      "name": "Pantano Grande",
+      "codIbge": "4313953",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -30.1902,
+      "lon": -52.3729,
+      "isHero": false
+    },
+    {
+      "name": "Paraí",
+      "codIbge": "4314001",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.5964,
+      "lon": -51.7896,
+      "isHero": false
+    },
+    {
+      "name": "Paraíso do Sul",
+      "codIbge": "4314027",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -29.6717,
+      "lon": -53.144,
+      "isHero": false
+    },
+    {
+      "name": "Pareci Novo",
+      "codIbge": "4314035",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -29.6365,
+      "lon": -51.3974,
+      "isHero": false
+    },
+    {
+      "name": "Parobé",
+      "codIbge": "4314050",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -29.6243,
+      "lon": -50.8312,
+      "isHero": false
+    },
+    {
+      "name": "Passa Sete",
+      "codIbge": "4314068",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.4577,
+      "lon": -52.9599,
+      "isHero": false
+    },
+    {
+      "name": "Passo do Sobrado",
+      "codIbge": "4314076",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -29.748,
+      "lon": -52.2748,
+      "isHero": false
+    },
+    {
+      "name": "Passo Fundo",
+      "codIbge": "4314100",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.2576,
+      "lon": -52.4091,
+      "isHero": false
+    },
+    {
+      "name": "Paulo Bento",
+      "codIbge": "4314134",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -27.7051,
+      "lon": -52.4169,
+      "isHero": false
+    },
+    {
+      "name": "Paverama",
+      "codIbge": "4314159",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -29.5486,
+      "lon": -51.7339,
+      "isHero": false
+    },
+    {
+      "name": "Pedras Altas",
+      "codIbge": "4314175",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -31.7365,
+      "lon": -53.5814,
+      "isHero": false
+    },
+    {
+      "name": "Pedro Osório",
+      "codIbge": "4314209",
+      "capag": "n.d.",
+      "tier": "unrated",
+      "lat": -31.8642,
+      "lon": -52.8184,
+      "isHero": false
+    },
+    {
+      "name": "Pejuçara",
+      "codIbge": "4314308",
+      "capag": "B+",
+      "tier": "bankable",
+      "lat": -28.4283,
+      "lon": -53.6579,
+      "isHero": false
+    },
+    {
+      "name": "Pelotas",
+      "codIbge": "4314407",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -31.7649,
+      "lon": -52.3371,
+      "isHero": false
+    },
+    {
+      "name": "Picada Café",
+      "codIbge": "4314423",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -29.4464,
+      "lon": -51.1367,
+      "isHero": false
+    },
+    {
+      "name": "Pinhal",
+      "codIbge": "4314456",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -27.508,
+      "lon": -53.2082,
+      "isHero": false
+    },
+    {
+      "name": "Pinhal da Serra",
+      "codIbge": "4314464",
+      "capag": "n.d.",
+      "tier": "unrated",
+      "lat": -27.8751,
+      "lon": -51.1673,
+      "isHero": false
+    },
+    {
+      "name": "Pinhal Grande",
+      "codIbge": "4314472",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -29.345,
+      "lon": -53.3206,
+      "isHero": false
+    },
+    {
+      "name": "Pinheirinho do Vale",
+      "codIbge": "4314498",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -27.2109,
+      "lon": -53.608,
+      "isHero": false
+    },
+    {
+      "name": "Pinheiro Machado",
+      "codIbge": "4314506",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -31.5794,
+      "lon": -53.3798,
+      "isHero": false
+    },
+    {
+      "name": "Pinto Bandeira",
+      "codIbge": "4314548",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -29.0975,
+      "lon": -51.4503,
+      "isHero": false
+    },
+    {
+      "name": "Pirapó",
+      "codIbge": "4314555",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.0439,
+      "lon": -55.2001,
+      "isHero": false
+    },
+    {
+      "name": "Piratini",
+      "codIbge": "4314605",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -31.4473,
+      "lon": -53.0973,
+      "isHero": false
+    },
+    {
+      "name": "Planalto",
+      "codIbge": "4314704",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -27.3297,
+      "lon": -53.0575,
+      "isHero": false
+    },
+    {
+      "name": "Poço das Antas",
+      "codIbge": "4314753",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -29.4481,
+      "lon": -51.6719,
+      "isHero": false
+    },
+    {
+      "name": "Pontão",
+      "codIbge": "4314779",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -28.0585,
+      "lon": -52.6791,
+      "isHero": false
+    },
+    {
+      "name": "Ponte Preta",
+      "codIbge": "4314787",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.6587,
+      "lon": -52.4848,
+      "isHero": false
+    },
+    {
+      "name": "Portão",
+      "codIbge": "4314803",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.7015,
+      "lon": -51.2429,
+      "isHero": false
+    },
+    {
+      "name": "Porto Alegre",
+      "codIbge": "4314902",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -30.0318,
+      "lon": -51.2065,
+      "isHero": false
+    },
+    {
+      "name": "Porto Lucena",
+      "codIbge": "4315008",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -27.8569,
+      "lon": -55.01,
+      "isHero": false
+    },
+    {
+      "name": "Porto Mauá",
+      "codIbge": "4315057",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.5796,
+      "lon": -54.6657,
+      "isHero": false
+    },
+    {
+      "name": "Porto Vera Cruz",
+      "codIbge": "4315073",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.7405,
+      "lon": -54.8994,
+      "isHero": false
+    },
+    {
+      "name": "Porto Xavier",
+      "codIbge": "4315107",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -27.9082,
+      "lon": -55.1379,
+      "isHero": false
+    },
+    {
+      "name": "Pouso Novo",
+      "codIbge": "4315131",
+      "capag": "B+",
+      "tier": "bankable",
+      "lat": -29.1738,
+      "lon": -52.2136,
+      "isHero": false
+    },
+    {
+      "name": "Presidente Lucena",
+      "codIbge": "4315149",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -29.5175,
+      "lon": -51.1798,
+      "isHero": false
+    },
+    {
+      "name": "Progresso",
+      "codIbge": "4315156",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -29.2441,
+      "lon": -52.3197,
+      "isHero": false
+    },
+    {
+      "name": "Protásio Alves",
+      "codIbge": "4315172",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.7572,
+      "lon": -51.4757,
+      "isHero": false
+    },
+    {
+      "name": "Putinga",
+      "codIbge": "4315206",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -29.0045,
+      "lon": -52.1569,
+      "isHero": false
+    },
+    {
+      "name": "Quaraí",
+      "codIbge": "4315305",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -30.384,
+      "lon": -56.4483,
+      "isHero": false
+    },
+    {
+      "name": "Quatro Irmãos",
+      "codIbge": "4315313",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -27.8257,
+      "lon": -52.4424,
+      "isHero": false
+    },
+    {
+      "name": "Quevedos",
+      "codIbge": "4315321",
+      "capag": "n.d.",
+      "tier": "unrated",
+      "lat": -29.3504,
+      "lon": -54.0789,
+      "isHero": false
+    },
+    {
+      "name": "Quinze de Novembro",
+      "codIbge": "4315354",
+      "capag": "B+",
+      "tier": "bankable",
+      "lat": -28.7466,
+      "lon": -53.1011,
+      "isHero": false
+    },
+    {
+      "name": "Redentora",
+      "codIbge": "4315404",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.664,
+      "lon": -53.6407,
+      "isHero": false
+    },
+    {
+      "name": "Relvado",
+      "codIbge": "4315453",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.1164,
+      "lon": -52.0778,
+      "isHero": false
+    },
+    {
+      "name": "Restinga Sêca",
+      "codIbge": "4315503",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -29.8188,
+      "lon": -53.3807,
+      "isHero": false
+    },
+    {
+      "name": "Rio dos Índios",
+      "codIbge": "4315552",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.2973,
+      "lon": -52.8417,
+      "isHero": false
+    },
+    {
+      "name": "Rio Grande",
+      "codIbge": "4315602",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -32.0349,
+      "lon": -52.1071,
+      "isHero": false
+    },
+    {
+      "name": "Rio Pardo",
+      "codIbge": "4315701",
+      "capag": "B+",
+      "tier": "bankable",
+      "lat": -29.988,
+      "lon": -52.3711,
+      "isHero": false
+    },
+    {
+      "name": "Riozinho",
+      "codIbge": "4315750",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.639,
+      "lon": -50.4488,
+      "isHero": false
+    },
+    {
+      "name": "Roca Sales",
+      "codIbge": "4315800",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -29.2884,
+      "lon": -51.8658,
+      "isHero": false
+    },
+    {
+      "name": "Rodeio Bonito",
+      "codIbge": "4315909",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.4742,
+      "lon": -53.1706,
+      "isHero": false
+    },
+    {
+      "name": "Rolador",
+      "codIbge": "4315958",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -28.2566,
+      "lon": -54.8186,
+      "isHero": false
+    },
+    {
+      "name": "Rolante",
+      "codIbge": "4316006",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -29.6462,
+      "lon": -50.5819,
+      "isHero": false
+    },
+    {
+      "name": "Ronda Alta",
+      "codIbge": "4316105",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.7758,
+      "lon": -52.8056,
+      "isHero": false
+    },
+    {
+      "name": "Rondinha",
+      "codIbge": "4316204",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.8315,
+      "lon": -52.9081,
+      "isHero": false
+    },
+    {
+      "name": "Roque Gonzales",
+      "codIbge": "4316303",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -28.1297,
+      "lon": -55.0266,
+      "isHero": false
+    },
+    {
+      "name": "Rosário do Sul",
+      "codIbge": "4316402",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -30.2515,
+      "lon": -54.9221,
+      "isHero": false
+    },
+    {
+      "name": "Sagrada Família",
+      "codIbge": "4316428",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.7085,
+      "lon": -53.1351,
+      "isHero": false
+    },
+    {
+      "name": "Saldanha Marinho",
+      "codIbge": "4316436",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -28.3941,
+      "lon": -53.097,
+      "isHero": false
+    },
+    {
+      "name": "Salto do Jacuí",
+      "codIbge": "4316451",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -29.0951,
+      "lon": -53.2133,
+      "isHero": false
+    },
+    {
+      "name": "Salvador das Missões",
+      "codIbge": "4316477",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.1233,
+      "lon": -54.8373,
+      "isHero": false
+    },
+    {
+      "name": "Salvador do Sul",
+      "codIbge": "4316501",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.4386,
+      "lon": -51.5077,
+      "isHero": false
+    },
+    {
+      "name": "Sananduva",
+      "codIbge": "4316600",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -27.947,
+      "lon": -51.8079,
+      "isHero": false
+    },
+    {
+      "name": "Santa Bárbara do Sul",
+      "codIbge": "4316709",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.3653,
+      "lon": -53.251,
+      "isHero": false
+    },
+    {
+      "name": "Santa Cecília do Sul",
+      "codIbge": "4316733",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -28.1609,
+      "lon": -51.9279,
+      "isHero": false
+    },
+    {
+      "name": "Santa Clara do Sul",
+      "codIbge": "4316758",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -29.4747,
+      "lon": -52.0843,
+      "isHero": false
+    },
+    {
+      "name": "Santa Cruz do Sul",
+      "codIbge": "4316808",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -29.722,
+      "lon": -52.4343,
+      "isHero": false
+    },
+    {
+      "name": "Santa Maria",
+      "codIbge": "4316907",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -29.6868,
+      "lon": -53.8149,
+      "isHero": false
+    },
+    {
+      "name": "Santa Maria do Herval",
+      "codIbge": "4316956",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.4902,
+      "lon": -50.9919,
+      "isHero": false
+    },
+    {
+      "name": "Santa Margarida do Sul",
+      "codIbge": "4316972",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -30.3393,
+      "lon": -54.0817,
+      "isHero": false
+    },
+    {
+      "name": "Santana da Boa Vista",
+      "codIbge": "4317004",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -30.8697,
+      "lon": -53.11,
+      "isHero": false
+    },
+    {
+      "name": "Sant'Ana do Livramento",
+      "codIbge": "4317103",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -30.8773,
+      "lon": -55.5392,
+      "isHero": false
+    },
+    {
+      "name": "Santa Rosa",
+      "codIbge": "4317202",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -27.8702,
+      "lon": -54.4796,
+      "isHero": false
+    },
+    {
+      "name": "Santa Tereza",
+      "codIbge": "4317251",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.1655,
+      "lon": -51.7351,
+      "isHero": false
+    },
+    {
+      "name": "Santa Vitória do Palmar",
+      "codIbge": "4317301",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -33.525,
+      "lon": -53.3717,
+      "isHero": false
+    },
+    {
+      "name": "Santiago",
+      "codIbge": "4317400",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.1897,
+      "lon": -54.8666,
+      "isHero": false
+    },
+    {
+      "name": "Santo Ângelo",
+      "codIbge": "4317509",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -28.3001,
+      "lon": -54.2668,
+      "isHero": false
+    },
+    {
+      "name": "Santo Antônio do Palma",
+      "codIbge": "4317558",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -28.4956,
+      "lon": -52.0267,
+      "isHero": false
+    },
+    {
+      "name": "Santo Antônio da Patrulha",
+      "codIbge": "4317608",
+      "capag": "B+",
+      "tier": "bankable",
+      "lat": -29.8268,
+      "lon": -50.5175,
+      "isHero": false
+    },
+    {
+      "name": "Santo Antônio das Missões",
+      "codIbge": "4317707",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -28.514,
+      "lon": -55.2251,
+      "isHero": false
+    },
+    {
+      "name": "Santo Antônio do Planalto",
+      "codIbge": "4317756",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.403,
+      "lon": -52.6992,
+      "isHero": false
+    },
+    {
+      "name": "Santo Augusto",
+      "codIbge": "4317806",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.8526,
+      "lon": -53.7776,
+      "isHero": false
+    },
+    {
+      "name": "Santo Cristo",
+      "codIbge": "4317905",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.8263,
+      "lon": -54.662,
+      "isHero": false
+    },
+    {
+      "name": "Santo Expedito do Sul",
+      "codIbge": "4317954",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -27.9074,
+      "lon": -51.6434,
+      "isHero": false
+    },
+    {
+      "name": "São Borja",
+      "codIbge": "4318002",
+      "capag": "B+",
+      "tier": "bankable",
+      "lat": -28.6578,
+      "lon": -56.0036,
+      "isHero": false
+    },
+    {
+      "name": "São Domingos do Sul",
+      "codIbge": "4318051",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -28.5312,
+      "lon": -51.886,
+      "isHero": false
+    },
+    {
+      "name": "São Francisco de Assis",
+      "codIbge": "4318101",
+      "capag": "B+",
+      "tier": "bankable",
+      "lat": -29.5547,
+      "lon": -55.1253,
+      "isHero": false
+    },
+    {
+      "name": "São Francisco de Paula",
+      "codIbge": "4318200",
+      "capag": "n.d.",
+      "tier": "unrated",
+      "lat": -29.4404,
+      "lon": -50.5828,
+      "isHero": false
+    },
+    {
+      "name": "São Gabriel",
+      "codIbge": "4318309",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -30.3337,
+      "lon": -54.3217,
+      "isHero": false
+    },
+    {
+      "name": "São Jerônimo",
+      "codIbge": "4318408",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.9716,
+      "lon": -51.7251,
+      "isHero": false
+    },
+    {
+      "name": "São João da Urtiga",
+      "codIbge": "4318424",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -27.8195,
+      "lon": -51.8257,
+      "isHero": false
+    },
+    {
+      "name": "São João do Polêsine",
+      "codIbge": "4318432",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.6194,
+      "lon": -53.4439,
+      "isHero": false
+    },
+    {
+      "name": "São Jorge",
+      "codIbge": "4318440",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -28.4984,
+      "lon": -51.7064,
+      "isHero": false
+    },
+    {
+      "name": "São José das Missões",
+      "codIbge": "4318457",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -27.7789,
+      "lon": -53.1226,
+      "isHero": false
+    },
+    {
+      "name": "São José do Herval",
+      "codIbge": "4318465",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -29.052,
+      "lon": -52.295,
+      "isHero": false
+    },
+    {
+      "name": "São José do Hortêncio",
+      "codIbge": "4318481",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.528,
+      "lon": -51.245,
+      "isHero": false
+    },
+    {
+      "name": "São José do Inhacorá",
+      "codIbge": "4318499",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.7251,
+      "lon": -54.1275,
+      "isHero": false
+    },
+    {
+      "name": "São José do Norte",
+      "codIbge": "4318507",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -32.0151,
+      "lon": -52.0331,
+      "isHero": false
+    },
+    {
+      "name": "São José do Ouro",
+      "codIbge": "4318606",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -27.7707,
+      "lon": -51.5966,
+      "isHero": false
+    },
+    {
+      "name": "São José do Sul",
+      "codIbge": "4318614",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.5448,
+      "lon": -51.4821,
+      "isHero": false
+    },
+    {
+      "name": "São José dos Ausentes",
+      "codIbge": "4318622",
+      "capag": "n.d.",
+      "tier": "unrated",
+      "lat": -28.7476,
+      "lon": -50.0677,
+      "isHero": false
+    },
+    {
+      "name": "São Leopoldo",
+      "codIbge": "4318705",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -29.7545,
+      "lon": -51.1498,
+      "isHero": false
+    },
+    {
+      "name": "São Lourenço do Sul",
+      "codIbge": "4318804",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -31.3564,
+      "lon": -51.9715,
+      "isHero": false
+    },
+    {
+      "name": "São Luiz Gonzaga",
+      "codIbge": "4318903",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.412,
+      "lon": -54.9559,
+      "isHero": false
+    },
+    {
+      "name": "São Marcos",
+      "codIbge": "4319000",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.9677,
+      "lon": -51.0696,
+      "isHero": false
+    },
+    {
+      "name": "São Martinho",
+      "codIbge": "4319109",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.7112,
+      "lon": -53.9699,
+      "isHero": false
+    },
+    {
+      "name": "São Martinho da Serra",
+      "codIbge": "4319125",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.5397,
+      "lon": -53.859,
+      "isHero": false
+    },
+    {
+      "name": "São Miguel das Missões",
+      "codIbge": "4319158",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.556,
+      "lon": -54.5559,
+      "isHero": false
+    },
+    {
+      "name": "São Nicolau",
+      "codIbge": "4319208",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -28.1834,
+      "lon": -55.2654,
+      "isHero": false
+    },
+    {
+      "name": "São Paulo das Missões",
+      "codIbge": "4319307",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -28.0195,
+      "lon": -54.9404,
+      "isHero": false
+    },
+    {
+      "name": "São Pedro da Serra",
+      "codIbge": "4319356",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.4193,
+      "lon": -51.5134,
+      "isHero": false
+    },
+    {
+      "name": "São Pedro das Missões",
+      "codIbge": "4319364",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.7706,
+      "lon": -53.2513,
+      "isHero": false
+    },
+    {
+      "name": "São Pedro do Butiá",
+      "codIbge": "4319372",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.1243,
+      "lon": -54.8926,
+      "isHero": false
+    },
+    {
+      "name": "São Pedro do Sul",
+      "codIbge": "4319406",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -29.6202,
+      "lon": -54.1855,
+      "isHero": false
+    },
+    {
+      "name": "São Sebastião do Caí",
+      "codIbge": "4319505",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.5885,
+      "lon": -51.3749,
+      "isHero": false
+    },
+    {
+      "name": "São Sepé",
+      "codIbge": "4319604",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -30.1643,
+      "lon": -53.5603,
+      "isHero": false
+    },
+    {
+      "name": "São Valentim",
+      "codIbge": "4319703",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.5583,
+      "lon": -52.5237,
+      "isHero": false
+    },
+    {
+      "name": "São Valentim do Sul",
+      "codIbge": "4319711",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -29.0451,
+      "lon": -51.7684,
+      "isHero": false
+    },
+    {
+      "name": "São Valério do Sul",
+      "codIbge": "4319737",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.7906,
+      "lon": -53.9368,
+      "isHero": false
+    },
+    {
+      "name": "São Vendelino",
+      "codIbge": "4319752",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.3729,
+      "lon": -51.3675,
+      "isHero": false
+    },
+    {
+      "name": "São Vicente do Sul",
+      "codIbge": "4319802",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.6882,
+      "lon": -54.6826,
+      "isHero": false
+    },
+    {
+      "name": "Sapiranga",
+      "codIbge": "4319901",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.6349,
+      "lon": -51.0064,
+      "isHero": false
+    },
+    {
+      "name": "Sapucaia do Sul",
+      "codIbge": "4320008",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -29.8276,
+      "lon": -51.145,
+      "isHero": false
+    },
+    {
+      "name": "Sarandi",
+      "codIbge": "4320107",
+      "capag": "B+",
+      "tier": "bankable",
+      "lat": -27.942,
+      "lon": -52.9231,
+      "isHero": false
+    },
+    {
+      "name": "Seberi",
+      "codIbge": "4320206",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -27.4829,
+      "lon": -53.4026,
+      "isHero": false
+    },
+    {
+      "name": "Sede Nova",
+      "codIbge": "4320230",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -27.6367,
+      "lon": -53.9493,
+      "isHero": false
+    },
+    {
+      "name": "Segredo",
+      "codIbge": "4320263",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -29.3523,
+      "lon": -52.9767,
+      "isHero": false
+    },
+    {
+      "name": "Selbach",
+      "codIbge": "4320305",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -28.6294,
+      "lon": -52.9498,
+      "isHero": false
+    },
+    {
+      "name": "Senador Salgado Filho",
+      "codIbge": "4320321",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -28.025,
+      "lon": -54.5507,
+      "isHero": false
+    },
+    {
+      "name": "Sentinela do Sul",
+      "codIbge": "4320354",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -30.6107,
+      "lon": -51.5862,
+      "isHero": false
+    },
+    {
+      "name": "Serafina Corrêa",
+      "codIbge": "4320404",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.7126,
+      "lon": -51.9352,
+      "isHero": false
+    },
+    {
+      "name": "Sério",
+      "codIbge": "4320453",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.3904,
+      "lon": -52.2685,
+      "isHero": false
+    },
+    {
+      "name": "Sertão",
+      "codIbge": "4320503",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -27.9798,
+      "lon": -52.2588,
+      "isHero": false
+    },
+    {
+      "name": "Sertão Santana",
+      "codIbge": "4320552",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -30.4562,
+      "lon": -51.6017,
+      "isHero": false
+    },
+    {
+      "name": "Sete de Setembro",
+      "codIbge": "4320578",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.1362,
+      "lon": -54.4637,
+      "isHero": false
+    },
+    {
+      "name": "Severiano de Almeida",
+      "codIbge": "4320602",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -27.4362,
+      "lon": -52.1217,
+      "isHero": false
+    },
+    {
+      "name": "Silveira Martins",
+      "codIbge": "4320651",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -29.6467,
+      "lon": -53.591,
+      "isHero": false
+    },
+    {
+      "name": "Sinimbu",
+      "codIbge": "4320677",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -29.5357,
+      "lon": -52.5304,
+      "isHero": false
+    },
+    {
+      "name": "Sobradinho",
+      "codIbge": "4320701",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -29.4194,
+      "lon": -53.0326,
+      "isHero": false
+    },
+    {
+      "name": "Soledade",
+      "codIbge": "4320800",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.8306,
+      "lon": -52.5131,
+      "isHero": false
+    },
+    {
+      "name": "Tabaí",
+      "codIbge": "4320859",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -29.643,
+      "lon": -51.6823,
+      "isHero": false
+    },
+    {
+      "name": "Tapejara",
+      "codIbge": "4320909",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.0652,
+      "lon": -52.0097,
+      "isHero": false
+    },
+    {
+      "name": "Tapera",
+      "codIbge": "4321006",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.6277,
+      "lon": -52.8613,
+      "isHero": false
+    },
+    {
+      "name": "Tapes",
+      "codIbge": "4321105",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -30.6683,
+      "lon": -51.3991,
+      "isHero": false
+    },
+    {
+      "name": "Taquara",
+      "codIbge": "4321204",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -29.6505,
+      "lon": -50.7753,
+      "isHero": false
+    },
+    {
+      "name": "Taquari",
+      "codIbge": "4321303",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -29.7943,
+      "lon": -51.8653,
+      "isHero": false
+    },
+    {
+      "name": "Taquaruçu do Sul",
+      "codIbge": "4321329",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.4005,
+      "lon": -53.4702,
+      "isHero": false
+    },
+    {
+      "name": "Tavares",
+      "codIbge": "4321352",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -31.2843,
+      "lon": -51.088,
+      "isHero": false
+    },
+    {
+      "name": "Tenente Portela",
+      "codIbge": "4321402",
+      "capag": "n.d.",
+      "tier": "unrated",
+      "lat": -27.3711,
+      "lon": -53.7585,
+      "isHero": false
+    },
+    {
+      "name": "Terra de Areia",
+      "codIbge": "4321436",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.5782,
+      "lon": -50.0644,
+      "isHero": false
+    },
+    {
+      "name": "Teutônia",
+      "codIbge": "4321451",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -29.4482,
+      "lon": -51.8044,
+      "isHero": false
+    },
+    {
+      "name": "Tio Hugo",
+      "codIbge": "4321469",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.5712,
+      "lon": -52.5955,
+      "isHero": false
+    },
+    {
+      "name": "Tiradentes do Sul",
+      "codIbge": "4321477",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.4022,
+      "lon": -54.0814,
+      "isHero": false
+    },
+    {
+      "name": "Toropi",
+      "codIbge": "4321493",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -29.4782,
+      "lon": -54.2244,
+      "isHero": false
+    },
+    {
+      "name": "Torres",
+      "codIbge": "4321501",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -29.3334,
+      "lon": -49.7333,
+      "isHero": false
+    },
+    {
+      "name": "Tramandaí",
+      "codIbge": "4321600",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.9841,
+      "lon": -50.1322,
+      "isHero": false
+    },
+    {
+      "name": "Travesseiro",
+      "codIbge": "4321626",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -29.2977,
+      "lon": -52.0532,
+      "isHero": false
+    },
+    {
+      "name": "Três Arroios",
+      "codIbge": "4321634",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.5003,
+      "lon": -52.1448,
+      "isHero": false
+    },
+    {
+      "name": "Três Cachoeiras",
+      "codIbge": "4321667",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -29.4487,
+      "lon": -49.9275,
+      "isHero": false
+    },
+    {
+      "name": "Três Coroas",
+      "codIbge": "4321709",
+      "capag": "B+",
+      "tier": "bankable",
+      "lat": -29.5137,
+      "lon": -50.7739,
+      "isHero": false
+    },
+    {
+      "name": "Três de Maio",
+      "codIbge": "4321808",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.78,
+      "lon": -54.2357,
+      "isHero": false
+    },
+    {
+      "name": "Três Forquilhas",
+      "codIbge": "4321832",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -29.5384,
+      "lon": -50.0708,
+      "isHero": false
+    },
+    {
+      "name": "Três Palmeiras",
+      "codIbge": "4321857",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -27.6139,
+      "lon": -52.8437,
+      "isHero": false
+    },
+    {
+      "name": "Três Passos",
+      "codIbge": "4321907",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.4555,
+      "lon": -53.9296,
+      "isHero": false
+    },
+    {
+      "name": "Trindade do Sul",
+      "codIbge": "4321956",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.5239,
+      "lon": -52.8956,
+      "isHero": false
+    },
+    {
+      "name": "Triunfo",
+      "codIbge": "4322004",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -29.9291,
+      "lon": -51.7075,
+      "isHero": false
+    },
+    {
+      "name": "Tucunduva",
+      "codIbge": "4322103",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -27.6573,
+      "lon": -54.4439,
+      "isHero": false
+    },
+    {
+      "name": "Tunas",
+      "codIbge": "4322152",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -29.1039,
+      "lon": -52.9538,
+      "isHero": false
+    },
+    {
+      "name": "Tupanci do Sul",
+      "codIbge": "4322186",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -27.9241,
+      "lon": -51.5383,
+      "isHero": false
+    },
+    {
+      "name": "Tupanciretã",
+      "codIbge": "4322202",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -29.0858,
+      "lon": -53.8445,
+      "isHero": false
+    },
+    {
+      "name": "Tupandi",
+      "codIbge": "4322251",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.4772,
+      "lon": -51.4174,
+      "isHero": false
+    },
+    {
+      "name": "Tuparendi",
+      "codIbge": "4322301",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.7598,
+      "lon": -54.4814,
+      "isHero": false
+    },
+    {
+      "name": "Turuçu",
+      "codIbge": "4322327",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -31.4173,
+      "lon": -52.1706,
+      "isHero": false
+    },
+    {
+      "name": "Ubiretama",
+      "codIbge": "4322343",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.0404,
+      "lon": -54.686,
+      "isHero": false
+    },
+    {
+      "name": "União da Serra",
+      "codIbge": "4322350",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -28.7833,
+      "lon": -52.0238,
+      "isHero": false
+    },
+    {
+      "name": "Unistalda",
+      "codIbge": "4322376",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.04,
+      "lon": -55.1517,
+      "isHero": false
+    },
+    {
+      "name": "Uruguaiana",
+      "codIbge": "4322400",
+      "capag": "B+",
+      "tier": "bankable",
+      "lat": -29.7614,
+      "lon": -57.0853,
+      "isHero": false
+    },
+    {
+      "name": "Vacaria",
+      "codIbge": "4322509",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -28.5079,
+      "lon": -50.9418,
+      "isHero": false
+    },
+    {
+      "name": "Vale Verde",
+      "codIbge": "4322525",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.7864,
+      "lon": -52.1857,
+      "isHero": false
+    },
+    {
+      "name": "Vale do Sol",
+      "codIbge": "4322533",
+      "capag": "B+",
+      "tier": "bankable",
+      "lat": -29.5967,
+      "lon": -52.6839,
+      "isHero": false
+    },
+    {
+      "name": "Vale Real",
+      "codIbge": "4322541",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -29.3919,
+      "lon": -51.2559,
+      "isHero": false
+    },
+    {
+      "name": "Vanini",
+      "codIbge": "4322558",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -28.4758,
+      "lon": -51.8447,
+      "isHero": false
+    },
+    {
+      "name": "Venâncio Aires",
+      "codIbge": "4322608",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -29.6143,
+      "lon": -52.1932,
+      "isHero": false
+    },
+    {
+      "name": "Vera Cruz",
+      "codIbge": "4322707",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -29.7184,
+      "lon": -52.5152,
+      "isHero": false
+    },
+    {
+      "name": "Veranópolis",
+      "codIbge": "4322806",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.9312,
+      "lon": -51.5516,
+      "isHero": false
+    },
+    {
+      "name": "Vespasiano Corrêa",
+      "codIbge": "4322855",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -29.0655,
+      "lon": -51.8625,
+      "isHero": false
+    },
+    {
+      "name": "Viadutos",
+      "codIbge": "4322905",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -27.5716,
+      "lon": -52.0211,
+      "isHero": false
+    },
+    {
+      "name": "Viamão",
+      "codIbge": "4323002",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -30.0819,
+      "lon": -51.0194,
+      "isHero": false
+    },
+    {
+      "name": "Vicente Dutra",
+      "codIbge": "4323101",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.1607,
+      "lon": -53.4022,
+      "isHero": false
+    },
+    {
+      "name": "Victor Graeff",
+      "codIbge": "4323200",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.5632,
+      "lon": -52.7495,
+      "isHero": false
+    },
+    {
+      "name": "Vila Flores",
+      "codIbge": "4323309",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -28.8598,
+      "lon": -51.5504,
+      "isHero": false
+    },
+    {
+      "name": "Vila Lângaro",
+      "codIbge": "4323358",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.1062,
+      "lon": -52.1438,
+      "isHero": false
+    },
+    {
+      "name": "Vila Maria",
+      "codIbge": "4323408",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -28.5359,
+      "lon": -52.1486,
+      "isHero": false
+    },
+    {
+      "name": "Vila Nova do Sul",
+      "codIbge": "4323457",
+      "capag": "A+",
+      "tier": "bankable",
+      "lat": -30.3461,
+      "lon": -53.876,
+      "isHero": false
+    },
+    {
+      "name": "Vista Alegre",
+      "codIbge": "4323507",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.3686,
+      "lon": -53.4919,
+      "isHero": false
+    },
+    {
+      "name": "Vista Alegre do Prata",
+      "codIbge": "4323606",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -28.8052,
+      "lon": -51.7947,
+      "isHero": false
+    },
+    {
+      "name": "Vista Gaúcha",
+      "codIbge": "4323705",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -27.2902,
+      "lon": -53.6974,
+      "isHero": false
+    },
+    {
+      "name": "Vitória das Missões",
+      "codIbge": "4323754",
+      "capag": "C",
+      "tier": "constrained",
+      "lat": -28.3516,
+      "lon": -54.504,
+      "isHero": false
+    },
+    {
+      "name": "Westfália",
+      "codIbge": "4323770",
+      "capag": "A",
+      "tier": "bankable",
+      "lat": -29.4263,
+      "lon": -51.7645,
+      "isHero": false
+    },
+    {
+      "name": "Xangri-lá",
+      "codIbge": "4323804",
+      "capag": "B",
+      "tier": "bankable",
+      "lat": -29.8065,
+      "lon": -50.0519,
+      "isHero": false
+    }
+  ],
+  "legend": [
+    {
+      "tier": "bankable",
+      "label": "CAPAG A/B — bankable (guaranteed credit)",
+      "count": 404
+    },
+    {
+      "tier": "constrained",
+      "label": "CAPAG C/D — creditless (grants / blended)",
+      "count": 76
+    },
+    {
+      "tier": "unrated",
+      "label": "n.d. — unrated (TA first)",
+      "count": 17
+    }
+  ]
+}

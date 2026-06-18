@@ -1,0 +1,433 @@
+{
+  "generated": "2026-06-12",
+  "source": "City-Funder Matching Engine (Amanda/Ayinawu/Brian/Cephas) — derived/ CSVs; capacity from SINIM/FCM, locode-keyed",
+  "heroCity": "Valdivia",
+  "heroLocode": "CL ZAL",
+  "comunas": [
+    {
+      "id": "SNG-CLZAL",
+      "name": "Valdivia",
+      "locode": "CL ZAL",
+      "cityId": "62gvqzr8df70vknj13re",
+      "country": "Chile",
+      "iso": "CL",
+      "type": "City",
+      "population": 166958,
+      "isAnchor": true,
+      "cofinanceScore": 65.7,
+      "anchorScore": 82.2,
+      "readiness": {
+        "fiscalHealth": 74,
+        "governance": 58,
+        "creditworthiness": 70,
+        "legalCapacity": 80
+      },
+      "provenance": {
+        "fiscalHealth": "real:SINIM/FCM (composite_score)",
+        "governance": "real:SINIM (professionalization + capacity)",
+        "creditworthiness": "estimated:capacity proxy (no CL municipal rating)",
+        "legalCapacity": "intake:legal opinion"
+      },
+      "signals": {
+        "capagRating": null,
+        "ownSourceRevenuePct": 43,
+        "debtServiceRatioPct": null,
+        "currentBalancePct": null,
+        "independentAudit": true,
+        "canBorrowWithoutSovereignGuarantee": true
+      },
+      "proposal": {
+        "title": "Zero-emission urban transport (e-bus + BRT)",
+        "sector": "transport",
+        "askUSDm": 8,
+        "stage": "Readiness Review",
+        "cofinance": false
+      }
+    },
+    {
+      "id": "SNG-CLPAO",
+      "name": "Paillaco",
+      "locode": "CL PAO",
+      "cityId": "62uhn2tnhkg18mgfe4pe",
+      "country": "Chile",
+      "iso": "CL",
+      "type": "City",
+      "population": 19719,
+      "isAnchor": false,
+      "cofinanceScore": 43.5,
+      "anchorScore": 63.6,
+      "readiness": {
+        "fiscalHealth": 54,
+        "governance": 55,
+        "creditworthiness": 51,
+        "legalCapacity": 45
+      },
+      "provenance": {
+        "fiscalHealth": "real:SINIM/FCM (composite_score)",
+        "governance": "real:SINIM (professionalization + capacity)",
+        "creditworthiness": "estimated:capacity proxy (no CL municipal rating)",
+        "legalCapacity": "intake:legal opinion"
+      },
+      "signals": {
+        "capagRating": null,
+        "ownSourceRevenuePct": 33,
+        "debtServiceRatioPct": null,
+        "currentBalancePct": null,
+        "independentAudit": false,
+        "canBorrowWithoutSovereignGuarantee": false
+      },
+      "proposal": {
+        "title": "Zero-emission urban transport (e-bus + BRT)",
+        "sector": "transport",
+        "askUSDm": 3,
+        "stage": "Readiness Review",
+        "cofinance": false
+      }
+    },
+    {
+      "id": "SNG-CLLLG",
+      "name": "Los Lagos",
+      "locode": "CL LLG",
+      "cityId": "62umhur7qh5p808vkbem",
+      "country": "Chile",
+      "iso": "CL",
+      "type": "City",
+      "population": 21421,
+      "isAnchor": false,
+      "cofinanceScore": 42.8,
+      "anchorScore": 45.2,
+      "readiness": {
+        "fiscalHealth": 44,
+        "governance": 41,
+        "creditworthiness": 42,
+        "legalCapacity": 45
+      },
+      "provenance": {
+        "fiscalHealth": "real:SINIM/FCM (composite_score)",
+        "governance": "real:SINIM (professionalization + capacity)",
+        "creditworthiness": "estimated:capacity proxy (no CL municipal rating)",
+        "legalCapacity": "intake:legal opinion"
+      },
+      "signals": {
+        "capagRating": null,
+        "ownSourceRevenuePct": 32,
+        "debtServiceRatioPct": null,
+        "currentBalancePct": null,
+        "independentAudit": false,
+        "canBorrowWithoutSovereignGuarantee": false
+      },
+      "proposal": {
+        "title": "Zero-emission urban transport (e-bus + BRT)",
+        "sector": "transport",
+        "askUSDm": 3,
+        "stage": "Readiness Review",
+        "cofinance": false
+      }
+    },
+    {
+      "id": "SNG-CLCRR",
+      "name": "Corral",
+      "locode": "CL CRR",
+      "cityId": "62gud2hq4rrsvur4btdn",
+      "country": "Chile",
+      "iso": "CL",
+      "type": "City",
+      "population": 5493,
+      "isAnchor": false,
+      "cofinanceScore": 10.7,
+      "anchorScore": 27.9,
+      "readiness": {
+        "fiscalHealth": 19,
+        "governance": 32,
+        "creditworthiness": 18,
+        "legalCapacity": 45
+      },
+      "provenance": {
+        "fiscalHealth": "real:SINIM/FCM (composite_score)",
+        "governance": "real:SINIM (professionalization + capacity)",
+        "creditworthiness": "estimated:capacity proxy (no CL municipal rating)",
+        "legalCapacity": "intake:legal opinion"
+      },
+      "signals": {
+        "capagRating": null,
+        "ownSourceRevenuePct": 12,
+        "debtServiceRatioPct": null,
+        "currentBalancePct": null,
+        "independentAudit": false,
+        "canBorrowWithoutSovereignGuarantee": false
+      },
+      "proposal": {
+        "title": "Zero-emission urban transport (e-bus + BRT)",
+        "sector": "transport",
+        "askUSDm": 3,
+        "stage": "Readiness Review",
+        "cofinance": false
+      }
+    },
+    {
+      "id": "SNG-CLMAF",
+      "name": "Máfil",
+      "locode": "CL MAF",
+      "cityId": "62unjyq2bu87wkf13yp2",
+      "country": "Chile",
+      "iso": "CL",
+      "type": "City",
+      "population": 8036,
+      "isAnchor": false,
+      "cofinanceScore": 25.5,
+      "anchorScore": 22.5,
+      "readiness": {
+        "fiscalHealth": 24,
+        "governance": 31,
+        "creditworthiness": 23,
+        "legalCapacity": 45
+      },
+      "provenance": {
+        "fiscalHealth": "real:SINIM/FCM (composite_score)",
+        "governance": "real:SINIM (professionalization + capacity)",
+        "creditworthiness": "estimated:capacity proxy (no CL municipal rating)",
+        "legalCapacity": "intake:legal opinion"
+      },
+      "signals": {
+        "capagRating": null,
+        "ownSourceRevenuePct": 20,
+        "debtServiceRatioPct": null,
+        "currentBalancePct": null,
+        "independentAudit": false,
+        "canBorrowWithoutSovereignGuarantee": false
+      },
+      "proposal": {
+        "title": "Zero-emission urban transport (e-bus + BRT)",
+        "sector": "transport",
+        "askUSDm": 3,
+        "stage": "Readiness Review",
+        "cofinance": false
+      }
+    },
+    {
+      "id": "SNG-",
+      "name": "Mariquina",
+      "locode": null,
+      "cityId": null,
+      "country": "Chile",
+      "iso": "CL",
+      "type": "City",
+      "population": null,
+      "isAnchor": false,
+      "cofinanceScore": null,
+      "anchorScore": null,
+      "readiness": {
+        "fiscalHealth": 40,
+        "governance": 40,
+        "creditworthiness": 35,
+        "legalCapacity": 45
+      },
+      "provenance": {
+        "fiscalHealth": "real:SINIM/FCM (composite_score)",
+        "governance": "real:SINIM (professionalization + capacity)",
+        "creditworthiness": "estimated:capacity proxy (no CL municipal rating)",
+        "legalCapacity": "intake:legal opinion"
+      },
+      "signals": {
+        "capagRating": null,
+        "ownSourceRevenuePct": null,
+        "debtServiceRatioPct": null,
+        "currentBalancePct": null,
+        "independentAudit": false,
+        "canBorrowWithoutSovereignGuarantee": false
+      },
+      "proposal": {
+        "title": "Zero-emission urban transport (e-bus + BRT)",
+        "sector": "transport",
+        "askUSDm": 3,
+        "stage": "Readiness Review",
+        "cofinance": false
+      }
+    }
+  ],
+  "funders": {
+    "counts": {
+      "applicant": 52,
+      "facilitator": 1,
+      "referrer": 25,
+      "total": 78
+    },
+    "sample": [
+      {
+        "program": "FPR 2026 - Fondo para el Reciclaje",
+        "funder": "Ministerio del Medio Ambiente (MMA)",
+        "role": "applicant"
+      },
+      {
+        "program": "FPR 2025 – Fondo para el Reciclaje 2025",
+        "funder": "Ministerio del Medio Ambiente (MMA)",
+        "role": "applicant"
+      },
+      {
+        "program": "FPR 2024 – Fondo para el Reciclaje 2024",
+        "funder": "Ministerio del Medio Ambiente (MMA)",
+        "role": "applicant"
+      },
+      {
+        "program": "FPR 2023 – Fondo para el Reciclaje",
+        "funder": "Ministerio del Medio Ambiente (MMA)",
+        "role": "applicant"
+      },
+      {
+        "program": "FPR 2022 Exequiel Estay – Recicladores de Base",
+        "funder": "Ministerio del Medio Ambiente (MMA)",
+        "role": "applicant"
+      },
+      {
+        "program": "FPR 2021 Exequiel Estay – Recicladores de Base",
+        "funder": "Ministerio del Medio Ambiente (MMA)",
+        "role": "applicant"
+      },
+      {
+        "program": "FPR 2020 – Promoviendo la economía circular en municipios a través del reciclaje",
+        "funder": "Ministerio del Medio Ambiente (MMA)",
+        "role": "applicant"
+      },
+      {
+        "program": "FPR 2020 Exequiel Estay – Recicladores de Base",
+        "funder": "Ministerio del Medio Ambiente (MMA)",
+        "role": "applicant"
+      },
+      {
+        "program": "FPR 2020 – Fondo para el Reciclaje Chiloé 2020",
+        "funder": "Ministerio del Medio Ambiente (MMA)",
+        "role": "applicant"
+      },
+      {
+        "program": "Asistencia Técnica para Municipios en Gestión Energética Local",
+        "funder": "Ministerio de Energía / Agencia de Sostenibilidad Energética (AgenciaSE, fundación de derecho privado)",
+        "role": "applicant"
+      },
+      {
+        "program": "Parque Solar Comunitario",
+        "funder": "Ministerio de Energía / Agencia de Sostenibilidad Energética (AgenciaSE, fundación de derecho privado)",
+        "role": "applicant"
+      },
+      {
+        "program": "Mejor Escuela (energías renovables / acond. térmico escuelas)",
+        "funder": "Ministerio de Energía / Agencia de Sostenibilidad Energética (AgenciaSE, fundación de derecho privado)",
+        "role": "applicant"
+      },
+      {
+        "program": "Programa de Mejoramiento Urbano y Equipamiento Comunal (PMU)",
+        "funder": "SUBDERE (Subsecretaría de Desarrollo Regional y Administrativo)",
+        "role": "applicant"
+      },
+      {
+        "program": "Programa de Mejoramiento de Barrios (PMB)",
+        "funder": "SUBDERE",
+        "role": "applicant"
+      }
+    ]
+  },
+  "transportGap": {
+    "nActions": 8,
+    "bestFit": 0.61,
+    "bestFunder": "Programa de Prevención y Mitigación de Riesgos (PMR)",
+    "actions": [
+      {
+        "id": "icare_0117",
+        "action": "Improve public transport systems to promote modal shift",
+        "combined": 0.61
+      },
+      {
+        "id": "icare_0121",
+        "action": "Incentive to create bike-sharing programs in urban areas, wi",
+        "combined": 0.61
+      },
+      {
+        "id": "icare_0139",
+        "action": "Implement congestion pricing and restrictions on high-pollut",
+        "combined": 0.61
+      },
+      {
+        "id": "c40_0023",
+        "action": "Adopt zero-emission bus fleets for public transport",
+        "combined": 0.61
+      },
+      {
+        "id": "c40_0025",
+        "action": "Promote deployment of zero-emission freight fleets (trucks)",
+        "combined": 0.61
+      },
+      {
+        "id": "c40_0029",
+        "action": "Electrify municipal vehicle fleets",
+        "combined": 0.61
+      },
+      {
+        "id": "ipcc_0001",
+        "action": "Promote compact urban form and transit-oriented development",
+        "combined": 0.61
+      },
+      {
+        "id": "ipcc_0105",
+        "action": "Promote active mobility through road space reallocation",
+        "combined": 0.61
+      }
+    ]
+  },
+  "pool": {
+    "unitId": 11,
+    "anchor": "Valdivia",
+    "anchorLocode": "CL ZAL",
+    "unitSize": 6,
+    "members": [
+      {
+        "name": "Valdivia",
+        "locode": "CL ZAL",
+        "cofinanceScore": 65.7,
+        "isAnchor": true
+      },
+      {
+        "name": "Paillaco",
+        "locode": "CL PAO",
+        "cofinanceScore": 43.5,
+        "isAnchor": false
+      },
+      {
+        "name": "Los Lagos",
+        "locode": "CL LLG",
+        "cofinanceScore": 42.8,
+        "isAnchor": false
+      },
+      {
+        "name": "Corral",
+        "locode": "CL CRR",
+        "cofinanceScore": 10.7,
+        "isAnchor": false
+      },
+      {
+        "name": "Máfil",
+        "locode": "CL MAF",
+        "cofinanceScore": 25.5,
+        "isAnchor": false
+      },
+      {
+        "name": "Mariquina",
+        "locode": null,
+        "cofinanceScore": null,
+        "isAnchor": false
+      }
+    ],
+    "bundle": {
+      "sector": "Transportation",
+      "coordinationTier": "highly_coordinated",
+      "instrumentClass": "pooled grant/loan · ESCO · debt",
+      "actorRoute": "municipal applicant",
+      "feasible": "True"
+    },
+    "pooledProposal": {
+      "title": "Los Ríos zero-emission transport program (6-comuna bundle)",
+      "sector": "transport",
+      "askUSDm": 30,
+      "stage": "Structuring",
+      "cofinance": true
+    }
+  }
+}
