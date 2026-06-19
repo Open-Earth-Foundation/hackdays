@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "data:actions": "node scripts/fetch-climate-actions.mjs"
   },
   "dependencies": {
     "@types/leaflet": "^1.9.21",
@@ -13,7 +14,9 @@
     "next": "^15",
     "react": "^19",
     "react-dom": "^19",
-    "react-leaflet": "^5.0.0"
+    "react-leaflet": "^5.0.0",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
     "@types/node": "^22",
